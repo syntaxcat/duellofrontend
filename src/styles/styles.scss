@@ -1,9 +1,9 @@
 // SETUP
-// @import 'setup/typography';
+@import "./setup/functions";
+@import 'setup/typography';
 @import "setup/variables";
 // @import 'setup/mixins';
 // @import 'setup/functions';
-@import "./setup/functions";
 
 // BASIC
 @import "./basic/base.scss";

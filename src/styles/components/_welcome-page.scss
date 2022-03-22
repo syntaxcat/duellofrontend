@@ -1,6 +1,5 @@
 .welcome-page {
   background-image: linear-gradient($welcomeBCG, white);
-
   .welcome-img {
     width: 445px;
   }
@@ -8,7 +7,9 @@
     display: flex;
 
     h1 {
+      font-family: ubuntu-med;
       font-size: rem(48px);
+      font-weight: lighter;
     }
     p {
       font-size: rem(20px);
