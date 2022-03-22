@@ -1,12 +1,50 @@
 <template>
   <section class="main-header">
     <nav>
-      <h1>Logo</h1>
-
-      <router-link to="/">Home</router-link> |
-      <router-link to="/board">Board</router-link>
+      <div class="buttons">
+        <button>
+          <img src="../assets/icons/bxs-grid.svg" alt="grid">
+        </button>
+        <button>
+          <img src="../assets/icons/trello.svg" alt="trello"> 
+          <span>Trello</span>
+        </button>
+        <button>
+          Workspaces
+          <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow">
+        </button>
+        <button>
+          Recent
+          <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow">
+        </button>
+        <button>
+          Starred
+          <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow">
+        </button>
+        <button>
+          Templates
+          <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow">
+        </button>
+        <button>
+          Create
+        </button>
+      </div>
+      <div class="information">
+        <div class="search-input">
+          <img src="../assets/icons/bx-search.svg" alt="search">
+          <input type="text" placeholder="Search">
+        </div>
+        <button>
+          <img src="../assets/icons/bx-info-circle.svg" alt="information">
+        </button>
+        <button class="bell-btn">
+          <img src="../assets/icons/bx-bell.svg" alt="alert">
+      </button>
+      </div>
     </nav>
   </section>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/board">Board</router-link>
 </template>
 
 <script>
