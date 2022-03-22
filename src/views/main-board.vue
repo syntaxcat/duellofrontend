@@ -1,6 +1,10 @@
 <template>
   <section class="main-board">
-      <h1>Board</h1>
+      <header>Board header</header>
+
+      <section class="groups-container">
+
+      </section>
   </section>
 </template>
 
