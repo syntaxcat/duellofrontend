@@ -40,8 +40,10 @@
 
         .bell-btn {
             background-color: $clr4;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+
+            img {
+                width: 20px;
+            }
         }
     }
     .search-input {
@@ -49,20 +51,28 @@
         display: flex;
         align-items: center;
         background-color: transparent;
-        // border: 1px solid black;
         background-color: rgba($color: $clr3, $alpha: 0.4);
         border-radius: 3px;
 
         input {
-            padding: 0.5rem;
             background-color: transparent;
             border: none;
+            width: rem(250px);
+            padding-left: rem(35px);
+            outline: none;
+
         }
-        // TODO:make search hover and color black
-        // input:hover {
-            // background-color: rgba($color: $clr3, $alpha: 0.4);
-            // color: black;
-        // }
+        img {
+            position: absolute;
+        }
+        input::placeholder {
+            color: $clr3;
+        } 
+        
+        input:focus {
+            border: none;
+            color: $clr6;
+        }
     }
 
 }
