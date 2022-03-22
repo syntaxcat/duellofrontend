@@ -1,18 +1,86 @@
 .welcome-page {
   background-image: linear-gradient($welcomeBCG, white);
-  .welcome-img {
-    width: 445px;
+  font-family: ubuntu-reg;
+  //   letter-spacing: em(5px);
+  .welcome-btn {
+    font-size: rem(20px);
+    background-color: $welcomeBtnClr;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    height: rem(36px);
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+  .welcome-header {
+    height: rem(68.25px);
+    padding: 0 1rem 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .welcome-logo {
+      font-size: rem(36px);
+      font-family: ubuntu-bold;
+      color: $welcomeLogo;
+    }
+    .welcome-btn-container {
+      .welcome-btn {
+        width: 80px;
+        font-size: 1.1rem;
+        font-family: ubuntu-med;
+        padding: 6px;
+      }
+      & > :first-child {
+        // margin-right: 0.5rem ;
+        color: $welcomeBtnClr;
+        background-color: transparent;
+      }
+    }
   }
   .welcome-body {
+    color: $welcomeTxtClr;
+    margin: em(38.75px) 0 0 em(99px);
     display: flex;
+    justify-content: space-between;
+
+    & > * {
+      width: 619px;
+      line-height: lh(25px);
+    }
 
     h1 {
+      margin-top: rem(58px);
       font-family: ubuntu-med;
-      font-size: rem(48px);
+      font-size: rem(45px);
       font-weight: lighter;
+      margin-bottom: 8px;
     }
     p {
       font-size: rem(20px);
+    }
+    .welcome-img {
+      width: 445px;
+    }
+    .welcome-btn {
+      width: 230px;
+      height: 45.2px;
+    }
+  }
+
+  form {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+
+    //   &>:first-child{
+    //       width: 365px;
+    //       border: 1px solid darken($color: white, $amount: 15);
+    //   }
+    input {
     }
   }
 }
