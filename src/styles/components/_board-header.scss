@@ -1,22 +1,110 @@
 .board-header {
-  width: 100%;
+  background-color: $clr1;
   height: rem(55px);
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .right-side {
+  .left-side {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-grow: 0.1;
 
+    > *.divider {
+      border-inline-end: 1px solid $clr3;
+      height: 16px;
+      margin: 8px 8px 12px 4px;
+    }
+
+    button {
+      border-radius: em(3px);
+      height: rem(32px);
+      @include btn(
+        $type: light,
+        $padding: (
+          0 em(12px),
+        ),
+        $line-height: (
+          lh(32px, 18px),
+        ),
+        $size: (
+          em(14px),
+        )
+      );
+      font-weight: 700;
+    }
+
     .board-name {
+      display: flex;
+      align-items: center;
+      margin: 0 em(4px) em(4px) em(32px);
+      padding: 0;
+      div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        align-self: center;
+        border-radius: em(3px);
+        @include btn(
+          $type: light,
+          $padding: (
+            0 em(12px),
+          ),
+          $line-height: (
+            lh(32px, 18px),
+          ),
+          $size: (
+            em(18px),
+          )
+        );
+        font-weight: 700;
+      }
+
       input {
+        // max-width: calc(100% - em(24px));
+        font-size: em(18px);
+        font-weight: 700;
+        height: rem(32px);
+        border: 0;
+        padding: 0 em(12px);
+        border-radius: em(3px);
+
         &:focus-visible {
-          outline-color: blue;
+          color: $clr5;
+          outline: none;
+          box-shadow: 0 0 3px 2px $outline;
         }
       }
     }
+  }
+
+  .right-side{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 0.06;
+    margin-inline-end: rem(8px);
+    button {
+        border-radius: em(3px);
+        height: rem(32px);
+        @include btn(
+          $type: light,
+          $padding: (
+            0 em(12px),
+          ),
+          $size: (
+            em(14px),
+          )
+          );
+          font-weight: 700;
+          justify-content: space-between;
+
+        span{
+            color: $clr3;
+        }
+        img{
+            margin-inline-end: rem(8px);
+        }
+      }
   }
 }
