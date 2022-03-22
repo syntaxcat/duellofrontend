@@ -1,19 +1,15 @@
 <template>
   <section class="main-board">
-      <header>Board header</header>
-
-      <section class="groups-container">
-
-      </section>
+    <mainHeader />
+    <header>Board header</header>
+    <section class="groups-container"></section>
   </section>
 </template>
 
 <script>
-export default {
+  import mainHeader from "../components/main-header.vue";
 
-}
+  export default {
+    components: { mainHeader },
+  };
 </script>
-
-<style>
-
-</style>

@@ -7,6 +7,3 @@
     <RouterView />
   </section>
 </template>
-
-<style>
-</style>
