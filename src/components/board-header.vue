@@ -13,7 +13,7 @@
       </div>
 
       <button @click="setFavorite">
-        <img :class="isFavorite" src="../assets/imgs/bx-star.svg" alt="star" />
+        <img :class="isFavorite" src="../assets/icons/bx-star.svg" alt="star" />
       </button>
       |
       <button>Sprint</button>
@@ -27,11 +27,11 @@
     </div>
     <div class="left-side">
       <button>
-          <img src="../assets/imgs/bx-filter.svg" alt="">
+          <img src="../assets/icons/bx-filter.svg" alt="">
         <span>Filter</span>
       </button>
       <button>
-          <img src="../assets/imgs/more-horizontal.svg" alt="">
+          <img src="../assets/icons/more-horizontal.svg" alt="">
         <span>Show menu</span>
       </button>
     </div>
