@@ -1,7 +1,22 @@
-@import './basic/base.scss'
+// SETUP
+// @import 'setup/typography';
+// @import 'setup/variables';
+// @import 'setup/mixins';
+// @import 'setup/functions';
 
-
+// BASICS
+@import 'basic/base';
+// @import 'basics/base';
+// @import 'basics/layout';
 
 // COMPONENTS
-// @import 'components/welcome-page.scss',
-// @import 'components/main-header.scss';
+// @import 'components/App';
+@import 'components/welcome-page';
+@import 'components/main-header';
+// @import 'components/toyPreview';
+// @import 'components/chatRoom';
+// @import 'components/toyList';
+// @import 'components/toyFilter';
+// @import 'components/toyEdit';
+// @import 'components/toyDetails';
+// @import 'components/dashboard';
