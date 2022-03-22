@@ -7,7 +7,7 @@
         </button>
         <button>
           <img src="../assets/icons/trello.svg" alt="trello"> 
-          <span>Trello</span>
+          <span>Duello</span>
         </button>
         <button>
           Workspaces
