@@ -1,13 +1,11 @@
 <template>
   <section class="home-page">
-      <h1>Home page</h1>
-      <MainHeader />
+    <mainHeader />
+    <h1>Home page</h1>
   </section>
 </template>
 
 <script>
-import MainHeader from "../components/main-header.vue";
-export default { components: { MainHeader } };
+  import mainHeader from "../components/main-header.vue";
+  export default { components: { mainHeader } };
 </script>
-
-<style></style>
