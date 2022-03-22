@@ -1,0 +1,17 @@
+.welcome-page {
+  background-image: linear-gradient($welcomeBCG, white);
+
+  .welcome-img {
+    width: 445px;
+  }
+  .welcome-body {
+    display: flex;
+
+    h1 {
+      font-size: rem(48px);
+    }
+    p {
+      font-size: rem(20px);
+    }
+  }
+}
