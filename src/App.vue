@@ -1,13 +1,12 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import mainHeader from "./components/main-header.vue";
+  import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
   <section>
-    <main-header />
     <RouterView />
   </section>
 </template>
 
-<style></style>
+<style>
+</style>
