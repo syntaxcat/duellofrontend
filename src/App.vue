@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <section>
     <h1>
-      Duello!
+      Duello!!!!!
     </h1>
     <RouterView />
   </section>
