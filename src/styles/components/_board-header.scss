@@ -1,0 +1,22 @@
+.board-header {
+  width: 100%;
+  height: rem(55px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .right-side {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 0.1;
+
+    .board-name {
+      input {
+        &:focus-visible {
+          outline-color: blue;
+        }
+      }
+    }
+  }
+}
