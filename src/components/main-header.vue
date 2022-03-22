@@ -1,7 +1,8 @@
 <template>
   <section class="main-header">
-    <h1>Logo</h1>
     <nav>
+          <h1>Logo</h1>
+
       <router-link to="/">Home</router-link> |
       <router-link to="/board">Board</router-link>
     </nav>
