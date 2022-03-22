@@ -5,25 +5,17 @@
 @import 'setup/_mixins';
 // @import 'setup/functions';
 
-// BASIC
-@import "./basic/base.scss";
-
-// COMPONENTS
-@import "./components/welcome-page";
-
 // BASICS
 @import "basic/base";
 // @import 'basics/base';
 // @import 'basics/layout';
 
+// VIEWS
+@import "views/welcome-page";
+@import 'views/home-page';
+
 // COMPONENTS
-// @import 'components/App';
-// @import 'components/welcome-page';
 @import "components/main-header";
 @import 'components/board-header';
-// @import 'components/chatRoom';
-// @import 'components/toyList';
-// @import 'components/toyFilter';
-// @import 'components/toyEdit';
-// @import 'components/toyDetails';
-// @import 'components/dashboard';
+
+

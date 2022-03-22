@@ -1,7 +1,10 @@
 <template>
     <section class="welcome-page">
         <div class="welcome-header">
-            <div class="welcome-logo">Duello</div>
+            <div class="welcome-logo">
+                <img src="../assets/imgs/trello.png"/>
+                <span>Duello</span>
+            </div>
             <div class="welcome-btn-container">
             <button class="welcome-btn">Log in</button>
             <button class="welcome-btn">Sign up</button>
@@ -13,7 +16,7 @@
                 <p>
                     Collaborate, manage projects, and reach new productivity peaks.
                     From high rises to the home office, the way your team works is unique—accomplish
-                    it all with Trello.
+                    it all with Duello.
                 </p>
                 <form>
                     <!-- <input type="text" /> -->

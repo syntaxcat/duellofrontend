@@ -1,7 +1,6 @@
 .welcome-page {
   background-image: linear-gradient($welcomeBCG, white);
   font-family: ubuntu-reg;
-  //   letter-spacing: em(5px);
   .welcome-btn {
     font-size: rem(20px);
     background-color: $welcomeBtnClr;
@@ -26,6 +25,11 @@
       font-size: rem(36px);
       font-family: ubuntu-bold;
       color: $welcomeLogo;
+
+      img {
+        height: 25px;
+        margin-right: 0.5rem;
+      }
     }
     .welcome-btn-container {
       .welcome-btn {
@@ -43,12 +47,13 @@
   }
   .welcome-body {
     color: $welcomeTxtClr;
-    margin: em(38.75px) 0 0 em(99px);
+    margin: em(100px) 0 0 em(99px);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     & > * {
-      width: 619px;
+      //   width: 619px;
+      max-width: 45vw;
       line-height: lh(25px);
     }
 
@@ -63,7 +68,7 @@
       font-size: rem(20px);
     }
     .welcome-img {
-      width: 445px;
+      max-height: 80vh;
     }
     .welcome-btn {
       width: 230px;
@@ -75,12 +80,32 @@
     margin-top: 3rem;
     display: flex;
     justify-content: space-between;
+  }
+}
+@media screen and (max-width: 992px) {
+  .welcome-page {
+    .welcome-img {
+      display: none;
+    }
 
-    //   &>:first-child{
-    //       width: 365px;
-    //       border: 1px solid darken($color: white, $amount: 15);
-    //   }
-    input {
+    .welcome-body {
+      margin: auto;
+      margin-top: em(38.75px);
+      & > * {
+        max-width: 75vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1550px) {
+  .welcome-page {
+    .welcome-body {
+      margin: auto;
+      margin-top: em(38.75px);
+  
+      .welcome-img {
+        max-width: 445px;
+      }
     }
   }
 }
