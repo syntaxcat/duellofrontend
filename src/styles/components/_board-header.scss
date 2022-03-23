@@ -42,7 +42,7 @@
     .board-name {
       display: flex;
       align-items: center;
-      margin: 0 em(4px) em(4px) em(32px);
+      margin: 0 rem(4px) rem(4px) rem(32px);
       padding: 0;
       div {
         overflow: hidden;
@@ -59,7 +59,7 @@
             lh(32px, 18px),
           ),
           $size: (
-            em(18px),
+            rem(18px),
           )
         );
         font-weight: 700;
@@ -67,14 +67,17 @@
 
       input {
         // max-width: calc(100% - em(24px));
-        font-size: em(18px);
+        // width: 70%;
+        font-size: rem(18px);
         font-weight: 700;
         height: rem(32px);
         border: 0;
         padding: 0 em(12px);
         border-radius: em(3px);
+        text-align: center;
 
         &:focus-visible {
+          padding: 0;
           color: $clr6;
           outline: none;
           box-shadow: 0 0 3px 2px $outline;

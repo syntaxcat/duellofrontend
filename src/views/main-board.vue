@@ -1,16 +1,34 @@
 <template>
   <section class="main-board">
-    <mainHeader />
-    <boardHeader />
-    <section class="groups-container"></section>
+    <main-header />
+    <board-header />
+
+    <section class="groups-container" v-if="board">
+      <div class="group" v-for="group in board.groups" :key="group.id">
+        <board-group :group="group" />
+      </div>
+    </section>
   </section>
 </template>
 
 <script>
-  import boardHeader from "../components/board-header.vue";
-  import mainHeader from "../components/main-header.vue";
+import boardHeader from "../components/board-header.vue";
+import mainHeader from "../components/main-header.vue";
+import boardGroup from "../components/board-group.vue";
 
-  export default {
-    components: { boardHeader, mainHeader },
-  };
+export default {
+  data() {
+    return {
+      board: null,
+    };
+  },
+  async created() {
+    const board = await this.$store.dispatch({ type: "loadBoard" });
+    this.board = board[0];
+    console.log(this.board);
+  },
+  computed: {},
+  methods: {},
+  components: { boardHeader, mainHeader, boardGroup },
+};
 </script>

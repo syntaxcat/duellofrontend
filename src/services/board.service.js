@@ -1,7 +1,7 @@
 import { storageService } from "./storage.service";
 
 export const boardService = {
-    // query,
+    query,
     // remove,
     // add,
     // update
@@ -11,6 +11,10 @@ const BOARD_KEY = 'boardDB'
 var gBoard;
 
 _createBoard()
+
+async function query(){
+        return await storageService.query(BOARD_KEY)
+}
 
 async function _createBoard() {
     try {
