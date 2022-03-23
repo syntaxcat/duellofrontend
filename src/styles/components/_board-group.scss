@@ -64,11 +64,12 @@
                 background-color: transparent;
                 cursor: pointer;
                 border-radius: 3px;
+                align-self: start;
             }
 
             button:hover {
                 background-color: $group2;
-                align-self: start;
+                
             }
             img {
                 width: 10px;

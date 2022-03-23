@@ -1,2 +1,21 @@
 .main-board {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .groups-container {
+    flex-grow: 1;
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+    overflow-y: hidden;
+  }
+  
+  .groups {
+    display: flex;
+  }
+
+  .group {
+    height: 100%;
+    overflow: scroll;
+  }
 }

@@ -3,7 +3,5 @@
 </script>
 
 <template>
-  <section>
-    <RouterView />
-  </section>
+  <RouterView />
 </template>

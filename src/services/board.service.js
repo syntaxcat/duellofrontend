@@ -11,17 +11,18 @@ export const boardService = {
 
 const BOARD_KEY = "boardDB";
 
-
 _createBoard();
 
 async function query(filterBy) {
-  console.log(filterBy)
+  console.log(filterBy);
   try {
     const boards = await storageService.query(BOARD_KEY);
     if (filterBy.boardId)
       return boards.find((board) => filterBy.boardId === board._id);
     else if (filterBy.userId) {
-      console.log(boards.filter((board) => filterBy.userId === board.createdBy._id));
+      console.log(
+        boards.filter((board) => filterBy.userId === board.createdBy._id)
+      );
       return boards.filter((board) => filterBy.userId === board.createdBy._id);
     }
   } catch (err) {
@@ -52,10 +53,10 @@ async function updateGroup(newGroup, boardId) {
   }
 }
 
-async function updateGroups(newOrder, board){
-  board.groups = newOrder
+async function updateGroups(newOrder, board) {
+  board.groups = newOrder;
   storageService.put(BOARD_KEY, board);
-  return newOrder
+  return newOrder;
 }
 
 async function getById(boardId) {
@@ -72,7 +73,7 @@ async function removeGroup(groupId, boardId) {
 
 async function _createBoard() {
   try {
-   var board = await storageService.query(BOARD_KEY);
+    var board = await storageService.query(BOARD_KEY);
     if (!board || !board.length) {
       console.log("query");
       board = {
