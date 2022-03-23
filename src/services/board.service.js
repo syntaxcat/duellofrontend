@@ -5,8 +5,8 @@ export const boardService = {
   query,
   addGroup,
   removeGroup,
+  updateGroup,
   // add,
-  // update
 };
 
 const BOARD_KEY = "boardDB";
@@ -14,10 +14,13 @@ var gBoard;
 
 _createBoard();
 
-async function query(boardId) {
+async function query(filterBy) {
   try {
     const boards = await storageService.query(BOARD_KEY);
-    return boards.find((board) => boardId === board._id);
+    if (filterBy.boardId)
+      return boards.find((board) => filterBy.boardId === board._id);
+    if (filterBy.userId)
+      return boards.filter((board) => filterBy.userId === board.createdBy._id);
   } catch (err) {
     console.log(err);
   }
@@ -33,6 +36,18 @@ async function addGroup(title, board) {
   await storageService.put(BOARD_KEY, board);
   console.log(board);
   return group;
+}
+
+async function updateGroup(groupToUpdate) {
+  const boards = await storageService.query(BOARD_KEY);
+  const board = boards.find(
+    (currBoard) => currBoard._id === groupToUpdate.boardId
+  );
+  const idx = board.groups.findIndex((grp) => grp.id === groupToUpdate.id);
+  board.groups[idx].title = groupToUpdate.title;
+  // console.log(board.groups[idx]);
+  await storageService.put(BOARD_KEY, board);
+  return board.groups[idx];
 }
 
 async function getById(boardId) {

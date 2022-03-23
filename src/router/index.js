@@ -13,7 +13,7 @@ const router = createRouter({
       component: homePage
     },
     {
-      path: '/board',
+      path: '/board/:boardId',
       name: 'board',
       component: mainBoard
     },

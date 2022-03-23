@@ -1,69 +1,81 @@
 <template>
   <section class="board-group">
-    <header>
-      {{group.title}}
-    </header>
+    <div class="group-title">
+      <input
+        type="text"
+        ref="myInput"
+        v-model="title"
+        v-if="isEditing"
+        @blur="edit(group.id)"
+      />
+      <div v-if="!isEditing" @click="edit">{{ group.title }}</div>
+    </div>
 
-<ul>
-  <li v-for="task in group.tasks" :key="task.id">
-    <task-preview :task="task" />
-  </li>
-</ul>    
-
-<button>Add task</button>
-<button @click="removeGroup(group.id)">Delete</button>
+    <ul>
+      <li v-for="task in group.tasks" :key="task.id">
+        <task-preview :task="task" />
+      </li>
+    </ul>
+    <button>Add task</button>
+    <button @click="removeGroup(group.id)">Delete</button>
   </section>
 </template>
 
 <script>
-import taskPreview from '../components/task-preview.vue'
+  import taskPreview from "../components/task-preview.vue";
 
-export default {
-  props:{
-    group:{
-      type: Object,
-      required: true
-    }
-  },
-  data() {
-    return {
-      
-    }
-  },
-  methods: {
-    removeGroup(groupId) {
-      this.$emit("removeGroup", groupId)
-    }
-  },
-  components:{taskPreview}
+  export default {
+    props: {
+      group: {
+        type: Object,
+        required: true,
+      },
+    },
+    data() {
+      return {
+        isEditing: false,
+        title: this.group.title,
+      };
+    },
+    methods: {
+      edit(groupId) {
+        this.isEditing = !this.isEditing;
+        if (this.isEditing) this.$nextTick(() => this.$refs.myInput.focus());
 
-}
+        if (this.title !== this.group.title)
+          this.$emit("groupTitle", { title: this.title, id: groupId });
+      },
+      removeGroup(groupId) {
+        this.$emit("removeGroup", groupId);
+      },
+    },
+      components: { taskPreview },
+  };
 </script>
 
 <style>
-.board-group{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin: 10px;
-  height: 150px;
-  width: 15rem;
-  border: 1px solid black;
-  padding: 10px;
+  .board-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px;
+    height: 150px;
+    width: 15rem;
+    border: 1px solid black;
+    padding: 10px;
+  }
 
-}
+  ul {
+    list-style: none;
+    padding: 0;
+  }
 
-ul{
-  list-style: none;
-  padding: 0;
-}
+  ul > li {
+    margin-block-end: 5px;
+    background-color: rgba(128, 128, 128, 0.233);
+  }
 
-ul>li{
-  margin-block-end: 5px;
-  background-color: rgba(128, 128, 128, 0.233);
-}
-
-header{
-  text-decoration: underline;
-}
+  header {
+    text-decoration: underline;
+  }
 </style>
