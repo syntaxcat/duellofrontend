@@ -12,6 +12,13 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      
+    }
+  },
+  methods:{},
+  computed:{}
 };
 </script>
 
