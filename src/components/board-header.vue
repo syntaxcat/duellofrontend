@@ -15,7 +15,7 @@
       </div>
 
       <button @click="setFavorite">
-        <img :class="isFavorite" src="../assets/icons/bx-star.svg" alt="star" />
+        <img :class="isFavorite" class="starred" src="../assets/icons/bx-star.svg" alt="star" />
       </button>
       <div class="divider">
       |
@@ -34,11 +34,11 @@
    
     <div class="right-side">
       <button>
-          <img src="../assets/icons/bx-filter.svg" alt="">
+          <img src="../assets/icons/bx-filter.svg" alt="filter">
         <span>Filter</span>
       </button>
       <button>
-          <img src="../assets/icons/more-horizontal.svg" alt="">
+          <img src="../assets/icons/more-horizontal.svg" alt="more">
         <span>Show menu</span>
       </button>
     </div>
@@ -73,5 +73,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
