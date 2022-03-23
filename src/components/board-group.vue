@@ -1,23 +1,26 @@
 <template>
 <div class="board-group-container">
-  
   <section class="board-group">
     <div class="group-title">
+      <div class="title-container">
       <input
         type="text"
-        ref="myInput"
+        :class="{ isEditing: isEditing }"
         v-model="group.title"
-        v-if="isEditing"
         @blur="editGroup(group)"
-        @click="editGroup"
+        @click="changeGroupTitle"
       />
-      <div v-else @click="changeGroup">{{ group.title }}</div>
     </div>
-
+      <button>
+        <img src="../assets/icons/bx-dots-horizontal-rounded.svg" alt="more">
+      </button>
+    </div>
     <ul>
       <li v-for="task in group.tasks" :key="task.id">
-        <button @click="removeTask(task.id, group.id)">X</button>
         <task-preview :task="task" @editTask="updateTask" />
+        <button @click="removeTask(task.id, group.id)">
+        <img src="../assets/icons/x.svg" alt="delete">
+        </button>
       </li>
     </ul>
     <div v-if="isNewTask">
@@ -54,9 +57,8 @@ export default {
       this.$emit("editGroup", group);
       this.isEditing = false
     },
-    changeGroup() {
+    changeGroupTitle() {
       this.isEditing = true
-      this.$nextTick(() => this.$refs.myInput.focus());
     },
     removeGroup(groupId) {
       this.$emit("removeGroup", groupId);
