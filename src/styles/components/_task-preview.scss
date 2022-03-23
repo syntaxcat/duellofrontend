@@ -1,0 +1,15 @@
+.task-preview {
+    width: 100%;
+    textarea {
+        resize: none;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    textarea.isEditing {
+        // background-color: $clr3;
+        border-color: $clr6;
+    }
+}
