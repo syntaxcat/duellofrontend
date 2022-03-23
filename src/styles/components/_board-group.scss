@@ -1,0 +1,25 @@
+
+.board-group-container {
+
+    height: 100%;
+
+    .board-group {
+        border: 1px solid black;
+        width: rem(272px);
+        margin: 0 4px;
+        background-color: $group1;
+        border-radius: 3px;
+    
+        .group-title {
+            display: flex;
+
+            .input-container {
+                flex-grow: 1;
+
+                input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

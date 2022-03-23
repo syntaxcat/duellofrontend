@@ -1,4 +1,6 @@
 <template>
+<div class="board-group-container">
+  
   <section class="board-group">
     <div class="group-title">
       <input
@@ -25,6 +27,7 @@
     <button v-else @click="createTask(group.id)">Add task</button>
     <button @click="removeGroup(group.id)">Delete</button>
   </section>
+</div>
 </template>
 
 <script>
@@ -76,5 +79,3 @@ export default {
   components: { taskPreview },
 };
 </script>
-
-<style></style>

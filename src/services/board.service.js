@@ -6,7 +6,7 @@ export const boardService = {
   addGroup,
   removeGroup,
   // updateGroup,
-  updateGroup: updateGroup
+  updateGroup: updateGroup,
 };
 
 const BOARD_KEY = "boardDB";
@@ -19,7 +19,7 @@ async function query(filterBy) {
     const boards = await storageService.query(BOARD_KEY);
     if (filterBy.boardId)
       return boards.find((board) => filterBy.boardId === board._id);
-    else if (filterBy.userId){
+    else if (filterBy.userId) {
       return boards.filter((board) => filterBy.userId === board.createdBy._id);
     }
   } catch (err) {
@@ -38,7 +38,7 @@ async function addGroup(title, boardId) {
   board.groups.push(group);
   await storageService.put(BOARD_KEY, board);
   return group;
-};
+}
 
 // async function updateGroup(groupToUpdate) {
 //   const boards = await storageService.query(BOARD_KEY);
@@ -51,18 +51,18 @@ async function addGroup(title, boardId) {
 //     board.groups[idx].title = groupToUpdate.title;
 //   }
 //   else board.groups.splice(idx, 1, groupToUpdate)
-  
+
 //   await storageService.put(BOARD_KEY, board);
 //   return board.groups[idx];
 // }
 
-async function updateGroup(newGroup, boardId){
-  const board = await storageService.get(BOARD_KEY, boardId)
-  const groupIdx = board.groups.findIndex(group => group.id === newGroup.id)
-  if(groupIdx !== -1) {
-    board.groups.splice(groupIdx, 1, newGroup)
-    storageService.put(BOARD_KEY, board)
-    return newGroup
+async function updateGroup(newGroup, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId);
+  const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
+  if (groupIdx !== -1) {
+    board.groups.splice(groupIdx, 1, newGroup);
+    storageService.put(BOARD_KEY, board);
+    return newGroup;
   }
 }
 
@@ -77,8 +77,6 @@ async function removeGroup(groupId, boardId) {
   board.groups.splice(idx, 1);
   await storageService.put(BOARD_KEY, board);
 }
-
-
 
 async function _createBoard() {
   try {
