@@ -26,7 +26,7 @@ export default {
   },
   async created() {
     const board = await this.$store.dispatch({ type: "loadBoard" });
-    this.board = board;
+    this.board = board[0];
     console.log(this.board);
   },
   computed: {},

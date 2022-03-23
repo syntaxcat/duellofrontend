@@ -19,12 +19,13 @@ async function query() {
 }
 
 async function addGroup(title) {
+    console.log(gBoard);
     const group = {
         id: utilService.makeId(),
         title,
         tasks: []
     }
-    gBoard[0].groups.push(group)
+    gBoard.groups.push(group)
      await storageService.put(BOARD_KEY, gBoard)
     console.log(gBoard);
      return group
