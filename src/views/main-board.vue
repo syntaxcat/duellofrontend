@@ -5,7 +5,7 @@
 
     <section class="groups-container" v-if="board">
       <div class="group" v-for="group in board.groups" :key="group.id">
-        <board-group :group="group" />
+        <board-group :group="group" @groupTitle="groupTitle" />
       </div>
       <add-group @addGroup="addGroup" />
     </section>
@@ -26,14 +26,16 @@ export default {
   },
   async created() {
     const board = await this.$store.dispatch({ type: "loadBoard" });
-    console.log(this.board);
     this.board = board;
-    console.log(this.board);
   },
   computed: {},
   methods: {
      addGroup(title){
       this.$store.dispatch({type: 'addGroup', title})
+    },
+    groupTitle(groupToUpdate){
+      groupToUpdate.boardId = this.board._id
+      this.$store.dispatch({type: 'groupTitle', groupToUpdate})
     }
   },
   components: { boardHeader, mainHeader, boardGroup, addGroup },

@@ -5,7 +5,7 @@
       <span>Add another list</span>
     </button>
 
-    <form @submit.prevent="addGroup" v-else>
+    <form class="add-group-form" @submit.prevent="addGroup" v-else>
       <input type="text" placeholder="Enter list title..." v-model="title" />
       <button type="submit">Add list</button>
 
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style>
-form {
+.add-group-form {
   border: 1px solid rgb(0, 0, 0);
   padding: 10px;
   width: 15rem;

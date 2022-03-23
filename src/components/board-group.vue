@@ -1,36 +1,57 @@
 <template>
   <section class="board-group">
-    <header>
-      {{group.title}}
-    </header>
+    <div class="group-title">
+      <input
+        type="text"
+        ref="myInput"
+        v-model="title"
+        v-if="isEditing"
+        @blur="edit(group.id)"
+      />
+      <div v-if="!isEditing" @click="edit">{{ group.title }}</div>
+    </div>
 
-<ul>
-  <li v-for="task in group.tasks" :key="task.id">
-    <task-preview :task="task" />
-  </li>
-</ul>    
+    <ul>
+      <li v-for="task in group.tasks" :key="task.id">
+        <task-preview :task="task" />
+      </li>
+    </ul>
 
-<button>Add task</button>
+    <button>Add task</button>
   </section>
 </template>
 
 <script>
-import taskPreview from '../components/task-preview.vue'
+import taskPreview from "../components/task-preview.vue";
 
 export default {
-  props:{
-    group:{
+  props: {
+    group: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  components:{taskPreview}
+  data() {
+    return {
+      isEditing: false,
+      title: this.group.title,
+    };
+  },
+  methods: {
+    edit(groupId) {
+      this.isEditing = !this.isEditing;
+      if (this.isEditing) this.$nextTick(() => this.$refs.myInput.focus());
 
-}
+      if (this.title !== this.group.title)
+        this.$emit("groupTitle", { title: this.title, id: groupId });
+    },
+  },
+  components: { taskPreview },
+};
 </script>
 
 <style>
-.board-group{
+.board-group {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -39,20 +60,19 @@ export default {
   width: 15rem;
   border: 1px solid black;
   padding: 10px;
-
 }
 
-ul{
+ul {
   list-style: none;
   padding: 0;
 }
 
-ul>li{
+ul > li {
   margin-block-end: 5px;
   background-color: rgba(128, 128, 128, 0.233);
 }
 
-header{
+header {
   text-decoration: underline;
 }
 </style>
