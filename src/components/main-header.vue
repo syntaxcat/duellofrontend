@@ -25,7 +25,7 @@
           Templates
           <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow">
         </button>
-        <button>
+        <button class="create-btn">
           Create
         </button>
       </div>
