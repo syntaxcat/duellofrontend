@@ -8,7 +8,8 @@
           v-model="boardName"
           v-if="isEditing"
           @blur="isEditing = !isEditing"
-          :style="width"
+          :size="width"
+          
         />
         <div v-if="!isEditing" @click="editMode">{{ boardName }}</div>
       </div>
@@ -49,7 +50,7 @@ export default {
   data() {
     return {
       boardName: "Duello",
-      isEditing: true,
+      isEditing: false,
       isFull: false,
     };
   },
@@ -67,9 +68,7 @@ export default {
       return this.isFull ? "full-star" : "empty-star";
     },
     width(){
-      return {
-        'max-width': `calc(10% - em(${this.boardName.length*2}px))`
-      }
+      return this.boardName.length
     }
   },
 };
