@@ -11,6 +11,7 @@
 </ul>    
 
 <button>Add task</button>
+<button @click="removeGroup(group.id)">Delete</button>
   </section>
 </template>
 
@@ -22,6 +23,16 @@ export default {
     group:{
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      
+    }
+  },
+  methods: {
+    removeGroup(groupId) {
+      this.$emit("removeGroup", groupId)
     }
   },
   components:{taskPreview}
