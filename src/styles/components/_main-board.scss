@@ -6,7 +6,7 @@
     flex-grow: 1;
     display: flex;
     width: 100%;
-    overflow: scroll;
+    overflow: auto;
     overflow-y: hidden;
   }
   
@@ -16,6 +16,6 @@
 
   .group {
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
   }
 }
