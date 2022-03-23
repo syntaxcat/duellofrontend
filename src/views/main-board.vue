@@ -49,7 +49,6 @@ export default {
       this.$store.dispatch({ type: "removeGroup", groupId });
     },
     editGroup(newGroup) {
-      // groupToUpdate.boardId = this.board._id;
       this.$store.dispatch({ type: "updateGroup", newGroup });
     },
     removeTask(taskId, groupId) {
