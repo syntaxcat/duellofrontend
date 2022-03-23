@@ -10,6 +10,7 @@
           @groupTitle="groupTitle"
           @removeGroup="removeGroup(group.id)"
           @removeTask="removeTask"
+          @updateTask="updateTask"
         />
       </div>
       <add-group @addGroup="addGroup" />
@@ -52,6 +53,10 @@ export default {
     },
     removeTask(taskId, groupId) {
       this.$store.dispatch({ type: "removeTask", taskId, groupId });
+    },
+    updateTask(task, groupId){
+      console.log(task, groupId);
+      this.$store.dispatch({ type: "updateTask", task, groupId });
     }
   },
   computed: {

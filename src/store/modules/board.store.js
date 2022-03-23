@@ -84,5 +84,6 @@ export const boardStore = {
         console.log(err);
       }
     },
+    // async updateTask({commit})
   },
 };
