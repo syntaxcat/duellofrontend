@@ -14,20 +14,30 @@ var gBoard;
 
 _createBoard()
 
-async function query() {
-    return await storageService.query(BOARD_KEY)
+async function query(boardId) {
+    try{
+        const boards = await storageService.query(BOARD_KEY)
+        return boards.find(board => boardId === board._id)
+    } catch(err){
+        console.log(err)
+    }
 }
 
-async function addGroup(title) {
+async function addGroup(title, board) {
     const group = {
         id: utilService.makeId(),
         title,
         tasks: []
     }
-    gBoard[0].groups.push(group)
-     await storageService.put(BOARD_KEY, gBoard)
-    console.log(gBoard);
-     return group
+    board.groups.push(group)
+    await storageService.put(BOARD_KEY, board)
+    console.log(board);
+    return group
+}
+
+async function getById(boardId) {
+    const board = await storageService.get(BOARD_KEY, boardId)
+    console.log(board)
 }
 
 async function _createBoard() {
