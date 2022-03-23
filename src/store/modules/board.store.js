@@ -28,9 +28,8 @@ export const boardStore = {
       state.board.groups.splice(idx, 1, updatedGroup);
     },
     removeGroup(state, { groupId }) {
-      const idx = state.boardGroups.findIndex((group) => group.id === groupId);
-      if (idx !== -1) return;
-      state.boardGroups.splice(idx, 1);
+      const idx = state.board.groups.findIndex((group) => group.id === groupId);
+      if (idx !== -1) state.board.groups.splice(idx, 1);
     },
   },
   actions: {
@@ -71,7 +70,7 @@ export const boardStore = {
     },
     async removeGroup({ state, commit }, { groupId }) {
       try {
-        await JSON.parse(JSON.stringify(state.board));
+        await boardService.removeGroup(groupId, state.board._id);
         commit({ type: "removeGroup", groupId });
       } catch (err) {
         console.log(err);

@@ -25,7 +25,6 @@
   export default {
     data() {
       return {
-        board: null,
       };
     },
     async created() {
@@ -33,9 +32,7 @@
         type: "loadBoard",
         filterBy: { boardId: this.$route.params.boardId },
       });
-      this.board = board;
     },
-    computed: {},
     methods: {
       addGroup(title) {
         this.$store.dispatch({ type: "addGroup", title });
@@ -47,6 +44,11 @@
         groupToUpdate.boardId = this.board._id;
         this.$store.dispatch({ type: "groupTitle", groupToUpdate });
       },
+    },
+    computed: {
+      board() {
+        return this.$store.getters.board
+      }
     },
     components: { boardHeader, mainHeader, boardGroup, addGroup },
   };
