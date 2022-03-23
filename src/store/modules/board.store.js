@@ -16,6 +16,9 @@ export const boardStore = {
             state.board = board
             // state.boardGroups = board.groups
         },
+        setBoards(state, { boards }) {
+            state.boards = boards
+        },
         addGroup(state, { newGroup }) {
             state.boardGroups.push(newGroup)
         },
@@ -25,9 +28,9 @@ export const boardStore = {
         }
     },
     actions: {
-        async loadBoard({ commit }) {
+        async loadBoard({ commit }, {filterBy}) {
             try {
-                const board = await boardService.query('b101')
+                const board = await boardService.query(filterBy)
                 commit({ type: 'setBoard', board })
                 return board
             } catch (err) {
@@ -51,6 +54,17 @@ export const boardStore = {
             } catch (err) {
                 console.log(err);
             }
+            
+        },
+        async loadBoards({commit}, {filterBy}){
+            try {
+                const boards = await boardService.query(filterBy)
+                commit({ type: 'setBoards', boards })
+                return boards
+            } catch (err) {
+                console.log(err);
+            }
+            
         }
 
     }

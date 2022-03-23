@@ -15,10 +15,11 @@ var gBoard;
 
 _createBoard()
 
-async function query(boardId) {
+async function query(filterBy) {
     try{
         const boards = await storageService.query(BOARD_KEY)
-        return boards.find(board => boardId === board._id)
+        if(filterBy.boardId) return boards.find(board => filterBy.boardId === board._id)
+        if(filterBy.userId) return boards.filter(board => filterBy.userId === board.createdBy._id)
     } catch(err){
         console.log(err)
     }

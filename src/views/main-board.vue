@@ -25,7 +25,8 @@ export default {
     };
   },
   async created() {
-    const board = await this.$store.dispatch({ type: "loadBoard" });
+    const board = await this.$store.dispatch({ type: "loadBoard", filterBy:{boardId: this.$route.params.boardId} });
+    console.log(this.board);
     this.board = board;
   },
   computed: {},
