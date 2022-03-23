@@ -6,11 +6,12 @@
     <section class="groups-container" v-if="board">
       <div class="group" v-for="group in board.groups" :key="group.id">
         <board-group
-          :group="group"
-          @groupTitle="groupTitle"
-          @removeGroup="removeGroup(group.id)"
+          :group="JSON.parse(JSON.stringify(group))"
+          @editGroup="editGroup"
+          @removeGroup="removeGroup"
           @removeTask="removeTask"
           @updateTask="updateTask"
+          @addTask="addTask"
         />
       </div>
       <add-group @addGroup="addGroup" />
@@ -47,16 +48,18 @@ export default {
     removeGroup(groupId) {
       this.$store.dispatch({ type: "removeGroup", groupId });
     },
-    groupTitle(groupToUpdate) {
-      groupToUpdate.boardId = this.board._id;
-      this.$store.dispatch({ type: "updateGroup", groupToUpdate });
+    editGroup(newGroup) {
+      // groupToUpdate.boardId = this.board._id;
+      this.$store.dispatch({ type: "updateGroup", newGroup });
     },
     removeTask(taskId, groupId) {
       this.$store.dispatch({ type: "removeTask", taskId, groupId });
     },
-    updateTask(task, groupId){
-      console.log(task, groupId);
+    updateTask(task, groupId) {
       this.$store.dispatch({ type: "updateTask", task, groupId });
+    },
+    addTask(taskTitle, groupId, boardId) {
+      this.$store.dispatch({ type: 'addTask', taskTitle, groupId, boardId })
     }
   },
   computed: {

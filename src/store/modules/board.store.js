@@ -22,10 +22,8 @@ export const boardStore = {
     addGroup(state, { newGroup }) {
       state.boardGroups.push(newGroup);
     },
-    editGroup(state, { updatedGroup }) {
-      const idx = state.board.groups.findIndex(
-        (grp) => grp.id === updatedGroup.id
-      );
+    updateGroup(state, { updatedGroup }) {
+      const idx = state.board.groups.findIndex(grp => grp.id === updatedGroup.id);
       state.board.groups.splice(idx, 1, updatedGroup);
     },
     removeGroup(state, { groupId }) {
@@ -68,26 +66,35 @@ export const boardStore = {
         console.log(err);
       }
     },
-    async updateGroup({ commit }, { groupToUpdate }) {
+    async updateGroup({ commit, state }, { newGroup }) {
       try {
-        const updatedGroup = await boardService.updateGroup(groupToUpdate);
-        commit({ type: "editGroup", updatedGroup });
+        const updatedGroup = await boardService.updateGroup(newGroup, state.board._id);
+        commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
       }
     },
     async removeTask({ state, commit }, { taskId, groupId }) {
       try {
-        await taskService.removeTask(taskId, groupId);
-        commit({ type: "removeTask", taskId });
+        const updatedGroup = await taskService.removeTask(taskId, groupId, state.board._id);
+        commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
       }
     },
-    // async updateTask({commit})
-    async updateTask({ commit }, { task, groupId }) {
+    async addTask({ state, commit }, { taskTitle, groupId }){
       try {
-        // const updatedTask
+        const updatedGroup = await taskService.addTask(taskTitle, groupId, state.board._id);
+        commit({ type: "updateGroup", updatedGroup });
+      } catch (err) {
+        console.log(err);
+      }
+      
+    },
+    async updateTask({ commit, state }, { task, groupId }) {
+      try {
+        const updatedGroup = await taskService.updateTask(task, groupId, state.board._id)
+        commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
       }
