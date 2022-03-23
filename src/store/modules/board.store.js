@@ -10,6 +10,9 @@ export const boardStore = {
     board(state) {
       return state.board;
     },
+    groups(state){
+      return state.boardGroups
+    }
   },
   mutations: {
     setBoard(state, { board }) {

@@ -4,21 +4,23 @@
     <board-header />
 
     <section class="groups-container" v-if="board">
-      <div class="group" v-for="group in board.groups" :key="group.id">
-        <board-group
-          :group="group"
-          @groupTitle="groupTitle"
-          @removeGroup="removeGroup(group.id)"
-          @removeTask="removeTask"
-          @updateTask="updateTask"
-        />
-      </div>
-      <add-group @addGroup="addGroup" />
+        <div class="group" v-for="group in board.groups" :key="group.id">
+          <board-group
+            :group="group"
+            @groupTitle="groupTitle"
+            @removeGroup="removeGroup(group.id)"
+            @removeTask="removeTask"
+            @updateTask="updateTask"
+          />
+        </div>
+        <add-group @addGroup="addGroup" />
     </section>
   </section>
 </template>
 
 <script>
+// import { defineComponent } from 'vue'
+  import { VueDraggableNext } from 'vue-draggable-next'
 import boardHeader from "../components/board-header.vue";
 import mainHeader from "../components/main-header.vue";
 import boardGroup from "../components/board-group.vue";
@@ -26,8 +28,7 @@ import addGroup from "../components/add-group.vue";
 
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   async created() {
     const board = await this.$store.dispatch({
@@ -54,17 +55,28 @@ export default {
     removeTask(taskId, groupId) {
       this.$store.dispatch({ type: "removeTask", taskId, groupId });
     },
-    updateTask(task, groupId){
+    updateTask(task, groupId) {
       console.log(task, groupId);
       this.$store.dispatch({ type: "updateTask", task, groupId });
+    },
+     onDrop(dropResult) {
+      this.items = applyDrag(this.items, dropResult);
     }
   },
   computed: {
     board() {
       return this.$store.getters.board;
     },
+    myList: {
+        get() {
+            return this.$store.state.boardGroups
+        },
+        set(value) {
+           this.$store.dispatch('updateGroups', value)
+        }
+    }
   },
-  components: { boardHeader, mainHeader, boardGroup, addGroup },
+  components: { boardHeader, mainHeader, boardGroup, addGroup, draggable: VueDraggableNext},
 };
 </script>
 
