@@ -12,8 +12,9 @@ export const boardStore = {
     },
     mutations: {
         setBoard(state, { board }) {
+            console.log('board', board)
             state.board = board
-            state.boardGroups = board[0].groups
+            state.boardGroups = board.groups
         },
         addGroup(state, { newGroup }) {
             state.boardGroups.push(newGroup)
@@ -22,16 +23,17 @@ export const boardStore = {
     actions: {
         async loadBoard({ commit }) {
             try {
-                const board = await boardService.query()
+                const board = await boardService.query('b101')
                 commit({ type: 'setBoard', board })
                 return board
             } catch (err) {
                 console.log(err);
             }
         },
-        async addGroup({ commit }, { title }) {
+        async addGroup({state, commit}, { title }) {
             try {
-                const newGroup = await boardService.addGroup(title)
+                const newBoard = JSON.parse(JSON.stringify(state.board))
+                const newGroup = await boardService.addGroup(title, newBoard)
                 commit({ type: 'addGroup', newGroup })
             } catch (err) {
                 console.log(err);
