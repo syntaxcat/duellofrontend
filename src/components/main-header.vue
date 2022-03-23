@@ -42,8 +42,7 @@
       </button>
       </div>
     </nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/board">Board</router-link>
+      <router-link to="/">Home</router-link> 
   </section>
 </template>
 

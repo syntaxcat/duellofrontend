@@ -26,7 +26,6 @@ export default {
   },
   async created() {
     const board = await this.$store.dispatch({ type: "loadBoard", filterBy:{boardId: this.$route.params.boardId} });
-    console.log(this.board);
     this.board = board;
   },
   computed: {},
@@ -44,8 +43,4 @@ export default {
 </script>
 
 <style>
-.groups-container {
-  display: flex;
-  width: 100%;
-}
 </style>

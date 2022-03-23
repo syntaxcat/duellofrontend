@@ -35,9 +35,5 @@ export default {
 </script>
 
 <style>
-.add-group-form {
-  border: 1px solid rgb(0, 0, 0);
-  padding: 10px;
-  width: 15rem;
-}
+
 </style>

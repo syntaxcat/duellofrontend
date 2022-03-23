@@ -42,7 +42,6 @@ async function updateGroup(groupToUpdate){
     const board = boards.find(currBoard => currBoard._id === groupToUpdate.boardId)
     const idx = board.groups.findIndex(grp => grp.id === groupToUpdate.id)
     board.groups[idx].title = groupToUpdate.title
-    // console.log(board.groups[idx]);
     await storageService.put(BOARD_KEY, board)
     return board.groups[idx]
 
