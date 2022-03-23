@@ -22,6 +22,7 @@ async function post(entityType, newEntity) {
     const entities = await query(entityType)
     entities.push(newEntity)
     _save(entityType, entities)
+    console.log(entityType);
     return newEntity
 }
 
