@@ -12,23 +12,24 @@ export const boardStore = {
   },
   mutations: {
     setBoard(state, { board }) {
-      // console.log("board", board);
       state.board = board;
       state.boardGroups = board.groups;
     },
+    setBoards(state, { boards }) {
+      state.boards = boards;
+    },
     addGroup(state, { newGroup }) {
       state.boardGroups.push(newGroup);
-    },
-    removeGroup(state, { groupId }) {
-      const idx = state.boardGroups.findIndex((group) => group.id === groupId);
-      if (idx !== -1) return;
-      state.boardGroups.splice(idx, 1);
     },
     editGroup(state, { updatedGroup }) {
       const idx = state.board.groups.findIndex(
         (grp) => grp.id === updatedGroup.id
       );
       state.board.groups.splice(idx, 1, updatedGroup);
+    },
+    removeGroup(state, { groupId }) {
+      const idx = state.board.groups.findIndex((group) => group.id === groupId);
+      if (idx !== -1) state.board.groups.splice(idx, 1);
     },
   },
   actions: {
@@ -51,7 +52,7 @@ export const boardStore = {
     },
     async removeGroup({ state, commit }, { groupId }) {
       try {
-        await JSON.parse(JSON.stringify(state.board));
+        await boardService.removeGroup(groupId, state.board._id);
         commit({ type: "removeGroup", groupId });
       } catch (err) {
         console.log(err);
