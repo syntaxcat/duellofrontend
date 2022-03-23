@@ -72,10 +72,10 @@ async function removeGroup(groupId, boardId) {
 
 async function _createBoard() {
   try {
-    gBoard = await storageService.query(BOARD_KEY);
-    if (!gBoard || !gBoard.length) {
+   var board = await storageService.query(BOARD_KEY);
+    if (!board || !board.length) {
       console.log("query");
-      gBoard = {
+      board = {
         _id: "b101",
         title: "Robot dev proj",
         createdAt: 1589983468418,
@@ -203,7 +203,7 @@ async function _createBoard() {
           },
         ],
       };
-      storageService.post(BOARD_KEY, gBoard);
+      storageService.post(BOARD_KEY, board);
     }
   } catch (err) {
     console.log(err);

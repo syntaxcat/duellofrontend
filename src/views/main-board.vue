@@ -4,7 +4,7 @@
     <board-header />
 
     <section class="groups-container" v-if="board">
-      <draggable v-model="groups" group="groups">
+      <draggable v-model="groups" group="groups" v-bind="dragOptions">
         <div class="group" v-for="group in board.groups" :key="group.id">
           <board-group
             :group="JSON.parse(JSON.stringify(group))"
@@ -73,6 +73,9 @@ export default {
       set(value) {
         this.$store.dispatch({ type: "drag", value });
       },
+    },
+      dragOptions() {
+      return this.$store.getters.dragOptions;
     },
   },
   components: {

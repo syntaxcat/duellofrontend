@@ -5,6 +5,16 @@ export const boardStore = {
   state: {
     board: null,
     boardGroups: [],
+    draggable: {
+      options: {
+        group: 'groups',
+        animation: 500,
+        direction: 'horizontal',
+        // delay: 200,
+        // delayOnTouchOnly: true,
+        ghostClass: 'groupGhost'
+      }
+    }
   },
   getters: {
     board(state) {
@@ -12,6 +22,9 @@ export const boardStore = {
     },
     groups(state){
       return state.boardGroups
+    },
+    dragOptions(state) {
+      return state.draggable.options;
     }
   },
   mutations: {
