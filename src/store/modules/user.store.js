@@ -1,4 +1,5 @@
-import { utilService } from '../../services/util.service'
+import { utilService } from '../../services/util.service.js'
+import { userService } from '../../services/user.service.js'
 
 export const userStore = {
     state: {
@@ -18,14 +19,24 @@ export const userStore = {
         async loadUser(context) {
             const user = await utilService.loadFromSessionStorage('user')
             if (user) {
-                context.commit({type:'setUser', user})
+                context.commit({ type: 'setUser', user })
                 return user
             }
         },
-        async login(context, {user}){
-            const loggedUser = await utilService.saveToSessionStorage('user', user)
-            context.commit({type:'setUser', user})
-            return loggedUser
+        async login(context, { user }) {
+            const loggedinUser = await userService.login(user)
+            if (!loggedinUser) return
+            await utilService.saveToSessionStorage('user', loggedinUser)
+            context.commit({ type: 'setUser', loggedinUser })
+            return loggedinUser
+        },
+        async signup(context, { user }) {
+            const loggedinUser = await userService.signup(user)
+            if (!loggedinUser) return
+            await utilService.saveToSessionStorage('user', loggedinUser)
+            context.commit({ type: 'setUser', loggedinUser })
+            return loggedinUser
+
         }
     }
 }
