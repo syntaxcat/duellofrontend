@@ -4,22 +4,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: $clr3;
 
   // .starred:hover {
   //   fill: $starred !important;
   //   // stroke: $starred !important;
   // }
 
-  .left-side {
+  .board-details {
     display: flex;
     justify-content: space-between;
-    flex-grow: 0.1;
-
-    > *.divider {
-      border-inline-end: 1px solid $clr3;
-      height: 16px;
-      margin: 8px 8px 12px 4px;
-    }
+    // flex-grow: 0.1;
+    align-items: center;
 
     button {
       border-radius: em(3px);
@@ -39,11 +35,17 @@
       font-weight: 700;
     }
 
-    .board-name {
+    .name-btn {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .board-name-and-star {
       display: flex;
       align-items: center;
-      margin: 0 rem(4px) rem(4px) rem(32px);
+      margin-left: 1.5rem;
       padding: 0;
+      gap: 0.5rem;
       div {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -86,7 +88,7 @@
     }
   }
 
-  .right-side{
+  .options{
     display: flex;
     justify-content: space-between;
     align-items: center;
