@@ -7,6 +7,7 @@
       <div class="group" v-for="group in board.groups" :key="group.id">
         <board-group :group="group" />
       </div>
+      <add-group @add="addGroup" />
     </section>
   </section>
 </template>
@@ -15,6 +16,7 @@
 import boardHeader from "../components/board-header.vue";
 import mainHeader from "../components/main-header.vue";
 import boardGroup from "../components/board-group.vue";
+import AddGroup from "../components/add-group.vue";
 
 export default {
   data() {
@@ -29,6 +31,13 @@ export default {
   },
   computed: {},
   methods: {},
-  components: { boardHeader, mainHeader, boardGroup },
+  components: { boardHeader, mainHeader, boardGroup, AddGroup },
 };
 </script>
+
+<style>
+.groups-container {
+  display: flex;
+  width: 100%;
+}
+</style>
