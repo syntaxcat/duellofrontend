@@ -9,6 +9,7 @@
           :group="group"
           @groupTitle="groupTitle"
           @removeGroup="removeGroup(group.id)"
+          @updateTask="updateTask"
         />
       </div>
       <add-group @addGroup="addGroup" />
@@ -49,6 +50,10 @@ export default {
       groupToUpdate.boardId = this.board._id;
       this.$store.dispatch({ type: "updateGroup", groupToUpdate });
     },
+    updateTask(task, groupId){
+      console.log(task, groupId);
+      this.$store.dispatch({ type: "updateTask", task, groupId });
+    }
   },
   computed: {
     board() {

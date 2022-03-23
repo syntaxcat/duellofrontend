@@ -45,7 +45,12 @@ async function updateGroup(groupToUpdate) {
     (currBoard) => currBoard._id === groupToUpdate.boardId
   );
   const idx = board.groups.findIndex((grp) => grp.id === groupToUpdate.id);
-  board.groups[idx].title = groupToUpdate.title;
+
+  if (groupToUpdate.title !== board.groups[idx].title) {
+    board.groups[idx].title = groupToUpdate.title;
+  }
+  else board.groups.splice(idx, 1, groupToUpdate)
+  
   await storageService.put(BOARD_KEY, board);
   return board.groups[idx];
 }

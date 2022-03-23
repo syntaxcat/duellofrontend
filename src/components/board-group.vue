@@ -13,7 +13,7 @@
 
     <ul>
       <li v-for="task in group.tasks" :key="task.id">
-        <task-preview :task="task" />
+        <task-preview :task="task" @editTask="updateTask" />
       </li>
     </ul>
     <button>Add task</button>
@@ -48,6 +48,9 @@
       removeGroup(groupId) {
         this.$emit("removeGroup", groupId);
       },
+      updateTask(task){
+this.$emit('updateTask', task, this.group.id)
+      }
     },
       components: { taskPreview },
   };

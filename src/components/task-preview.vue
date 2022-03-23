@@ -1,6 +1,14 @@
 <template>
   <section class="task-preview">
-    {{ task.title }}
+    <!-- {{ task.title }} -->
+    <input
+          type="text"
+          ref="myInput"
+          v-model="taskToEdit.title"
+          v-if="isEditing"
+          @blur="edit"
+        />
+        <div v-if="!isEditing" @click="edit">{{ taskToEdit.title }}</div>
   </section>
 </template>
 
@@ -14,10 +22,19 @@ export default {
   },
   data() {
     return {
-      
+      isEditing: false,
+        taskToEdit: {...this.task},
     }
   },
-  methods:{},
+  methods:{
+    edit() {
+        this.isEditing = !this.isEditing;
+        if (this.isEditing) this.$nextTick(() => this.$refs.myInput.focus());
+
+        if (this.taskToEdit.title !== this.task.title)
+          this.$emit("editTask", this.taskToEdit);
+      }
+  },
   computed:{}
 };
 </script>
