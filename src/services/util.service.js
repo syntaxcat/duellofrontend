@@ -1,5 +1,7 @@
 export const utilService = {
     makeId,
+    loadFromSessionStorage,
+    saveToSessionStorage
   }
   function makeId(length = 8) {
     var txt = ''
@@ -8,5 +10,16 @@ export const utilService = {
       txt += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return txt
+  }
+  
+  function loadFromSessionStorage(key) {
+    var val = sessionStorage.getItem(key)
+    return val ? JSON.parse(val) : null
+  }
+  
+  function saveToSessionStorage(key, val) {
+    if(!val._id) val._id = makeId()
+    sessionStorage[key] = JSON.stringify(val)
+    return val
   }
   

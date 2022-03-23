@@ -6,8 +6,8 @@
                 <span>Duello</span>
             </div>
             <div class="welcome-btn-container">
-            <button class="welcome-btn">Log in</button>
-            <button class="welcome-btn">Sign up</button>
+            <button class="welcome-btn" @click="login">Log in</button>
+            <button class="welcome-btn" @click="login">Sign up</button>
             </div>
         </div>
         <div class="welcome-body">
@@ -30,7 +30,11 @@
 
 <script>
 export default {
-
+    methods:{
+        login(){
+            this.$router.replace('/login')
+        }
+    }
 }
 </script>
 
