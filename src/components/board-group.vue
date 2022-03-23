@@ -16,38 +16,41 @@
         <task-preview :task="task" />
       </li>
     </ul>
-
     <button>Add task</button>
+    <button @click="removeGroup(group.id)">Delete</button>
   </section>
 </template>
 
 <script>
-import taskPreview from "../components/task-preview.vue";
+  import taskPreview from "../components/task-preview.vue";
 
-export default {
-  props: {
-    group: {
-      type: Object,
-      required: true,
+  export default {
+    props: {
+      group: {
+        type: Object,
+        required: true,
+      },
     },
-  },
-  data() {
-    return {
-      isEditing: false,
-      title: this.group.title,
-    };
-  },
-  methods: {
-    edit(groupId) {
-      this.isEditing = !this.isEditing;
-      if (this.isEditing) this.$nextTick(() => this.$refs.myInput.focus());
+    data() {
+      return {
+        isEditing: false,
+        title: this.group.title,
+      };
+    },
+    methods: {
+      edit(groupId) {
+        this.isEditing = !this.isEditing;
+        if (this.isEditing) this.$nextTick(() => this.$refs.myInput.focus());
 
-      if (this.title !== this.group.title)
-        this.$emit("groupTitle", { title: this.title, id: groupId });
+        if (this.title !== this.group.title)
+          this.$emit("groupTitle", { title: this.title, id: groupId });
+      },
+      removeGroup(groupId) {
+        this.$emit("removeGroup", groupId);
+      },
     },
-  },
-  components: { taskPreview },
-};
+      components: { taskPreview },
+  };
 </script>
 
 <style>

@@ -19,7 +19,8 @@
             src="../assets/icons/bx-star.svg"
             alt="star"
           />
-        </button> | 
+        </button>
+        |
       </div>
       <button class="name-btn">Sprint</button> |
       <!-- <section class="members">

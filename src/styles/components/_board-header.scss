@@ -92,7 +92,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-grow: 0.06;
+    gap: 0.5rem;
     margin-inline-end: rem(8px);
     button {
         border-radius: em(3px);
