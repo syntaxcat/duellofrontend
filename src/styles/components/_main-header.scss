@@ -23,6 +23,10 @@
         border-radius: 3px;
     }
 
+    .create-btn {
+        background-color: rgba($color: $clr3, $alpha: 0.4)
+    }
+
     button:hover {
         background-color: rgba($color: $clr3, $alpha: 0.4)
     }
