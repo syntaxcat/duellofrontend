@@ -5,7 +5,8 @@ export const boardService = {
   query,
   addGroup,
   removeGroup,
-  updateGroup,
+  // updateGroup,
+  updateGroup: updateGroup,
 };
 
 const BOARD_KEY = "boardDB";
@@ -18,8 +19,9 @@ async function query(filterBy) {
     const boards = await storageService.query(BOARD_KEY);
     if (filterBy.boardId)
       return boards.find((board) => filterBy.boardId === board._id);
-    if (filterBy.userId)
+    else if (filterBy.userId) {
       return boards.filter((board) => filterBy.userId === board.createdBy._id);
+    }
   } catch (err) {
     console.log(err);
   }
@@ -38,25 +40,34 @@ async function addGroup(title, boardId) {
   return group;
 }
 
-async function updateGroup(groupToUpdate) {
-  const boards = await storageService.query(BOARD_KEY);
-  const board = boards.find(
-    (currBoard) => currBoard._id === groupToUpdate.boardId
-  );
-  const idx = board.groups.findIndex((grp) => grp.id === groupToUpdate.id);
+// async function updateGroup(groupToUpdate) {
+//   const boards = await storageService.query(BOARD_KEY);
+//   const board = boards.find(
+//     (currBoard) => currBoard._id === groupToUpdate.boardId
+//   );
+//   const idx = board.groups.findIndex((grp) => grp.id === groupToUpdate.id);
 
-  if (groupToUpdate.title !== board.groups[idx].title) {
-    board.groups[idx].title = groupToUpdate.title;
+//   if (groupToUpdate.title !== board.groups[idx].title) {
+//     board.groups[idx].title = groupToUpdate.title;
+//   }
+//   else board.groups.splice(idx, 1, groupToUpdate)
+
+//   await storageService.put(BOARD_KEY, board);
+//   return board.groups[idx];
+// }
+
+async function updateGroup(newGroup, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId);
+  const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
+  if (groupIdx !== -1) {
+    board.groups.splice(groupIdx, 1, newGroup);
+    storageService.put(BOARD_KEY, board);
+    return newGroup;
   }
-  else board.groups.splice(idx, 1, groupToUpdate)
-  
-  await storageService.put(BOARD_KEY, board);
-  return board.groups[idx];
 }
 
 async function getById(boardId) {
   const board = await storageService.get(BOARD_KEY, boardId);
-  console.log(board);
 }
 
 async function removeGroup(groupId, boardId) {
