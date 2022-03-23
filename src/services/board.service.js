@@ -6,7 +6,6 @@ export const boardService = {
   addGroup,
   removeGroup,
   updateGroup,
-  // add,
 };
 
 const BOARD_KEY = "boardDB";
@@ -32,8 +31,8 @@ async function addGroup(title, boardId) {
     title,
     tasks: [],
   };
-  const boards = await storageService.query(BOARD_KEY)
-  const board = boards.find(currBoard => currBoard._id === boardId)
+  const boards = await storageService.query(BOARD_KEY);
+  const board = boards.find((currBoard) => currBoard._id === boardId);
   board.groups.push(group);
   await storageService.put(BOARD_KEY, board);
   return group;
