@@ -26,15 +26,16 @@ async function query(filterBy) {
   }
 }
 
-async function addGroup(title, board) {
+async function addGroup(title, boardId) {
   const group = {
     id: utilService.makeId(),
     title,
     tasks: [],
   };
+  const boards = await storageService.query(BOARD_KEY)
+  const board = boards.find(currBoard => currBoard._id === boardId)
   board.groups.push(group);
   await storageService.put(BOARD_KEY, board);
-  console.log(board);
   return group;
 }
 

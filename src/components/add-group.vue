@@ -28,12 +28,12 @@ export default {
     addGroup() {
       if (!this.title) return;
 
-      this.$emit('addGroup', this.title)
+      this.$emit("addGroup", this.title);
+
+      this.title = "";
     },
   },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
