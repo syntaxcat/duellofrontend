@@ -1,6 +1,7 @@
 .task-preview {
     width: 100%;
     textarea {
+        width: 100%;
         resize: none;
         border: none;
         outline: none;
@@ -11,5 +12,9 @@
     textarea.isEditing {
         // background-color: $clr3;
         border-color: $clr6;
+    }
+
+    button {
+
     }
 }
