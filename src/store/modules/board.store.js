@@ -42,6 +42,10 @@ export const boardStore = {
       );
       if (idx !== -1) state.board.group[groupIdx].tasks.splice(idx, 1);
     },
+    updateGroups(state, { newOrder }) {
+      state.board.groups = newOrder
+      state.boardGroups = state.board.groups
+    }
   },
   actions: {
     async loadBoards({ commit }, { filterBy }) {
@@ -102,5 +106,9 @@ export const boardStore = {
         console.log(err);
       }
     },
+    async drag({ commit, state }, { value }) {
+      const newOrder = await boardService.updateGroups(value, {...state.board})
+      commit({type: 'updateGroups', newOrder})
+    }
   },
 };

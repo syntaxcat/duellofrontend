@@ -4,24 +4,25 @@
     <board-header />
 
     <section class="groups-container" v-if="board">
-      <div class="group" v-for="group in board.groups" :key="group.id">
-        <board-group
-          :group="JSON.parse(JSON.stringify(group))"
-          @editGroup="editGroup"
-          @removeGroup="removeGroup"
-          @removeTask="removeTask"
-          @updateTask="updateTask"
-          @addTask="addTask"
-        />
-      </div>
+      <draggable v-model="groups" group="groups">
+        <div class="group" v-for="group in board.groups" :key="group.id">
+          <board-group
+            :group="JSON.parse(JSON.stringify(group))"
+            @editGroup="editGroup"
+            @removeGroup="removeGroup"
+            @removeTask="removeTask"
+            @updateTask="updateTask"
+            @addTask="addTask"
+          />
+        </div>
+      </draggable>
       <add-group @addGroup="addGroup" />
     </section>
   </section>
 </template>
 
 <script>
-// import { defineComponent } from 'vue'
-  import { VueDraggableNext } from 'vue-draggable-next'
+import { VueDraggableNext } from "vue-draggable-next";
 import boardHeader from "../components/board-header.vue";
 import mainHeader from "../components/main-header.vue";
 import boardGroup from "../components/board-group.vue";
@@ -37,7 +38,6 @@ export default {
       filterBy: { boardId: this.$route.params.boardId },
     });
   },
-  computed: {},
   methods: {
     addGroup(title) {
       this.$store.dispatch({
@@ -59,23 +59,29 @@ export default {
       this.$store.dispatch({ type: "updateTask", task, groupId });
     },
     addTask(taskTitle, groupId, boardId) {
-      this.$store.dispatch({ type: 'addTask', taskTitle, groupId, boardId })
-    }
+      this.$store.dispatch({ type: "addTask", taskTitle, groupId, boardId });
+    },
   },
   computed: {
     board() {
       return this.$store.getters.board;
     },
-    myList: {
-        get() {
-            return this.$store.state.boardGroups
-        },
-        set(value) {
-           this.$store.dispatch('updateGroups', value)
-        }
-    }
+    groups: {
+      get() {
+        return this.$store.getters.groups;
+      },
+      set(value) {
+        this.$store.dispatch({ type: "drag", value });
+      },
+    },
   },
-  components: { boardHeader, mainHeader, boardGroup, addGroup, draggable: VueDraggableNext},
+  components: {
+    boardHeader,
+    mainHeader,
+    boardGroup,
+    addGroup,
+    draggable: VueDraggableNext,
+  },
 };
 </script>
 
