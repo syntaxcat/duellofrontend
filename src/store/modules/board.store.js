@@ -85,5 +85,12 @@ export const boardStore = {
       }
     },
     // async updateTask({commit})
+    async updateTask({ commit }, { task, groupId }) {
+      try {
+        // const updatedTask
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
 };
