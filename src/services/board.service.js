@@ -1,7 +1,9 @@
 import { storageService } from "./storage.service";
+import { utilService } from './util.service'
 
 export const boardService = {
     query,
+    addGroup
     // remove,
     // add,
     // update
@@ -12,14 +14,27 @@ var gBoard;
 
 _createBoard()
 
-async function query(){
-        return await storageService.query(BOARD_KEY)
+async function query() {
+    return await storageService.query(BOARD_KEY)
+}
+
+async function addGroup(title) {
+    const group = {
+        id: utilService.makeId(),
+        title,
+        tasks: []
+    }
+    gBoard[0].groups.push(group)
+     await storageService.put(BOARD_KEY, gBoard)
+    console.log(gBoard);
+     return group
 }
 
 async function _createBoard() {
     try {
         gBoard = await storageService.query(BOARD_KEY)
         if (!gBoard || !gBoard.length) {
+            console.log('query');
             gBoard = {
                 "_id": "b101",
                 "title": "Robot dev proj",

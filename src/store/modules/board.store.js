@@ -2,7 +2,8 @@ import { boardService } from '../../services/board.service'
 
 export const boardStore = {
     state: {
-        board: boardService.query(),
+        board: null,
+        boardGroups: []
     },
     getters: {
         board(state) {
@@ -10,8 +11,12 @@ export const boardStore = {
         }
     },
     mutations: {
-        setBoard(state, {board}){
+        setBoard(state, { board }) {
             state.board = board
+            state.boardGroups = board[0].groups
+        },
+        addGroup(state, { newGroup }) {
+            state.boardGroups.push(newGroup)
         }
     },
     actions: {
@@ -23,6 +28,15 @@ export const boardStore = {
             } catch (err) {
                 console.log(err);
             }
+        },
+        async addGroup({ commit }, { title }) {
+            try {
+                const newGroup = await boardService.addGroup(title)
+                commit({ type: 'addGroup', newGroup })
+            } catch (err) {
+                console.log(err);
+            }
+
         }
 
     }

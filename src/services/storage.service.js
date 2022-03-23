@@ -22,7 +22,6 @@ async function post(entityType, newEntity) {
     const entities = await query(entityType)
     entities.push(newEntity)
     _save(entityType, entities)
-    console.log(entityType);
     return newEntity
 }
 
@@ -44,7 +43,6 @@ async function put(entityType, updatedEntity) {
 async function remove(entityType, entityId) {
     const entities = await query(entityType)
     const idx = entities.findIndex((entity) => entity._id === entityId)
-    console.log(idx)
     entities.splice(idx, 1)
     _save(entityType, entities)
 }
