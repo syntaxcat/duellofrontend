@@ -1,9 +1,14 @@
 <template>
   <section class="create-board">
-    <div>
+    <header>
+      <button>
+        <icon-base iconName="chevron-left"></icon-base>
+      </button>
       <span>Create board</span>
-      <hr />
-    </div>
+      <button>
+        <icon-base iconName="x"></icon-base>
+      </button>
+    </header>
 
     <img src="../assets/imgs/welcome-img.png" alt="" />
 
@@ -26,6 +31,7 @@
 <script>
 import { boardService } from "../services/board.service";
 import { userService } from "../services/user.service";
+import iconBase from "./icon-base.vue";
 
 export default {
   data() {
@@ -35,7 +41,7 @@ export default {
       backgrounds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     };
   },
-   created() {
+  created() {
     this.loggedinUser = this.$store.getters.user;
     // console.log(this.loggedinUser);
   },
@@ -59,6 +65,7 @@ export default {
       this.$emit("create", { ...this.boardToEdit });
     },
   },
+  components: { iconBase },
 };
 </script>
 
