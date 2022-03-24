@@ -39,7 +39,7 @@
           <span>Add Card</span>
         </button>
       </div>
-      <!-- <button @click="removeGroup(group.id)">Delete</button> -->
+      <button @click="removeGroup(group.id)">Delete</button>
     </section>
   </div>
 </template>
