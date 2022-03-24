@@ -1,0 +1,73 @@
+.board-menu-modal {
+  width: rem(340px);
+  background-color: $menuBcgClr;
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  right: 0%;
+  color: $menuTxtClr;
+  font-size: rem(14px);
+  box-shadow: -9px 0px 12px -3px rgba(0, 0, 0, 0.09);
+  border: 1px solid $menuBorderClr;
+
+  & > * {
+    display: flex;
+    align-items: center;
+    &:not(:first-child) {
+      &:not(hr) {
+        margin: rem(25px);
+      }
+
+      &:not(.board-menu-costumize):hover,
+      li:hover {
+        background-color: $menuHoverClr;
+        border-radius: 3px;
+        color: $menuTitleClr;
+        fill: $menuTitleClr;
+      }
+    }
+    .menu-text {
+      margin-left: rem(20px);
+    }
+  }
+
+  .icon-base {
+    display: inline-block;
+    width: rem(20px);
+    height: rem(20px);
+    fill: $menuTxtClr;
+  }
+  h3 {
+    display: inline;
+    font-weight: 500;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0px;
+    li,
+    .about-board {
+      display: flex;
+      margin: 0 0 rem(10px) 0;
+    }
+  }
+  .menu-title {
+    padding: 1rem;
+    height: rem(48px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: inherit;
+    h1 {
+      margin: auto;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .x-btn:hover {
+      stroke: $menuTitleClr;
+    }
+  }
+
+  hr {
+    border-top: solid 1px $menuBorderClr;
+  }
+}

@@ -32,6 +32,7 @@ export const userStore = {
         },
         async signup(context, { user }) {
             const loggedinUser = await userService.signup(user)
+            console.log(loggedinUser)
             if (!loggedinUser) return
             await utilService.saveToSessionStorage('user', loggedinUser)
             context.commit({ type: 'setUser', loggedinUser })

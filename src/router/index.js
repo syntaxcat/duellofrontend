@@ -1,34 +1,39 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import homePage from '../views/home-page.vue'
-import mainBoard from '../views/main-board.vue'
-import welcomePage from '../views/welcome-page.vue'
-import loginApp from '../views/login-app.vue'
+import { createRouter, createWebHashHistory } from "vue-router";
+import homePage from "../views/home-page.vue";
+import mainBoard from "../views/main-board.vue";
+import welcomePage from "../views/welcome-page.vue";
+import loginApp from "../views/login-app.vue";
+import taskDetails from "../components/task-details.vue";
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: homePage
+      path: "/welcome",
+      name: "welcome",
+      component: welcomePage,
     },
     {
-      path: '/board/:boardId',
-      name: 'board',
-      component: mainBoard
+      path: "/login",
+      name: "login",
+      component: loginApp,
     },
     {
-      path: '/welcome',
-      name: 'welcome',
-      component: welcomePage
+      path: "/",
+      name: "home",
+      component: homePage,
     },
     {
-      path: '/login',
-      name: 'login',
-      component: loginApp
+      path: "/board/:boardId",
+      name: "board",
+      component: mainBoard,
     },
+    {
+      path: "/task-details",
+      name: "task-details",
+      component: taskDetails,
+    },
+  ],
+});
 
-  ]
-})
-
-export default router
+export default router;

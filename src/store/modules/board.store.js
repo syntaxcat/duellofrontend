@@ -12,20 +12,20 @@ export const boardStore = {
         direction: 'horizontal',
         // delay: 200,
         // delayOnTouchOnly: true,
-        ghostClass: 'groupGhost'
-      }
-    }
+        ghostClass: "groupGhost",
+      },
+    },
   },
   getters: {
     board(state) {
       return state.board;
     },
     groups(state) {
-      return state.boardGroups
+      return state.boardGroups;
     },
     dragOptions(state) {
       return state.draggable.options;
-    }
+    },
   },
   mutations: {
     setBoard(state, { board }) {
@@ -39,7 +39,9 @@ export const boardStore = {
       state.boardGroups.push(newGroup);
     },
     updateGroup(state, { updatedGroup }) {
-      const idx = state.board.groups.findIndex(grp => grp.id === updatedGroup.id);
+      const idx = state.board.groups.findIndex(
+        (grp) => grp.id === updatedGroup.id
+      );
       state.board.groups.splice(idx, 1, updatedGroup);
     },
     removeGroup(state, { groupId }) {
@@ -56,9 +58,9 @@ export const boardStore = {
       if (idx !== -1) state.board.group[groupIdx].tasks.splice(idx, 1);
     },
     updateGroups(state, { newOrder }) {
-      state.board.groups = newOrder
-      state.boardGroups = state.board.groups
-    }
+      state.board.groups = newOrder;
+      state.boardGroups = state.board.groups;
+    },
   },
   actions: {
     async loadBoards({ commit }, { filterBy }) {
@@ -88,7 +90,10 @@ export const boardStore = {
     },
     async updateGroup({ commit, state }, { newGroup }) {
       try {
-        const updatedGroup = await boardService.updateGroup(newGroup, state.board._id);
+        const updatedGroup = await boardService.updateGroup(
+          newGroup,
+          state.board._id
+        );
         commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
@@ -96,7 +101,11 @@ export const boardStore = {
     },
     async removeTask({ state, commit }, { taskId, groupId }) {
       try {
-        const updatedGroup = await taskService.removeTask(taskId, groupId, state.board._id);
+        const updatedGroup = await taskService.removeTask(
+          taskId,
+          groupId,
+          state.board._id
+        );
         commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
@@ -104,33 +113,34 @@ export const boardStore = {
     },
     async addTask({ state, commit }, { taskTitle, groupId }) {
       try {
-        const updatedGroup = await taskService.addTask(taskTitle, groupId, state.board._id);
+        const updatedGroup = await taskService.addTask(
+          taskTitle,
+          groupId,
+          state.board._id
+        );
         commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
       }
-
     },
     async updateTask({ commit, state }, { task, groupId }) {
+      console.log("task", task);
       try {
-        const updatedGroup = await taskService.updateTask(task, groupId, state.board._id)
+        const updatedGroup = await taskService.updateTask(
+          task,
+          groupId,
+          state.board._id
+        );
         commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
       }
     },
     async drag({ commit, state }, { value }) {
-      const newOrder = await boardService.updateGroups(value, { ...state.board })
-      commit({ type: 'updateGroups', newOrder })
+      const newOrder = await boardService.updateGroups(value, {
+        ...state.board,
+      });
+      commit({ type: "updateGroups", newOrder });
     },
-    async createBoard({ commit }, { board }) {
-      try {
-        const newBoard = await boardService.addNewBoard(board)
-        commit({ type: "setBoard", board: newBoard });
-        return newBoard._id
-      } catch (err) {
-        console.log(err);
-      }
-    }
   },
 };

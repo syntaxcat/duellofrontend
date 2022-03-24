@@ -16,15 +16,12 @@ const BOARD_KEY = "boardDB";
 _createBoard();
 
 async function query(filterBy) {
-  console.log(filterBy);
   try {
     const boards = await storageService.query(BOARD_KEY);
     if (filterBy.boardId)
       return boards.find((board) => filterBy.boardId === board._id);
     else if (filterBy.userId) {
-      console.log(
-        boards.filter((board) => filterBy.userId === board.createdBy._id)
-      );
+      boards.filter((board) => filterBy.userId === board.createdBy._id);
       return boards.filter((board) => filterBy.userId === board.createdBy._id);
     }
   } catch (err) {

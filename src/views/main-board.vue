@@ -5,7 +5,7 @@
     <create-board @create="createBoard" />
 
     <section class="groups-container" v-if="board">
-      <draggable v-model="groups" class="groups" group="groups" v-bind="dragOptions">
+      <draggable v-model="groups" group="groups" class="groups">
         <div class="group" v-for="group in board.groups" :key="group.id">
           <board-group
             :group="JSON.parse(JSON.stringify(group))"
@@ -29,6 +29,7 @@ import mainHeader from "../components/main-header.vue";
 import boardGroup from "../components/board-group.vue";
 import addGroup from "../components/add-group.vue";
 import createBoard from "../components/create-board.vue";
+import taskDetails from "../components/task-details.vue";
 
 export default {
   data() {
@@ -81,15 +82,13 @@ export default {
         this.$store.dispatch({ type: "drag", value });
       },
     },
-      dragOptions() {
-      return this.$store.getters.dragOptions;
-    },
   },
   components: {
     boardHeader,
     mainHeader,
     boardGroup,
     addGroup,
+    taskDetails,
     draggable: VueDraggableNext,
     createBoard
   },
