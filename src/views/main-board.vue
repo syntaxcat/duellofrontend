@@ -27,6 +27,7 @@ import boardHeader from "../components/board-header.vue";
 import mainHeader from "../components/main-header.vue";
 import boardGroup from "../components/board-group.vue";
 import addGroup from "../components/add-group.vue";
+import taskDetails from "../components/task-details.vue";
 
 export default {
   data() {
@@ -80,6 +81,7 @@ export default {
     mainHeader,
     boardGroup,
     addGroup,
+    taskDetails,
     draggable: VueDraggableNext,
   },
 };

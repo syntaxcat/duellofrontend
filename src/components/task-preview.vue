@@ -1,14 +1,19 @@
 <template>
   <section class="task-preview">
-    <!-- {{ task.title }} -->
     <textarea
-      type="text"
       :class="{ isEditing: isEditing }"
       v-model="taskToEdit.title"
       ref="textarea"
-      @click="isEditing = true"
-      @blur="edit"
+      :disabled="!isEditing"
+      @blur="saveEdit(task)"
     ></textarea>
+
+    <button @click="removeTask(task.id, group.id)">
+      <img src="../assets/icons/x.svg" alt="delete" />
+    </button>
+    <button @click="editTask(task, group.id)">
+      <img src="../assets/icons/bx-pencil.svg" alt="edit" />
+    </button>
   </section>
 </template>
 
@@ -19,7 +24,12 @@
         type: Object,
         required: true,
       },
+      group: {
+        type: Object,
+        required: true,
+      },
     },
+
     data() {
       return {
         isEditing: false,
@@ -27,11 +37,18 @@
       };
     },
     methods: {
-      edit() {
+      saveEdit() {
         this.isEditing = false;
+        this.$emit("editTask", {...this.taskToEdit});
+      },
 
-        if (this.taskToEdit.title !== this.task.title)
-          this.$emit("editTask", this.taskToEdit);
+      removeTask(taskId, groupId) {
+        this.$emit("removeTask", taskId, groupId);
+      },
+
+      editTask(task, groupId) {
+        this.isEditing = true;
+        this.$nextTick(() => this.$refs.textarea.focus());
       },
       updateHeigh() {
         this.$refs.textarea.style.height = 0;
@@ -53,5 +70,3 @@
     computed: {},
   };
 </script>
-
-<style></style>
