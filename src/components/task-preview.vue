@@ -11,7 +11,7 @@
     <button @click="removeTask(task.id, group.id)">
       <img src="../assets/icons/x.svg" alt="delete" />
     </button>
-    <button @click="editTask(task, group.id)">
+    <button @click.stop="editTask(task, group.id)">
       <img src="../assets/icons/bx-pencil.svg" alt="edit" />
     </button>
   </section>
