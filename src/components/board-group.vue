@@ -5,13 +5,13 @@
         <div class="title-container">
           <input
             type="text"
-            :class="{ isEditing: isEditing }"
+            :class="{ isEditing: isEditing, mover: true }"
             v-model="group.title"
             @blur="editGroup(group)"
             @click="changeGroupTitle"
           />
         </div>
-        <button class="more-btn">
+        <button class="more-btn mover">
           <icon-base iconName="more"></icon-base>
         </button>
       </div>

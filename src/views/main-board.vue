@@ -5,7 +5,7 @@
     <!-- <create-board @create="createBoard" /> -->
 
     <section class="groups-container" v-if="board">
-      <draggable v-model="groups" group="groups" class="groups">
+      <draggable v-model="groups" group="groups" class="groups" handle=".mover">
         <div class="group" v-for="group in board.groups" :key="group.id">
           <board-group
             :group="JSON.parse(JSON.stringify(group))"
