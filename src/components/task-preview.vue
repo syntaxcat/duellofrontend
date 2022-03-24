@@ -1,5 +1,5 @@
 <template>
-  <section class="task-preview">
+  <section class="task-preview" @click="openModalDetails">
     <textarea
       :class="{ isEditing: isEditing }"
       v-model="taskToEdit.title"
@@ -37,6 +37,9 @@
       };
     },
     methods: {
+      openModalDetails(){
+        this.$emit("onOpen")
+      },
       saveEdit() {
         this.isEditing = false;
         this.$emit("editTask", {...this.taskToEdit});

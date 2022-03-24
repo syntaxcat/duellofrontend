@@ -6,6 +6,7 @@ export const taskService = {
   addTask,
   removeTask,
   updateTask,
+  getById,
 };
 const BOARD_KEY = "boardDB";
 
@@ -35,6 +36,12 @@ async function removeTask(taskId, groupId, boardId) {
   if (taskIdx === -1) return;
   group.tasks.splice(taskIdx, 1);
   return boardService.updateGroup(group, boardId);
+}
+
+async function getById(taskId, groupId, boardId) {
+  const group = await _findGroup(groupId, boardId);
+  const task = group.tasks.find((task) => task.id === taskId);
+  return { task, group };
 }
 
 async function _findGroup(groupId, boardId) {
