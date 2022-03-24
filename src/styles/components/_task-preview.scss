@@ -1,12 +1,15 @@
 .task-preview {
     width: 100%;
     textarea {
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
         width: 100%;
         resize: none;
         border: none;
         outline: none;
         background-color: transparent;
         border-color: transparent;
+        overflow: hidden;
+        
     }
 
     textarea.isEditing {

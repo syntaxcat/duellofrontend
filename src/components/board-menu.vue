@@ -2,11 +2,11 @@
     <section>
         <div class="board-menu-modal">
             <div class="menu-title">
-                <h1>Menu</h1>
+                <h1>{{menuTitle}}</h1>
                 <!-- <img src="../assets/icons/x.svg" /> -->
                 <icon-base @click="closeMenu" iconName="x" />
             </div>
-            <hr>
+            <hr />
             <div class="board-menu-costumize">
                 <ul>
                     <li>
@@ -19,7 +19,7 @@
                         </div>
                     </li>
                     <li>
-                            <icon-base iconName="trello-block" />
+                        <icon-base iconName="trello-block" />
                         <div class="menu-text">
                             <h3>Change Backround</h3>
                         </div>
@@ -31,14 +31,14 @@
                         </div>
                     </li>
                     <li>
-                        <icon-base iconName="more-horizontal" />
+                        <icon-base iconName="more" />
                         <div class="menu-text">
                             <h3>more</h3>
                         </div>
                     </li>
                 </ul>
             </div>
-            <hr>
+            <hr />
             <div>
                 <icon-base iconName="bolt" />
                 <div class="menu-text">
@@ -46,7 +46,7 @@
                     <p>Automate cards and more...</p>
                 </div>
             </div>
-            <hr>
+            <hr />
             <div>
                 <icon-base iconName="rocket" />
                 <div class="menu-text">
@@ -54,7 +54,7 @@
                     <p>Google drive and more...</p>
                 </div>
             </div>
-            <hr>
+            <hr />
             <div>
                 <icon-base iconName="activity" />
                 <div class="menu-text">
@@ -68,9 +68,14 @@
 <script>
 import iconBase from "./icon-base.vue"
 export default {
+    data(){
+        return{
+            menuTitle: 'Menu'
+        }
+    },
     components: { iconBase },
-    methods:{
-        closeMenu(){
+    methods: {
+        closeMenu() {
             this.$emit('closeMenu')
         }
     }

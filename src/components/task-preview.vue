@@ -8,9 +8,9 @@
       @blur="saveEdit(task)"
     ></textarea>
 
-    <button @click="removeTask(task.id, group.id)">
+    <!-- <button @click="removeTask(task.id, group.id)">
       <img src="../assets/icons/x.svg" alt="delete" />
-    </button>
+    </button> -->
     <button @click="editTask(task, group.id)">
       <img src="../assets/icons/bx-pencil.svg" alt="edit" />
     </button>
@@ -51,9 +51,7 @@
         this.$nextTick(() => this.$refs.textarea.focus());
       },
       updateHeigh() {
-        this.$refs.textarea.style.height = 0;
-        this.$refs.textarea.style.height =
-          this.$refs.textarea.scrollHeight + "px";
+        this.$refs.textarea.style.height =this.$refs.textarea.scrollHeight + "px";
       },
     },
     mounted() {

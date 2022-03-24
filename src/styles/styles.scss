@@ -13,11 +13,11 @@
 // VIEWS
 @import "views/welcome-page";
 @import 'views/home-page';
+@import 'views/main-board';
 
 // COMPONENTS
 @import "components/main-header";
 @import 'components/board-header';
-@import 'components/main-board';
 @import 'components/board-group';
 @import 'components/task-preview';
 @import 'components/create-board';

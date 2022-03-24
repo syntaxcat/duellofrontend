@@ -2,7 +2,7 @@
   <section class="main-board">
     <main-header />
     <board-header />
-    <create-board @create="createBoard" />
+    <!-- <create-board @create="createBoard" /> -->
 
     <section class="groups-container" v-if="board">
       <draggable v-model="groups" group="groups" class="groups">
