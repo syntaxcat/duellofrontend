@@ -8,7 +8,7 @@ export const boardService = {
   updateGroup,
   updateGroups,
   getEmptyBoard,
-  addNewBoard
+  addNewBoard,
 };
 
 const BOARD_KEY = "boardDB";
@@ -74,7 +74,7 @@ async function removeGroup(groupId, boardId) {
 }
 
 async function addNewBoard(board) {
-  board.createdAt = new Date()
+  board.createdAt = Date.now()
   return await storageService.post(BOARD_KEY, board)
 }
 
@@ -85,18 +85,19 @@ function getEmptyBoard() {
     createdAt: null,
     createdBy: {},
     style: {
-      backgroundImg: null
+      backgroundImg: null,
     },
-    labels: [],
+    labels: _createLabels(),
     members: [],
     groups: [],
     activities: [],
-  }
+  };
 }
 
 async function _createBoard() {
   try {
     var board = await storageService.query(BOARD_KEY);
+    console.log('board!', board)
     if (!board || !board.length) {
       console.log("query");
       board = {
@@ -109,20 +110,9 @@ async function _createBoard() {
           imgUrl: "http://some-img",
         },
         style: {
-          backgroundImg: null
+          backgroundImg: null,
         },
-        labels: [
-          {
-            id: "l101",
-            title: "Done",
-            color: "#61bd4f",
-          },
-          {
-            id: "l102",
-            title: "Progress",
-            color: "#61bd33",
-          },
-        ],
+        labels: _createLabels(),
         members: [
           {
             _id: "u101",
@@ -138,10 +128,12 @@ async function _createBoard() {
               {
                 id: "c101",
                 title: "Replace logo",
+                labels:[]
               },
               {
                 id: "c102",
                 title: "Add Samples",
+                labels:[]
               },
             ],
             style: {},
@@ -153,12 +145,14 @@ async function _createBoard() {
               {
                 id: "c103",
                 title: "Do that",
+                labels:[]
               },
               {
                 id: "c104",
                 title: "Help me",
                 status: "in-progress",
                 description: "description",
+                labels:[],
                 comments: [
                   {
                     id: "ZdPnm",
@@ -234,4 +228,69 @@ async function _createBoard() {
   } catch (err) {
     console.log(err);
   }
+}
+
+function _createLabels(){
+  return [
+    {
+        title:'urgent',
+        id: utilService.makeId(),
+        color: '#61bd4f'
+    },
+    {
+        title:'doing',
+        id: utilService.makeId(),
+        color: '#f2d600'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#f2d600'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#ff9f1a'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#eb5a46'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#c377e0'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#0079bf'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#00c2e0'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#51e898'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#ff78cb'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#344563'
+    },
+    {
+        title:'',
+        id: utilService.makeId(),
+        color: '#b3bac5'
+    },
+]
 }

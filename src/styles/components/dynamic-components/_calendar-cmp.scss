@@ -1,0 +1,24 @@
+.calendar-cmp {
+    background-color: white;
+    border-radius: 3px;
+    padding: 0.5rem;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+    }
+
+    .save-btn {
+        cursor: pointer;
+        padding: 5px;
+        color: white;
+        background-color: #0079bf;
+        border: none;
+        border-radius: 3px;
+    }
+}

@@ -55,6 +55,9 @@ export default {
     });
   },
   methods: {
+    saveDate(date){
+        this.$store.dispatch({type: "saveDate", date});
+      },
     openModal(taskId, groupId) {
       this.isOpenModal = true;
       this.taskId = taskId;

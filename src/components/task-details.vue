@@ -11,8 +11,15 @@
       </div>
     </div>
     <div class="main-container">
-      <task-details-menu @openModal="openModal"/>
-      <component :is="'members-cmp'"/>
+      <task-details-menu @openModal="openModal" />
+      <component
+        @addLabel="addLabel"
+        class="dynamic-details"
+        :board="board"
+        :is="'label-cmp'"
+      />
+      <task-details-menu @openModal="openModal" />
+      <component :is="'calendar-cmp'" @saveDate="saveDate" />
     </div>
   </section>
 </template>
@@ -20,8 +27,10 @@
 <script>
   import { taskService } from "../services/task.service";
   import taskDetailsMenu from "../components/task-details-menu.vue";
-  import labelsCmp from "./dynamic-components/labels-cmp.vue";
-  import membersCmp from "./dynamic-components/members-cmp.vue";
+  import labelCmp from "./dynamic-components/label-cmp.vue";
+  import memberCmp from "./dynamic-components/member-cmp.vue";
+  import checklistCmp from "./dynamic-components/checklist-cmp.vue";
+  import calendarCmp from "./dynamic-components/calendar-cmp.vue";
 
   export default {
     props: {
@@ -45,9 +54,12 @@
       };
     },
     methods: {
-        // openModal(type) {
-            
-        // },
+      // openModal(type) {
+
+      // },
+      saveDate(date) {
+        this.$emit("saveDate", date);
+      },
 
       closeTaskDetails() {
         this.$emit("closeTaskDetails");
@@ -60,12 +72,38 @@
       changeCover() {},
       copyTask() {},
       archiveTask() {},
+
+      async addLabel(label) {
+        const idx = this.taskToEdit.labels.findIndex(
+          (lbl) => lbl.id === label.id
+        );
+        console.log(idx);
+        if (idx === -1) {
+          this.taskToEdit.labels.unshift(label);
+        } else {
+          this.taskToEdit.labels.splice(idx, 1);
+        }
+        const task = await this.$store.dispatch({
+          type: "updateTask",
+          task: JSON.parse(JSON.stringify(this.taskToEdit)),
+          groupId: this.groupId,
+        });
+        console.log(task);
+        this.closeTaskDetails();
+      },
     },
-    computed: {},
+    computed: {
+      board() {
+        return this.$store.getters.board;
+      },
+    },
     components: {
       taskDetailsMenu,
-      labelsCmp,
-      membersCmp,
+      labelCmp,
+      memberCmp,
+      checklistCmp,
+      calendarCmp
+
     },
     async created() {
       const res = await taskService.getById(
