@@ -57,10 +57,6 @@
       // openModal(type) {
 
       // },
-      saveDate(date) {
-        this.$emit("saveDate", date);
-      },
-
       closeTaskDetails() {
         this.$emit("closeTaskDetails");
       },
@@ -72,6 +68,10 @@
       changeCover() {},
       copyTask() {},
       archiveTask() {},
+
+       async saveDate(date) {
+        this.$emit("saveDate", date);
+      },
 
       async addLabel(label) {
         const idx = this.taskToEdit.labels.findIndex(
@@ -88,7 +88,6 @@
           task: JSON.parse(JSON.stringify(this.taskToEdit)),
           groupId: this.groupId,
         });
-        console.log(task);
         this.closeTaskDetails();
       },
     },

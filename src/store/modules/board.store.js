@@ -70,11 +70,6 @@ export const boardStore = {
     }
   },
   actions: {
-    // async saveDate({ commit }, { date }) {
-    //   try {
-    //     const date = await boardService.
-    //   }
-    // },
     async loadBoards({ commit }, { filterBy }) {
       try {
         const board = await boardService.query(filterBy);
