@@ -27,13 +27,15 @@
           </li>
         </ul>
       </div>
-      <div class="add-task-btn">
+      <div >
         <div v-if="isNewTask">
-          <input type="text" v-model="taskTitle" ref="taskInput" />
-          <button @click="addTask(group.id)">Add</button>
+          <textarea v-model="taskTitle" ref="taskInput"></textarea>
+          <button @click="addTask(group.id)">Add Card</button>
         </div>
-        <button v-else @click="createTask(group.id)">
-          <icon-base iconName="+"></icon-base>Add Card
+        <button v-else class="add-task-btn" @click="createTask(group.id)">
+        <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
+          <icon-base iconName="+"></icon-base>
+          <span>Add Card</span>
         </button>
       </div>
       <!-- <button @click="removeGroup(group.id)">Delete</button> -->

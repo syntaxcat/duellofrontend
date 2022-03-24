@@ -9,6 +9,7 @@
     fill: #6B778C;
   }
   .board-group {
+    max-height:100% ;
     width: rem(272px);
     margin: 0 4px;
     background-color: $group1;
@@ -16,12 +17,26 @@
     width: rem(272px);
 
 .add-task-btn{
-  button{
-    background-color: transparent;
-    border: none;
-    color: $boardAddClr;
-    font-size: rem(14px);
-    height: rem(38px);
+  .icon-base{
+    fill: red;
+  }
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: $boardAddClr;
+  font-size: rem(14px);
+  height: rem(38px);
+  &:first-child{
+    margin-bottom: 5px;
+    // background-color: aqua;
+
+    &>*{
+      margin-right: 10px;
+    //  align-self: center;
+
+    }
+    }
   }
 }
 
@@ -57,11 +72,12 @@
 
     }
   }
-}
+
   .task-container{
     // background-color: aqua;
     max-height: 85%;
     overflow-x: hidden;
+    // margin-bottom:20px; 
     ul {
       margin: 0 4px;
       padding: 0 4px;
