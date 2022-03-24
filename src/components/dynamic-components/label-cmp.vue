@@ -6,7 +6,7 @@
     <input type="search" placeholder="Search labels..." />
     <h2>Labels</h2>
     <ul>
-      <li v-for="label in labels">
+      <li v-for="label in labels" :key="label.id">
         <div>
           <span>{{ label.title }}</span>
         </div>

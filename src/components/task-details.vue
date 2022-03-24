@@ -12,7 +12,7 @@
     </div>
     <div class="main-container">
       <task-details-menu @openModal="openModal"/>
-      <component :is="'members-cmp'"/>
+      <component :is="'label-cmp'"/>
     </div>
   </section>
 </template>
@@ -20,8 +20,8 @@
 <script>
   import { taskService } from "../services/task.service";
   import taskDetailsMenu from "../components/task-details-menu.vue";
-  import labelsCmp from "./dynamic-components/labels-cmp.vue";
-  import membersCmp from "./dynamic-components/members-cmp.vue";
+  import labelCmp from "./dynamic-components/label-cmp.vue";
+  import memberCmp from "./dynamic-components/member-cmp.vue";
 
   export default {
     props: {
@@ -64,8 +64,8 @@
     computed: {},
     components: {
       taskDetailsMenu,
-      labelsCmp,
-      membersCmp,
+      labelCmp,
+      memberCmp,
     },
     async created() {
       const res = await taskService.getById(

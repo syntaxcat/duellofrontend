@@ -6,7 +6,7 @@
     <input type="search" placeholder="Search members..." />
     <h2>Board members</h2>
     <ul>
-      <li v-for="member in members">
+      <li v-for="member in members" :key="member.id">
         <div>
           <span>{{ member.fullname }}</span>
           <div>
