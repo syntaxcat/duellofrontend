@@ -2,20 +2,25 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-image: url(./src/assets/imgs/background.jpg);
+  background-size: cover;
   .groups-container {
     flex-grow: 1;
     display: flex;
-    width: 100%;
     overflow: auto;
     overflow-y: hidden;
   }
   
   .groups {
     display: flex;
+    // overflow-x: hidden;
+    // width: 100%;
   }
 
   .group {
-    height: 100%;
-    overflow: auto;
+    max-height: 100%;
+    overflow: hidden;
+    // overflow: auto;
+    // overflow-x: hidden;
   }
 }

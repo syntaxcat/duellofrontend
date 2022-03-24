@@ -51,9 +51,7 @@
         this.$nextTick(() => this.$refs.textarea.focus());
       },
       updateHeigh() {
-        this.$refs.textarea.style.height = 0;
-        this.$refs.textarea.style.height =
-          this.$refs.textarea.scrollHeight + "px";
+        this.$refs.textarea.style.height =this.$refs.textarea.scrollHeight + "px";
       },
     },
     mounted() {
