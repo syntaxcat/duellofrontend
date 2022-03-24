@@ -1,4 +1,10 @@
 <template>
+<section>
+
+<section>
+  <board-menu @closeMenu="toggleMenu" v-if="isMenuOpen"></board-menu>
+    </section>
+  
   <section class="board-header">
     <div class="board-details">
       <div class="board-name-and-star">
@@ -36,21 +42,28 @@
         <img src="../assets/icons/bx-filter.svg" alt="filter" />
         <span>Filter</span>
       </button>
-      <button>
+      <button @click="toggleMenu">
         <img src="../assets/icons/more-horizontal.svg" alt="more" />
         <span>Show menu</span>
       </button>
     </div>
-  </section>
+    </section>
+</section>
 </template>
 
 <script>
+
+  
+import boardMenu from './board-menu.vue';
   export default {
+    components: { boardMenu },
     data() {
       return {
         boardName: "Duello",
         isEditing: false,
         isFull: false,
+        isMenuOpen: false,
+        // openMenu: false
       };
     },
     methods: {
@@ -61,6 +74,9 @@
       setFavorite(boardId) {
         this.isFull = !this.isFull;
       },
+      toggleMenu(){
+        this.isMenuOpen = !this.isMenuOpen
+      }
     },
     computed: {
       isFavorite() {

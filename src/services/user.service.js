@@ -10,18 +10,13 @@ const USER_KEY = "userDB";
 _createUsers()
 
 async function login(userCreds) {
-    console.log(userCreds)
     const users = await _query()
     const user = users.find(usr => usr.password === userCreds.password && usr.username === userCreds.username)
-    console.log(users)
-    console.log(user)
     return user
 
 }
 async function signup(newUser) {
-    console.log(newUser)
     const users = await _query()
-    console.log(users)
     const isUserExist = users.every(usr => usr.password === newUser.password || usr.username ===newUser.username)
     if(isUserExist) return
     newUser._id = utilService.makeId()

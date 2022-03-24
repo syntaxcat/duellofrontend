@@ -3,7 +3,7 @@ import { userService } from '../../services/user.service.js'
 
 export const userStore = {
     state: {
-        loggediUser: null
+        loggedinUser: null
     },
     getters: {
         user(state) {
@@ -12,7 +12,8 @@ export const userStore = {
     },
     mutations: {
         setUser(state, { user }) {
-            state.loggediUser = user
+           state.loggedinUser = user
+           console.log(state.loggedinUser)
         }
     },
     actions: {
@@ -20,6 +21,7 @@ export const userStore = {
             const user = await utilService.loadFromSessionStorage('user')
             if (user) {
                 context.commit({ type: 'setUser', user })
+                // console.log(user)
                 return user
             }
         },
@@ -32,6 +34,7 @@ export const userStore = {
         },
         async signup(context, { user }) {
             const loggedinUser = await userService.signup(user)
+            console.log(loggedinUser)
             if (!loggedinUser) return
             await utilService.saveToSessionStorage('user', loggedinUser)
             context.commit({ type: 'setUser', loggedinUser })
