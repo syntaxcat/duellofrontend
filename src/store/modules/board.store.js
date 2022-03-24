@@ -137,10 +137,17 @@ export const boardStore = {
       }
     },
     async drag({ commit, state }, { value }) {
-      const newOrder = await boardService.updateGroups(value, {
-        ...state.board,
-      });
-      commit({ type: "updateGroups", newOrder });
+      const newOrder = await boardService.updateGroups(value, { ...state.board })
+      commit({ type: 'updateGroups', newOrder })
     },
+    async createBoard({ commit }, { board }) {
+      try {
+        const newBoard = await boardService.addNewBoard(board)
+        commit({ type: "setBoard", board: newBoard });
+        return newBoard._id
+      } catch (err) {
+        console.log(err);
+      }
+    }
   },
 };
