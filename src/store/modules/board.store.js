@@ -8,7 +8,7 @@ export const boardStore = {
     draggable: {
       options: {
         group: 'groups',
-        animation: 500,
+        // animation: 200,
         direction: 'horizontal',
         // delay: 200,
         // delayOnTouchOnly: true,
@@ -20,7 +20,7 @@ export const boardStore = {
     board(state) {
       return state.board;
     },
-    groups(state){
+    groups(state) {
       return state.boardGroups
     },
     dragOptions(state) {
@@ -102,14 +102,14 @@ export const boardStore = {
         console.log(err);
       }
     },
-    async addTask({ state, commit }, { taskTitle, groupId }){
+    async addTask({ state, commit }, { taskTitle, groupId }) {
       try {
         const updatedGroup = await taskService.addTask(taskTitle, groupId, state.board._id);
         commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
       }
-      
+
     },
     async updateTask({ commit, state }, { task, groupId }) {
       try {
@@ -120,8 +120,17 @@ export const boardStore = {
       }
     },
     async drag({ commit, state }, { value }) {
-      const newOrder = await boardService.updateGroups(value, {...state.board})
-      commit({type: 'updateGroups', newOrder})
+      const newOrder = await boardService.updateGroups(value, { ...state.board })
+      commit({ type: 'updateGroups', newOrder })
+    },
+    async createBoard({ commit }, { board }) {
+      try {
+        const newBoard = await boardService.addNewBoard(board)
+        commit({ type: "setBoard", board: newBoard });
+        return newBoard._id
+      } catch (err) {
+        console.log(err);
+      }
     }
   },
 };

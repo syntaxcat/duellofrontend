@@ -2,8 +2,8 @@ import { storageService } from "./storage.service";
 import { utilService } from "./util.service";
 
 export const userService = {
-login,
-signup
+    login,
+    signup,
 };
 const USER_KEY = "userDB";
 
@@ -22,8 +22,8 @@ async function signup(newUser) {
     console.log(newUser)
     const users = await _query()
     console.log(users)
-    const isUserExist = users.every(usr => usr.password === newUser.password || usr.username ===newUser.username)
-    if(isUserExist) return
+    const isUserExist = users.every(usr => usr.password === newUser.password || usr.username === newUser.username)
+    if (isUserExist) return
     newUser._id = utilService.makeId()
     return storageService.post(USER_KEY, newUser)
 }
@@ -32,9 +32,9 @@ async function _query() {
     return storageService.query(USER_KEY)
 }
 
-async function _createUsers(){
+async function _createUsers() {
     const users = await _query()
-    if(!users||!users.length){
+    if (!users || !users.length) {
         const user = {
             username: 'user',
             fullname: 'user',

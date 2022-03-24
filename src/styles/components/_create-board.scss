@@ -1,0 +1,28 @@
+.create-board{
+    height: 712px;
+    width: 305px;
+    // main-layout-width: 286px 
+    // main-layout-margin-inline: 10px
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    >*{
+        width: 100%;
+        text-align: center;
+    }
+    
+    img{
+        height: 120px;
+        width: 200px;
+        
+    }
+
+    .background-picker{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        
+    }
+}

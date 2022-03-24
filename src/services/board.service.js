@@ -7,6 +7,8 @@ export const boardService = {
   removeGroup,
   updateGroup,
   updateGroups,
+  getEmptyBoard,
+  addNewBoard
 };
 
 const BOARD_KEY = "boardDB";
@@ -71,6 +73,27 @@ async function removeGroup(groupId, boardId) {
   await storageService.put(BOARD_KEY, board);
 }
 
+async function addNewBoard(board) {
+  board.createdAt = new Date()
+  return await storageService.post(BOARD_KEY,board)
+}
+
+function getEmptyBoard() {
+  return {
+    _id: "",
+    title: "",
+    createdAt: null,
+    createdBy: {},
+    style: {
+      backgroundImg: null
+    },
+    labels: [],
+    members: [],
+    groups: [],
+    activities: [],
+  }
+}
+
 async function _createBoard() {
   try {
     var board = await storageService.query(BOARD_KEY);
@@ -85,7 +108,9 @@ async function _createBoard() {
           fullname: "Abi Abambi",
           imgUrl: "http://some-img",
         },
-        style: {},
+        style: {
+          backgroundImg: null
+        },
         labels: [
           {
             id: "l101",

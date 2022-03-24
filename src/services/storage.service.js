@@ -18,7 +18,7 @@ async function get(entityType, entityId) {
 }
 
 async function post(entityType, newEntity) {
-  newEntity.id = _makeId();
+  newEntity._id = _makeId();
   const entities = await query(entityType);
   entities.push(newEntity);
   _save(entityType, entities);
@@ -51,7 +51,7 @@ async function _save(entityType, entities) {
   localStorage.setItem(entityType, JSON.stringify(entities));
 }
 
-async function _makeId(length = 8) {
+ function _makeId(length = 8) {
   var text = "";
   var possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

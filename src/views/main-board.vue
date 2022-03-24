@@ -2,6 +2,7 @@
   <section class="main-board">
     <main-header />
     <board-header />
+    <create-board @create="createBoard" />
 
     <section class="groups-container" v-if="board">
       <draggable v-model="groups" class="groups" group="groups" v-bind="dragOptions">
@@ -27,6 +28,7 @@ import boardHeader from "../components/board-header.vue";
 import mainHeader from "../components/main-header.vue";
 import boardGroup from "../components/board-group.vue";
 import addGroup from "../components/add-group.vue";
+import createBoard from "../components/create-board.vue";
 
 export default {
   data() {
@@ -61,6 +63,11 @@ export default {
     addTask(taskTitle, groupId, boardId) {
       this.$store.dispatch({ type: "addTask", taskTitle, groupId, boardId });
     },
+    async createBoard(newBoard) {
+      const boardId = await this.$store.dispatch({ type: "createBoard", board: newBoard });
+    console.log(boardId);
+    this.$router.push({path:`/board/${boardId}`})
+    },
   },
   computed: {
     board() {
@@ -84,6 +91,7 @@ export default {
     boardGroup,
     addGroup,
     draggable: VueDraggableNext,
+    createBoard
   },
 };
 </script>
