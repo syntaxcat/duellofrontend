@@ -1,31 +1,35 @@
 <template>
   <section class="checklist-cmp">
-    <!-- <header>
-      <h2>Members</h2>
+    <header>
+      <h2>Add checklist</h2>
     </header>
-    <input type="search" placeholder="Search members..." />
-    <h2>Board members</h2>
-    <ul>
-      <li v-for="member in members">
-        <div>
-          <span>{{ member.fullname }}</span>
-          <div>
-            <span>{{ member.imgUrl }}</span>
-          </div>
-        </div>
-      </li>
-    </ul> -->
+    <h2>Title</h2>
+    <input type="search" />
+    <h2>Copy items from…</h2>
+    <select>
+      <option value="">(none)</option>
+      <option value="Option A">Option A</option>
+      <option value="Option B">Option B</option>
+      <option value="Option C">Option C</option>
+    </select>
+    <button>Add</button>
   </section>
 </template>
 <script>
   export default {
     data() {
       return {
-         members: [
+        checklists: [
           {
-            _id: "u101",
-            fullname: "Tal Tarablus",
-            imgUrl: "https://www.google.com",
+            id: "YEhmF",
+            title: "Checklist",
+            todos: [
+              {
+                id: "212jX",
+                title: "To Do 1",
+                isDone: false,
+              },
+            ],
           },
         ],
       };
