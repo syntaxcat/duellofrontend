@@ -5,7 +5,7 @@
         <button>
           <img src="../assets/icons/bxs-grid.svg" alt="grid" />
         </button>
-        <button>
+        <button @click="goHome">
           <img src="../assets/icons/trello.svg" alt="trello" />
           <span>Duello</span>
         </button>
@@ -40,13 +40,17 @@
         </button>
       </div>
     </nav>
-      <router-link to="/">Home</router-link> | 
   </section>
 </template>
 
 <script>
 
 export default {
+  methods:{
+    goHome(){
+      this.$router.push({path: '/'})
+    }
+  }
 
 };
 </script>
