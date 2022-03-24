@@ -12,7 +12,14 @@
     </div>
     <div class="main-container">
       <task-details-menu @openModal="openModal" />
-      <component @addLabel="addLabel" class="dynamic-details" :board="board" :is="'label-cmp'" />
+      <component
+        @addLabel="addLabel"
+        class="dynamic-details"
+        :board="board"
+        :is="'label-cmp'"
+      />
+      <task-details-menu @openModal="openModal" />
+      <component :is="'calendar-cmp'" @saveDate="saveDate" />
     </div>
   </section>
 </template>
@@ -22,77 +29,90 @@
   import taskDetailsMenu from "../components/task-details-menu.vue";
   import labelCmp from "./dynamic-components/label-cmp.vue";
   import memberCmp from "./dynamic-components/member-cmp.vue";
-  import checklistCmp from "./dynamic-components/checklist-cmp.vue"
+  import checklistCmp from "./dynamic-components/checklist-cmp.vue";
+  import calendarCmp from "./dynamic-components/calendar-cmp.vue";
 
-export default {
-  props: {
-    taskId: {
-      type: String,
-      required: true,
+  export default {
+    props: {
+      taskId: {
+        type: String,
+        required: true,
+      },
+      groupId: {
+        type: String,
+        required: true,
+      },
+      boardId: {
+        type: String,
+        required: true,
+      },
     },
-    groupId: {
-      type: String,
-      required: true,
+    data() {
+      return {
+        taskToEdit: null,
+        group: null,
+      };
     },
-    boardId: {
-      type: String,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      taskToEdit: null,
-      group: null,
-    };
-  },
-  methods: {
-    // openModal(type) {
+    methods: {
+      // openModal(type) {
 
-    // },
+      // },
+      saveDate(date) {
+        this.$emit("saveDate", date);
+      },
 
-    closeTaskDetails() {
-      this.$emit("closeTaskDetails");
+      closeTaskDetails() {
+        this.$emit("closeTaskDetails");
+      },
+      joinTask() {},
+      changeLabel() {},
+      makeChecklist() {},
+      addDate() {},
+      addAttachment() {},
+      changeCover() {},
+      copyTask() {},
+      archiveTask() {},
+
+      async addLabel(label) {
+        const idx = this.taskToEdit.labels.findIndex(
+          (lbl) => lbl.id === label.id
+        );
+        console.log(idx);
+        if (idx === -1) {
+          this.taskToEdit.labels.unshift(label);
+        } else {
+          this.taskToEdit.labels.splice(idx, 1);
+        }
+        const task = await this.$store.dispatch({
+          type: "updateTask",
+          task: JSON.parse(JSON.stringify(this.taskToEdit)),
+          groupId: this.groupId,
+        });
+        console.log(task);
+        this.closeTaskDetails();
+      },
     },
-    joinTask() { },
-    changeLabel() { },
-    makeChecklist() { },
-    addDate() { },
-    addAttachment() { },
-    changeCover() { },
-    copyTask() { },
-    archiveTask() { },
+    computed: {
+      board() {
+        return this.$store.getters.board;
+      },
+    },
+    components: {
+      taskDetailsMenu,
+      labelCmp,
+      memberCmp,
+      checklistCmp,
+      calendarCmp
 
-    async addLabel(label) {
-      const idx = this.taskToEdit.labels.findIndex(lbl => lbl.id === label.id)
-      console.log(idx)
-      if(idx === -1){
-        this.taskToEdit.labels.unshift(label)
-      }else{
-        this.taskToEdit.labels.splice(idx,1)
-      }
-        const task = await this.$store.dispatch({ type: 'updateTask', task: JSON.parse(JSON.stringify(this.taskToEdit)), groupId: this.groupId })
-        console.log(task)
-        this.closeTaskDetails()
-    }
-  },
-  computed: {
-    board() {
-      return this.$store.getters.board
-    }
-  },
-  components: {
-    taskDetailsMenu,
-    labelCmp,
-    memberCmp,
-  },
-  async created() {
-    const res = await taskService.getById(
-      this.taskId,
-      this.groupId,
-      this.boardId
-    );
-    this.taskToEdit = { ...res.task };
-    this.group = { ...res.group };
-  },
-};
+    },
+    async created() {
+      const res = await taskService.getById(
+        this.taskId,
+        this.groupId,
+        this.boardId
+      );
+      this.taskToEdit = { ...res.task };
+      this.group = { ...res.group };
+    },
+  };
 </script>

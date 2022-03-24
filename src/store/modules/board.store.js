@@ -7,9 +7,9 @@ export const boardStore = {
     boardGroups: [],
     draggable: {
       options: {
-        group: 'groups',
+        group: "groups",
         // animation: 200,
-        direction: 'horizontal',
+        direction: "horizontal",
         // delay: 200,
         // delayOnTouchOnly: true,
         ghostClass: "groupGhost",
@@ -63,6 +63,11 @@ export const boardStore = {
     },
   },
   actions: {
+    // async saveDate({ commit }, { date }) {
+    //   try {
+    //     const date = await boardService.
+    //   }
+    // },
     async loadBoards({ commit }, { filterBy }) {
       try {
         const board = await boardService.query(filterBy);
@@ -137,17 +142,19 @@ export const boardStore = {
       }
     },
     async drag({ commit, state }, { value }) {
-      const newOrder = await boardService.updateGroups(value, { ...state.board })
-      commit({ type: 'updateGroups', newOrder })
+      const newOrder = await boardService.updateGroups(value, {
+        ...state.board,
+      });
+      commit({ type: "updateGroups", newOrder });
     },
     async createBoard({ commit }, { board }) {
       try {
-        const newBoard = await boardService.addNewBoard(board)
+        const newBoard = await boardService.addNewBoard(board);
         commit({ type: "setBoard", board: newBoard });
-        return newBoard._id
+        return newBoard._id;
       } catch (err) {
         console.log(err);
       }
-    }
+    },
   },
 };

@@ -8,7 +8,7 @@ export const boardService = {
   updateGroup,
   updateGroups,
   getEmptyBoard,
-  addNewBoard
+  addNewBoard,
 };
 
 const BOARD_KEY = "boardDB";
@@ -71,8 +71,8 @@ async function removeGroup(groupId, boardId) {
 }
 
 async function addNewBoard(board) {
-  board.createdAt = new Date()
-  return await storageService.post(BOARD_KEY,board)
+  board.createdAt = new Date();
+  return await storageService.post(BOARD_KEY, board);
 }
 
 function getEmptyBoard() {
@@ -82,13 +82,13 @@ function getEmptyBoard() {
     createdAt: null,
     createdBy: {},
     style: {
-      backgroundImg: null
+      backgroundImg: null,
     },
     labels: _createLabels(),
     members: [],
     groups: [],
     activities: [],
-  }
+  };
 }
 
 async function _createBoard() {
@@ -107,7 +107,7 @@ async function _createBoard() {
           imgUrl: "http://some-img",
         },
         style: {
-          backgroundImg: null
+          backgroundImg: null,
         },
         labels: _createLabels(),
         members: [

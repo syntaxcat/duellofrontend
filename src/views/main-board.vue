@@ -20,7 +20,14 @@
       </draggable>
       <add-group @addGroup="addGroup" />
     </section>
-    <task-details v-if="isOpenModal" :taskId="taskId" :groupId="groupId" :boardId="board._id" @closeTaskDetails="isOpenModal = !isOpenModal"/>
+    <task-details
+      v-if="isOpenModal"
+      :taskId="taskId"
+      :groupId="groupId"
+      :boardId="board._id"
+      @closeTaskDetails="isOpenModal = !isOpenModal"
+      @saveDate="saveDate"
+    />
   </section>
 </template>
 
@@ -49,6 +56,9 @@
       });
     },
     methods: {
+      saveDate(date){
+        this.$store.dispatch({type: "saveDate", date});
+      },
       openModal(taskId, groupId) {
         this.isOpenModal = true;
         this.taskId = taskId;
@@ -77,9 +87,12 @@
         this.$store.dispatch({ type: "addTask", taskTitle, groupId, boardId });
       },
       async createBoard(newBoard) {
-        const boardId = await this.$store.dispatch({ type: "createBoard", board: newBoard });
-      console.log(boardId);
-      this.$router.push({path:`/board/${boardId}`})
+        const boardId = await this.$store.dispatch({
+          type: "createBoard",
+          board: newBoard,
+        });
+        console.log(boardId);
+        this.$router.push({ path: `/board/${boardId}` });
       },
     },
     computed: {
@@ -103,8 +116,8 @@
       taskDetails,
       draggable: VueDraggableNext,
       createBoard,
-      TaskDetails
-  },
+      TaskDetails,
+    },
   };
 </script>
 
