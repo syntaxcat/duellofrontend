@@ -7,34 +7,32 @@
     <h2>Labels</h2>
     <ul>
       <li v-for="label in labels" :key="label.id">
-        <div>
+        <div @click="addLabel(label)" class="edit-label" :style="'background-color:'+label.color">
           <span>{{ label.title }}</span>
         </div>
-        <button>
-          <img src="../../assets/icons/bx-pencil.svg" alt="edit" />
-        </button>
+        <label>
+          <icon-base iconName="pencil" />
+        </label>
       </li>
     </ul>
     <button>Create a new label</button>
   </section>
 </template>
 <script>
+import iconBase from '../icon-base.vue';
   export default {
+  components: { iconBase },
+    props:['board'],
     data() {
       return {
-        labels: [
-          {
-            id: "l101",
-            title: "Done",
-            color: "#61bd4f",
-          },
-          {
-            id: "l102",
-            title: "Progress",
-            color: "#61bd33",
-          },
-        ],
+        labels: this.board.labels,
       };
     },
+    methods:{
+      addLabel(label){
+        console.log(label)
+        this.$emit('addLabel',label)
+      }
+    }
   };
 </script>

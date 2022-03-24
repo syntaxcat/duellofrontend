@@ -11,7 +11,15 @@
         overflow: hidden;
         
     }
-
+    .task-labels{
+display: flex;
+        .task-label{
+            margin-right: 5px;
+            width: rem(40px);
+            height: rem(8px);
+            border-radius: 4px;
+        }
+    }
     textarea.isEditing {
         // background-color: $clr3;
         border-color: $clr6;

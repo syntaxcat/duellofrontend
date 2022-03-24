@@ -1,7 +1,7 @@
 <template>
   <section class="home-page">
     <mainHeader />
-    <create-board @create="createBoard" />
+    <!-- <create-board @create="createBoard" /> -->
     <h1>Home page</h1>
     <div v-if="boards">
       <div v-for="board in boards" :key="board._id">

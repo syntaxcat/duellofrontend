@@ -1,12 +1,16 @@
 <template>
   <section class="task-preview" @click="openModalDetails">
+    <div class="task-labels">
+    <div class="task-label" v-for="label in task.labels" :key="label.id" :style="'background-color:'+label.color">{{label.title}}</div>
+    </div>
     <textarea
       :class="{ isEditing: isEditing }"
       v-model="taskToEdit.title"
       ref="textarea"
       :disabled="!isEditing"
       @blur="saveEdit(task)"
-    ></textarea>
+    >
+    </textarea>
 
     <button @click="removeTask(task.id, group.id)">
       <img src="../assets/icons/x.svg" alt="delete" />
@@ -40,7 +44,7 @@
       openModalDetails(){
         this.$emit("onOpen")
       },
-      saveEdit() {
+      async saveEdit() {
         this.isEditing = false;
         this.$emit("editTask", {...this.taskToEdit});
       },

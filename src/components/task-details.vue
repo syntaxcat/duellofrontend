@@ -11,8 +11,8 @@
       </div>
     </div>
     <div class="main-container">
-      <task-details-menu @openModal="openModal"/>
-      <component :is="'checklist-cmp'"/>
+      <task-details-menu @openModal="openModal" />
+      <component @addLabel="addLabel" class="dynamic-details" :board="board" :is="'label-cmp'" />
     </div>
   </section>
 </template>
@@ -24,59 +24,75 @@
   import memberCmp from "./dynamic-components/member-cmp.vue";
   import checklistCmp from "./dynamic-components/checklist-cmp.vue"
 
-  export default {
-    props: {
-      taskId: {
-        type: String,
-        required: true,
-      },
-      groupId: {
-        type: String,
-        required: true,
-      },
-      boardId: {
-        type: String,
-        required: true,
-      },
+export default {
+  props: {
+    taskId: {
+      type: String,
+      required: true,
     },
-    data() {
-      return {
-        taskToEdit: null,
-        group: null,
-      };
+    groupId: {
+      type: String,
+      required: true,
     },
-    methods: {
-        // openModal(type) {
-            
-        // },
+    boardId: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      taskToEdit: null,
+      group: null,
+    };
+  },
+  methods: {
+    // openModal(type) {
 
-      closeTaskDetails() {
-        this.$emit("closeTaskDetails");
-      },
-      joinTask() {},
-      changeLabel() {},
-      makeChecklist() {},
-      addDate() {},
-      addAttachment() {},
-      changeCover() {},
-      copyTask() {},
-      archiveTask() {},
+    // },
+
+    closeTaskDetails() {
+      this.$emit("closeTaskDetails");
     },
-    computed: {},
-    components: {
-      taskDetailsMenu,
-      labelCmp,
-      memberCmp,
-      checklistCmp,
-    },
-    async created() {
-      const res = await taskService.getById(
-        this.taskId,
-        this.groupId,
-        this.boardId
-      );
-      this.taskToEdit = { ...res.task };
-      this.group = { ...res.group };
-    },
-  };
+    joinTask() { },
+    changeLabel() { },
+    makeChecklist() { },
+    addDate() { },
+    addAttachment() { },
+    changeCover() { },
+    copyTask() { },
+    archiveTask() { },
+
+    async addLabel(label) {
+      const idx = this.taskToEdit.labels.findIndex(lbl => lbl.id === label.id)
+      console.log(idx)
+      if(idx === -1){
+        this.taskToEdit.labels.unshift(label)
+      }else{
+        this.taskToEdit.labels.splice(idx,1)
+      }
+        const task = await this.$store.dispatch({ type: 'updateTask', task: JSON.parse(JSON.stringify(this.taskToEdit)), groupId: this.groupId })
+        console.log(task)
+        this.closeTaskDetails()
+    }
+  },
+  computed: {
+    board() {
+      return this.$store.getters.board
+    }
+  },
+  components: {
+    taskDetailsMenu,
+    labelCmp,
+    memberCmp,
+  },
+  async created() {
+    const res = await taskService.getById(
+      this.taskId,
+      this.groupId,
+      this.boardId
+    );
+    this.taskToEdit = { ...res.task };
+    this.group = { ...res.group };
+  },
+};
 </script>

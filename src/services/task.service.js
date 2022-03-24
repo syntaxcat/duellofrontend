@@ -14,6 +14,7 @@ async function addTask(taskTitle, groupId, boardId) {
   const task = {
     title: taskTitle,
     id: utilService.makeId(),
+    labels:[]
   };
   const group = await _findGroup(groupId, boardId);
   group.tasks.push(task);

@@ -5,7 +5,16 @@
     height: 20rem;
     position: absolute;
     left: 50%;
-    top: 50%;
-    background-color: gray;
+    top: 30%;
     transform: translate(-50%, -50%);
+    background-color: white;
+    
+    
+    .dynamic-details{
+  border-radius: 5px;
+
+        position: fixed;
+        left:80%;
+        top:10%;
+    }
 }

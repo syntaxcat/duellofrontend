@@ -1,3 +1,32 @@
 .labels-cmp {
-    background-color: lightblue;
+  background-color: rgb(255, 255, 255);
+  width:rem(300px);
+  height: rem(618px);
+  ul {
+    list-style-type: none;
+    padding: 0px;
+    li{
+        display: flex;
+        justify-content: center;
+        &>*:first-child{
+            margin-right:1rem ;
+        }
+        .icon-base{
+            width: 1rem;
+            fill: $labelEditClr;
+        }
+    }
+  }
+  .edit-label {
+    width: rem(244px);
+    height: rem(33px);
+    margin-bottom: 4px;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    line-height:rem(33px) ;
+    &>*{
+        margin-left: 1rem;
+    }
+  }
 }
