@@ -17,24 +17,26 @@
       </div>
       <div class="task-container">
         <ul>
-          <li v-for="task in group.tasks" :key="task.id">
-            <task-preview
-              :task="task"
-              :group="group"
-              @editTask="updateTask"
-              @removeTask="removeTask"
-              @onOpen="openModalDetails(task.id)"
-            />
-          </li>
+          <draggable v-model="tasks" group="task" @change="log">
+            <li v-for="task in group.tasks" :key="task.id">
+              <task-preview
+                :task="task"
+                :group="group"
+                @editTask="updateTask"
+                @removeTask="removeTask"
+                @onOpen="openModalDetails(task.id)"
+              />
+            </li>
+          </draggable>
         </ul>
       </div>
-      <div >
+      <div>
         <div v-if="isNewTask">
           <textarea v-model="taskTitle" ref="taskInput"></textarea>
           <button @click="addTask(group.id)">Add Card</button>
         </div>
         <button v-else class="add-task-btn" @click="createTask(group.id)">
-        <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
+          <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
           <icon-base iconName="+"></icon-base>
           <span>Add Card</span>
         </button>
@@ -45,6 +47,7 @@
 </template>
 
 <script>
+import { VueDraggableNext } from "vue-draggable-next";
 import iconBase from "./icon-base.vue";
 import taskPreview from "../components/task-preview.vue";
 import IconBase from "./icon-base.vue";
@@ -63,6 +66,9 @@ export default {
       taskTitle: "",
       isNewTask: false,
     };
+  },
+  created() {
+    this.$store.commit({ type: "setGroup", group: this.group });
   },
   methods: {
     openModalDetails(taskId) {
@@ -94,7 +100,28 @@ export default {
       this.isNewTask = false;
       this.taskTitle = "";
     },
+    log(evt) {
+      // console.log(evt);
+    },
   },
-  components: { taskPreview, iconBase, IconBase },
+  computed: {
+    tasks: {
+      get() {
+        return this.group.tasks;
+      },
+      async set(value, ev) {
+        console.log(value);
+        console.log(Date.now());
+        // const group = { ...this.group };
+        // group.tasks = value;
+        await this.$store.dispatch({
+          type: "dragTask",
+          value,
+          group: { ...this.group },
+        });
+      },
+    },
+  },
+  components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext },
 };
 </script>

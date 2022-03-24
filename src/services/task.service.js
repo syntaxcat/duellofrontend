@@ -7,6 +7,7 @@ export const taskService = {
   removeTask,
   updateTask,
   getById,
+  // updateTasks
 };
 const BOARD_KEY = "boardDB";
 
@@ -43,6 +44,12 @@ async function getById(taskId, groupId, boardId) {
   const task = group.tasks.find((task) => task.id === taskId);
   return { task, group };
 }
+
+// async function updateTasks(newOrder, groupId, boardId){
+//   const group = await _findGroup(groupId, boardId);
+//   group.tasks = newOrder
+//   return group
+// }
 
 async function _findGroup(groupId, boardId) {
   const board = await storageService.get(BOARD_KEY, boardId);

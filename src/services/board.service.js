@@ -46,8 +46,11 @@ async function updateGroup(newGroup, boardId) {
   const board = await storageService.get(BOARD_KEY, boardId);
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
+    // console.log(newGroup);
     board.groups.splice(groupIdx, 1, newGroup);
-    storageService.put(BOARD_KEY, board);
+    // console.log(board.groups);
+    const la = await storageService.put(BOARD_KEY, board);
+    console.log(la);
     return newGroup;
   }
 }
@@ -72,7 +75,7 @@ async function removeGroup(groupId, boardId) {
 
 async function addNewBoard(board) {
   board.createdAt = new Date()
-  return await storageService.post(BOARD_KEY,board)
+  return await storageService.post(BOARD_KEY, board)
 }
 
 function getEmptyBoard() {

@@ -5,6 +5,7 @@ export const boardStore = {
   state: {
     board: null,
     boardGroups: [],
+    currGroup: null,
     draggable: {
       options: {
         group: 'groups',
@@ -26,6 +27,9 @@ export const boardStore = {
     dragOptions(state) {
       return state.draggable.options;
     },
+    tasks(state) {
+      return state.currGroup.tasks
+    }
   },
   mutations: {
     setBoard(state, { board }) {
@@ -61,6 +65,9 @@ export const boardStore = {
       state.board.groups = newOrder;
       state.boardGroups = state.board.groups;
     },
+    setGroup(state, { group }) {
+      state.currGroup = group
+    }
   },
   actions: {
     async loadBoards({ commit }, { filterBy }) {
@@ -139,6 +146,17 @@ export const boardStore = {
     async drag({ commit, state }, { value }) {
       const newOrder = await boardService.updateGroups(value, { ...state.board })
       commit({ type: 'updateGroups', newOrder })
+    },
+    async dragTask({ commit, state }, { value, group }) {
+      try {
+        group.tasks = value
+        console.log(value);
+        const updatedGroup = await boardService.updateGroup(group, state.board._id)
+        console.log(updatedGroup);
+        // commit({ type: 'updateGroup', updatedGroup })
+      } catch (err) {
+        console.log(err);
+      }
     },
     async createBoard({ commit }, { board }) {
       try {
