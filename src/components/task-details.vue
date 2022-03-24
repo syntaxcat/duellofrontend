@@ -1,69 +1,57 @@
 <template>
-  <section class="task-details">
+  <section class="task-details" v-if="taskToEdit">
+    <button @click="closeTaskDetails">
+      <img src="../assets/icons/x.svg" alt="close" />
+    </button>
     <div class="task-header-container">
       <!-- <img src="../assets/icons/" alt=""> -->
-      <input type="text" />
+      <input type="text" v-model="taskToEdit.title" />
       <div class="info-in-group">
-        <p></p>
+        <p>in list {{ group.title }}</p>
       </div>
-      <button @click="closeTaskDetails">
-        <img src="../assets/icons/x.svg" alt="close" />
-      </button>
     </div>
-
-    <div class="side-menu">
-      <div class="task-menu">
-        <h2>Suggested</h2>
-        <button @click="joinTask">
-          <img src="../assets/icons/bx-user.svg" alt="user" />
-          Join
-        </button>
-        <button @click="changeLabel">
-          <img src="../assets/icons/tag.svg" alt="label" />
-          Labels
-        </button>
-        <button @click="makeChecklist">
-          <img src="../assets/icons/check-square.svg" alt="checklist" />
-          Checklist
-        </button>
-        <button @click="addDate">
-          <img src="../assets/icons/bx-time-five.svg" alt="clock" />
-          Dates
-        </button>
-        <button @click="addAttachment">
-          <img src="../assets/icons/paperclip.svg" alt="clip" />
-          Attachment
-        </button>
-        <button @click="changeCover">
-          <img src="../assets/icons/bxs-dock-bottom.svg" alt="cover" />
-          Cover
-        </button>
-      </div>
-      <div class="actions-menu">
-        <h2>Actions</h2>
-        <button @click="copyTask">
-          <img src="../assets/icons/bx-copy.svg" alt="duplicate" />
-          Copy
-        </button>
-        <button @click="archiveTask">
-          <img src="../assets/icons/bx-box.svg" alt="archive" />
-          Archive
-        </button>
-      </div>
+    <div class="main-container">
+      <task-details-menu @openModal="openModal"/>
+      <component :is="'members-cmp'"/>
     </div>
   </section>
 </template>
 
 <script>
-  import taskPreview from "../components/task-preview.vue";
+  import { taskService } from "../services/task.service";
+  import taskDetailsMenu from "../components/task-details-menu.vue";
+  import labelsCmp from "./dynamic-components/labels-cmp.vue";
+  import membersCmp from "./dynamic-components/members-cmp.vue";
 
   export default {
-    data() {
-      return {};
+    props: {
+      taskId: {
+        type: String,
+        required: true,
+      },
+      groupId: {
+        type: String,
+        required: true,
+      },
+      boardId: {
+        type: String,
+        required: true,
+      },
     },
-
+    data() {
+      return {
+        taskToEdit: null,
+        group: null,
+      };
+    },
     methods: {
-      closeTaskDetails() {},
+        // openModal(type) {
+            
+        // },
+
+      closeTaskDetails() {
+        this.$emit("closeTaskDetails");
+      },
       joinTask() {},
       changeLabel() {},
       makeChecklist() {},
@@ -75,7 +63,18 @@
     },
     computed: {},
     components: {
-      taskPreview,
+      taskDetailsMenu,
+      labelsCmp,
+      membersCmp,
+    },
+    async created() {
+      const res = await taskService.getById(
+        this.taskId,
+        this.groupId,
+        this.boardId
+      );
+      this.taskToEdit = { ...res.task };
+      this.group = { ...res.group };
     },
   };
 </script>

@@ -41,7 +41,6 @@
       </div>
     </nav>
       <router-link to="/">Home</router-link> | 
-      <router-link to="/task-details">task-details</router-link> 
   </section>
 </template>
 

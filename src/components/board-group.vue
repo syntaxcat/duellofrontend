@@ -23,6 +23,7 @@
               :group="group"
               @editTask="updateTask"
               @removeTask="removeTask"
+              @onOpen="openModalDetails(task.id)"
             />
           </li>
         </ul>
@@ -64,6 +65,9 @@ export default {
     };
   },
   methods: {
+    openModalDetails(taskId) {
+      this.$emit("onOpen", taskId, this.group.id);
+    },
     editGroup(group) {
       group.title;
       this.$emit("editGroup", group);

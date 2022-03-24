@@ -1,5 +1,5 @@
 <template>
-  <section class="task-preview">
+  <section class="task-preview" @click="openModalDetails">
     <textarea
       :class="{ isEditing: isEditing }"
       v-model="taskToEdit.title"
@@ -8,9 +8,9 @@
       @blur="saveEdit(task)"
     ></textarea>
 
-    <!-- <button @click="removeTask(task.id, group.id)">
+    <button @click="removeTask(task.id, group.id)">
       <img src="../assets/icons/x.svg" alt="delete" />
-    </button> -->
+    </button>
     <button @click="editTask(task, group.id)">
       <img src="../assets/icons/bx-pencil.svg" alt="edit" />
     </button>
@@ -37,6 +37,9 @@
       };
     },
     methods: {
+      openModalDetails(){
+        this.$emit("onOpen")
+      },
       saveEdit() {
         this.isEditing = false;
         this.$emit("editTask", {...this.taskToEdit});

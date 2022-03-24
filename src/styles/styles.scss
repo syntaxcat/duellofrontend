@@ -22,8 +22,11 @@
 @import 'components/task-preview';
 @import 'components/create-board';
 @import 'components/task-details';
+@import 'components/task-details-menu';
 @import 'components/board-menu';
 
-
+// DYNAMIC-COMPONENTS
+@import 'components/dynamic-components/labels-cmp';
+@import 'components/dynamic-components/members-cmp';
 
 
