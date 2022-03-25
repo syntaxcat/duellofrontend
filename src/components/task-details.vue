@@ -31,12 +31,6 @@
       <div class="content-displayed">
         <div class="container">
           <div
-            class="dueDate"
-            v-if="taskToEdit.dueDate"
-          >
-            {{ taskToEdit.dueDate }}
-          </div>
-          <div
             class="labels-for-display"
             v-if="taskToEdit.labels.length >= 1"
           >
@@ -56,6 +50,16 @@
                 <icon-base iconName="plus" />
               </button>
             </div>
+          </div>
+          <div
+            class="dueDate"
+            v-if="taskToEdit.dueDate"
+            @click="toggleCalendar"
+          >
+            <h2>Due date</h2>
+            <span>{{ formatDate(taskToEdit.dueDate) }}
+              <icon-base iconName="chevron-down" />
+            </span>
           </div>
         </div>
         <description-details
@@ -120,6 +124,16 @@ export default {
     };
   },
   methods: {
+    formatDate(dateString) {
+      return new Date(dateString).toDateString();
+    },
+    toggleCalendar() {
+      if (this.cmp === null) {
+        this.openModal("calendar-cmp");
+      } else {
+        this.closeLabel();
+      }
+    },
     toggleLabelsModal() {
       if (this.cmp === null) {
         this.openModal("label-cmp");

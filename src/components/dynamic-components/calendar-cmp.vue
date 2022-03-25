@@ -22,7 +22,7 @@ import iconBase from "../icon-base.vue";
 export default {
   props: {
     date: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
