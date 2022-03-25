@@ -1,27 +1,15 @@
 <template>
-  <section
-    class="task-details"
-    v-if="taskToEdit"
-  >
+  <section class="task-details" v-if="taskToEdit">
     <button @click="closeTaskDetails">
-      <img
-        src="../assets/icons/x.svg"
-        alt="close"
-      />
+      <img src="../assets/icons/x.svg" alt="close" />
     </button>
     <div class="task-header-container">
       <div class="cover-container">
         <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
       </div>
       <div class="task-details-container">
-        <img
-          src="../assets/icons/bxs-dock-bottom.svg"
-          alt=""
-        />
-        <textarea
-          type="text"
-          v-model="taskToEdit.title"
-        ></textarea>
+        <img src="../assets/icons/bxs-dock-bottom.svg" alt="" />
+        <textarea type="text" v-model="taskToEdit.title"></textarea>
         <div class="info-in-group">
           <p>in list {{ group.title }}</p>
         </div>
@@ -29,7 +17,6 @@
     </div>
     <div class="main-container">
       <div class="content-displayed">
-
         <div class="container">
           <div class="dueDate" v-if="taskToEdit.dueDate">
             {{ taskToEdit.dueDate }}
@@ -42,15 +29,23 @@
             <h3>Description</h3>
           </div>
           <div class="description-content">
-            <div class="fake-textarea">Add a more detailed description...</div>
+            <div class="fake-textarea" v-if="!addDescription" @click="addDesc">
+              Add a more detailed description...
+            </div>
 
-            <textarea type="text">Add a more detailed description...</textarea>
-            
-            <div class="actions">
-              <button>Save</button>
-              <button>
-                <img src="../assets/icons/x.svg" alt="close" />
-              </button>
+            <div class="real-textarea">
+              <textarea ref="addDesc" v-if="addDescription" type="text">Add a more detailed description...</textarea>
+
+              <div class="actions">
+                <button class="save-description">Save</button>
+                <button class="close-btn">
+                  <img
+                    src="../assets/icons/x.svg"
+                    alt="close"
+                    @click="addDescription = !addDescription"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -100,9 +95,14 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
+      addDescription: false,
     };
   },
   methods: {
+    addDesc() {
+      this.addDescription = !this.addDescription;
+      this.$nextTick(() => this.$refs.addDesc.focus());
+    },
     openModal(type) {
       console.log(type);
       this.cmp = type;
