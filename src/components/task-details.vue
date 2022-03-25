@@ -190,12 +190,11 @@ export default {
       } else {
         this.taskToEdit.labels.splice(idx, 1);
       }
-      const task = await this.$store.dispatch({
+      await this.$store.dispatch({
         type: "updateTask",
-        task: JSON.parse(JSON.stringify(this.taskToEdit)),
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
-      // this.closeTaskDetails();
     },
   },
   computed: {

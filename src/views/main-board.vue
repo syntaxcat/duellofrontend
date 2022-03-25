@@ -4,9 +4,21 @@
     <board-header />
     <!-- <create-board @create="createBoard" /> -->
 
-    <section class="groups-container" v-if="board">
-      <draggable v-model="groups" group="groups" class="groups" handle=".mover">
-        <div class="group" v-for="group in board.groups" :key="group.id">
+    <section
+      class="groups-container"
+      v-if="board"
+    >
+      <draggable
+        v-model="groups"
+        group="groups"
+        class="groups"
+        handle=".mover"
+      >
+        <div
+          class="group"
+          v-for="group in board.groups"
+          :key="group.id"
+        >
           <board-group
             :group="JSON.parse(JSON.stringify(group))"
             @editGroup="editGroup"
@@ -76,8 +88,8 @@ export default {
     removeTask(taskId, groupId) {
       this.$store.dispatch({ type: "removeTask", taskId, groupId });
     },
-    updateTask(task, groupId) {
-      this.$store.dispatch({ type: "updateTask", task, groupId });
+    updateTask(taskPartial, groupId) {
+      this.$store.dispatch({ type: "updateTask", taskPartial, groupId });
     },
     addTask(taskTitle, groupId, boardId) {
       this.$store.dispatch({ type: "addTask", taskTitle, groupId, boardId });

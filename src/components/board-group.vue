@@ -109,9 +109,9 @@ export default {
     removeTask(taskId, groupId) {
       this.$emit("removeTask", taskId, groupId);
     },
-    updateTask(task) {
+    updateTask(taskPartial) {
       const groupId = this.group.id;
-      this.$emit("updateTask", task, groupId);
+      this.$emit("updateTask", taskPartial, groupId);
     },
     createTask() {
       this.isNewTask = true;

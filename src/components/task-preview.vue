@@ -15,7 +15,7 @@
     </div>
     <textarea
       :class="{ isEditing: isEditing }"
-      v-model="taskToEdit.title"
+      v-model="taskToEditPartial.title"
       ref="textarea"
       :disabled="!isEditing"
       @blur="saveEdit(task)"
@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       isEditing: false,
-      taskToEdit: { ...this.task },
+      taskToEditPartial: { title: this.task.title, id: this.task.id },
     };
   },
   methods: {
@@ -82,7 +82,7 @@ export default {
     },
     async saveEdit() {
       this.isEditing = false;
-      this.$emit("editTask", { ...this.taskToEdit });
+      this.$emit("editTask", this.taskToEditPartial);
     },
 
     removeTask(taskId, groupId) {
@@ -102,7 +102,7 @@ export default {
     this.updateHeigh();
   },
   watch: {
-    taskToEdit: {
+    taskToEditPartial: {
       handler(val) {
         this.updateHeigh();
       },

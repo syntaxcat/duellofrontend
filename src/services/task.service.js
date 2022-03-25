@@ -21,11 +21,14 @@ async function addTask(taskTitle, groupId, boardId) {
   return boardService.updateGroup(group, boardId);
 }
 
-async function updateTask(newTask, groupId, boardId) {
+async function updateTask(taskPartial, groupId, boardId) {
   const group = await _findGroup(groupId, boardId);
-  const taskIdx = group.tasks.findIndex((task) => task.id === newTask.id);
+  const taskIdx = group.tasks.findIndex((task) => task.id === taskPartial.id);
   if (taskIdx === -1) return;
-  group.tasks.splice(taskIdx, 1, newTask);
+  group.tasks.splice(taskIdx, 1, {
+    ...group.tasks[taskIdx],
+    ...taskPartial,
+  });
   return boardService.updateGroup(group, boardId);
 }
 
