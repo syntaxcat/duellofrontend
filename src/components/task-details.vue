@@ -48,8 +48,13 @@
                 :key="label.id"
                 :style="'background-color:'+label.color"
               >{{ label.title }}
-
               </div>
+              <button
+                class="add-btn"
+                @click="toggleLabelsModal"
+              >
+                <icon-base iconName="plus" />
+              </button>
             </div>
           </div>
         </div>
@@ -89,6 +94,7 @@ import checklistCmp from "./dynamic-components/checklist-cmp.vue";
 import calendarCmp from "./dynamic-components/calendar-cmp.vue";
 import descriptionDetails from "./description-details.vue";
 import activityDetails from "./activity-details.vue";
+import IconBase from "./icon-base.vue";
 
 export default {
   props: {
@@ -114,6 +120,13 @@ export default {
     };
   },
   methods: {
+    toggleLabelsModal() {
+      if (this.cmp === null) {
+        this.openModal("label-cmp");
+      } else {
+        this.closeLabel();
+      }
+    },
     saveDesc(task) {
       this.$store.dispatch({
         type: "updateTask",
@@ -122,7 +135,6 @@ export default {
       });
     },
     openModal(type) {
-      console.log(type);
       this.cmp = type;
     },
     closeCalendar() {
@@ -188,6 +200,7 @@ export default {
     calendarCmp,
     descriptionDetails,
     activityDetails,
+    IconBase,
   },
   async created() {
     const res = await taskService.getById(

@@ -34,14 +34,24 @@
       textarea {
         padding: 4px 8px;
         background-color: transparent;
+        color: #172b4d;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+          Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
       }
 
-      .info-in-group{
+      .info-in-group {
+        p {
+          color: #172b4d;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+        }
         span {
           text-decoration: underline;
+          color: #172b4d;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
         }
       }
-
 
       img {
         position: absolute;
@@ -106,7 +116,7 @@
         margin-top: 8px;
         // height: 72px;
         // background-color: lightblue;
-        border: 1px solid black;
+        // border: 1px solid black;
 
         .labels-for-display {
           h2 {
@@ -133,11 +143,26 @@
             color: white;
             line-height: rem(33px);
             font-size: 14px;
+            font-weight: 600;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
               Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
-            
+
             & > * {
               margin-left: 1rem;
+            }
+          }
+
+          .add-btn {
+            height: rem(33px);
+            border: none;
+            display: flex;
+            align-items: center;
+            color: #42526e;
+            cursor: pointer;
+            border-radius: 3px;
+
+            .section {
+              display: inline-flex;
             }
           }
         }
