@@ -1,6 +1,5 @@
 .calendar-cmp {
   width: rem(300px);
-  height: rem(370px);
   background-color: white;
   border: 1px solid lightgray;
   border-radius: 3px;
@@ -29,9 +28,13 @@
       top: 0;
       right: 0;
 
-      img {
+      svg {
         width: 16px;
         color: #5e6c84;
+
+        &:hover {
+          color: #172b4d;
+        }
       }
     }
   }
@@ -50,6 +53,7 @@
     width: 100%;
     margin-top: 0.5rem;
     font-size: 14px;
+    margin-bottom: 0.5rem;
     line-height: 20px;
     font-weight: 400;
   }

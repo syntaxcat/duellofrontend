@@ -1,15 +1,27 @@
 <template>
-  <section class="task-details" v-if="taskToEdit">
+  <section
+    class="task-details"
+    v-if="taskToEdit"
+  >
     <button @click="closeTaskDetails">
-      <img src="../assets/icons/x.svg" alt="close" />
+      <img
+        src="../assets/icons/x.svg"
+        alt="close"
+      />
     </button>
     <div class="task-header-container">
       <div class="cover-container">
         <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
       </div>
       <div class="task-details-container">
-        <img src="../assets/icons/bxs-dock-bottom.svg" alt="" />
-        <textarea type="text" v-model="taskToEdit.title"></textarea>
+        <img
+          src="../assets/icons/bxs-dock-bottom.svg"
+          alt=""
+        />
+        <textarea
+          type="text"
+          v-model="taskToEdit.title"
+        ></textarea>
         <div class="info-in-group">
           <p>in list {{ group.title }}</p>
         </div>
@@ -18,8 +30,27 @@
     <div class="main-container">
       <div class="content-displayed">
         <div class="container">
-          <div class="dueDate" v-if="taskToEdit.dueDate">
+          <div
+            class="dueDate"
+            v-if="taskToEdit.dueDate"
+          >
             {{ taskToEdit.dueDate }}
+          </div>
+          <div
+            class="labels-for-display"
+            v-if="taskToEdit.labels.length >= 1"
+          >
+            <h2>Labels</h2>
+            <div class="labels-container">
+              <div
+                class="label"
+                v-for="label in taskToEdit.labels"
+                :key="label.id"
+                :style="'background-color:'+label.color"
+              >{{ label.title }}
+
+              </div>
+            </div>
           </div>
         </div>
         <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
@@ -31,10 +62,12 @@
           :is="cmp"
           @openModal="openModal"
           :board="board"
+          :task="taskToEdit"
           @saveDate="saveDate"
           @addLabel="addLabel"
           :date="taskToEdit.dueDate"
           @closeCalendar="closeCalendar"
+          @closeLabel="closeLabel"
         />
       </div>
     </div>
@@ -89,6 +122,9 @@ export default {
     closeCalendar() {
       this.cmp = null;
     },
+    closeLabel() {
+      this.cmp = null;
+    },
 
     closeTaskDetails() {
       this.$emit("closeTaskDetails");
@@ -127,7 +163,7 @@ export default {
         task: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
-      this.closeTaskDetails();
+      // this.closeTaskDetails();
     },
   },
   computed: {
