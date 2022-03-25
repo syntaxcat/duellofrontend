@@ -17,8 +17,30 @@
     </div>
     <div class="main-container">
       <div class="content-displayed">
-        <div class="dueDate" v-if="taskToEdit.dueDate">
-          {{ taskToEdit.dueDate }}
+
+        <div class="container">
+          <div class="dueDate" v-if="taskToEdit.dueDate">
+            {{ taskToEdit.dueDate }}
+          </div>
+        </div>
+
+        <div class="description">
+          <div class="header">
+            <img src="../assets/icons/align-left.svg" />
+            <h3>Description</h3>
+          </div>
+          <div class="description-content">
+            <div class="fake-textarea">Add a more detailed description...</div>
+
+            <textarea type="text">Add a more detailed description...</textarea>
+            
+            <div class="actions">
+              <button>Save</button>
+              <button>
+                <img src="../assets/icons/x.svg" alt="close" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <task-details-menu @openModal="openModal" />
@@ -61,7 +83,7 @@ export default {
       taskToEdit: null,
       group: null,
       savedDate: null,
-      cmp: null
+      cmp: null,
     };
   },
   methods: {
