@@ -29,9 +29,13 @@
       top: 0;
       right: 0;
 
-      img {
+      svg {
         width: 16px;
         color: #5e6c84;
+
+        &:hover {
+          color: #172b4d;
+        }
       }
     }
   }

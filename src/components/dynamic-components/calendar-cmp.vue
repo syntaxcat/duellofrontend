@@ -3,10 +3,11 @@
     <header>
       <h2>Dates</h2>
       <button @click="close">
-        <img
+        <!-- <img
           src="../../assets/icons/x.svg"
           alt="close"
-        />
+        /> -->
+        <icon-base iconName="x" />
       </button>
     </header>
     <v-date-picker
@@ -21,6 +22,7 @@
 </template>
 <script>
 import { DatePicker } from "v-calendar";
+import iconBase from "../icon-base.vue";
 export default {
   props: {
     date: {
@@ -43,6 +45,7 @@ export default {
   },
   components: {
     DatePicker,
+    iconBase,
   },
 };
 </script>
