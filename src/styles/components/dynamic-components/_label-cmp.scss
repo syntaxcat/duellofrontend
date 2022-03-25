@@ -1,7 +1,12 @@
 .labels-cmp {
   background-color: rgb(255, 255, 255);
   width:rem(300px);
-  height: rem(618px);
+  // height: rem(618px);
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+  box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+
   ul {
     list-style-type: none;
     padding: 0px;
