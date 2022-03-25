@@ -1,20 +1,52 @@
 .task-details {
     display: flex;
+    flex-direction: column;
     border: 1px solid black;
-    width: 20rem;
-    height: 20rem;
-    position: absolute;
+    width: rem(770px);
+    min-height: rem(800px);
+    margin: 36px 8px;
+    position: relative;
+    z-index: 25;
+    overflow: hidden;
     left: 50%;
     top: 30%;
     transform: translate(-50%, -50%);
     background-color: white;
-    
-    
-    .dynamic-details{
-  border-radius: 5px;
 
-        position: fixed;
-        left:80%;
-        top:10%;
+    >*{
+        border: 1px solid blue;
     }
+
+    >*:first-child{
+        position: absolute;
+        width: rem(32px);
+        z-index: 2;
+        right: 0;
+        top: 0;
+        padding: rem(4px);
+        margin: rem(4px);
+    }
+
+    .task-header-container{
+        height: rem(215px);
+
+        .cover-container{
+            height: rem(130px);
+            background-color: $labe3;
+
+            // img{
+            //     width: 100%;
+            //     height: 100%;
+            // }
+        }
+    }
+    
+    
+//     .dynamic-details{
+//   border-radius: 5px;
+
+//         position: fixed;
+//         left:80%;
+//         top:10%;
+//     }
 }
