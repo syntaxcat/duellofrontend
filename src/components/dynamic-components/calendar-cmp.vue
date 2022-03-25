@@ -16,8 +16,8 @@
   export default {
     data() {
       return {
-          date: new Date(),
-      };
+          date: new Date().getTime(),
+      }
     },
     methods: {
         saveDate(){
