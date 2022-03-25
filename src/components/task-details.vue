@@ -23,7 +23,7 @@
           v-model="taskToEdit.title"
         ></textarea>
         <div class="info-in-group">
-          <p>in list {{ group.title }}</p>
+          <p>in list <span> {{ group.title }}</span></p>
         </div>
       </div>
     </div>
@@ -53,8 +53,14 @@
             </div>
           </div>
         </div>
-        <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-        <activity-details :task="taskToEdit" :user="loggedinUser" />
+        <description-details
+          :taskToEdit="taskToEdit"
+          @save="saveDesc"
+        />
+        <activity-details
+          :task="taskToEdit"
+          :user="loggedinUser"
+        />
       </div>
       <task-details-menu @openModal="openModal" />
       <div class="dynamic-cmp">
@@ -170,9 +176,9 @@ export default {
     board() {
       return this.$store.getters.board;
     },
-    loggedinUser(){
-      return this.$store.getters.user
-    }
+    loggedinUser() {
+      return this.$store.getters.user;
+    },
   },
   components: {
     taskDetailsMenu,
@@ -181,7 +187,7 @@ export default {
     checklistCmp,
     calendarCmp,
     descriptionDetails,
-    activityDetails
+    activityDetails,
   },
   async created() {
     const res = await taskService.getById(
