@@ -1,11 +1,10 @@
 <template>
   <section class="activity" v-if="task && user">
     <div class="header">
-      <!-- <img src="../assets/icons/activity.svg" /> -->
       <icon-base class="activity-icon" iconName="real-activity" />
       <div>
         <h3>Activity</h3>
-        <button @click="show = !show">{{ showDetails }}</button>
+        <button @click.stop="show = !show">{{ showDetails }}</button>
       </div>
     </div>
 
@@ -15,20 +14,25 @@
 
       <form>
         <div class="comment-frame">
-          <div class="comment-box">
+          <div :class="['comment-box',isShow]">
             <textarea
               type="text"
               placeholder="Write a comment..."
               v-model="comment"
+              @click="add = !add"
+              @blur="add = !add"
+              
+
             ></textarea>
-            <div class="comment-controls">
+
+            <div :class="['comment-controls', isShow]">
               <button :class="['save-comment', isAllowed]">Save</button>
 
               <div class="comment-box-options">
-                <icon-base iconName="paperclip" />
-                <icon-base iconName="mention" />
-                <icon-base iconName="emoji" />
-                <icon-base iconName="cardS" />
+                <icon-base class="option" @click.stop="log" iconName="paperclip" />
+                <icon-base class="option" @click.stop="log" iconName="mention" />
+                <icon-base class="option" @click.stop="log" iconName="emoji" />
+                <icon-base class="option" @click.stop="log" iconName="cardS" />
               </div>
             </div>
           </div>
@@ -55,9 +59,14 @@ export default {
     return {
       show: true,
       comment: "",
+      add: false
     };
   },
-  methods: {},
+  methods: {
+      log(){
+          console.log('hi');
+      }
+  },
   computed: {
     showDetails() {
       return this.show ? "Hide details" : "Show details";
@@ -65,6 +74,9 @@ export default {
     isAllowed() {
       return this.comment ? "allowed" : "";
     },
+    isShow(){
+        return this.add ? 'show' : '';
+    }
   },
   components:{iconBase}
 };
