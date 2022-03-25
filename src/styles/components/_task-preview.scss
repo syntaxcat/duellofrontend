@@ -1,27 +1,26 @@
 .task-preview {
+  width: 100%;
+  textarea {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     width: 100%;
-    textarea {
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-        width: 100%;
-        resize: none;
-        border: none;
-        outline: none;
-        background-color: transparent;
-        border-color: transparent;
-        overflow: hidden;
-        
+    resize: none;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-color: transparent;
+    overflow: hidden;
+  }
+  .task-labels {
+    display: flex;
+    .task-label {
+      margin-right: 5px;
+      width: rem(40px);
+      height: rem(8px);
+      border-radius: 4px;
     }
-    .task-labels{
-display: flex;
-        .task-label{
-            margin-right: 5px;
-            width: rem(40px);
-            height: rem(8px);
-            border-radius: 4px;
-        }
-    }
-    textarea.isEditing {
-        // background-color: $clr3;
-        border-color: $clr6;
-    }
+  }
+  textarea.isEditing {
+    // background-color: $clr3;
+    border-color: $clr6;
+  }
 }

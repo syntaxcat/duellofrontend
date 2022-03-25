@@ -7,9 +7,12 @@
       <div class="cover-container">
         <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
       </div>
-      <input type="text" v-model="taskToEdit.title" />
-      <div class="info-in-group">
-        <p>in list {{ group.title }}</p>
+      <div class="task-details-container">
+        <img src="../assets/icons/bxs-dock-bottom.svg" alt="">
+        <textarea type="text" v-model="taskToEdit.title"></textarea>
+        <div class="info-in-group">
+          <p>in list {{ group.title }}</p>
+        </div>
       </div>
     </div>
     <div class="main-container">
