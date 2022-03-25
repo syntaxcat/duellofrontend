@@ -1,15 +1,27 @@
 <template>
-  <section class="task-details" v-if="taskToEdit">
+  <section
+    class="task-details"
+    v-if="taskToEdit"
+  >
     <button @click="closeTaskDetails">
-      <img src="../assets/icons/x.svg" alt="close" />
+      <img
+        src="../assets/icons/x.svg"
+        alt="close"
+      />
     </button>
     <div class="task-header-container">
       <div class="cover-container">
         <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
       </div>
       <div class="task-details-container">
-        <img src="../assets/icons/bxs-dock-bottom.svg" alt="" />
-        <textarea type="text" v-model="taskToEdit.title"></textarea>
+        <img
+          src="../assets/icons/bxs-dock-bottom.svg"
+          alt=""
+        />
+        <textarea
+          type="text"
+          v-model="taskToEdit.title"
+        ></textarea>
         <div class="info-in-group">
           <p>in list {{ group.title }}</p>
         </div>
@@ -17,18 +29,25 @@
     </div>
     <div class="main-container">
       <div class="content-displayed">
-        <div class="dueDate" v-if="taskToEdit.dueDate">
+        <div
+          class="dueDate"
+          v-if="taskToEdit.dueDate"
+        >
           {{ taskToEdit.dueDate }}
         </div>
       </div>
       <task-details-menu @openModal="openModal" />
-      <component
-        :is="cmp"
-        @openModal="openModal"
-        :board="board"
-        @saveDate="saveDate"
-        @addLabel="addLabel"
-      />
+      <div class="dynamic-cmp">
+        <component
+          :is="cmp"
+          @openModal="openModal"
+          :board="board"
+          @saveDate="saveDate"
+          @addLabel="addLabel"
+          :date="taskToEdit.dueDate"
+          @closeCalendar="closeCalendar"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -61,7 +80,7 @@ export default {
       taskToEdit: null,
       group: null,
       savedDate: null,
-      cmp: null
+      cmp: null,
     };
   },
   methods: {
@@ -69,6 +88,10 @@ export default {
       console.log(type);
       this.cmp = type;
     },
+    closeCalendar() {
+      this.cmp = null;
+    },
+
     closeTaskDetails() {
       this.$emit("closeTaskDetails");
     },
@@ -80,6 +103,7 @@ export default {
     archiveTask() {},
 
     async saveDate(date) {
+      this.cmp = null;
       this.taskToEdit.dueDate = date;
       try {
         this.$store.dispatch({

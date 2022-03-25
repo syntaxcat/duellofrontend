@@ -2,30 +2,47 @@
   <section class="calendar-cmp">
     <header>
       <h2>Dates</h2>
-      <button>
-          <img src="../../assets/icons/x.svg" alt="close">
+      <button @click="close">
+        <img
+          src="../../assets/icons/x.svg"
+          alt="close"
+        />
       </button>
     </header>
-    <v-date-picker v-model="date" />
-    {{date}}
-  <button class="save-btn" @click="saveDate">Save</button>
+    <v-date-picker
+      class="calendar"
+      v-model="selectedDate"
+    />
+    <button
+      class="save-btn"
+      @click="saveDate"
+    >Save</button>
   </section>
 </template>
 <script>
-  import { DatePicker } from "v-calendar";
-  export default {
-    data() {
-      return {
-          date: new Date().getTime(),
-      }
+import { DatePicker } from "v-calendar";
+export default {
+  props: {
+    date: {
+      type: String,
+      required: true,
     },
-    methods: {
-        saveDate(){
-            this.$emit("saveDate", this.date);
-        }
+  },
+  data() {
+    return {
+      selectedDate: this.date ?? new Date().getTime(),
+    };
+  },
+  methods: {
+    saveDate() {
+      this.$emit("saveDate", this.selectedDate);
     },
-    components: {
-      DatePicker,
+    close() {
+      this.$emit("closeCalendar");
     },
-  };
+  },
+  components: {
+    DatePicker,
+  },
+};
 </script>
