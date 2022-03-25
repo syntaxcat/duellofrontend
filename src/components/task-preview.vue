@@ -21,6 +21,14 @@
       @blur="saveEdit(task)"
     >
     </textarea>
+    <span
+      v-if="this.task.dueDate"
+      class="due-date"
+    >
+      <!-- <icon-base iconName="clock" /> -->
+
+      {{formatDate(this.task.dueDate)}}
+    </span>
 
     <button @click="removeTask(task.id, group.id)">
       <img
@@ -38,6 +46,7 @@
 </template>
 
 <script>
+import iconBase from "./icon-base.vue";
 export default {
   props: {
     task: {
@@ -57,6 +66,13 @@ export default {
     };
   },
   methods: {
+    formatDate() {
+      const date = new Date(this.task.dueDate);
+      return date.toLocaleString("default", {
+        month: "short",
+        day: "numeric",
+      });
+    },
     toggleLabelsExpand(e) {
       e.stopPropagation();
       this.$emit("toggleLabelsExpanded");
@@ -97,6 +113,9 @@ export default {
     labelsExpanded() {
       return this.$store.getters.labelsExpanded;
     },
+  },
+  components: {
+    iconBase,
   },
 };
 </script>

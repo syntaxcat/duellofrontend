@@ -4,12 +4,12 @@
   }
   50% {
     max-width: 198px;
-     min-width: 60px;
+    min-width: 60px;
     max-height: 8px;
   }
   100% {
     max-width: 198px;
-     min-width: 60px;
+    min-width: 60px;
     max-height: 16px;
   }
 }
@@ -17,7 +17,7 @@
 @keyframes shrink {
   0% {
     max-width: 198px;
-     min-width: 60px;
+    min-width: 60px;
     max-height: 16px;
   }
   50% {
@@ -37,7 +37,6 @@
     opacity: 0;
   }
 }
-
 
 @keyframes show {
   0% {
@@ -63,6 +62,26 @@
     border-color: transparent;
     overflow: hidden;
   }
+
+  .due-date {
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 12px;
+    color: #5e6c84;
+    // line-height: 20px;
+    // font-weight: 600;
+    // margin: 0 8px 4px 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
+      Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+    &:hover {
+      background-color: lightblue;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
   .task-labels {
     .task-label {
       float: left;
@@ -83,7 +102,6 @@
       justify-content: center;
       margin-bottom: 4px;
 
-
       &.expand {
         animation-name: expand;
       }
@@ -102,7 +120,7 @@
         &.show {
           animation-name: show;
         }
-  
+
         &.hide {
           animation-name: hide;
         }
