@@ -132,19 +132,17 @@
         .description-content {
           position: relative;
           margin-bottom: 24px;
-          width: 552px;
           padding-bottom: 9px;
           z-index: 50;
+          margin-left: 40px;
 
           .fake-textarea {
-            width: 512px;
             cursor: pointer;
             display: block;
             height: 60px;
             color: #172b4d;
             background-color: #eaecf0;
             text-decoration: none;
-            margin-left: 40px;
             padding: 8px 12px;
             border-radius: 3px;
             border: none;
@@ -155,9 +153,8 @@
           }
 
           textarea {
-            width: 512px;
+            width: 100%;
             min-height: 108px;
-            margin-left: 40px;
             padding: 8px 12px;
             border-radius: 3px;
             overflow: hidden;
