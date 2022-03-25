@@ -42,16 +42,12 @@ async function addGroup(title, boardId) {
   return group;
 }
 
-async function updateGroup(newGroup, board) {
-  // const board = await storageService.get(BOARD_KEY, boardId);
+async function updateGroup(newGroup, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId);
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
-    // console.log(newGroup);
     board.groups.splice(groupIdx, 1, newGroup);
-    // console.log(board.groups);
-     await storageService.put(board);
-    //  await storageService.put(BOARD_KEY, JSON.parse(JSON.stringify(board)));
-    // console.log(la);
+    await storageService.put(BOARD_KEY, board);
     return newGroup;
   }
 }
@@ -98,7 +94,7 @@ function getEmptyBoard() {
 async function _createBoard() {
   try {
     var board = await storageService.query(BOARD_KEY);
-    console.log('board!', board)
+    // console.log('board!', board)
     if (!board || !board.length) {
       console.log("query");
       board = {
@@ -129,12 +125,12 @@ async function _createBoard() {
               {
                 id: "c101",
                 title: "Replace logo",
-                labels:[]
+                labels: []
               },
               {
                 id: "c102",
                 title: "Add Samples",
-                labels:[]
+                labels: []
               },
             ],
             style: {},
@@ -146,14 +142,14 @@ async function _createBoard() {
               {
                 id: "c103",
                 title: "Do that",
-                labels:[]
+                labels: []
               },
               {
                 id: "c104",
                 title: "Help me",
                 status: "in-progress",
                 description: "description",
-                labels:[],
+                labels: [],
                 comments: [
                   {
                     id: "ZdPnm",
@@ -231,67 +227,67 @@ async function _createBoard() {
   }
 }
 
-function _createLabels(){
+function _createLabels() {
   return [
     {
-        title:'urgent',
-        id: utilService.makeId(),
-        color: '#61bd4f'
+      title: 'urgent',
+      id: utilService.makeId(),
+      color: '#61bd4f'
     },
     {
-        title:'doing',
-        id: utilService.makeId(),
-        color: '#f2d600'
+      title: 'doing',
+      id: utilService.makeId(),
+      color: '#f2d600'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#f2d600'
+      title: '',
+      id: utilService.makeId(),
+      color: '#f2d600'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#ff9f1a'
+      title: '',
+      id: utilService.makeId(),
+      color: '#ff9f1a'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#eb5a46'
+      title: '',
+      id: utilService.makeId(),
+      color: '#eb5a46'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#c377e0'
+      title: '',
+      id: utilService.makeId(),
+      color: '#c377e0'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#0079bf'
+      title: '',
+      id: utilService.makeId(),
+      color: '#0079bf'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#00c2e0'
+      title: '',
+      id: utilService.makeId(),
+      color: '#00c2e0'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#51e898'
+      title: '',
+      id: utilService.makeId(),
+      color: '#51e898'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#ff78cb'
+      title: '',
+      id: utilService.makeId(),
+      color: '#ff78cb'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#344563'
+      title: '',
+      id: utilService.makeId(),
+      color: '#344563'
     },
     {
-        title:'',
-        id: utilService.makeId(),
-        color: '#b3bac5'
+      title: '',
+      id: utilService.makeId(),
+      color: '#b3bac5'
     },
-]
+  ]
 }

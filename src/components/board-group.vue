@@ -17,7 +17,7 @@
       </div>
       <div class="task-container">
         <ul>
-          <draggable v-model="tasks" group="task" @change="log">
+          <draggable v-model="tasks" group="tasks" @change="log">
             <li v-for="task in group.tasks" :key="task.id">
               <task-preview
                 :task="task"
@@ -65,7 +65,7 @@ export default {
       title: this.group.title,
       taskTitle: "",
       isNewTask: false,
-      isTaskDragged: false
+      isTaskDragged: false,
     };
   },
   created() {
@@ -102,7 +102,7 @@ export default {
       this.taskTitle = "";
     },
     log(evt) {
-      // console.log(evt);
+      console.log(evt);
     },
   },
   computed: {
@@ -110,25 +110,15 @@ export default {
       get() {
         return this.group.tasks;
       },
-        async set(value, ev) {
-          setTimeout(()=> {
-            // if (!this.isTaskDragged) {
-              // this.isTaskDragged =!this.isTaskDragged
-              console.log('blipbloop')
-              // console.log(value);
-              // console.log(Date.now());
-      
-              // const group = { ...this.group };
-              // group.tasks = value;
-              this.$store.dispatch({
-                type: "dragTask",
-                value,
-                group: { ...this.group },
-              });
-            // }
-
-          },1)
-        },
+      set(value) {
+        setTimeout(() => {
+          this.$store.dispatch({
+            type: "dragTask",
+            value,
+            group: { ...this.group },
+          });
+        }, 2);
+      },
     },
   },
   components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext },
