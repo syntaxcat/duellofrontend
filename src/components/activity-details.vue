@@ -1,7 +1,8 @@
 <template>
   <section class="activity" v-if="task && user">
     <div class="header">
-      <img src="../assets/icons/activity.svg" />
+      <!-- <img src="../assets/icons/activity.svg" /> -->
+      <icon-base class="activity-icon" iconName="real-activity" />
       <div>
         <h3>Activity</h3>
         <button @click="show = !show">{{ showDetails }}</button>
@@ -24,14 +25,10 @@
               <button :class="['save-comment', isAllowed]">Save</button>
 
               <div class="comment-box-options">
-                <img
-                  src="../assets/icons/paperclip.svg"
-                  alt="Add an attachment"
-                />
+                <icon-base iconName="paperclip" />
                 <icon-base iconName="mention" />
-                <!-- <img src="../assets/icons/mention.svg" alt="Mention a member" /> -->
-                <img src="../assets/icons/emoji.svg" alt="Add emoji" />
-                <img src="../assets/icons/bxs-dock-bottom.svg" alt="Add card" />
+                <icon-base iconName="emoji" />
+                <icon-base iconName="cardS" />
               </div>
             </div>
           </div>

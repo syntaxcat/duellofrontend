@@ -14,10 +14,7 @@
         <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
       </div>
       <div class="task-details-container">
-        <img
-          src="../assets/icons/bxs-dock-bottom.svg"
-          alt=""
-        />
+        <icon-base class="card-header" iconName="cardB" />
         <textarea
           type="text"
           v-model="taskToEdit.title"
@@ -83,6 +80,7 @@ import checklistCmp from "./dynamic-components/checklist-cmp.vue";
 import calendarCmp from "./dynamic-components/calendar-cmp.vue";
 import descriptionDetails from "./description-details.vue";
 import activityDetails from "./activity-details.vue";
+import iconBase from "./icon-base.vue";
 
 export default {
   props: {
@@ -181,7 +179,8 @@ export default {
     checklistCmp,
     calendarCmp,
     descriptionDetails,
-    activityDetails
+    activityDetails,
+    iconBase
   },
   async created() {
     const res = await taskService.getById(

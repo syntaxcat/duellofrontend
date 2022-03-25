@@ -9,7 +9,7 @@
     align-items: center;
     margin: 0 0 4px 40px;
 
-    img {
+    .activity-icon {
       height: 24px;
       position: absolute;
       left: -40px;
@@ -143,6 +143,7 @@
 
           .comment-box-options {
               display: flex;
+              justify-content: space-evenly;
               height: 32px;
               width: 144px;
             // bottom: 8px;
