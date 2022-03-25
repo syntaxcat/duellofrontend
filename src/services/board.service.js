@@ -42,15 +42,16 @@ async function addGroup(title, boardId) {
   return group;
 }
 
-async function updateGroup(newGroup, boardId) {
-  const board = await storageService.get(BOARD_KEY, boardId);
+async function updateGroup(newGroup, board) {
+  // const board = await storageService.get(BOARD_KEY, boardId);
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
     // console.log(newGroup);
     board.groups.splice(groupIdx, 1, newGroup);
     // console.log(board.groups);
-    const la = await storageService.put(BOARD_KEY, board);
-    console.log(la);
+     await storageService.put(board);
+    //  await storageService.put(BOARD_KEY, JSON.parse(JSON.stringify(board)));
+    // console.log(la);
     return newGroup;
   }
 }

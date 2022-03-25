@@ -157,10 +157,11 @@ export const boardStore = {
     async dragTask({ commit, state }, { value, group }) {
       try {
         group.tasks = value
-        console.log(value);
-        const updatedGroup = await boardService.updateGroup(group, state.board._id)
+        // console.log(value);
+        // console.log(Date.now());
+        const updatedGroup = await boardService.updateGroup(group, JSON.parse(JSON.stringify(state.board)))
         console.log(updatedGroup);
-        // commit({ type: 'updateGroup', updatedGroup })
+        commit({ type: 'updateGroup', updatedGroup })
       } catch (err) {
         console.log(err);
       }

@@ -109,9 +109,9 @@ export default {
       get() {
         return this.group.tasks;
       },
-      async set(value, ev) {
-        console.log(value);
-        console.log(Date.now());
+      async set(value) {
+        // console.log(value);
+        // console.log(Date.now());
         // const group = { ...this.group };
         // group.tasks = value;
         await this.$store.dispatch({
