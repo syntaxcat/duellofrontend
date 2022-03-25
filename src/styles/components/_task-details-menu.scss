@@ -14,8 +14,6 @@
   }
     // justify-content: space-between;
     // flex-grow: 1;
-
-  //all except of first h2 -should have - margin-top: 16px;
   //TODO - support svg changes color to blue
 
   h2 {
@@ -44,6 +42,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: #172b4d;
+
 
     img {
         font-size: 16px;
@@ -57,6 +57,8 @@
     }
   }
   .task-menu-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
   }
 }

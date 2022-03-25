@@ -19,25 +19,21 @@
       padding: 0 32px;
       font-size: 14px;
       text-align: center;
-
     }
     button {
-        height: 40px;
-        background-color: transparent;
-        border: none;
-        position: absolute;
-        top: 0;
-        right: 0;
-    
-        img {
-          width: 16px;
-          color: #5e6c84;
-        }
-      }
+      cursor: pointer;
+      height: 40px;
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: 0;
+      right: 0;
 
-    //   button:hover {
-    //     background-color: ;
-    //   }
+      img {
+        width: 16px;
+        color: #5e6c84;
+      }
+    }
   }
   .calendar {
     width: 100%;
@@ -56,12 +52,9 @@
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
-
   }
 
   .save-btn:hover {
     background-color: #026aa7;
   }
 }
-
-  
