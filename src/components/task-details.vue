@@ -1,15 +1,27 @@
 <template>
-  <section class="task-details" v-if="taskToEdit">
+  <section
+    class="task-details"
+    v-if="taskToEdit"
+  >
     <button @click="closeTaskDetails">
-      <img src="../assets/icons/x.svg" alt="close" />
+      <img
+        src="../assets/icons/x.svg"
+        alt="close"
+      />
     </button>
     <div class="task-header-container">
       <div class="cover-container">
         <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
       </div>
       <div class="task-details-container">
-        <img src="../assets/icons/bxs-dock-bottom.svg" alt="" />
-        <textarea type="text" v-model="taskToEdit.title"></textarea>
+        <img
+          src="../assets/icons/bxs-dock-bottom.svg"
+          alt=""
+        />
+        <textarea
+          type="text"
+          v-model="taskToEdit.title"
+        ></textarea>
         <div class="info-in-group">
           <p>in list {{ group.title }}</p>
         </div>
@@ -18,8 +30,24 @@
     <div class="main-container">
       <div class="content-displayed">
         <div class="container">
-          <div class="dueDate" v-if="taskToEdit.dueDate">
+          <div
+            class="dueDate"
+            v-if="taskToEdit.dueDate"
+          >
             {{ taskToEdit.dueDate }}
+          </div>
+          <div
+            class="label"
+            v-if="taskToEdit.labels"
+          >
+            <div
+              class="labels-for-display"
+              v-for="label in taskToEdit.labels"
+              :key="label.id"
+            >
+              <h2>Labels</h2>
+            </div>
+            {{ taskToEdit.labels }}
           </div>
         </div>
 
@@ -44,7 +72,10 @@
               {{ taskToEdit.description }}
             </div>
 
-            <div class="real-textarea" v-else>
+            <div
+              class="real-textarea"
+              v-else
+            >
               <textarea
                 ref="addDesc"
                 type="text"
@@ -53,7 +84,10 @@
               ></textarea>
 
               <div class="actions">
-                <button class="save-description" @click="saveDesc">Save</button>
+                <button
+                  class="save-description"
+                  @click="saveDesc"
+                >Save</button>
                 <button class="close-btn">
                   <img
                     src="../assets/icons/x.svg"
@@ -76,6 +110,7 @@
           @addLabel="addLabel"
           :date="taskToEdit.dueDate"
           @closeCalendar="closeCalendar"
+          @closeLabel="closeLabel"
         />
       </div>
     </div>
@@ -132,6 +167,9 @@ export default {
       this.cmp = type;
     },
     closeCalendar() {
+      this.cmp = null;
+    },
+    closeLabel() {
       this.cmp = null;
     },
 
