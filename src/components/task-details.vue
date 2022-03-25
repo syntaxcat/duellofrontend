@@ -29,15 +29,31 @@
             <h3>Description</h3>
           </div>
           <div class="description-content">
-            <div class="fake-textarea" v-if="!addDescription" @click="addDesc">
+            <div
+              class="fake-textarea"
+              v-if="!addDescription && !taskToEdit.description"
+              @click="addDesc"
+            >
               Add a more detailed description...
             </div>
+            <div
+              class="fake-textarea description"
+              v-else-if="!addDescription && taskToEdit.description"
+              @click="addDesc"
+            >
+              {{ taskToEdit.description }}
+            </div>
 
-            <div class="real-textarea">
-              <textarea ref="addDesc" v-if="addDescription" type="text">Add a more detailed description...</textarea>
+            <div class="real-textarea" v-else>
+              <textarea
+                ref="addDesc"
+                type="text"
+                v-model="taskToEdit.description"
+                placeholder="Add a more detailed description..."
+              ></textarea>
 
               <div class="actions">
-                <button class="save-description">Save</button>
+                <button class="save-description" @click="saveDesc">Save</button>
                 <button class="close-btn">
                   <img
                     src="../assets/icons/x.svg"
@@ -99,6 +115,14 @@ export default {
     };
   },
   methods: {
+    saveDesc() {
+      this.$store.dispatch({
+        type: "updateTask",
+        task: { ...this.taskToEdit },
+        groupId: this.groupId,
+      });
+      this.addDescription = !this.addDescription;
+    },
     addDesc() {
       this.addDescription = !this.addDescription;
       this.$nextTick(() => this.$refs.addDesc.focus());

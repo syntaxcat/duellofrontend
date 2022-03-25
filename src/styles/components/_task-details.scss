@@ -148,6 +148,14 @@
             border-radius: 3px;
             border: none;
 
+            &.description {
+              background-color: inherit;
+
+              &:hover{
+                background-color: inherit;
+              }
+            }
+
             &:hover {
               background-color: #e2e4e9;
             }
@@ -159,17 +167,6 @@
           }
 
           .real-textarea {
-            // margin-left: 40px;
-          // textarea {
-          //   width: 100%;
-          //   min-height: 108px;
-          //   padding: 8px 12px;
-          //   border-radius: 3px;
-          //   overflow: hidden;
-          //   overflow-wrap: break-word;
-          //   resize: none;
-          // }
-
             textarea {
               color: #172b4d;
               font-size: rem(14px);
@@ -193,6 +190,7 @@
             .actions {
               display: flex;
               margin-top: 8px;
+              height: 32px;
 
               > * {
                 &:hover {
@@ -229,8 +227,6 @@
 
               .close-btn {
                 display: inline-block;
-                text-align: center;
-                vertical-align: bottom;
                 border: none;
                 background-color: inherit;
 
