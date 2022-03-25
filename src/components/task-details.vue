@@ -22,49 +22,8 @@
             {{ taskToEdit.dueDate }}
           </div>
         </div>
-
-        <div class="description">
-          <div class="header">
-            <img src="../assets/icons/align-left.svg" />
-            <h3>Description</h3>
-          </div>
-          <div class="description-content">
-            <div
-              class="fake-textarea"
-              v-if="!addDescription && !taskToEdit.description"
-              @click="addDesc"
-            >
-              Add a more detailed description...
-            </div>
-            <div
-              class="fake-textarea description"
-              v-else-if="!addDescription && taskToEdit.description"
-              @click="addDesc"
-            >
-              {{ taskToEdit.description }}
-            </div>
-
-            <div class="real-textarea" v-else>
-              <textarea
-                ref="addDesc"
-                type="text"
-                v-model="taskToEdit.description"
-                placeholder="Add a more detailed description..."
-              ></textarea>
-
-              <div class="actions">
-                <button class="save-description" @click="saveDesc">Save</button>
-                <button class="close-btn">
-                  <img
-                    src="../assets/icons/x.svg"
-                    alt="close"
-                    @click="addDescription = !addDescription"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
+        <activity-details :task="taskToEdit" :user="loggedinUser" />
       </div>
       <task-details-menu @openModal="openModal" />
       <div class="dynamic-cmp">
@@ -89,6 +48,8 @@ import labelCmp from "./dynamic-components/label-cmp.vue";
 import memberCmp from "./dynamic-components/member-cmp.vue";
 import checklistCmp from "./dynamic-components/checklist-cmp.vue";
 import calendarCmp from "./dynamic-components/calendar-cmp.vue";
+import descriptionDetails from "./description-details.vue";
+import activityDetails from "./activity-details.vue";
 
 export default {
   props: {
@@ -111,21 +72,15 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
-      addDescription: false,
     };
   },
   methods: {
-    saveDesc() {
+    saveDesc(task) {
       this.$store.dispatch({
         type: "updateTask",
-        task: { ...this.taskToEdit },
+        task,
         groupId: this.groupId,
       });
-      this.addDescription = !this.addDescription;
-    },
-    addDesc() {
-      this.addDescription = !this.addDescription;
-      this.$nextTick(() => this.$refs.addDesc.focus());
     },
     openModal(type) {
       console.log(type);
@@ -179,6 +134,9 @@ export default {
     board() {
       return this.$store.getters.board;
     },
+    loggedinUser(){
+      return this.$store.getters.user
+    }
   },
   components: {
     taskDetailsMenu,
@@ -186,6 +144,8 @@ export default {
     memberCmp,
     checklistCmp,
     calendarCmp,
+    descriptionDetails,
+    activityDetails
   },
   async created() {
     const res = await taskService.getById(
