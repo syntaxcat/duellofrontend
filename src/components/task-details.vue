@@ -16,6 +16,9 @@
       </div>
     </div>
     <div class="main-container">
+    <div class="content-displayed">
+
+    </div>
       <task-details-menu @openModal="openModal" />
       <!-- <component
         @addLabel="addLabel"
