@@ -8,7 +8,7 @@
         <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
       </div>
       <div class="task-details-container">
-        <img src="../assets/icons/bxs-dock-bottom.svg" alt="">
+        <img src="../assets/icons/bxs-dock-bottom.svg" alt="" />
         <textarea type="text" v-model="taskToEdit.title"></textarea>
         <div class="info-in-group">
           <p>in list {{ group.title }}</p>
@@ -16,9 +16,7 @@
       </div>
     </div>
     <div class="main-container">
-    <div class="content-displayed">
-
-    </div>
+      <div class="content-displayed"></div>
       <task-details-menu @openModal="openModal" />
       <!-- <component
         @addLabel="addLabel"

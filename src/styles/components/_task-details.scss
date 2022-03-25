@@ -13,10 +13,6 @@
   transform: translate(-50%, -50%);
   background-color: white;
 
-  > * {
-    border: 1px solid blue;
-  }
-
   > *:first-child {
     position: absolute;
     width: rem(32px);
@@ -58,7 +54,6 @@
           overflow-wrap: break-word;
         //   padding: 4px 8px;
 
-
            &:focus {
               background-color: white;
               box-shadow: inset 0 0 0 2px #0079bf;
@@ -76,15 +71,6 @@
       //     width: 100%;
       //     height: 100%;
       // }
-    }
-
-    .main-container {
-      display: flex;
-
-      .content-displayed {
-        flex-grow: 1;
-        background-color: lightgreen;
-      }
     }
   }
 
