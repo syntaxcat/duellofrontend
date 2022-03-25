@@ -155,7 +155,7 @@ export const boardStore = {
         console.log(value);
         const updatedGroup = await boardService.updateGroup(group, state.board._id)
         console.log(updatedGroup);
-        // commit({ type: 'updateGroup', updatedGroup })
+        commit({ type: 'updateGroup', updatedGroup })
       } catch (err) {
         console.log(err);
       }

@@ -65,6 +65,7 @@ export default {
       title: this.group.title,
       taskTitle: "",
       isNewTask: false,
+      isTaskDragged: false
     };
   },
   created() {
@@ -109,17 +110,25 @@ export default {
       get() {
         return this.group.tasks;
       },
-      async set(value, ev) {
-        console.log(value);
-        console.log(Date.now());
-        // const group = { ...this.group };
-        // group.tasks = value;
-        await this.$store.dispatch({
-          type: "dragTask",
-          value,
-          group: { ...this.group },
-        });
-      },
+        async set(value, ev) {
+          setTimeout(()=> {
+            // if (!this.isTaskDragged) {
+              // this.isTaskDragged =!this.isTaskDragged
+              console.log('blipbloop')
+              // console.log(value);
+              // console.log(Date.now());
+      
+              // const group = { ...this.group };
+              // group.tasks = value;
+              this.$store.dispatch({
+                type: "dragTask",
+                value,
+                group: { ...this.group },
+              });
+            // }
+
+          },1)
+        },
     },
   },
   components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext },
