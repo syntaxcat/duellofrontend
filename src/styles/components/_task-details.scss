@@ -1,4 +1,8 @@
 .task-details {
+  .icon-base {
+    display: inline-flex;
+  }
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -31,7 +35,29 @@
       position: relative;
       margin: 12px 40px 8px 56px;
 
-      .card-header {
+      textarea {
+        padding: 4px 8px;
+        background-color: transparent;
+        color: #172b4d;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+          Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+      }
+
+      .info-in-group {
+        p {
+          color: #172b4d;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+        }
+        span {
+          text-decoration: underline;
+          color: #172b4d;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+        }
+      }
+
+      img {
         position: absolute;
         height: 32px;
         width: 32px;
@@ -92,32 +118,95 @@
       .container {
         margin-left: 40px;
         margin-top: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
         // height: 72px;
         // background-color: lightblue;
-        border: 1px solid black;
+        // border: 1px solid black;
+
+        .dueDate {
+          cursor: pointer;
+          h2 {
+            font-size: 12px;
+            color: #5e6c84;
+            line-height: 20px;
+            font-weight: 600;
+            margin: 0 8px 4px 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+              Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+          }
+
+          span {
+            height: rem(33px);
+            display: flex;
+            align-items: center;
+            background-color: #ebecef;
+            padding: 1rem;
+            border-radius: 3px;
+            color: #182a4d;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+              Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+
+              &:hover {
+                background-color: #091e4214;
+              }
+          }
+        }
 
         .labels-for-display {
+          h2 {
+            font-size: 12px;
+            color: #5e6c84;
+            line-height: 20px;
+            font-weight: 600;
+            margin: 0 8px 4px 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+              Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+          }
 
           .labels-container {
             display: flex;
+            flex-wrap: wrap;
           }
 
           .label {
             display: inline-block;
             min-width: rem(40px);
-            height: rem(33px); 
-            margin: 0 4px 4px 0;           
+            height: rem(33px);
+            margin: 0 4px 4px 0;
             padding: 0 12px;
             border-radius: 3px;
             color: white;
-            font-weight: bold;
             line-height: rem(33px);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+              Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+
             & > * {
               margin-left: 1rem;
             }
           }
-        }
 
+          .add-btn {
+            height: rem(33px);
+            border: none;
+            display: flex;
+            align-items: center;
+            color: #42526e;
+            cursor: pointer;
+            border-radius: 3px;
+
+            &:hover {
+              background-color: #091e4214;
+            }
+
+            .section {
+              display: inline-flex;
+            }
+          }
+        }
       }
 
       .description {
@@ -173,7 +262,7 @@
             &.description {
               background-color: inherit;
 
-              &:hover{
+              &:hover {
                 background-color: inherit;
               }
             }
@@ -253,12 +342,12 @@
                 background-color: inherit;
 
                 // img {
-                  // height: 32px;
-                  // line-height: 32px;
-                  // width: 32px;
-                  // color: #42526e;
-                  // font-size: 24px;
-                  // font-weight: 400;
+                // height: 32px;
+                // line-height: 32px;
+                // width: 32px;
+                // color: #42526e;
+                // font-size: 24px;
+                // font-weight: 400;
                 // }
               }
             }

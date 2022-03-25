@@ -20,19 +20,13 @@
           v-model="taskToEdit.title"
         ></textarea>
         <div class="info-in-group">
-          <p>in list {{ group.title }}</p>
+          <p>in list <span> {{ group.title }}</span></p>
         </div>
       </div>
     </div>
     <div class="main-container">
       <div class="content-displayed">
         <div class="container">
-          <div
-            class="dueDate"
-            v-if="taskToEdit.dueDate"
-          >
-            {{ taskToEdit.dueDate }}
-          </div>
           <div
             class="labels-for-display"
             v-if="taskToEdit.labels.length >= 1"
@@ -45,13 +39,34 @@
                 :key="label.id"
                 :style="'background-color:'+label.color"
               >{{ label.title }}
-
               </div>
+              <button
+                class="add-btn"
+                @click="toggleLabelsModal"
+              >
+                <icon-base iconName="plus" />
+              </button>
             </div>
           </div>
+          <div
+            class="dueDate"
+            v-if="taskToEdit.dueDate"
+            @click="toggleCalendar"
+          >
+            <h2>Due date</h2>
+            <span>{{ formatDate(taskToEdit.dueDate) }}
+              <icon-base iconName="chevron-down" />
+            </span>
+          </div>
         </div>
-        <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-        <activity-details :task="taskToEdit" :user="loggedinUser" />
+        <description-details
+          :taskToEdit="taskToEdit"
+          @save="saveDesc"
+        />
+        <activity-details
+          :task="taskToEdit"
+          :user="loggedinUser"
+        />
       </div>
       <task-details-menu @openModal="openModal" />
       <div class="dynamic-cmp">
@@ -106,6 +121,23 @@ export default {
     };
   },
   methods: {
+    formatDate(dateString) {
+      return new Date(dateString).toDateString();
+    },
+    toggleCalendar() {
+      if (this.cmp === null) {
+        this.openModal("calendar-cmp");
+      } else {
+        this.closeLabel();
+      }
+    },
+    toggleLabelsModal() {
+      if (this.cmp === null) {
+        this.openModal("label-cmp");
+      } else {
+        this.closeLabel();
+      }
+    },
     saveDesc(task) {
       this.$store.dispatch({
         type: "updateTask",
@@ -114,7 +146,6 @@ export default {
       });
     },
     openModal(type) {
-      console.log(type);
       this.cmp = type;
     },
     closeCalendar() {
@@ -168,9 +199,9 @@ export default {
     board() {
       return this.$store.getters.board;
     },
-    loggedinUser(){
-      return this.$store.getters.user
-    }
+    loggedinUser() {
+      return this.$store.getters.user;
+    },
   },
   components: {
     taskDetailsMenu,

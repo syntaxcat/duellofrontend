@@ -71,8 +71,8 @@ async function removeGroup(groupId, boardId) {
 }
 
 async function addNewBoard(board) {
-  board.createdAt = Date.now()
-  return await storageService.post(BOARD_KEY, board)
+  board.createdAt = Date.now();
+  return await storageService.post(BOARD_KEY, board);
 }
 
 function getEmptyBoard() {
@@ -125,12 +125,12 @@ async function _createBoard() {
               {
                 id: "c101",
                 title: "Replace logo",
-                labels: []
+                labels: [],
               },
               {
                 id: "c102",
                 title: "Add Samples",
-                labels: []
+                labels: [],
               },
             ],
             style: {},
@@ -142,7 +142,7 @@ async function _createBoard() {
               {
                 id: "c103",
                 title: "Do that",
-                labels: []
+                labels: [],
               },
               {
                 id: "c104",
@@ -188,6 +188,7 @@ async function _createBoard() {
                 labelIds: ["l101", "l102"],
                 createdAt: 1590999730348,
                 dueDate: 16156215211,
+                isDueDateDone: false,
                 byMember: {
                   _id: "u101",
                   username: "Tal",
@@ -230,64 +231,64 @@ async function _createBoard() {
 function _createLabels() {
   return [
     {
-      title: 'urgent',
+      title: "urgent",
       id: utilService.makeId(),
-      color: '#61bd4f'
+      color: "#61bd4f",
     },
     {
-      title: 'doing',
+      title: "doing",
       id: utilService.makeId(),
-      color: '#f2d600'
+      color: "#f2d600",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#f2d600'
+      color: "#f2d600",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#ff9f1a'
+      color: "#ff9f1a",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#eb5a46'
+      color: "#eb5a46",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#c377e0'
+      color: "#c377e0",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#0079bf'
+      color: "#0079bf",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#00c2e0'
+      color: "#00c2e0",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#51e898'
+      color: "#51e898",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#ff78cb'
+      color: "#ff78cb",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#344563'
+      color: "#344563",
     },
     {
-      title: '',
+      title: "",
       id: utilService.makeId(),
-      color: '#b3bac5'
+      color: "#b3bac5",
     },
-  ]
+  ];
 }
