@@ -14,7 +14,7 @@ async function addTask(taskTitle, groupId, boardId) {
   const task = {
     title: taskTitle,
     id: utilService.makeId(),
-    labels:[]
+    labels: [],
   };
   const group = await _findGroup(groupId, boardId);
   group.tasks.push(task);
@@ -24,8 +24,6 @@ async function addTask(taskTitle, groupId, boardId) {
 async function updateTask(newTask, groupId, boardId) {
   const group = await _findGroup(groupId, boardId);
   const taskIdx = group.tasks.findIndex((task) => task.id === newTask.id);
-  console.log(newTask.id);
-  console.log(group, taskIdx);
   if (taskIdx === -1) return;
   group.tasks.splice(taskIdx, 1, newTask);
   return boardService.updateGroup(group, boardId);

@@ -1,4 +1,4 @@
-.labels-cmp {
+.label-cmp {
   background-color: rgb(255, 255, 255);
   width: rem(300px);
   border-radius: 3px;
@@ -97,8 +97,9 @@
     color: white;
     font-weight: bold;
     line-height: rem(33px);
-    & > * {
-      margin-left: 1rem;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
   }
 }

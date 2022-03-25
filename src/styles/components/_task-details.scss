@@ -92,8 +92,32 @@
       .container {
         margin-left: 40px;
         margin-top: 8px;
-        height: 72px;
-        background-color: lightblue;
+        // height: 72px;
+        // background-color: lightblue;
+        border: 1px solid black;
+
+        .labels-for-display {
+
+          .labels-container {
+            display: flex;
+          }
+
+          .label {
+            display: inline-block;
+            min-width: rem(40px);
+            height: rem(33px); 
+            margin: 0 4px 4px 0;           
+            padding: 0 12px;
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+            line-height: rem(33px);
+            & > * {
+              margin-left: 1rem;
+            }
+          }
+        }
+
       }
 
       .description {

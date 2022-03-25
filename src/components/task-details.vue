@@ -37,17 +37,20 @@
             {{ taskToEdit.dueDate }}
           </div>
           <div
-            class="label"
-            v-if="taskToEdit.labels"
+            class="labels-for-display"
+            v-if="taskToEdit.labels.length >= 1"
           >
-            <div
-              class="labels-for-display"
-              v-for="label in taskToEdit.labels"
-              :key="label.id"
-            >
-              <h2>Labels</h2>
+            <h2>Labels</h2>
+            <div class="labels-container">
+              <div
+                class="label"
+                v-for="label in taskToEdit.labels"
+                :key="label.id"
+                :style="'background-color:'+label.color"
+              >{{ label.title }}
+
+              </div>
             </div>
-            {{ taskToEdit.labels }}
           </div>
         </div>
 
@@ -106,6 +109,7 @@
           :is="cmp"
           @openModal="openModal"
           :board="board"
+          :task="taskToEdit"
           @saveDate="saveDate"
           @addLabel="addLabel"
           :date="taskToEdit.dueDate"
@@ -210,7 +214,7 @@ export default {
         task: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
-      this.closeTaskDetails();
+      // this.closeTaskDetails();
     },
   },
   computed: {

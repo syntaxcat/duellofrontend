@@ -1,5 +1,5 @@
 <template>
-  <section class="labels-cmp">
+  <section class="label-cmp">
     <header>
       <h2>Labels</h2>
       <button @click="close">
@@ -23,6 +23,10 @@
             :style="'background-color:'+label.color"
           >
             <span>{{ label.title }}</span>
+            <icon-base
+              iconName="check"
+              v-if="isLabelSelected(label)"
+            />
           </div>
           <label>
             <icon-base iconName="pencil" />
@@ -37,7 +41,7 @@
 import iconBase from "../icon-base.vue";
 export default {
   components: { iconBase },
-  props: ["board"],
+  props: ["board", "task"],
   data() {
     return {
       labels: this.board.labels,
@@ -45,11 +49,18 @@ export default {
   },
   methods: {
     addLabel(label) {
-      console.log(label);
       this.$emit("addLabel", label);
     },
     close() {
       this.$emit("closeLabel");
+    },
+    isLabelSelected(label) {
+      for (let i = 0; i < this.task.labels.length; i++) {
+        if (this.task.labels[i].id === label.id) {
+          return true;
+        }
+      }
+      return false;
     },
   },
 };

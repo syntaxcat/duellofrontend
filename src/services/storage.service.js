@@ -33,7 +33,6 @@ async function postMany(entityType, newEntities) {
 }
 
 async function put(entityType, updatedEntity) {
-  console.log(updatedEntity);
   const entities = await query(entityType);
   const idx = entities.findIndex((entity) => entity._id === updatedEntity._id);
   entities.splice(idx, 1, updatedEntity);
@@ -52,7 +51,7 @@ async function _save(entityType, entities) {
   localStorage.setItem(entityType, JSON.stringify(entities));
 }
 
- function _makeId(length = 8) {
+function _makeId(length = 8) {
   var text = "";
   var possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
