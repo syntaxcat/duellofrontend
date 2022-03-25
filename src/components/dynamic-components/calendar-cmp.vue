@@ -3,10 +3,6 @@
     <header>
       <h2>Dates</h2>
       <button @click="close">
-        <!-- <img
-          src="../../assets/icons/x.svg"
-          alt="close"
-        /> -->
         <icon-base iconName="x" />
       </button>
     </header>
@@ -26,7 +22,7 @@ import iconBase from "../icon-base.vue";
 export default {
   props: {
     date: {
-      type: String,
+      type: Number,
       required: true,
     },
   },
