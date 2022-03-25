@@ -7,28 +7,29 @@
           <img src="../assets/icons/bx-user.svg" alt="user" />
           Join
         </button>
+
         <h2>Add to card</h2>
-        <button @click="addMembers">
+        <button @click="openModal('member-cmp')">
           <img src="../assets/icons/users.svg" alt="users" />
           Members
         </button>
-        <button @click="changeLabel">
+        <button @click="openModal('label-cmp')">
           <img src="../assets/icons/tag.svg" alt="label" />
           Labels
         </button>
-        <button @click="makeChecklist">
+        <button @click="openModal('checklist-cmp')">
           <img src="../assets/icons/check-square.svg" alt="checklist" />
           Checklist
         </button>
-        <button @click="addDate">
+        <button @click="openModal('calendar-cmp')">
           <img src="../assets/icons/bx-time-five.svg" alt="clock" />
           Dates
         </button>
-        <button @click="addAttachment">
+        <button @click="openModal('attachment-cmp')">
           <img src="../assets/icons/paperclip.svg" alt="clip" />
           Attachment
         </button>
-        <button @click="changeCover">
+        <button @click="openModal('cover-cmp')">
           <img src="../assets/icons/bxs-dock-bottom.svg" alt="cover" />
           Cover
         </button>
@@ -61,13 +62,9 @@
       };
     },
     methods: {
-      joinTask() {},
-      addMembers(){},
-      changeLabel() {},
-      makeChecklist() {},
-      addDate() {},
-      addAttachment() {},
-      changeCover() {},
+      openModal(type){
+        this.$emit('openModal', type)
+      },
     //   copyTask() {},
     //   archiveTask() {},
     },
