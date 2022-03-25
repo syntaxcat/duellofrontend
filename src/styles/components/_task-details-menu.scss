@@ -1,4 +1,18 @@
 .task-details-menu {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    >*{
+        display: flex;
+        flex-direction: column;
+    }
+
+    >*:first-child{
+        margin-top: 1rem;
+    }
+    >*:last-child{
+        margin-bottom: 4rem;
+    }
 }

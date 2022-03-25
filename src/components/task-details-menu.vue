@@ -33,7 +33,7 @@
           Cover
         </button>
       </div>
-      <!-- <div class="actions-menu">
+      <div class="actions-menu">
         <h2>Actions</h2>
         <button @click="copyTask">
           <img src="../assets/icons/bx-copy.svg" alt="duplicate" />
@@ -43,7 +43,7 @@
           <img src="../assets/icons/bx-box.svg" alt="archive" />
           Archive
         </button>
-      </div> -->
+      </div>
  
   </section>
 </template>
