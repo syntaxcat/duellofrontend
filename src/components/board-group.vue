@@ -17,14 +17,22 @@
       </div>
       <div class="task-container">
         <ul>
-          <draggable v-model="tasks" group="tasks" @change="log">
-            <li v-for="task in group.tasks" :key="task.id">
+          <draggable
+            v-model="tasks"
+            group="tasks"
+            @change="log"
+          >
+            <li
+              v-for="task in group.tasks"
+              :key="task.id"
+            >
               <task-preview
                 :task="task"
                 :group="group"
                 @editTask="updateTask"
                 @removeTask="removeTask"
                 @onOpen="openModalDetails(task.id)"
+                @toggleLabelsExpanded="toggleLabelsExpanded"
               />
             </li>
           </draggable>
@@ -32,10 +40,17 @@
       </div>
       <div>
         <div v-if="isNewTask">
-          <textarea v-model="taskTitle" ref="taskInput"></textarea>
+          <textarea
+            v-model="taskTitle"
+            ref="taskInput"
+          ></textarea>
           <button @click="addTask(group.id)">Add Card</button>
         </div>
-        <button v-else class="add-task-btn" @click="createTask(group.id)">
+        <button
+          v-else
+          class="add-task-btn"
+          @click="createTask(group.id)"
+        >
           <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
           <icon-base iconName="+"></icon-base>
           <span>Add Card</span>
@@ -72,6 +87,11 @@ export default {
     this.$store.commit({ type: "setGroup", group: this.group });
   },
   methods: {
+    toggleLabelsExpanded() {
+      this.$store.dispatch({
+        type: "toggleLabelsExpanded",
+      });
+    },
     openModalDetails(taskId) {
       this.$emit("onOpen", taskId, this.group.id);
     },

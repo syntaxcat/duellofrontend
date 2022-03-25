@@ -14,7 +14,10 @@
         <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
       </div>
       <div class="task-details-container">
-        <icon-base class="card-header" iconName="cardB" />
+        <icon-base
+          class="card-header"
+          iconName="cardB"
+        />
         <textarea
           type="text"
           v-model="taskToEdit.title"
@@ -211,7 +214,7 @@ export default {
     calendarCmp,
     descriptionDetails,
     activityDetails,
-    iconBase
+    iconBase,
   },
   async created() {
     const res = await taskService.getById(

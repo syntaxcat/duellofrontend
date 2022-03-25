@@ -6,6 +6,7 @@ export const boardStore = {
     board: null,
     boardGroups: [],
     currGroup: null,
+    labelsExpanded: false,
     draggable: {
       options: {
         group: "groups",
@@ -28,10 +29,16 @@ export const boardStore = {
       return state.draggable.options;
     },
     tasks(state) {
-      return state.currGroup.tasks
-    }
+      return state.currGroup.tasks;
+    },
+    labelsExpanded(state) {
+      return state.labelsExpanded;
+    },
   },
   mutations: {
+    toggleLabelsExpanded(state) {
+      state.labelsExpanded = !state.labelsExpanded;
+    },
     setBoard(state, { board }) {
       state.board = board;
       state.boardGroups = board.groups;
@@ -66,10 +73,13 @@ export const boardStore = {
       state.boardGroups = state.board.groups;
     },
     setGroup(state, { group }) {
-      state.currGroup = group
-    }
+      state.currGroup = group;
+    },
   },
   actions: {
+    toggleLabelsExpanded({ commit }) {
+      commit({ type: "toggleLabelsExpanded" });
+    },
     async loadBoards({ commit }, { filterBy }) {
       try {
         const board = await boardService.query(filterBy);
@@ -151,9 +161,12 @@ export const boardStore = {
     },
     async dragTask({ commit, state }, { value, group }) {
       try {
-        group.tasks = value
-        const updatedGroup = await boardService.updateGroup(group, state.board._id)
-        commit({ type: 'updateGroup', updatedGroup })
+        group.tasks = value;
+        const updatedGroup = await boardService.updateGroup(
+          group,
+          state.board._id
+        );
+        commit({ type: "updateGroup", updatedGroup });
       } catch (err) {
         console.log(err);
       }

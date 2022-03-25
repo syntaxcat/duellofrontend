@@ -9,7 +9,9 @@
         v-for="label in task.labels"
         :key="label.id"
         :style="'background-color:'+label.color"
-      >{{label.title}}</div>
+        :class="labelsExpanded ? 'expand' : 'shrink'"
+        @click="toggleLabelsExpand"
+      ><span :class="labelsExpanded ? 'show' : 'hide'">{{label.title}}&nbsp;</span></div>
     </div>
     <textarea
       :class="{ isEditing: isEditing }"
@@ -55,6 +57,10 @@ export default {
     };
   },
   methods: {
+    toggleLabelsExpand(e) {
+      e.stopPropagation();
+      this.$emit("toggleLabelsExpanded");
+    },
     openModalDetails() {
       this.$emit("onOpen");
     },
@@ -87,6 +93,10 @@ export default {
       deep: true,
     },
   },
-  computed: {},
+  computed: {
+    labelsExpanded() {
+      return this.$store.getters.labelsExpanded;
+    },
+  },
 };
 </script>
