@@ -59,8 +59,8 @@
     position: relative;
 
     img {
-      height: 30px;
-      width: 30px;
+      height: 32px;
+      width: 32px;
       border-radius: 50%;
       left: -40px;
       position: absolute;
@@ -182,14 +182,23 @@
           transition-property: opacity, transform;
           transition-timing-function: ease;
 
-          .option:hover {
-            cursor: pointer;
+          .option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 32px;
+            width: 32px;
+            border-radius: 3px;
+
+            &:hover {
+              cursor: pointer;
+              background-color: #091e4214;
+            }
           }
         }
       }
     }
   }
 
-  .activity-list {
-  }
+  
 }

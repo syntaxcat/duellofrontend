@@ -54,7 +54,7 @@
           </div>
         </div>
         <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-        <activity-details :task="taskToEdit" :user="loggedinUser" @save="saveComment" />
+        <activity-details :task="taskToEdit" :user="loggedinUser" @save="saveComment" @edit="editComment" />
       </div>
       <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" />
       <div class="dynamic-cmp">
@@ -120,8 +120,23 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
+    editComment(comment, taskId) {
+      const comments = this.taskToEdit.comments.map((com) => {
+        if (com.id === comment.id) {
+          com = comment;
+          return com;
+        }
+        return com;
+      });
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: { id: taskId, comments },
+        groupId: this.groupId,
+      });
+    },
     saveComment(comment, taskId) {
-      this.taskToEdit.comments.push(comment);
+      console.log(comment);
+      this.taskToEdit.comments.unshift(comment);
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: { id: taskId, comments: this.taskToEdit.comments },

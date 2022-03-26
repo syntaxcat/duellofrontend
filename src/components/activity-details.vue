@@ -36,17 +36,19 @@
     </div>
 
     <div class="activity-list">
-      {{ task.comments }}
-      <img src="../assets/imgs/background.jpg" alt="user" />
-      <div class="comment-description"></div>
-      <div class="comment-actions"></div>
+      <div v-for="comment in task.comments" :key="comment.id">
+        <comment-cmp :comment="comment" @edit="editComment" />
+      </div>
     </div>
+
+    
   </section>
 </template>
 
 <script>
 import { taskService } from '../services/task.service';
 import iconBase from './icon-base.vue';
+import commentCmp from './comment-cmp.vue';
 
 export default {
   props: {
@@ -68,6 +70,10 @@ export default {
     };
   },
   methods: {
+    deleteComment(id) {},
+    editComment(comment) {
+      this.$emit('edit', comment, this.task.id);
+    },
     log() {
       this.isAction = !this.isAction;
     },
@@ -108,7 +114,7 @@ export default {
       return this.add ? 'show' : '';
     },
   },
-  components: { iconBase },
+  components: { iconBase, commentCmp },
 };
 </script>
 
