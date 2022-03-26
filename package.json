@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prettier": "npm run prettier --write ./src",
+    "prettier": "prettier --write ./src",
     "preview": "vite preview --port 5050",
     "test:unit": "vitest --environment jsdom"
   },

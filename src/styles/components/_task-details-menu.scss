@@ -12,8 +12,8 @@
   > *:last-child {
     margin-bottom: 4rem;
   }
-    // justify-content: space-between;
-    // flex-grow: 1;
+  // justify-content: space-between;
+  // flex-grow: 1;
   //TODO - support svg changes color to blue
 
   h2 {
@@ -44,21 +44,20 @@
     gap: 0.5rem;
     color: #172b4d;
 
-
     img {
-        font-size: 16px;
-        width: 20px;
-        line-height: 20px;
-        // height: 20px;
+      font-size: 16px;
+      width: 20px;
+      line-height: 20px;
+      // height: 20px;
     }
 
     &:hover {
-        background-color: #091e4214;
+      background-color: #091e4214;
     }
   }
   .task-menu-group {
-      margin-bottom: 1.5rem;
-      display: flex;
-      flex-direction: column;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
   }
 }

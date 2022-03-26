@@ -47,9 +47,7 @@ async function getById(taskId, groupId, boardId) {
   return { task, group };
 }
 
-async function updateTasks(taskId, groupId, board){
-
-}
+async function updateTasks(taskId, groupId, board) {}
 
 async function _findGroup(groupId, boardId) {
   const board = await storageService.get(BOARD_KEY, boardId);

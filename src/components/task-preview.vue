@@ -1,17 +1,18 @@
 <template>
-  <section
-    class="task-preview"
-    @click="openModalDetails"
-  >
+  <section class="task-preview" @click="openModalDetails">
     <div class="task-labels">
       <div
         class="task-label"
         v-for="label in task.labels"
         :key="label.id"
-        :style="'background-color:'+label.color"
+        :style="'background-color:' + label.color"
         :class="labelsExpanded ? 'expand' : 'shrink'"
         @click="toggleLabelsExpand"
-      ><span :class="labelsExpanded ? 'show' : 'hide'">{{label.title}}&nbsp;</span></div>
+      >
+        <span :class="labelsExpanded ? 'show' : 'hide'"
+          >{{ label.title }}&nbsp;</span
+        >
+      </div>
     </div>
     <textarea
       :class="{ isEditing: isEditing }"
@@ -21,25 +22,16 @@
       @blur="saveEdit(task)"
     >
     </textarea>
-    <span
-      v-if="task.dueDate"
-      class="due-date"
-    >
+    <span v-if="task.dueDate" class="due-date">
       <icon-base iconName="clock" />
-      {{formatDate(this.task.dueDate)}}
+      {{ formatDate(this.task.dueDate) }}
     </span>
 
     <button @click="removeTask(task.id, group.id)">
-      <img
-        src="../assets/icons/x.svg"
-        alt="delete"
-      />
+      <img src="../assets/icons/x.svg" alt="delete" />
     </button>
     <button @click.stop="editTask(task, group.id)">
-      <img
-        src="../assets/icons/bx-pencil.svg"
-        alt="edit"
-      />
+      <img src="../assets/icons/bx-pencil.svg" alt="edit" />
     </button>
   </section>
 </template>

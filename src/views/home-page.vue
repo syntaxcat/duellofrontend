@@ -35,10 +35,13 @@ export default {
     this.boards = boards;
   },
   methods: {
-   async createBoard(newBoard) {
-      const boardId = await this.$store.dispatch({ type: "createBoard", board: newBoard });
-    console.log(boardId);
-    this.$router.push({path:`/board/${boardId}`})
+    async createBoard(newBoard) {
+      const boardId = await this.$store.dispatch({
+        type: "createBoard",
+        board: newBoard,
+      });
+      console.log(boardId);
+      this.$router.push({ path: `/board/${boardId}` });
     },
   },
   components: {

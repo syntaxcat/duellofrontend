@@ -88,33 +88,33 @@
     }
   }
 
-  .options{
+  .options {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
     margin-inline-end: rem(8px);
     button {
-        border-radius: em(3px);
-        height: rem(32px);
-        @include btn(
-          $type: light,
-          $padding: (
-            0 em(12px),
-          ),
-          $size: (
-            em(14px),
-          )
-          );
-          font-weight: 700;
-          justify-content: space-between;
+      border-radius: em(3px);
+      height: rem(32px);
+      @include btn(
+        $type: light,
+        $padding: (
+          0 em(12px),
+        ),
+        $size: (
+          em(14px),
+        )
+      );
+      font-weight: 700;
+      justify-content: space-between;
 
-        span{
-            color: $clr3;
-        }
-        img{
-            margin-inline-end: rem(8px);
-        }
+      span {
+        color: $clr3;
       }
+      img {
+        margin-inline-end: rem(8px);
+      }
+    }
   }
 }

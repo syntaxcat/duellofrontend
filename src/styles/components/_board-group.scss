@@ -2,120 +2,116 @@
   max-height: 98%;
   display: flex;
   // justify-content: center;
-  
-  .icon-base{
+
+  .icon-base {
     width: 16px;
     height: 16px;
-    fill: #6B778C;
+    fill: #6b778c;
   }
   .board-group {
-    max-height:100% ;
+    max-height: 100%;
     width: rem(272px);
     margin: 0 4px;
     background-color: $group1;
     border-radius: 3px;
     width: rem(272px);
 
-.add-task-btn{
-  .icon-base{
-    fill: red;
-  }
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  color: $boardAddClr;
-  font-size: rem(14px);
-  height: rem(38px);
-  &:first-child{
-    margin-bottom: 5px;
-    // background-color: aqua;
+    .add-task-btn {
+      .icon-base {
+        fill: red;
+      }
+      display: flex;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      color: $boardAddClr;
+      font-size: rem(14px);
+      height: rem(38px);
+      &:first-child {
+        margin-bottom: 5px;
+        // background-color: aqua;
 
-    &>*{
-      margin-right: 10px;
-    //  align-self: center;
-
+        & > * {
+          margin-right: 10px;
+          //  align-self: center;
+        }
+      }
     }
+  }
+
+  .group-title {
+    display: flex;
+    padding: 10px 8px;
+
+    .title-container {
+      flex-grow: 1;
+
+      input {
+        width: 100%;
+        height: 28px;
+        background-color: transparent;
+        border-color: transparent;
+        font-weight: bold;
+      }
+      input.isEditing {
+        background-color: $clr3;
+        border-color: $clr6;
+      }
+    }
+    button {
+      height: 28px;
+      border: none;
+      border-radius: 3px;
+    }
+
+    button:hover {
+      background-color: $group2;
     }
   }
 }
 
-    .group-title {
-      display: flex;
-      padding: 10px 8px;
+.task-container {
+  // background-color: aqua;
+  max-height: 85%;
+  overflow-x: hidden;
+  // margin-bottom:20px;
+  ul {
+    margin: 0 4px;
+    padding: 0 4px;
 
-      .title-container {
-        flex-grow: 1;
+    li {
+      //   display: flex;
+      //   justify-content: space-between;
+      background-color: $clr3;
+      border-radius: 3px;
+      box-shadow: 0 1px 0 $group3;
+      cursor: pointer;
+      margin-bottom: 8px;
+      list-style: none;
+      padding-top: 2px;
+      padding-right: 2px;
+      padding-bottom: 2px;
+      padding-left: 5px;
+      height: 100%;
 
-        input {
-          width: 100%;
-          height: 28px;
-          background-color: transparent;
-          border-color: transparent;
-          font-weight: bold;
-        }
-        input.isEditing {
-          background-color: $clr3;
-          border-color: $clr6;
-        }
+      &:hover {
+        background-color: $taskHoverClr;
       }
+
       button {
-        height: 28px;
         border: none;
+        background-color: transparent;
+        cursor: pointer;
         border-radius: 3px;
+        align-self: start;
       }
 
       button:hover {
-        background-color: $group2;
+        background-color: $taskHoverBtnClr;
       }
-
-
-    }
-  }
-
-  .task-container{
-    // background-color: aqua;
-    max-height: 85%;
-    overflow-x: hidden;
-    // margin-bottom:20px; 
-    ul {
-      margin: 0 4px;
-      padding: 0 4px;
-  
-      li {
-      //   display: flex;
-      //   justify-content: space-between;
-        background-color: $clr3;
-        border-radius: 3px;
-        box-shadow: 0 1px 0 $group3;
-        cursor: pointer;
-        margin-bottom: 8px;
-        list-style: none;
-        padding-top: 2px;
-        padding-right: 2px;
-        padding-bottom: 2px;
-        padding-left: 5px;
-        height: 100%;
-  
-        &:hover{
-            background-color: $taskHoverClr;
-        }
-      
-        button {
-          border: none;
-          background-color: transparent;
-          cursor: pointer;
-          border-radius: 3px;
-          align-self: start;
-        }
-  
-        button:hover {
-          background-color: $taskHoverBtnClr;
-        }
-        img {
-          width: 10px;
-        }
+      img {
+        width: 10px;
       }
     }
   }
-
+}

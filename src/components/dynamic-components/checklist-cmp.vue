@@ -16,23 +16,23 @@
   </section>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        checklists: [
-          {
-            id: "YEhmF",
-            title: "Checklist",
-            todos: [
-              {
-                id: "212jX",
-                title: "To Do 1",
-                isDone: false,
-              },
-            ],
-          },
-        ],
-      };
-    },
-  };
+export default {
+  data() {
+    return {
+      checklists: [
+        {
+          id: "YEhmF",
+          title: "Checklist",
+          todos: [
+            {
+              id: "212jX",
+              title: "To Do 1",
+              isDone: false,
+            },
+          ],
+        },
+      ],
+    };
+  },
+};
 </script>

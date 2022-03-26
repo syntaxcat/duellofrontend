@@ -6,27 +6,18 @@
         <icon-base iconName="x" />
       </button>
     </header>
-    <input
-      type="search"
-      placeholder="Search labels..."
-    />
+    <input type="search" placeholder="Search labels..." />
     <div class="main-content">
       <h2>Labels</h2>
       <ul>
-        <li
-          v-for="label in labels"
-          :key="label.id"
-        >
+        <li v-for="label in labels" :key="label.id">
           <div
             @click="addLabel(label)"
             class="edit-label"
-            :style="'background-color:'+label.color"
+            :style="'background-color:' + label.color"
           >
             <span>{{ label.title }}</span>
-            <icon-base
-              iconName="check"
-              v-if="isLabelSelected(label)"
-            />
+            <icon-base iconName="check" v-if="isLabelSelected(label)" />
           </div>
           <label>
             <icon-base iconName="pencil" />

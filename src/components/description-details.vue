@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import iconBase from './icon-base.vue';
+import iconBase from "./icon-base.vue";
 export default {
   components: { iconBase },
   props: {
@@ -66,7 +66,7 @@ export default {
       this.$nextTick(() => this.$refs.addDesc.focus());
     },
     saveDesc() {
-      this.$emit('save', {...this.taskToEdit});
+      this.$emit("save", { ...this.taskToEdit });
       this.addDescription = !this.addDescription;
     },
   },

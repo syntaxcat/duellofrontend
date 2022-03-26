@@ -6,14 +6,8 @@
         <icon-base iconName="x" />
       </button>
     </header>
-    <v-date-picker
-      class="calendar"
-      v-model="selectedDate"
-    />
-    <button
-      class="save-btn"
-      @click="saveDate"
-    >Save</button>
+    <v-date-picker class="calendar" v-model="selectedDate" />
+    <button class="save-btn" @click="saveDate">Save</button>
   </section>
 </template>
 <script>
