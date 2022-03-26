@@ -74,6 +74,25 @@
       <line x1="5" y1="12" x2="19" y2="12" />
     </svg>
 
+    <svg
+      v-else-if="iconName === 'plus-s'"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#42526e"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-plus"
+      width="16px"
+      height="16px"
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+
+    <svg v-else-if="iconName === 'presentation'" width="16" height="16" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.7071 7.29289L19.7782 14.364C20.1687 14.7545 20.1687 15.3876 19.7782 15.7782C19.3877 16.1687 18.7545 16.1687 18.364 15.7782L12 9.41421L5.63606 15.7782C5.24554 16.1687 4.61237 16.1687 4.22185 15.7782C3.83132 15.3877 3.83132 14.7545 4.22185 14.364L11.2929 7.29289C11.6834 6.90237 12.3166 6.90237 12.7071 7.29289Z" fill="#42526e"></path></svg>
+
     <svg v-else-if="iconName === 'pencil'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
         d="M4 21a1 1 0 0 0 .24 0l4-1a1 1 0 0 0 .47-.26L21 7.41a2 2 0 0 0 0-2.82L19.42 3a2 2 0 0 0-2.83 0L4.3 15.29a1.06 1.06 0 0 0-.27.47l-1 4A1 1 0 0 0 3.76 21 1 1 0 0 0 4 21zM18 4.41 19.59 6 18 7.59 16.42 6zM5.91 16.51 15 7.41 16.59 9l-9.1 9.1-2.11.52z"
@@ -346,6 +365,13 @@
     >
       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
     </svg>
+
+    <svg v-else-if="iconName === 'board'" width="16" height="16" viewBox="0 0 24 24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5zm2 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6zm9-1a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-4z" fill="currentColor"/></svg>
+  
+  <svg v-else-if="iconName === 'template-board'" width="16" height="16" version="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 3a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2H8a1 1 0 0 1-1-1zM3 7a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1zM2 12a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zM2 16a1 1 0 1 1 2 0v3a2 2 0 0 1-2-2v-1zM12 2a1 1 0 1 0 0 2h1a1 1 0 1 0 0-2h-1zM15 3a1 1 0 0 1 1-1h1a2 2 0 0 1 2 2h-3a1 1 0 0 1-1-1zM4 2a2 2 0 0 0-2 2v1a1 1 0 0 0 2 0V4h1a1 1 0 0 0 0-2H4z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7 5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm1 2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H8zm6 1a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V8z" fill="#42526e"/></svg>
+  
+<svg v-else-if="iconName === 'home'" width="16" height="16" viewBox="0 0 24 24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.015 5a1 1 0 0 1 .943.713l2.275 7.584.873-1.744A1 1 0 0 1 19 11h2a1 1 0 1 1 0 2h-1.382l-1.724 3.447a1 1 0 0 1-1.852-.16L13.95 9.313l-3.001 9.003a1 1 0 0 1-1.907-.029l-2.275-7.584-.873 1.744A1 1 0 0 1 5 13H3a1 1 0 1 1 0-2h1.382l1.724-3.447a1 1 0 0 1 1.852.16l2.092 6.974 3.001-9.003A1 1 0 0 1 14.015 5z" fill="#42526e"/></svg>
+
   </section>
 </template>
 
