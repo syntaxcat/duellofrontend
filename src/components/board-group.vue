@@ -23,16 +23,15 @@
               </label>
               </div>
               <hr>
-              <div>
-                <p>Add card</p>
+              <div class="modal-content">
+                <div>
+                  <p @click="createTask(group.id)">Add card</p>
                 <p>Copy list...</p>
                 <p>Move list...</p>
                 <p>Watch</p>
               </div>
               <hr>
-              <div>
                 <p>Sort by</p>
-              </div>
               <hr>
               <div>
                 <h3>Automation</h3>
@@ -41,15 +40,15 @@
                 <p>Every Monday, sort list by...</p>
                 <p>Create costume rule</p>
               </div>
+              <hr>
               <div>
                 <p>Move all card in this list...</p>
                 <p>Delete all cards in this list...</p>
               </div>
               <hr>
-              <div @click="removeGroup(group.id)">
-                <p>Delete this list</p>
-              </div>
+                <p @click="removeGroup(group.id)">Delete this list</p>
             </div>
+          </div>
         </div>
         <div class="task-container">
           <ul>
@@ -67,9 +66,9 @@
             </draggable>
           </ul>
         </div>
-        <div>
+        <div class="create-btn">
           <div v-if="isNewTask">
-            <textarea v-model="taskTitle" ref="taskInput"></textarea>
+            <textarea class="new-task" v-model="taskTitle" ref="taskInput"></textarea>
             <button @click="addTask(group.id)">Add Card</button>
           </div>
           <button v-else class="add-task-btn" @click="createTask(group.id)">
@@ -147,7 +146,8 @@ export default {
       this.$emit('updateTask', taskPartial, groupId);
     },
     createTask() {
-      this.isNewTask = true;
+      this.closeEditModal()
+      this.isNewTask = !this.isNewTask;
     },
     addTask(groupId) {
       this.$emit('addTask', this.taskTitle, groupId);

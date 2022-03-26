@@ -1,8 +1,12 @@
+.board-group{
+  // color: $menuTitleClr;
+  // background-color: aqua;
+}
 .board-group-container {
   max-height: 98%;
   display: flex;
   // justify-content: center;
-
+  
   .icon-base {
     width: 16px;
     height: 16px;
@@ -15,7 +19,7 @@
     background-color: $group1;
     border-radius: 3px;
     width: rem(272px);
-
+    
     .add-task-btn {
       .icon-base {
         fill: red;
@@ -30,7 +34,7 @@
       &:first-child {
         margin-bottom: 5px;
         // background-color: aqua;
-
+        
         & > * {
           margin-right: 10px;
           //  align-self: center;
@@ -41,17 +45,24 @@
 
   .group-title {
     display: flex;
-    padding: 10px 8px;
-
+    height: rem(40px);
+    line-height: rem(40px);
+    // width: rem(40px) ;
+    // padding: 10px 8px;
+    
     .title-container {
       flex-grow: 1;
-
+      
       input {
-        width: 100%;
-        height: 28px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-left: 16px;
+        font-size: rem(14px);
+        width: 80%;
         background-color: transparent;
         border-color: transparent;
-        font-weight: bold;
+        font-weight:600;
+        // font-size: rem(20px);
+        color: $menuTitleClr;
       }
       input.isEditing {
         background-color: $clr3;
@@ -71,20 +82,42 @@
 }
 
 .group-edit-modal {
+  color: $boardAddClr;
   position: fixed;
+  z-index: 2;
   background-color: white;
   width: rem(280px);
-  height: rem(500px);
+  height: rem(550px);
   border-radius: 3px;
   box-shadow: 0 8px 16px -4px #091e4240;
   padding: 0 12px 12px;
+  hr {
+    border-top: solid 1px $menuBorderClr;
+  }
+  .modal-content {
+    font-size: rem(14px);
+    h3 {
+      font-size: rem(12px);
+      font-weight: 600;
+    }
+    & > *:first-child {
+      margin-top: rem(12px);
+    }
+    & > * {
+      margin-bottom: rem(12px);
+    }
+    div > *:not(:last-child) {
+      // background-color: aqua;
+      margin-bottom: rem(17px);
+    }
+  }
   .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 12px;
-    .icon-base svg{
-        width: 16px;
+    .icon-base svg {
+      width: 16px;
     }
     h1 {
       height: rem(41px);
@@ -93,7 +126,7 @@
     }
   }
 }
-.task-container {
+.task-container{
   // background-color: aqua;
   max-height: 85%;
   overflow-x: hidden;
