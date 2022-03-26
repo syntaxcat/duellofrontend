@@ -11,6 +11,7 @@ export const boardService = {
   addNewBoard,
   updateBoardLabel,
   createBoardLabel,
+  deleteBoardLabel,
 };
 
 const BOARD_KEY = 'boardDB';
@@ -82,6 +83,11 @@ async function updateBoardLabel(updatedLabel, boardId) {
   return await storageService.put(BOARD_KEY, board);
 }
 
+async function deleteBoardLabel(labelId, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId);
+  board.labels = board.labels.filter((label) => label.id !== labelId);
+  return await storageService.put(BOARD_KEY, board);
+}
 async function createBoardLabel(labelData, boardId) {
   const board = await storageService.get(BOARD_KEY, boardId);
   board.labels.push({
@@ -152,14 +158,14 @@ async function _createBoard() {
                 title: 'Replace logo',
                 labels: [],
                 members: [],
-                comments:[]
+                comments: [],
               },
               {
                 id: 'c102',
                 title: 'Add Samples',
                 labels: [],
                 members: [],
-                comments:[]
+                comments: [],
               },
             ],
             style: {},
@@ -173,7 +179,7 @@ async function _createBoard() {
                 title: 'Do that',
                 labels: [],
                 members: [],
-                comments:[]
+                comments: [],
               },
               {
                 id: 'c104',
@@ -283,6 +289,16 @@ function _createLabels() {
       title: '',
       id: utilService.makeId(),
       color: '#eb5a46',
+    },
+    {
+      title: '',
+      id: utilService.makeId(),
+      color: '#c377e0',
+    },
+    {
+      title: '',
+      id: utilService.makeId(),
+      color: '#0079bf',
     },
   ];
 }

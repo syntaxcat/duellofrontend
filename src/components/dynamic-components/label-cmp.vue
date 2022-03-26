@@ -112,6 +112,10 @@ export default {
       });
       this.editingLabel = null;
     },
+    deleteLabel() {
+      this.$emit('deleteBoardLabel', this.editingLabel.label.id);
+      this.editingLabel = null;
+    },
     createLabel() {
       this.$emit('createBoardLabel', {
         title: this.creatingLabel.title,

@@ -43,12 +43,9 @@
             <div class="labels-for-display" v-if="labels.length >= 1">
               <h2>Labels</h2>
               <div class="labels-container">
-                <div
-                  class="label"
-                  v-for="label in labels"
-                  :key="label.id"
-                  :style="'background-color:' + label.color"
-                >{{ label.title }}</div>
+                <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
+                  {{ label.title }}
+                </div>
                 <button class="add-btn" @click="toggleLabelsModal">
                   <icon-base iconName="plus" />
                 </button>
@@ -75,15 +72,16 @@
         <div class="dynamic-cmp">
           <component
             :is="cmp"
-            @openModal="openModal"
             :board="board"
             :task="taskToEdit"
+            :date="taskToEdit.dueDate"
+            @openModal="openModal"
             @saveDate="saveDate"
             @removeDate="removeDate"
             @addLabel="addLabel"
             @updateBoardLabel="updateBoardLabel"
+            @deleteBoardLabel="deleteBoardLabel"
             @createBoardLabel="createBoardLabel"
-            :date="taskToEdit.dueDate"
             @closeCalendar="closeCalendar"
             @closeLabel="closeLabel"
             @addMember="addMember"
@@ -222,11 +220,11 @@ export default {
     closeTaskDetails() {
       this.$emit('closeTaskDetails');
     },
-    makeChecklist() { },
-    addAttachment() { },
-    changeCover() { },
-    copyTask() { },
-    archiveTask() { },
+    makeChecklist() {},
+    addAttachment() {},
+    changeCover() {},
+    copyTask() {},
+    archiveTask() {},
 
     async saveDate(date) {
       this.cmp = null;
@@ -275,6 +273,16 @@ export default {
         boardId: this.boardId,
       });
     },
+
+    deleteBoardLabel(labelId) {
+      console.log(labelId);
+      this.$store.dispatch({
+        type: 'deleteBoardLabel',
+        labelId: labelId,
+        boardId: this.boardId,
+      });
+    },
+
     createBoardLabel(labelData) {
       this.$store.dispatch({
         type: 'createBoardLabel',
@@ -315,8 +323,8 @@ export default {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
     isCover() {
-      return false
-    }
+      return false;
+    },
   },
   components: {
     taskDetailsMenu,
@@ -327,7 +335,7 @@ export default {
     descriptionDetails,
     activityDetails,
     iconBase,
-    IconBase
+    IconBase,
   },
 };
 </script>
