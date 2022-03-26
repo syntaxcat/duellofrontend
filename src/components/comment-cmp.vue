@@ -17,9 +17,7 @@
           <textarea type="text" v-model="commentToEdit.txt"></textarea>
 
           <button :class="['save-comment']" @click="editComment">Save</button>
-          <button class="close-btn" @click="isEdit = !isEdit">
-            <icon-base iconName="x" />
-          </button>
+            <icon-base class="close-btn" iconName="x" @click="isEdit = !isEdit" />
 
           <div class="comment-box-options">
             <icon-base class="option" iconName="paperclip" />
@@ -40,19 +38,20 @@
       <div class="actions">
         <button @click.stop="isEdit = !isEdit">Edit</button>
         <span>-</span>
-        <button @click.stop="isModal = !isModal">Delete</button>
-      </div>
-    </div>
-
-    <div class="delete-confirmation-modal" :style="{display: 'block', top: posY + 'px', left: posX + 'px'}">
-      <div class="delete-header">
-        <span>Delete comment?</span>
-        <icon-base class="close-delete" iconName="xs" />
+        <button @click="open">Delete</button>
       </div>
 
-      <div>
-        <p>Deleting a comment is forever. There is no undo.</p>
-        <button @click="setPos">Delete</button>
+      <div class="delete-confirmation-modal" v-if="openModal">
+        <div class="delete-header">
+          <span>Delete comment?</span>
+
+            <icon-base iconName="xs" @click="openModal = !openModal" />
+        </div>
+
+        <div>
+          <p>Deleting a comment is forever. There is no undo.</p>
+          <button @click="deleteComment">Delete comment</button>
+        </div>
       </div>
     </div>
   </section>
@@ -60,12 +59,17 @@
 
 <script>
 import iconBase from './icon-base.vue';
+import { eventBus } from '../services/eventBus.service';
 
 export default {
   props: {
     comment: {
       type: Object,
       required: true,
+    },
+    isModalsOpen: {
+      type: Boolean,
+      required: false,
     },
   },
   data() {
@@ -74,23 +78,36 @@ export default {
       commentToEdit: { ...this.comment },
       posX: null,
       posY: null,
+      openModal: false,
     };
   },
+  created() {
+    this.unsubscribe = eventBus.on('open-delete-modal', this.closeModal);
+  },
   methods: {
+    open() {
+      eventBus.emit('open-delete-modal', false);
+      this.openModal = !this.openModal;
+    },
+    closeModal() {
+      if (this.openModal) this.openModal = false;
+    },
     editComment() {
       if (!this.commentToEdit.txt) return;
       this.commentToEdit.createdAt = Date.now();
       this.$emit('edit', { ...this.commentToEdit });
+      this.isEdit = !this.isEdit
     },
-    deleteComment(id) {},
-    setPos(ev) {
-        console.log();
-      this.posX = ev.clientX;
-      this.posY = ev.clientY;
+    deleteComment() {
+        this.$emit('deleteComment')
+        this.openModal = false;
     },
   },
-  computed:{},
+  computed: {},
   components: { iconBase },
+  unmounted() {
+    this.unsubscribe();
+  },
 };
 </script>
 

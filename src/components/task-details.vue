@@ -54,7 +54,13 @@
           </div>
         </div>
         <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-        <activity-details :task="taskToEdit" :user="loggedinUser" @save="saveComment" @edit="editComment" />
+        <activity-details
+          :task="taskToEdit"
+          :user="loggedinUser"
+          @save="saveComment"
+          @edit="editComment"
+          @deleteComment="deleteComment"
+        />
       </div>
       <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" />
       <div class="dynamic-cmp">
@@ -121,7 +127,16 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
-    editComment(comment, taskId) {
+    deleteComment(commentId) {
+      const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: { id: this.taskId, comments },
+        groupId: this.groupId,
+      });
+      this.taskToEdit.comments = comments;
+    },
+    editComment(comment) {
       const comments = this.taskToEdit.comments.map((com) => {
         if (com.id === comment.id) {
           com = comment;
@@ -131,12 +146,12 @@ export default {
       });
       this.$store.dispatch({
         type: 'updateTask',
-        taskPartial: { id: taskId, comments },
+        taskPartial: { id: this.taskId, comments },
         groupId: this.groupId,
       });
+      this.taskToEdit.comments = comments;
     },
     saveComment(comment, taskId) {
-      console.log(comment);
       this.taskToEdit.comments.unshift(comment);
       this.$store.dispatch({
         type: 'updateTask',
@@ -196,7 +211,6 @@ export default {
     closeTaskDetails() {
       this.$emit('closeTaskDetails');
     },
-    // joinTask() { },
     makeChecklist() {},
     addAttachment() {},
     changeCover() {},
@@ -289,9 +303,6 @@ export default {
     isMember() {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
-    // loggedinUser() {
-    //   return this.$store.getters.user;
-    // },
   },
   components: {
     taskDetailsMenu,

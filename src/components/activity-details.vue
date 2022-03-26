@@ -37,7 +37,7 @@
 
     <div class="activity-list">
       <div v-for="comment in task.comments" :key="comment.id">
-        <comment-cmp :comment="comment" @edit="editComment" />
+        <comment-cmp :comment="comment" @edit="editComment" @deleteComment="deleteComment(comment.id)" />
       </div>
     </div>
 
@@ -70,7 +70,9 @@ export default {
     };
   },
   methods: {
-    deleteComment(id) {},
+    deleteComment(commentId) {
+      this.$emit('deleteComment', commentId)
+    },
     editComment(comment) {
       this.$emit('edit', comment, this.task.id);
     },
