@@ -3,49 +3,40 @@
     <div class="task-menu">
       <div v-if="!isMember" class="task-menu-group">
         <h2>Suggested</h2>
-        <button  @click="joinTask">
-          <img src="../assets/icons/bx-user.svg" alt="user" />
-          Join
+        <button @click="joinTask">
+          <icon-base class="icon-fill" iconName="user" />Join
         </button>
       </div>
 
       <div class="task-menu-group">
         <h2>Add to card</h2>
         <button @click="openModal('member-cmp')">
-          <img src="../assets/icons/users.svg" alt="users" />
-          Members
+          <icon-base class="icon-color" iconName="users" />Members
         </button>
         <button @click="openModal('label-cmp')">
-          <img src="../assets/icons/tag.svg" alt="label" />
-          Labels
+          <icon-base class="icon-color" iconName="labels" />Labels
         </button>
         <button @click="openModal('checklist-cmp')">
-          <img src="../assets/icons/check-square.svg" alt="checklist" />
-          Checklist
+          <icon-base class="icon-color" iconName="check-box" />Checklist
         </button>
         <button @click="openModal('calendar-cmp')">
-          <img src="../assets/icons/bx-time-five.svg" alt="clock" />
-          Dates
+          <icon-base class="icon-color" iconName="clock" />Dates
         </button>
         <button @click="openModal('attachment-cmp')">
-          <img src="../assets/icons/paperclip.svg" alt="clip" />
-          Attachment
+          <icon-base class="icon-color" iconName="attachment" />Attachment
         </button>
         <button @click="openModal('cover-cmp')">
-          <img src="../assets/icons/bxs-dock-bottom.svg" alt="cover" />
-          Cover
+          <icon-base class="icon-fill" iconName="cover" />Cover
         </button>
       </div>
 
       <div class="task-menu-group">
         <h2>Actions</h2>
         <button @click="copyTask">
-          <img src="../assets/icons/bx-copy.svg" alt="duplicate" />
-          Copy
+          <icon-base class="icon-fill" iconName="copy" />Copy
         </button>
         <button @click="archiveTask">
-          <img src="../assets/icons/bx-box.svg" alt="archive" />
-          Archive
+          <icon-base class="icon-fill" iconName="archive" />Delete
         </button>
       </div>
     </div>
@@ -54,7 +45,7 @@
 
 <script>
 // import { taskService } from "../services/task.service";
-
+import iconBase from "./icon-base.vue";
 export default {
   props: {
     isMember: {
@@ -77,6 +68,6 @@ export default {
     //   archiveTask() {},
   },
   computed: {},
-  components: {},
+  components: { iconBase },
 };
 </script>

@@ -1,12 +1,17 @@
 <template>
-    <div class="details-bc">
-  <div class="task-details" v-if="taskToEdit">
+  <div class="details-bc">
+    <div class="task-details" v-if="taskToEdit">
       <div class="task-header-container">
-        <div class="cover-container">
+        <div v-if="isCover" class="cover-container">
           <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
           <label @click="closeTaskDetails">
-          <icon-base iconName="x"/>
-            </label>
+            <icon-base iconName="x" />
+          </label>
+        </div>
+        <div v-else>
+          <label @click="closeTaskDetails">
+            <icon-base iconName="x" />
+          </label>
         </div>
         <div class="task-details-container">
           <icon-base class="card-header" iconName="cardB" />
@@ -309,6 +314,9 @@ export default {
     isMember() {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
+    isCover() {
+      return false
+    }
   },
   components: {
     taskDetailsMenu,
@@ -320,6 +328,6 @@ export default {
     activityDetails,
     iconBase,
     IconBase
-},
+  },
 };
 </script>

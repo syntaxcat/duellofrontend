@@ -9,6 +9,9 @@
   // padding: 42px;
 }
 .task-details {
+
+
+
   .icon-base {
     display: inline-flex;
   }
@@ -80,36 +83,47 @@
     // }
     
     .task-header-container {
-      // display: flex;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-content: flex-end;
       // margin: auto;
-      
-      .cover-container {
-        height: rem(215px);
-        display: flex;
-        height: rem(130px);
-      // width: 500px;
-      background-color: $labe3;
-      justify-content: flex-end;
-      padding: 5px;
-      border-radius: 3px;
 
       label, button{
+        // background-color: #182a4d;
+        // align-self: flex-end;
         // align-self: center;
-        justify-self: end;
+        // justify-self: flex-end;
         height: 40px;
         width: 40px;
+        justify-self: flex-start;
         background-color: #ffffff3d;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
+        margin: 5px;
         .icon-base{
-          color: white;
+          color: $menuTitleClr;
           width: 22px;
           // font-weight: bold;
         }
-
+    
       }
+      
+      .cover-container {
+        // height: rem(215px);
+        // display: flex;
+        // flex-direction: column-reverse;
+        // height: rem(130px);
+      // width: 500px;
+      // background-color: $labe3;
+      // justify-content: flex-end;
+      padding: 5px;
+      border-radius: 3px;
+      // margin-top: 10px;
+
+   
 
       // button{
       //   height: 20px;
@@ -124,7 +138,7 @@
     .task-details-container {
       padding: 4px 8px;
       position: relative;
-      margin: 12px 40px 8px 56px;
+      margin: 20px 40px 8px 56px;
 
       textarea {
         padding: 4px 8px;
@@ -135,14 +149,16 @@
       }
 
       .info-in-group {
+        color: $boardAddClr;
         p {
-          color: #172b4d;
+          font-size:rem(14px) ;
+          // color: #172b4d;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
             Helvetica Neue, sans-serif;
         }
         span {
           text-decoration: underline;
-          color: #172b4d;
+          // color: #172b4d;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans,
             Helvetica Neue, sans-serif;
         }
