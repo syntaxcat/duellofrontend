@@ -14,9 +14,16 @@
 
       <div :class="['comment-frame', isShow]">
         <div class="comment-box">
-          <textarea type="text" placeholder="Write a comment..." v-model="comment" @click="add = !add"></textarea>
+          <textarea
+            type="text"
+            placeholder="Write a comment..."
+            ref="textarea"
+            v-model="commentToEdit.txt"
+            @click="open"
+            @blur="close"
+          ></textarea>
 
-          <button :class="['save-comment', isAllowed]">Save</button>
+          <button :class="['save-comment', isAllowed]" @click="save">Save</button>
 
           <div class="comment-box-options">
             <icon-base class="option" @click="log" iconName="paperclip" />
@@ -27,11 +34,20 @@
         </div>
       </div>
     </div>
+
+    <div class="activity-list">
+      {{ task.comments }}
+      <img src="../assets/imgs/background.jpg" alt="user" />
+      <div class="comment-description"></div>
+      <div class="comment-actions"></div>
+    </div>
   </section>
 </template>
 
 <script>
+import { taskService } from '../services/task.service';
 import iconBase from './icon-base.vue';
+
 export default {
   props: {
     task: {
@@ -42,21 +58,43 @@ export default {
       type: Object,
       required: true,
     },
-    isFocus: {
-      type: Boolean,
-      required: true,
-    },
   },
   data() {
     return {
       show: true,
-      comment: '',
+      commentToEdit: taskService.getEmptyComment(),
       add: false,
+      isAction: false,
     };
   },
   methods: {
     log() {
-      console.log('hi');
+      this.isAction = !this.isAction;
+    },
+    close() {
+      setTimeout(() => {
+        if (this.isAction) {
+          this.isAction = !this.isAction;
+          this.$refs.textarea.focus();
+          return;
+        }
+        this.add = !this.add;
+      }, 150);
+    },
+    open() {
+      if (this.add) return;
+      this.add = !this.add;
+    },
+    save() {
+      this.commentToEdit.byMember = {
+        id: this.user._id,
+        fullname: this.user.fullname,
+        imgUrl: this.user.imgUrl,
+      };
+      this.commentToEdit.createdAt = Date.now();
+      this.$emit('save', { ...this.commentToEdit }, this.task.id);
+      this.$refs.textarea.blur();
+      this.commentToEdit = '';
     },
   },
   computed: {
@@ -64,12 +102,10 @@ export default {
       return this.show ? 'Hide details' : 'Show details';
     },
     isAllowed() {
-      return this.comment ? 'allowed' : '';
+      return this.commentToEdit ? 'allowed' : '';
     },
     isShow() {
-      if (!this.isFocus) return '';
-      else if (this.add) return 'show';
-      else return '';
+      return this.add ? 'show' : '';
     },
   },
   components: { iconBase },

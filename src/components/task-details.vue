@@ -1,5 +1,5 @@
 <template>
-  <section class="task-details" v-if="taskToEdit" @click.stop="isFocus = !isFocus">
+  <section class="task-details" v-if="taskToEdit">
     <button @click="closeTaskDetails">
       <img src="../assets/icons/x.svg" alt="close" />
     </button>
@@ -53,9 +53,8 @@
             </span>
           </div>
         </div>
-        <label></label>
         <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-        <activity-details :task="taskToEdit" :user="loggedinUser" :isFocus="isFocus" />
+        <activity-details :task="taskToEdit" :user="loggedinUser" @save="saveComment" />
       </div>
       <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" />
       <div class="dynamic-cmp">
@@ -109,7 +108,6 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
-      isFocus: true,
     };
   },
   async created() {
@@ -122,6 +120,14 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
+    saveComment(comment, taskId) {
+      this.taskToEdit.comments.push(comment);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: { id: taskId, comments: this.taskToEdit.comments },
+        groupId: this.groupId,
+      });
+    },
     formatDate(dateString) {
       return new Date(dateString).toDateString();
     },
