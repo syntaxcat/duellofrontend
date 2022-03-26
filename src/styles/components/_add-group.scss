@@ -1,0 +1,16 @@
+.add-group {
+  background-color: lightsteelblue;
+  width: rem(272px);
+
+  .add-group-content {
+    width: 100%;
+    border: 1px solid red;
+    cursor: pointer;
+    color: white;
+    padding: 6px 8px;
+
+    .plus-btn {
+      color: white;
+    }
+  }
+}

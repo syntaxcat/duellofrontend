@@ -254,7 +254,14 @@
       />
     </svg>
 
-    <svg v-else-if="iconName === 'add-reaction'" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 24 24" id="add-reaction">
+    <svg
+      v-else-if="iconName === 'add-reaction'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="15px"
+      height="15px"
+      viewBox="0 0 24 24"
+      id="add-reaction"
+    >
       <rect id="Rectangle_3" data-name="Rectangle 3" width="24" height="24" fill="none" />
       <path
         id="Oval"
@@ -317,7 +324,8 @@
         stroke-linecap="square"
         stroke-miterlimit="10"
         stroke-width="1.5"
-      /></svg>
+      />
+    </svg>
     <svg
       v-else-if="iconName === 'chevron-left'"
       xmlns="http://www.w3.org/2000/svg"
@@ -327,6 +335,16 @@
       fill="currentColor"
     >
       <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+    </svg>
+    <svg
+      v-else-if="iconName === 'Plus'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
     </svg>
   </section>
 </template>

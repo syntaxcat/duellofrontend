@@ -1,9 +1,9 @@
 <template>
   <section class="add-group">
-    <button @click="addedGroup = !addedGroup" v-if="!addedGroup">
-      <img src="../assets/icons/plus.svg" alt="add list" />
+    <div class="add-group-content" @click="addedGroup = !addedGroup" v-if="!addedGroup">
+      <icon-base class="plus-btn" iconName="Plus"></icon-base>
       <span>Add another list</span>
-    </button>
+    </div>
 
     <form class="add-group-form" @submit.prevent="addGroup" v-else>
       <input type="text" placeholder="Enter list title..." v-model="title" />
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import iconBase from './icon-base.vue';
 export default {
   data() {
     return {
@@ -33,7 +34,6 @@ export default {
       this.title = '';
     },
   },
+  components: { iconBase },
 };
 </script>
-
-<style></style>
