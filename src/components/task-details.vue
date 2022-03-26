@@ -22,7 +22,7 @@
       <div class="main-container">
         <div class="content-displayed">
           <div class="container">
-            <div v-if="taskToEdit.members" class="member-list">
+            <div v-if="taskToEdit.members.length" class="member-list">
               <h2>Memebers</h2>
               <div class="member-container">
                 <ul>
