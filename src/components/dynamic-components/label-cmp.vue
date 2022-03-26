@@ -14,11 +14,34 @@
       <input type="text" v-model="editingLabel.title" />
       <h2>Select a color</h2>
       <ul class="color-options">
-        <li v-for="option in labelOptions" @click="selectColor(option)" :style="'background-color:' + option">
+        <li v-for="option in labelOptions" @click="updateColor(option)" :style="'background-color:' + option">
           <icon-base iconName="check" v-if="editingLabel.color === option" />
         </li>
       </ul>
       <button @click="updateLabel">Save</button>
+    </div>
+  </section>
+
+  <section v-else-if="creatingLabel" class="label-cmp">
+    <header>
+      <button class="back-btn" @click="goBack">
+        <icon-base iconName="chevron-left" />
+      </button>
+      <h2>Create label</h2>
+      <button @click="close">
+        <icon-base iconName="x" />
+      </button>
+    </header>
+    <div class="main-content">
+      <h2>Name</h2>
+      <input type="text" v-model="creatingLabel.title" />
+      <h2>Select a color</h2>
+      <ul class="color-options">
+        <li v-for="option in labelOptions" @click="setColor(option)" :style="'background-color:' + option">
+          <icon-base iconName="check" v-if="creatingLabel.color === option" />
+        </li>
+      </ul>
+      <button @click="createLabel">Create</button>
     </div>
   </section>
 
@@ -44,7 +67,7 @@
         </li>
       </ul>
     </div>
-    <button>Create a new label</button>
+    <button @click="create">Create a new label</button>
   </section>
 </template>
 <script>
@@ -56,6 +79,7 @@ export default {
     return {
       search: '',
       editingLabel: null,
+      creatingLabel: null,
       labelOptions: [
         '#61bd4f',
         '#f2d600',
@@ -71,8 +95,11 @@ export default {
     };
   },
   methods: {
-    selectColor(option) {
+    updateColor(option) {
       this.editingLabel.color = option;
+    },
+    setColor(option) {
+      this.creatingLabel.color = option;
     },
     updateLabel() {
       this.$emit('updateBoardLabel', {
@@ -82,11 +109,22 @@ export default {
       });
       this.editingLabel = null;
     },
+    createLabel() {
+      this.$emit('createBoardLabel', {
+        title: this.creatingLabel.title,
+        color: this.creatingLabel.color,
+      });
+      this.creatingLabel = null;
+    },
     goBack() {
       this.editingLabel = null;
+      this.creatingLabel = null;
     },
     edit(label) {
       this.editingLabel = { label, title: label.title, color: label.color };
+    },
+    create() {
+      this.creatingLabel = { title: '', color: this.labelOptions[0] };
     },
     addLabel(label) {
       this.$emit('addLabel', label);
@@ -95,7 +133,8 @@ export default {
       this.$emit('closeLabel');
     },
     isLabelSelected(label) {
-      for (let i = 0; i < this.task.labels.length; i++) {
+      if (!this.task.labelId) return false;
+      for (let i = 0; i < this.task.labelIds.length; i++) {
         if (this.task.labelIds[i] === label.id) {
           return true;
         }

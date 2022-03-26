@@ -10,6 +10,7 @@ export const boardService = {
   getEmptyBoard,
   addNewBoard,
   updateBoardLabel,
+  createBoardLabel,
 };
 
 const BOARD_KEY = 'boardDB';
@@ -78,6 +79,15 @@ async function updateBoardLabel(updatedLabel, boardId) {
     return board;
   }
   board.labels.splice(idx, 1, updatedLabel);
+  return await storageService.put(BOARD_KEY, board);
+}
+
+async function createBoardLabel(labelData, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId);
+  board.labels.push({
+    id: utilService.makeId(),
+    ...labelData,
+  });
   return await storageService.put(BOARD_KEY, board);
 }
 
@@ -201,12 +211,12 @@ async function _createBoard() {
                     username: 'Tal',
                     fullname: 'Tal Tarablus',
                     imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-                  }, {
-
+                  },
+                  {
                     _id: 'u101',
                     fullname: 'user',
-                    imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp'
-                  }
+                    imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
+                  },
                 ],
                 labelIds: ['l101', 'l102'],
                 createdAt: 1590999730348,

@@ -67,6 +67,7 @@
           @removeDate="removeDate"
           @addLabel="addLabel"
           @updateBoardLabel="updateBoardLabel"
+          @createBoardLabel="createBoardLabel"
           :date="taskToEdit.dueDate"
           @closeCalendar="closeCalendar"
           @closeLabel="closeLabel"
@@ -231,6 +232,13 @@ export default {
       this.$store.dispatch({
         type: 'updateBoardLabel',
         label: label,
+        boardId: this.boardId,
+      });
+    },
+    createBoardLabel(labelData) {
+      this.$store.dispatch({
+        type: 'createBoardLabel',
+        labelData: labelData,
         boardId: this.boardId,
       });
     },
