@@ -6,8 +6,18 @@
         <icon-base iconName="x" />
       </button>
     </header>
-    <v-date-picker class="calendar" v-model="selectedDate" />
-    <button class="save-btn" @click="saveDate">Save</button>
+    <v-date-picker
+      class="calendar"
+      v-model="selectedDate"
+    />
+    <button
+      class="save-btn"
+      @click="saveDate"
+    >Save</button>
+    <button
+      class="remove-btn"
+      @click="removeDate"
+    >Remove</button>
   </section>
 </template>
 <script>
@@ -28,6 +38,10 @@ export default {
   methods: {
     saveDate() {
       this.$emit("saveDate", this.selectedDate);
+    },
+
+    removeDate() {
+      this.$emit("removeDate");
     },
     close() {
       this.$emit("closeCalendar");

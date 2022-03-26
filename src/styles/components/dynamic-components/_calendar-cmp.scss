@@ -43,9 +43,10 @@
     border: 0;
   }
 
-  .save-btn {
+  .save-btn,
+  .remove-btn {
     cursor: pointer;
-    padding: 5px;
+    padding: 10px 5px;
     color: white;
     background-color: #0079bf;
     border: none;
@@ -56,6 +57,15 @@
     margin-bottom: 0.5rem;
     line-height: 20px;
     font-weight: 400;
+  }
+
+  .remove-btn {
+    background-color: #f6f6f7;
+    color: #172b4d;
+
+    &:hover {
+      background-color: #ebecef;
+    }
   }
 
   .save-btn:hover {
