@@ -140,7 +140,7 @@ export default {
       this.taskToEdit.comments.unshift(comment);
       this.$store.dispatch({
         type: 'updateTask',
-        taskPartial: { id: taskId, comments: this.taskToEdit.comments },
+        taskPartial: { id: taskId, comments: [...this.taskToEdit.comments] },
         groupId: this.groupId,
       });
     },

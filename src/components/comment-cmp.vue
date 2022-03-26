@@ -52,7 +52,7 @@
 
       <div>
         <p>Deleting a comment is forever. There is no undo.</p>
-        <button @click="deleteComment(commentToEdit.id)">Delete</button>
+        <button @click="setPos">Delete</button>
       </div>
     </div>
   </section>
@@ -84,10 +84,12 @@ export default {
     },
     deleteComment(id) {},
     setPos(ev) {
+        console.log();
       this.posX = ev.clientX;
       this.posY = ev.clientY;
     },
   },
+  computed:{},
   components: { iconBase },
 };
 </script>

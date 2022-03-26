@@ -100,7 +100,7 @@ export default {
       this.commentToEdit.createdAt = Date.now();
       this.$emit('save', { ...this.commentToEdit }, this.task.id);
       this.$refs.textarea.blur();
-      this.commentToEdit = '';
+      this.commentToEdit = taskService.getEmptyComment();
     },
   },
   computed: {
@@ -108,7 +108,7 @@ export default {
       return this.show ? 'Hide details' : 'Show details';
     },
     isAllowed() {
-      return this.commentToEdit ? 'allowed' : '';
+      return this.commentToEdit.txt ? 'allowed' : '';
     },
     isShow() {
       return this.add ? 'show' : '';
