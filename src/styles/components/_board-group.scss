@@ -70,6 +70,29 @@
   }
 }
 
+.group-edit-modal {
+  position: fixed;
+  background-color: white;
+  width: rem(280px);
+  height: rem(500px);
+  border-radius: 3px;
+  box-shadow: 0 8px 16px -4px #091e4240;
+  padding: 0 12px 12px;
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 12px;
+    .icon-base svg{
+        width: 16px;
+    }
+    h1 {
+      height: rem(41px);
+      margin: auto;
+      line-height: rem(41px);
+    }
+  }
+}
 .task-container {
   // background-color: aqua;
   max-height: 85%;

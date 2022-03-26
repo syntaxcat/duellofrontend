@@ -117,7 +117,6 @@ async function _createBoard() {
     var board = await storageService.query(BOARD_KEY);
     // console.log('board!', board)
     if (!board || !board.length) {
-      console.log('query');
       board = {
         _id: 'b101',
         title: 'Robot dev proj',
