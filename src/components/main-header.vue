@@ -39,7 +39,7 @@
           <img src="../assets/icons/bx-bell.svg" alt="alert" />
         </button>
         <label v-if="user" class="user-icon">
-          <img :src="user.avatarUrl" />
+          <img :src="user.imgUrl" />
         </label>
       </div>
     </nav>

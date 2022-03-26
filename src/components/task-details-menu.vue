@@ -1,9 +1,9 @@
 <template>
   <section class="task-details-menu">
     <div class="task-menu">
-      <div class="task-menu-group">
+      <div v-if="!isMember" class="task-menu-group">
         <h2>Suggested</h2>
-        <button v-if="!isMember" @click="joinTask">
+        <button  @click="joinTask">
           <img src="../assets/icons/bx-user.svg" alt="user" />
           Join
         </button>

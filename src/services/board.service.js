@@ -9,6 +9,8 @@ export const boardService = {
   updateGroups,
   getEmptyBoard,
   addNewBoard,
+  updateBoardLabel,
+  createBoardLabel,
 };
 
 const BOARD_KEY = 'boardDB';
@@ -69,6 +71,26 @@ async function removeGroup(groupId, boardId) {
   await storageService.put(BOARD_KEY, board);
 }
 
+async function updateBoardLabel(updatedLabel, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId);
+  const idx = board.labels.findIndex((label) => label.id === updatedLabel.id);
+  console.log(idx);
+  if (idx === -1) {
+    return board;
+  }
+  board.labels.splice(idx, 1, updatedLabel);
+  return await storageService.put(BOARD_KEY, board);
+}
+
+async function createBoardLabel(labelData, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId);
+  board.labels.push({
+    id: utilService.makeId(),
+    ...labelData,
+  });
+  return await storageService.put(BOARD_KEY, board);
+}
+
 async function addNewBoard(board) {
   board.createdAt = Date.now();
   return await storageService.post(BOARD_KEY, board);
@@ -102,8 +124,8 @@ async function _createBoard() {
         createdAt: 1589983468418,
         createdBy: {
           _id: 'u101',
-          fullname: 'Abi Abambi',
-          imgUrl: 'http://some-img',
+          fullname: 'user',
+          imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
         },
         style: {
           backgroundImg: null,
@@ -112,8 +134,13 @@ async function _createBoard() {
         members: [
           {
             _id: 'u101',
+            fullname: 'user',
+            imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
+          },
+          {
+            _id: 'u102',
             fullname: 'Tal Tarablus',
-            imgUrl: 'https://www.google.com',
+            imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648298649/profile-mulan_w7o2uz.webp',
           },
         ],
         groups: [
@@ -183,10 +210,15 @@ async function _createBoard() {
                 ],
                 members: [
                   {
-                    _id: 'u101',
+                    _id: 'u102',
                     username: 'Tal',
                     fullname: 'Tal Tarablus',
                     imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+                  },
+                  {
+                    _id: 'u101',
+                    fullname: 'user',
+                    imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
                   },
                 ],
                 labelIds: ['l101', 'l102'],
@@ -235,17 +267,12 @@ function _createLabels() {
   return [
     {
       title: 'urgent',
-      id: utilService.makeId(),
+      id: 'l101',
       color: '#61bd4f',
     },
     {
       title: 'doing',
-      id: utilService.makeId(),
-      color: '#f2d600',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
+      id: 'l102',
       color: '#f2d600',
     },
     {
@@ -257,41 +284,6 @@ function _createLabels() {
       title: '',
       id: utilService.makeId(),
       color: '#eb5a46',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#c377e0',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#0079bf',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#00c2e0',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#51e898',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#ff78cb',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#344563',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#b3bac5',
     },
   ];
 }

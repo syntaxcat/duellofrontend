@@ -3,7 +3,7 @@
     <div class="task-labels">
       <div
         class="task-label"
-        v-for="label in task.labels"
+        v-for="label in labels"
         :key="label.id"
         :style="'background-color:' + label.color"
         :class="labelsExpanded ? 'expand' : 'shrink'"
@@ -18,19 +18,25 @@
       ref="textarea"
       :disabled="!isEditing"
       @blur="saveEdit(task)"
-    >
-    </textarea>
-    <span v-if="task.dueDate" class="due-date">
+    ></textarea>
+    <div class="task-extras">
+      <div>
+
+        <span v-if="task.dueDate" class="due-date">
       <icon-base iconName="clock" />
       {{ formatDate(this.task.dueDate) }}
     </span>
-
     <button @click="removeTask(task.id, group.id)">
       <img src="../assets/icons/x.svg" alt="delete" />
     </button>
     <button @click.stop="editTask(task, group.id)">
       <img src="../assets/icons/bx-pencil.svg" alt="edit" />
     </button>
+      </div>
+    <div class="member-list">
+      <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
+    </div>
+      </div>
   </section>
 </template>
 
@@ -100,6 +106,12 @@ export default {
   computed: {
     labelsExpanded() {
       return this.$store.getters.labelsExpanded;
+    },
+    labels() {
+      return this.$store.getters.boardLabels.filter((label) => {
+        if (!this.task.labelIds) return false;
+        return this.task.labelIds.includes(label.id);
+      });
     },
   },
   components: {

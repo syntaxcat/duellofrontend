@@ -24,7 +24,6 @@ async function addTask(taskTitle, groupId, boardId) {
 }
 
 async function updateTask(taskPartial, groupId, boardId) {
-  console.log(taskPartial);
   const group = await _findGroup(groupId, boardId);
   const taskIdx = group.tasks.findIndex((task) => task.id === taskPartial.id);
   if (taskIdx === -1) return;

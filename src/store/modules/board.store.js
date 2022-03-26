@@ -22,6 +22,9 @@ export const boardStore = {
     board(state) {
       return state.board;
     },
+    boardLabels(state) {
+      return state.board.labels;
+    },
     groups(state) {
       return state.boardGroups;
     },
@@ -71,6 +74,24 @@ export const boardStore = {
     },
   },
   actions: {
+    async updateBoardLabel({ commit }, { label, boardId }) {
+      try {
+        const board = await boardService.updateBoardLabel(label, boardId);
+        commit({ type: 'setBoard', board });
+        return board;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async createBoardLabel({ commit }, { labelData, boardId }) {
+      try {
+        const board = await boardService.createBoardLabel(labelData, boardId);
+        commit({ type: 'setBoard', board });
+        return board;
+      } catch (err) {
+        console.log(err);
+      }
+    },
     toggleLabelsExpanded({ commit }) {
       commit({ type: 'toggleLabelsExpanded' });
     },
@@ -124,7 +145,7 @@ export const boardStore = {
       }
     },
     async updateTask({ commit, state }, { taskPartial, groupId }) {
-      // console.log("task", task);
+      console.log('task', taskPartial);
       try {
         const updatedGroup = await taskService.updateTask(taskPartial, groupId, state.board._id);
         commit({ type: 'updateGroup', updatedGroup });
