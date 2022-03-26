@@ -144,7 +144,7 @@ export default {
     saveDesc(task) {
       this.$store.dispatch({
         type: "updateTask",
-        task,
+        taskPartial: task,
         groupId: this.groupId,
       });
     },
@@ -174,7 +174,7 @@ export default {
       try {
         this.$store.dispatch({
           type: "updateTask",
-          task: this.taskToEdit,
+          taskPartial: this.taskToEdit,
           groupId: this.groupId,
         });
       } catch (err) {

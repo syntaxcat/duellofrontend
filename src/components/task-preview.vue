@@ -22,7 +22,7 @@
     >
     </textarea>
     <span
-      v-if="this.task.dueDate"
+      v-if="task.dueDate"
       class="due-date"
     >
       <!-- <icon-base iconName="clock" /> -->
