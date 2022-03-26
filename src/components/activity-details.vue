@@ -12,32 +12,25 @@
       <!-- <img :src="user.imgUrl" alt="user" /> -->
       <img src="../assets/imgs/background.jpg" alt="user" />
 
-      <form>
-        <div class="comment-frame">
-          <div :class="['comment-box',isShow]">
-            <textarea
-              type="text"
-              placeholder="Write a comment..."
-              v-model="comment"
-              @click="add = !add"
-              @blur="add = !add"
-              
+      <div :class="['comment-frame', isShow]">
+        <div class="comment-box">
+          <textarea
+            type="text"
+            placeholder="Write a comment..."
+            v-model="comment"
+            @click="add = !add"
+          ></textarea>
 
-            ></textarea>
+          <button :class="['save-comment', isAllowed]">Save</button>
 
-            <div :class="['comment-controls', isShow]">
-              <button :class="['save-comment', isAllowed]">Save</button>
-
-              <div class="comment-box-options">
-                <icon-base class="option" @click.stop="log" iconName="paperclip" />
-                <icon-base class="option" @click.stop="log" iconName="mention" />
-                <icon-base class="option" @click.stop="log" iconName="emoji" />
-                <icon-base class="option" @click.stop="log" iconName="cardS" />
-              </div>
-            </div>
+          <div class="comment-box-options">
+            <icon-base class="option" @click="log" iconName="paperclip" />
+            <icon-base class="option" @click="log" iconName="mention" />
+            <icon-base class="option" @click="log" iconName="emoji" />
+            <icon-base class="option" @click="log" iconName="cardS" />
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </section>
 </template>
@@ -54,18 +47,22 @@ export default {
       type: Object,
       required: true,
     },
+    isFocus: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
       show: true,
       comment: "",
-      add: false
+      add: false,
     };
   },
   methods: {
-      log(){
-          console.log('hi');
-      }
+    log() {
+      console.log("hi");
+    },
   },
   computed: {
     showDetails() {
@@ -74,11 +71,13 @@ export default {
     isAllowed() {
       return this.comment ? "allowed" : "";
     },
-    isShow(){
-        return this.add ? 'show' : '';
-    }
+    isShow() {
+      if (!this.isFocus) return "";
+      else if (this.add) return "show";
+      else return "";
+    },
   },
-  components:{iconBase}
+  components: { iconBase },
 };
 </script>
 

@@ -2,6 +2,7 @@
   <section
     class="task-details"
     v-if="taskToEdit"
+    @click.stop="isFocus = !isFocus"
   >
     <button @click="closeTaskDetails">
       <img
@@ -69,6 +70,7 @@
         <activity-details
           :task="taskToEdit"
           :user="loggedinUser"
+          :isFocus="isFocus"
         />
       </div>
       <task-details-menu @openModal="openModal" />
@@ -121,6 +123,7 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
+      isFocus: true
     };
   },
   methods: {

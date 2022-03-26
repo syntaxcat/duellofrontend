@@ -57,13 +57,13 @@
   .activity-form {
     margin: 0 0 8px 40px;
     position: relative;
+
     img {
       height: 30px;
       width: 30px;
       border-radius: 50%;
       left: -40px;
       position: absolute;
-      // margin: 0 4px 4px 0;
     }
 
     .comment-frame {
@@ -80,6 +80,26 @@
         cursor: pointer;
       }
 
+      &.show {
+        &:hover {
+          cursor: default;
+        }
+
+        .comment-box {
+          padding-bottom: 56px;
+          height: 84px;
+
+          .save-comment {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .comment-box-options {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+
       .comment-box {
         padding: 8px 12px;
         height: 36px;
@@ -87,11 +107,6 @@
         transition-duration: 85ms;
         transition-property: padding-bottom, height;
         transition-timing-function: ease;
-
-        &.show {
-          padding-bottom: 56px;
-          height: 84px;
-        }
 
         textarea {
           width: 100%;
@@ -105,8 +120,6 @@
           font-weight: 400;
           font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
           box-sizing: initial;
-          margin: -8px -12px;
-          padding: 8px 12px;
 
           &:hover {
             cursor: pointer;
@@ -118,57 +131,60 @@
           }
         }
 
-        .comment-controls {
-          display: flex;
-          justify-content: space-between;
+        .save-comment {
+          position: absolute;
+          bottom: 8px;
+          left: 8px;
+
+          background-color: #091e420a;
+          border: none;
+          color: #a5adba;
+          border-radius: 3px;
+          font-size: 14px;
+          line-height: 20px;
+          padding: 6px 12px;
+          cursor: not-allowed;
+
           opacity: 0;
           transform: translateY(48px);
+
+          transition-duration: 85ms;
+          transition-property: background-color, border-color, box-shadow,
+            opacity, transform;
+          transition-timing-function: ease;
+
+          &.allowed {
+            cursor: pointer;
+            color: #fff;
+            background-color: #0079bf;
+            &:hover {
+              cursor: default;
+              background-color: #026aa7;
+            }
+          }
+        }
+
+        .comment-box-options {
+          position: absolute;
+          bottom: 8px;
+          right: 8px;
+
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          align-self: center;
+          height: 32px;
+          width: 144px;
+
+          opacity: 0;
+          transform: translateY(48px);
+
           transition-duration: 85ms;
           transition-property: opacity, transform;
           transition-timing-function: ease;
 
-          &.show {
-            opacity: 1;
-            transform: translateY(12px);
-            pointer-events: none;
-          }
-
-          .save-comment {
-            background-color: #091e420a;
-            border: none;
-            color: #a5adba;
-            border-radius: 3px;
-            font-size: 14px;
-            line-height: 20px;
-            padding: 6px 12px;
-            text-decoration: none;
-            transition-duration: 85ms;
-            transition-property: background-color, border-color, box-shadow;
-            transition-timing-function: ease;
-            cursor: not-allowed;
-
-            &.allowed {
-              cursor: pointer;
-              color: #fff;
-              background-color: #0079bf;
-              &:hover {
-                cursor: default;
-                background-color: #026aa7;
-              }
-            }
-          }
-
-          .comment-box-options {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            align-self: center;
-            height: 32px;
-            width: 144px;
-
-            .option:hover {
-              cursor: pointer;
-            }
+          .option:hover {
+            cursor: pointer;
           }
         }
       }

@@ -9,6 +9,7 @@ export const taskService = {
   getById,
 };
 const BOARD_KEY = "boardDB";
+var counter = 0;
 
 async function addTask(taskTitle, groupId, boardId) {
   const task = {
@@ -44,6 +45,10 @@ async function getById(taskId, groupId, boardId) {
   const group = await _findGroup(groupId, boardId);
   const task = group.tasks.find((task) => task.id === taskId);
   return { task, group };
+}
+
+async function updateTasks(taskId, groupId, board){
+
 }
 
 async function _findGroup(groupId, boardId) {

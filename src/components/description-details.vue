@@ -1,7 +1,8 @@
 <template>
   <section class="description">
     <div class="header">
-      <img src="../assets/icons/align-left.svg" />
+      <!-- <img src="../assets/icons/align-left.svg" /> -->
+      <icon-base class="description-icon" iconName="description"></icon-base>
       <h3>Description</h3>
     </div>
     <div class="description-content">
@@ -45,7 +46,9 @@
 </template>
 
 <script>
+import iconBase from './icon-base.vue';
 export default {
+  components: { iconBase },
   props: {
     taskToEdit: {
       type: Object,
