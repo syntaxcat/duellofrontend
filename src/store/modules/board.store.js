@@ -83,6 +83,17 @@ export const boardStore = {
         console.log(err);
       }
     },
+
+    async deleteBoardLabel({ commit }, { labelId, boardId }) {
+      try {
+        const board = await boardService.deleteBoardLabel(labelId, boardId);
+        commit({ type: 'setBoard', board });
+        return board;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
     async createBoardLabel({ commit }, { labelData, boardId }) {
       try {
         const board = await boardService.createBoardLabel(labelData, boardId);

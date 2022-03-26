@@ -1,7 +1,7 @@
 .new-task-container {
   padding: 0 8px;
   .new-task {
-    padding: 8px 14px;
+    border-radius: 3px;
     width: 100%;
     resize: none;
     min-height: 66px !important;
@@ -50,10 +50,6 @@
     background-color: $group1;
     border-radius: 3px;
     width: rem(272px);
-
-    .create-btn {
-      padding: 0 9px;
-    }
 
     .add-task-btn {
       display: flex;
