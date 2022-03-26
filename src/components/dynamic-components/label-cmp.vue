@@ -1,5 +1,28 @@
 <template>
-  <section class="label-cmp">
+  <section v-if="editingLabel" class="label-cmp">
+    <header>
+      <button class="back-btn" @click="goBack">
+        <icon-base iconName="chevron-left" />
+      </button>
+      <h2>Change label</h2>
+      <button @click="close">
+        <icon-base iconName="x" />
+      </button>
+    </header>
+    <div class="main-content">
+      <h2>Name</h2>
+      <input type="text" v-model="editingLabel.title" />
+      <h2>Select a color</h2>
+      <ul class="color-options">
+        <li v-for="option in labelOptions" @click="selectColor(option)" :style="'background-color:' + option">
+          <icon-base iconName="check" v-if="editingLabel.color === option" />
+        </li>
+      </ul>
+      <button @click="updateLabel">Save</button>
+    </div>
+  </section>
+
+  <section v-else class="label-cmp">
     <header>
       <h2>Labels</h2>
       <button @click="close">
@@ -15,9 +38,9 @@
             <span>{{ label.title }}</span>
             <icon-base iconName="check" v-if="isLabelSelected(label)" />
           </div>
-          <label>
+          <button @click="edit(label)">
             <icon-base iconName="pencil" />
-          </label>
+          </button>
         </li>
       </ul>
     </div>
@@ -32,9 +55,39 @@ export default {
   data() {
     return {
       search: '',
+      editingLabel: null,
+      labelOptions: [
+        '#61bd4f',
+        '#f2d600',
+        '#ff9f1a',
+        '#eb5a46',
+        '#c377e0',
+        '#0079bf',
+        '#00c2e0',
+        '#51e898',
+        '#ff78cb',
+        '#344563',
+      ],
     };
   },
   methods: {
+    selectColor(option) {
+      this.editingLabel.color = option;
+    },
+    updateLabel() {
+      this.$emit('updateBoardLabel', {
+        ...this.editingLabel.label,
+        title: this.editingLabel.title,
+        color: this.editingLabel.color,
+      });
+      this.editingLabel = null;
+    },
+    goBack() {
+      this.editingLabel = null;
+    },
+    edit(label) {
+      this.editingLabel = { label, title: label.title, color: label.color };
+    },
     addLabel(label) {
       this.$emit('addLabel', label);
     },
@@ -43,7 +96,7 @@ export default {
     },
     isLabelSelected(label) {
       for (let i = 0; i < this.task.labels.length; i++) {
-        if (this.task.labels[i].id === label.id) {
+        if (this.task.labelIds[i] === label.id) {
           return true;
         }
       }

@@ -34,15 +34,12 @@
               </button>
             </div>
           </div>
-          <div class="labels-for-display" v-if="taskToEdit.labels.length >= 1">
+          <div class="labels-for-display" v-if="labels.length >= 1">
             <h2>Labels</h2>
             <div class="labels-container">
-              <div
-                class="label"
-                v-for="label in taskToEdit.labels"
-                :key="label.id"
-                :style="'background-color:' + label.color"
-              >{{ label.title }}</div>
+              <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
+                {{ label.title }}
+              </div>
               <button class="add-btn" @click="toggleLabelsModal">
                 <icon-base iconName="plus" />
               </button>
@@ -69,6 +66,7 @@
           @saveDate="saveDate"
           @removeDate="removeDate"
           @addLabel="addLabel"
+          @updateBoardLabel="updateBoardLabel"
           :date="taskToEdit.dueDate"
           @closeCalendar="closeCalendar"
           @closeLabel="closeLabel"
@@ -140,7 +138,6 @@ export default {
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
-
     },
     toggleCalendar() {
       if (this.cmp === null) {
@@ -184,11 +181,11 @@ export default {
       this.$emit('closeTaskDetails');
     },
     // joinTask() { },
-    makeChecklist() { },
-    addAttachment() { },
-    changeCover() { },
-    copyTask() { },
-    archiveTask() { },
+    makeChecklist() {},
+    addAttachment() {},
+    changeCover() {},
+    copyTask() {},
+    archiveTask() {},
 
     async saveDate(date) {
       this.cmp = null;
@@ -213,8 +210,8 @@ export default {
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId
-      })
+        groupId: this.groupId,
+      });
     },
 
     async removeDate() {
@@ -230,13 +227,25 @@ export default {
         console.log(err);
       }
     },
+    updateBoardLabel(label) {
+      this.$store.dispatch({
+        type: 'updateBoardLabel',
+        label: label,
+        boardId: this.boardId,
+      });
+    },
     async addLabel(label) {
-      const idx = this.taskToEdit.labels.findIndex((lbl) => lbl.id === label.id);
-      if (idx === -1) {
-        this.taskToEdit.labels.unshift(label);
+      const labelId = label.id;
+      if (!this.taskToEdit.labelIds) {
+        this.taskToEdit.labelIds = [labelId];
       } else {
-        this.taskToEdit.labels.splice(idx, 1);
+        if (this.taskToEdit.labelIds.includes(labelId)) {
+          this.taskToEdit.labelIds = this.taskToEdit.labelIds.filter((id) => id !== labelId);
+        } else {
+          this.taskToEdit.labelIds.unshift(labelId);
+        }
       }
+
       await this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
@@ -245,6 +254,12 @@ export default {
     },
   },
   computed: {
+    labels() {
+      return this.$store.getters.boardLabels.filter((label) => {
+        if (!this.taskToEdit.labelIds) return false;
+        return this.taskToEdit.labelIds.includes(label.id);
+      });
+    },
     board() {
       return this.$store.getters.board;
     },

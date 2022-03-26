@@ -3,7 +3,7 @@
     <div class="task-labels">
       <div
         class="task-label"
-        v-for="label in task.labels"
+        v-for="label in labels"
         :key="label.id"
         :style="'background-color:' + label.color"
         :class="labelsExpanded ? 'expand' : 'shrink'"
@@ -106,6 +106,12 @@ export default {
   computed: {
     labelsExpanded() {
       return this.$store.getters.labelsExpanded;
+    },
+    labels() {
+      return this.$store.getters.boardLabels.filter((label) => {
+        if (!this.task.labelIds) return false;
+        return this.task.labelIds.includes(label.id);
+      });
     },
   },
   components: {

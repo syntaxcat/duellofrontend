@@ -9,6 +9,7 @@ export const boardService = {
   updateGroups,
   getEmptyBoard,
   addNewBoard,
+  updateBoardLabel,
 };
 
 const BOARD_KEY = 'boardDB';
@@ -67,6 +68,17 @@ async function removeGroup(groupId, boardId) {
   if (idx === -1) return;
   board.groups.splice(idx, 1);
   await storageService.put(BOARD_KEY, board);
+}
+
+async function updateBoardLabel(updatedLabel, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId);
+  const idx = board.labels.findIndex((label) => label.id === updatedLabel.id);
+  console.log(idx);
+  if (idx === -1) {
+    return board;
+  }
+  board.labels.splice(idx, 1, updatedLabel);
+  return await storageService.put(BOARD_KEY, board);
 }
 
 async function addNewBoard(board) {
@@ -242,17 +254,12 @@ function _createLabels() {
   return [
     {
       title: 'urgent',
-      id: utilService.makeId(),
+      id: 'l101',
       color: '#61bd4f',
     },
     {
       title: 'doing',
-      id: utilService.makeId(),
-      color: '#f2d600',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
+      id: 'l102',
       color: '#f2d600',
     },
     {
@@ -264,41 +271,6 @@ function _createLabels() {
       title: '',
       id: utilService.makeId(),
       color: '#eb5a46',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#c377e0',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#0079bf',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#00c2e0',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#51e898',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#ff78cb',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#344563',
-    },
-    {
-      title: '',
-      id: utilService.makeId(),
-      color: '#b3bac5',
     },
   ];
 }
