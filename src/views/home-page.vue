@@ -91,6 +91,9 @@
       <div class="all-boards"></div>
     </div>
 
+
+    
+
     <!-- <div v-if="boards">
       <div v-for="board in boards" :key="board._id">
         <board-list :board="board"></board-list>
