@@ -1,0 +1,33 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#bf778a",
+    "activityBar.activeBorder": "#b4d6a8",
+    "activityBar.background": "#bf778a",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#b4d6a8",
+    "activityBarBadge.foreground": "#15202b",
+    "sash.hoverBorder": "#bf778a",
+    "statusBar.background": "#af546c",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#bf778a",
+    "statusBarItem.remoteBackground": "#af546c",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#af546c",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#af546c99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#af546c",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+}

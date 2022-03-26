@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "prettier": "npm run prettier --write ./src",
     "preview": "vite preview --port 5050",
     "test:unit": "vitest --environment jsdom"
   },
@@ -18,6 +19,7 @@
     "@vitejs/plugin-vue": "^2.2.2",
     "@vue/test-utils": "^2.0.0-rc.18",
     "jsdom": "^19.0.0",
+    "prettier": "2.6.1",
     "sass": "^1.49.9",
     "vite": "^2.8.4",
     "vitest": "^0.5.0"
