@@ -18,7 +18,10 @@
           <icon-base iconName="check" v-if="editingLabel.color === option" />
         </li>
       </ul>
-      <button class="save-btn" @click="updateLabel">Save</button>
+      <div class="edit-btns">
+        <button class="save-btn" @click="updateLabel">Save</button>
+        <button class="delete-btn" @click="deleteLabel">Delete</button>
+      </div>
     </div>
   </section>
 

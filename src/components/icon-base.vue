@@ -54,7 +54,11 @@
       <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
 
-    <svg v-else-if="iconName === 'trello-block'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+    <svg
+      v-else-if="iconName === 'trello-block'"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 50 50"
+    >
       <path
         d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M21,36c0,1.1-0.9,2-2,2h-7 c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7c1.1,0,2,0.9,2,2V36z M40,24c0,1.1-0.9,2-2,2h-7c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7 c1.1,0,2,0.9,2,2V24z"
       />
@@ -115,8 +119,14 @@
       />
     </svg>
 
-    <svg v-else-if="iconName === 'check'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
-      <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+    <svg
+      v-else-if="iconName === 'check'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="currentColor"
+    >
+      <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z" />
     </svg>
 
     <svg
@@ -237,8 +247,14 @@
       </g>
     </svg>
 
-    <svg v-else-if="iconName === 'plus'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
-      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+    <svg
+      v-else-if="iconName === 'plus'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="currentColor"
+    >
+      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
     </svg>
 
     <svg
@@ -260,11 +276,17 @@
     >
       <path
         d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
-      ></path>
-      <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path>
+      />
+      <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z" />
     </svg>
 
-    <svg v-else-if="iconName === 'description'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      v-else-if="iconName === 'description'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -353,7 +375,7 @@
       viewBox="0 0 24 24"
       fill="currentColor"
     >
-      <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+      <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z" />
     </svg>
     <svg
       v-else-if="iconName === 'Plus'"
@@ -363,7 +385,140 @@
       viewBox="0 0 24 24"
       fill="currentColor"
     >
-      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
+    </svg>
+    <svg
+      v-else-if="iconName === 'check'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+      />
+    </svg>
+
+    <svg
+      v-else-if="iconName === 'user'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"
+      />
+    </svg>
+
+    <svg
+      v-else-if="iconName === 'users'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-users"
+    >
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+
+    <svg
+      v-else-if="iconName === 'labels'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-tag"
+    >
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+      <line x1="7" y1="7" x2="7.01" y2="7" />
+    </svg>
+
+    <svg
+      v-else-if="iconName === 'check-box'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-check-square"
+    >
+      <polyline points="9 11 12 14 22 4" />
+      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+    </svg>
+
+    <svg v-else-if="iconName === 'clock'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
+      />
+      <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z" />
+    </svg>
+
+    <svg
+      v-else-if="iconName === 'attachment'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-paperclip"
+    >
+      <path
+        d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
+      />
+    </svg>
+
+    <svg
+      v-else-if="iconName === 'cover'"
+      xmlns=" http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M5 21h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 5l.001 9H5V5h14z"
+      />
+    </svg>
+
+    <svg
+      v-else-if="iconName === 'copy'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"
+      />
+    </svg>
+
+    <svg v-else-if="iconName === 'archive'" xmlns="http://www.w3.org/2000/svg" width="24"
+      height="24" viewBox="0 0 24 24">
+      <path
+        d="M20 3H4a2 2 0 0 0-2 2v2a2 2 0 0 0 1 1.72V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.72A2 2 0 0 0 22 7V5a2 2 0 0 0-2-2zM4 5h16v2H4zm1 14V9h14v10z"
+      />
+      <path d="M8 11h8v2H8z" />
     </svg>
 
     <svg v-else-if="iconName === 'board'" width="16" height="16" viewBox="0 0 24 24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5zm2 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6zm9-1a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-4z" fill="currentColor"/></svg>

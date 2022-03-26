@@ -1,3 +1,38 @@
+.new-task-container {
+  padding: 0 8px;
+  .new-task {
+    padding: 8px 14px;
+    width: 100%;
+    resize: none;
+    min-height: 66px !important;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    box-shadow: 0 1px 0 #091e4240;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
+      sans-serif;
+  }
+
+  .buttons-container {
+    display: flex;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border-radius: 3px;
+    color: white;
+    height: 32px;
+  }
+
+  .add-card-btn {
+    background-color: #0179bf;
+  }
+}
 .board-group-container {
   max-height: 98%;
   display: flex;
@@ -16,10 +51,11 @@
     border-radius: 3px;
     width: rem(272px);
 
+    .create-btn {
+      padding: 0 9px;
+    }
+
     .add-task-btn {
-      .icon-base {
-        fill: red;
-      }
       display: flex;
       align-items: center;
       background-color: transparent;
@@ -27,6 +63,7 @@
       color: $boardAddClr;
       font-size: rem(14px);
       height: rem(38px);
+      width: 100%;
       &:first-child {
         margin-bottom: 5px;
         // background-color: aqua;
@@ -36,22 +73,35 @@
           //  align-self: center;
         }
       }
+
+      &:hover {
+        background-color: #091e4214;
+        color: #172b4d;
+        border-radius: 3px;
+      }
     }
   }
 
   .group-title {
     display: flex;
-    padding: 10px 8px;
+    height: rem(40px);
+    line-height: rem(40px);
+    // width: rem(40px) ;
+    // padding: 10px 8px;
 
     .title-container {
       flex-grow: 1;
 
       input {
-        width: 100%;
-        height: 28px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-left: 16px;
+        font-size: rem(14px);
+        width: 80%;
         background-color: transparent;
         border-color: transparent;
-        font-weight: bold;
+        font-weight: 600;
+        // font-size: rem(20px);
+        color: $menuTitleClr;
       }
       input.isEditing {
         background-color: $clr3;
@@ -71,20 +121,42 @@
 }
 
 .group-edit-modal {
+  color: $boardAddClr;
   position: fixed;
+  z-index: 2;
   background-color: white;
   width: rem(280px);
-  height: rem(500px);
+  // height: rem(550px);
   border-radius: 3px;
   box-shadow: 0 8px 16px -4px #091e4240;
   padding: 0 12px 12px;
+  hr {
+    border-top: solid 1px $menuBorderClr;
+  }
+  .modal-content {
+    font-size: rem(14px);
+    h3 {
+      font-size: rem(12px);
+      font-weight: 600;
+    }
+    & > *:first-child {
+      margin-top: rem(12px);
+    }
+    & > * {
+      margin-bottom: rem(12px);
+    }
+    div > *:not(:last-child) {
+      // background-color: aqua;
+      margin-bottom: rem(17px);
+    }
+  }
   .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 12px;
-    .icon-base svg{
-        width: 16px;
+    .icon-base svg {
+      width: 16px;
     }
     h1 {
       height: rem(41px);
@@ -103,8 +175,7 @@
     padding: 0 4px;
 
     li {
-      //   display: flex;
-      //   justify-content: space-between;
+      position: relative;
       background-color: $clr3;
       border-radius: 3px;
       box-shadow: 0 1px 0 $group3;
@@ -133,7 +204,7 @@
         background-color: $taskHoverBtnClr;
       }
       img {
-        width: 10px;
+        width: 14px;
       }
     }
   }

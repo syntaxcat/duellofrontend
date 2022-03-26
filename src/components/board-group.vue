@@ -15,41 +15,6 @@
           <button @click="openEditModal" class="more-btn mover">
             <icon-base iconName="more"></icon-base>
           </button>
-          <div @blur="openEditModal" v-if="isEditModal" class="group-edit-modal" :style="{position: 'absolute', top: yPos+20 + 'px', left: xPos/1.6 + 'px'}">
-            <div class="modal-header">
-              <h1>List actions</h1>
-              <label @click="openEditModal">
-              <icon-base iconName="x"></icon-base>
-              </label>
-              </div>
-              <hr>
-              <div>
-                <p>Add card</p>
-                <p>Copy list...</p>
-                <p>Move list...</p>
-                <p>Watch</p>
-              </div>
-              <hr>
-              <div>
-                <p>Sort by</p>
-              </div>
-              <hr>
-              <div>
-                <h3>Automation</h3>
-                <p>When a card is added to the list...</p>
-                <p>Every day, sort list by...</p>
-                <p>Every Monday, sort list by...</p>
-                <p>Create costume rule</p>
-              </div>
-              <div>
-                <p>Move all card in this list...</p>
-                <p>Delete all cards in this list...</p>
-              </div>
-              <hr>
-              <div @click="removeGroup(group.id)">
-                <p>Delete this list</p>
-              </div>
-            </div>
         </div>
         <div class="task-container">
           <ul>
@@ -67,18 +32,64 @@
             </draggable>
           </ul>
         </div>
-        <div>
-          <div v-if="isNewTask">
-            <textarea v-model="taskTitle" ref="taskInput"></textarea>
-            <button @click="addTask(group.id)">Add Card</button>
+        <div class="create-btn">
+          <div v-if="isNewTask" class="new-task-container">
+            <textarea class="new-task" v-model="taskTitle" ref="taskInput" @blur="isNewTask = false"></textarea>
+            <div class="buttons-container">
+              <button @mousedown="addTask(group.id)" @touchstart="addTask(group.id)" class="add-card-btn">
+                Add card
+              </button>
+              <button @click="isNewTask = false">
+                <img src="../assets/icons/x.svg" alt="close form" />
+              </button>
+            </div>
           </div>
           <button v-else class="add-task-btn" @click="createTask(group.id)">
             <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
             <icon-base iconName="+"></icon-base>
-            <span>Add Card</span>
+            <span>Add a card</span>
           </button>
         </div>
       </section>
+    </div>
+    <div
+      @blur="openEditModal"
+      v-if="isEditModal"
+      class="group-edit-modal"
+      :style="{ position: 'absolute', top: yPos + 20 + 'px', left: xPos / 1.6 + 'px' }"
+    >
+      <div class="modal-header">
+        <h1>List actions</h1>
+        <label @click="openEditModal">
+          <icon-base iconName="x"></icon-base>
+        </label>
+      </div>
+      <hr />
+      <div class="modal-content">
+        <div>
+          <p @click="createTask(group.id)">Add card</p>
+          <p>Copy list...</p>
+          <p>Move list...</p>
+          <p>Watch</p>
+        </div>
+        <hr />
+        <p>Sort by</p>
+        <hr />
+        <div>
+          <h3>Automation</h3>
+          <p>When a card is added to the list...</p>
+          <p>Every day, sort list by...</p>
+          <p>Every Monday, sort list by...</p>
+          <p>Create costume rule</p>
+        </div>
+        <hr />
+        <div>
+          <p>Move all card in this list...</p>
+          <p>Delete all cards in this list...</p>
+        </div>
+        <hr />
+        <p @click="removeGroup(group.id)">Delete this list</p>
+      </div>
     </div>
   </section>
 </template>
@@ -105,13 +116,16 @@ export default {
       isTaskDragged: false,
       isEditModal: false,
       xPos: null,
-      yPos: null
+      yPos: null,
     };
   },
   created() {
     this.$store.commit({ type: 'setGroup', group: this.group });
   },
   methods: {
+    updateHeigh() {
+      this.$refs.taskInput.style.height = this.$refs.taskInput.scrollHeight + 'px';
+    },
     toggleLabelsExpanded() {
       this.$store.dispatch({
         type: 'toggleLabelsExpanded',
@@ -121,12 +135,12 @@ export default {
       this.$emit('onOpen', taskId, this.group.id);
     },
     openEditModal(ev) {
-      this.xPos = ev.clientX
-      this.yPos = ev.clientY
-      this.isEditModal = !this.isEditModal
+      this.xPos = ev.clientX;
+      this.yPos = ev.clientY;
+      this.isEditModal = !this.isEditModal;
     },
     closeEditModal(ev) {
-      this.isEditModal = false
+      this.isEditModal = false;
     },
     editGroup(group) {
       group.title;
@@ -147,7 +161,8 @@ export default {
       this.$emit('updateTask', taskPartial, groupId);
     },
     createTask() {
-      this.isNewTask = true;
+      this.closeEditModal();
+      this.isNewTask = !this.isNewTask;
     },
     addTask(groupId) {
       this.$emit('addTask', this.taskTitle, groupId);
@@ -172,6 +187,16 @@ export default {
           });
         }, 2);
       },
+    },
+  },
+  updated() {
+    if (this.isNewTask) {
+      this.$refs.taskInput.focus();
+    }
+  },
+  watch: {
+    taskTitle() {
+      this.updateHeigh();
     },
   },
   components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext },
