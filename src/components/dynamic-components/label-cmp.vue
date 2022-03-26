@@ -133,7 +133,7 @@ export default {
       this.$emit('closeLabel');
     },
     isLabelSelected(label) {
-      if (!this.task.labelId) return false;
+      if (!this.task.labelIds) return false;
       for (let i = 0; i < this.task.labelIds.length; i++) {
         if (this.task.labelIds[i] === label.id) {
           return true;
