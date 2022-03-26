@@ -21,14 +21,14 @@
     <div class="main-container">
       <div class="content-displayed">
         <div class="container">
-          <!-- <div>
+          <div class="member-list">
             <ul>
               <h1>memeber!</h1>
               <li v-for="member in taskToEdit.members" :key="member._id">
                 <img :src="member.avatarUrl" />
               </li>
             </ul>
-          </div> -->
+          </div>
           <div class="labels-for-display" v-if="taskToEdit.labels.length >= 1">
             <h2>Labels</h2>
             <div class="labels-container">
