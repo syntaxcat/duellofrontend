@@ -3,7 +3,7 @@
     <div class="task-menu">
       <div class="task-menu-group">
         <h2>Suggested</h2>
-        <button @click="joinTask">
+        <button v-if="!isMember" @click="joinTask">
           <img src="../assets/icons/bx-user.svg" alt="user" />
           Join
         </button>
@@ -56,7 +56,12 @@
 // import { taskService } from "../services/task.service";
 
 export default {
-  props: {},
+  props: {
+    isMember: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {};
   },
@@ -64,6 +69,10 @@ export default {
     openModal(type) {
       this.$emit('openModal', type);
     },
+    joinTask(){
+      // console.log('join task')
+      this.$emit('joinTask')
+    }
     //   copyTask() {},
     //   archiveTask() {},
   },

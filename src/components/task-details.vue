@@ -12,7 +12,8 @@
         <textarea type="text" v-model="taskToEdit.title"></textarea>
         <div class="info-in-group">
           <p>
-            in list <span> {{ group.title }}</span>
+            in list
+            <span>{{ group.title }}</span>
           </p>
         </div>
       </div>
@@ -20,6 +21,14 @@
     <div class="main-container">
       <div class="content-displayed">
         <div class="container">
+          <!-- <div>
+            <ul>
+              <h1>memeber!</h1>
+              <li v-for="member in taskToEdit.members" :key="member._id">
+                <img :src="member.avatarUrl" />
+              </li>
+            </ul>
+          </div> -->
           <div class="labels-for-display" v-if="taskToEdit.labels.length >= 1">
             <h2>Labels</h2>
             <div class="labels-container">
@@ -28,9 +37,7 @@
                 v-for="label in taskToEdit.labels"
                 :key="label.id"
                 :style="'background-color:' + label.color"
-              >
-                {{ label.title }}
-              </div>
+              >{{ label.title }}</div>
               <button class="add-btn" @click="toggleLabelsModal">
                 <icon-base iconName="plus" />
               </button>
@@ -38,16 +45,17 @@
           </div>
           <div class="dueDate" v-if="taskToEdit.dueDate" @click="toggleCalendar">
             <h2>Due date</h2>
-            <span
-              >{{ formatDate(taskToEdit.dueDate) }}
+            <span>
+              {{ formatDate(taskToEdit.dueDate) }}
               <icon-base iconName="chevron-down" />
             </span>
           </div>
         </div>
+        <label></label>
         <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
         <activity-details :task="taskToEdit" :user="loggedinUser" :isFocus="isFocus" />
       </div>
-      <task-details-menu @openModal="openModal" />
+      <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" />
       <div class="dynamic-cmp">
         <component
           :is="cmp"
@@ -95,15 +103,34 @@ export default {
   data() {
     return {
       taskToEdit: null,
+      loggedinUser: null,
       group: null,
       savedDate: null,
       cmp: null,
       isFocus: true,
     };
   },
+    async created() {
+      const user = await this.$store.getters.user
+      console.log(user)
+      this.loggedinUser = user
+      console.log(this.loggedinUser)
+      const res = await taskService.getById(
+        this.taskId,
+        this.groupId,
+        this.boardId
+      );
+      this.taskToEdit = { ...res.task };
+      this.group = { ...res.group };
+    },
   methods: {
     formatDate(dateString) {
       return new Date(dateString).toDateString();
+    },
+    joinTask() {
+      console.log('adding memeber')
+      this.taskToEdit.members.unshift(this.loggedinUser)
+      this.$store.dispatch({ type: 'updateTask', taskPartial: JSON.parse(JSON.stringify({ id: this.taskToEdit.id, memebers: this.taskToEdit.memebers })), groupId: this.groupId })
     },
     toggleCalendar() {
       if (this.cmp === null) {
@@ -139,12 +166,12 @@ export default {
     closeTaskDetails() {
       this.$emit('closeTaskDetails');
     },
-    joinTask() {},
-    makeChecklist() {},
-    addAttachment() {},
-    changeCover() {},
-    copyTask() {},
-    archiveTask() {},
+    // joinTask() { },
+    makeChecklist() { },
+    addAttachment() { },
+    changeCover() { },
+    copyTask() { },
+    archiveTask() { },
 
     async saveDate(date) {
       this.cmp = null;
@@ -191,9 +218,13 @@ export default {
     board() {
       return this.$store.getters.board;
     },
-    loggedinUser() {
-      return this.$store.getters.user;
-    },
+    isMember(){
+      console.log(this.loggedinUser)
+      return this.taskToEdit.members.some(member => member._id===this.loggedinUser._id)
+    }
+    // loggedinUser() {
+    //   return this.$store.getters.user;
+    // },
   },
   components: {
     taskDetailsMenu,
@@ -204,11 +235,6 @@ export default {
     descriptionDetails,
     activityDetails,
     iconBase,
-  },
-  async created() {
-    const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
-    this.taskToEdit = { ...res.task };
-    this.group = { ...res.group };
   },
 };
 </script>

@@ -38,6 +38,9 @@
         <button class="bell-btn">
           <img src="../assets/icons/bx-bell.svg" alt="alert" />
         </button>
+        <label v-if="user" class="user-icon">
+         <img :src="user.avatarUrl" />
+        </label>
       </div>
     </nav>
   </section>
@@ -50,5 +53,10 @@ export default {
       this.$router.push({ path: '/' });
     },
   },
+  computed:{
+    user(){
+      return this.$store.getters.user
+    }
+  }
 };
 </script>

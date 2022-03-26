@@ -125,11 +125,13 @@ async function _createBoard() {
                 id: 'c101',
                 title: 'Replace logo',
                 labels: [],
+                members: [],             
               },
               {
                 id: 'c102',
                 title: 'Add Samples',
                 labels: [],
+                members: [],
               },
             ],
             style: {},
@@ -142,6 +144,7 @@ async function _createBoard() {
                 id: 'c103',
                 title: 'Do that',
                 labels: [],
+                members: [],
               },
               {
                 id: 'c104',
@@ -149,6 +152,7 @@ async function _createBoard() {
                 status: 'in-progress',
                 description: 'description',
                 labels: [],
+                members: [],
                 comments: [
                   {
                     id: 'ZdPnm',
