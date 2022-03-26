@@ -145,7 +145,6 @@ export const boardStore = {
       }
     },
     async updateTask({ commit, state }, { taskPartial, groupId }) {
-      console.log('task', taskPartial);
       try {
         const updatedGroup = await taskService.updateTask(taskPartial, groupId, state.board._id);
         commit({ type: 'updateGroup', updatedGroup });

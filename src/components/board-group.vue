@@ -1,50 +1,86 @@
 <template>
-  <div class="board-group-container">
-    <section class="board-group">
-      <div class="group-title">
-        <div class="title-container">
-          <input
-            type="text"
-            :class="{ isEditing: isEditing, mover: true }"
-            v-model="group.title"
-            @blur="editGroup(group)"
-            @click="changeGroupTitle"
-          />
+  <section class="board-group">
+    <div class="board-group-container">
+      <section class="board-group">
+        <div class="group-title">
+          <div class="title-container">
+            <input
+              type="text"
+              :class="{ isEditing: isEditing, mover: true }"
+              v-model="group.title"
+              @blur="editGroup(group)"
+              @click="changeGroupTitle"
+            />
+          </div>
+          <button @click="openEditModal" class="more-btn mover">
+            <icon-base iconName="more"></icon-base>
+          </button>
+          <div @blur="openEditModal" v-if="isEditModal" class="group-edit-modal" :style="{position: 'absolute', top: yPos+20 + 'px', left: xPos/1.6 + 'px'}">
+            <div class="modal-header">
+              <h1>List actions</h1>
+              <label @click="openEditModal">
+              <icon-base iconName="x"></icon-base>
+              </label>
+              </div>
+              <hr>
+              <div>
+                <p>Add card</p>
+                <p>Copy list...</p>
+                <p>Move list...</p>
+                <p>Watch</p>
+              </div>
+              <hr>
+              <div>
+                <p>Sort by</p>
+              </div>
+              <hr>
+              <div>
+                <h3>Automation</h3>
+                <p>When a card is added to the list...</p>
+                <p>Every day, sort list by...</p>
+                <p>Every Monday, sort list by...</p>
+                <p>Create costume rule</p>
+              </div>
+              <div>
+                <p>Move all card in this list...</p>
+                <p>Delete all cards in this list...</p>
+              </div>
+              <hr>
+              <div @click="removeGroup(group.id)">
+                <p>Delete this list</p>
+              </div>
+            </div>
         </div>
-        <button class="more-btn mover">
-          <icon-base iconName="more"></icon-base>
-        </button>
-      </div>
-      <div class="task-container">
-        <ul>
-          <draggable v-model="tasks" group="tasks" @change="log">
-            <li v-for="task in group.tasks" :key="task.id">
-              <task-preview
-                :task="task"
-                :group="group"
-                @editTask="updateTask"
-                @removeTask="removeTask"
-                @onOpen="openModalDetails(task.id)"
-                @toggleLabelsExpanded="toggleLabelsExpanded"
-              />
-            </li>
-          </draggable>
-        </ul>
-      </div>
-      <div>
-        <div v-if="isNewTask">
-          <textarea v-model="taskTitle" ref="taskInput"></textarea>
-          <button @click="addTask(group.id)">Add Card</button>
+        <div class="task-container">
+          <ul>
+            <draggable v-model="tasks" group="tasks" @change="log">
+              <li v-for="task in group.tasks" :key="task.id">
+                <task-preview
+                  :task="task"
+                  :group="group"
+                  @editTask="updateTask"
+                  @removeTask="removeTask"
+                  @onOpen="openModalDetails(task.id)"
+                  @toggleLabelsExpanded="toggleLabelsExpanded"
+                />
+              </li>
+            </draggable>
+          </ul>
         </div>
-        <button v-else class="add-task-btn" @click="createTask(group.id)">
-          <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
-          <icon-base iconName="+"></icon-base>
-          <span>Add Card</span>
-        </button>
-      </div>
-      <button @click="removeGroup(group.id)">Delete</button>
-    </section>
-  </div>
+        <div>
+          <div v-if="isNewTask">
+            <textarea v-model="taskTitle" ref="taskInput"></textarea>
+            <button @click="addTask(group.id)">Add Card</button>
+          </div>
+          <button v-else class="add-task-btn" @click="createTask(group.id)">
+            <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
+            <icon-base iconName="+"></icon-base>
+            <span>Add Card</span>
+          </button>
+        </div>
+      </section>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -67,6 +103,9 @@ export default {
       taskTitle: '',
       isNewTask: false,
       isTaskDragged: false,
+      isEditModal: false,
+      xPos: null,
+      yPos: null
     };
   },
   created() {
@@ -80,6 +119,14 @@ export default {
     },
     openModalDetails(taskId) {
       this.$emit('onOpen', taskId, this.group.id);
+    },
+    openEditModal(ev) {
+      this.xPos = ev.clientX
+      this.yPos = ev.clientY
+      this.isEditModal = !this.isEditModal
+    },
+    closeEditModal(ev) {
+      this.isEditModal = false
     },
     editGroup(group) {
       group.title;

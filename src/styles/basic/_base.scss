@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100%;
   margin: 0px;
 }
@@ -27,6 +28,10 @@ html,
 body,
 #app {
   height: 100%;
+}
+
+.icon-base{
+  margin: 0px;
 }
 
 .groupGhost {
