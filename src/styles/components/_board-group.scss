@@ -1,12 +1,48 @@
-.board-group{
+.board-group {
   // color: $menuTitleClr;
   // background-color: aqua;
+}
+
+.new-task-container {
+  padding: 0 8px;
+  .new-task {
+    padding: 8px 14px;
+    width: 100%;
+    resize: none;
+    min-height: 66px !important;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    box-shadow: 0 1px 0 #091e4240;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
+      sans-serif;
+  }
+
+  .buttons-container {
+    display: flex;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border-radius: 3px;
+    color: white;
+    height: 32px;
+  }
+
+  .add-card-btn {
+    background-color: #0179bf;
+  }
 }
 .board-group-container {
   max-height: 98%;
   display: flex;
   // justify-content: center;
-  
+
   .icon-base {
     width: 16px;
     height: 16px;
@@ -19,7 +55,7 @@
     background-color: $group1;
     border-radius: 3px;
     width: rem(272px);
-    
+
     .add-task-btn {
       .icon-base {
         fill: red;
@@ -34,7 +70,7 @@
       &:first-child {
         margin-bottom: 5px;
         // background-color: aqua;
-        
+
         & > * {
           margin-right: 10px;
           //  align-self: center;
@@ -49,10 +85,10 @@
     line-height: rem(40px);
     // width: rem(40px) ;
     // padding: 10px 8px;
-    
+
     .title-container {
       flex-grow: 1;
-      
+
       input {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin-left: 16px;
@@ -60,7 +96,7 @@
         width: 80%;
         background-color: transparent;
         border-color: transparent;
-        font-weight:600;
+        font-weight: 600;
         // font-size: rem(20px);
         color: $menuTitleClr;
       }
@@ -100,7 +136,7 @@
       font-size: rem(12px);
       font-weight: 600;
     }
-    &>*:first-child {
+    & > *:first-child {
       margin-top: rem(12px);
     }
     & > * {
@@ -126,7 +162,7 @@
     }
   }
 }
-.task-container{
+.task-container {
   // background-color: aqua;
   max-height: 85%;
   overflow-x: hidden;
@@ -136,8 +172,7 @@
     padding: 0 4px;
 
     li {
-      //   display: flex;
-      //   justify-content: space-between;
+      position: relative;
       background-color: $clr3;
       border-radius: 3px;
       box-shadow: 0 1px 0 $group3;
@@ -166,7 +201,7 @@
         background-color: $taskHoverBtnClr;
       }
       img {
-        width: 10px;
+        width: 14px;
       }
     }
   }
