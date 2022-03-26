@@ -87,7 +87,7 @@
   z-index: 2;
   background-color: white;
   width: rem(280px);
-  height: rem(550px);
+  // height: rem(550px);
   border-radius: 3px;
   box-shadow: 0 8px 16px -4px #091e4240;
   padding: 0 12px 12px;
@@ -100,7 +100,7 @@
       font-size: rem(12px);
       font-weight: 600;
     }
-    & > *:first-child {
+    &>*:first-child {
       margin-top: rem(12px);
     }
     & > * {

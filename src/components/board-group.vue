@@ -15,7 +15,37 @@
           <button @click="openEditModal" class="more-btn mover">
             <icon-base iconName="more"></icon-base>
           </button>
-          <div @blur="openEditModal" v-if="isEditModal" class="group-edit-modal" :style="{position: 'absolute', top: yPos+20 + 'px', left: xPos/1.6 + 'px'}">
+        </div>
+        <div class="task-container">
+          <ul>
+            <draggable v-model="tasks" group="tasks" @change="log">
+              <li v-for="task in group.tasks" :key="task.id">
+                <task-preview
+                  :task="task"
+                  :group="group"
+                  @editTask="updateTask"
+                  @removeTask="removeTask"
+                  @onOpen="openModalDetails(task.id)"
+                  @toggleLabelsExpanded="toggleLabelsExpanded"
+                />
+              </li>
+            </draggable>
+          </ul>
+        </div>
+        <div class="create-btn">
+          <div v-if="isNewTask">
+            <textarea class="new-task" v-model="taskTitle" ref="taskInput"></textarea>
+            <button @click="addTask(group.id)">Add Card</button>
+          </div>
+          <button v-else class="add-task-btn" @click="createTask(group.id)">
+            <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
+            <icon-base iconName="+"></icon-base>
+            <span>Add Card</span>
+          </button>
+        </div>
+      </section>
+    </div>
+    <div @blur="openEditModal" v-if="isEditModal" class="group-edit-modal" :style="{position: 'absolute', top: yPos+20 + 'px', left: xPos/1.6 + 'px'}">
             <div class="modal-header">
               <h1>List actions</h1>
               <label @click="openEditModal">
@@ -49,36 +79,6 @@
                 <p @click="removeGroup(group.id)">Delete this list</p>
             </div>
           </div>
-        </div>
-        <div class="task-container">
-          <ul>
-            <draggable v-model="tasks" group="tasks" @change="log">
-              <li v-for="task in group.tasks" :key="task.id">
-                <task-preview
-                  :task="task"
-                  :group="group"
-                  @editTask="updateTask"
-                  @removeTask="removeTask"
-                  @onOpen="openModalDetails(task.id)"
-                  @toggleLabelsExpanded="toggleLabelsExpanded"
-                />
-              </li>
-            </draggable>
-          </ul>
-        </div>
-        <div class="create-btn">
-          <div v-if="isNewTask">
-            <textarea class="new-task" v-model="taskTitle" ref="taskInput"></textarea>
-            <button @click="addTask(group.id)">Add Card</button>
-          </div>
-          <button v-else class="add-task-btn" @click="createTask(group.id)">
-            <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
-            <icon-base iconName="+"></icon-base>
-            <span>Add Card</span>
-          </button>
-        </div>
-      </section>
-    </div>
   </section>
 </template>
 
