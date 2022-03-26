@@ -1,6 +1,6 @@
 <template>
   <section class="home-page">
-    <mainHeader />
+    <main-header />
 
     <div class="main-container">
       <div class="nav-bar">
@@ -91,14 +91,11 @@
       <div class="all-boards"></div>
     </div>
 
-
-    
-
-    <!-- <div v-if="boards">
+    <div v-if="boards">
       <div v-for="board in boards" :key="board._id">
         <board-list :board="board"></board-list>
       </div>
-    </div> -->
+    </div>
   </section>
 </template>
 
