@@ -9,9 +9,7 @@
         :class="labelsExpanded ? 'expand' : 'shrink'"
         @click="toggleLabelsExpand"
       >
-        <span :class="labelsExpanded ? 'show' : 'hide'"
-          >{{ label.title }}&nbsp;</span
-        >
+        <span :class="labelsExpanded ? 'show' : 'hide'">{{ label.title }}&nbsp;</span>
       </div>
     </div>
     <textarea
@@ -37,7 +35,7 @@
 </template>
 
 <script>
-import iconBase from "./icon-base.vue";
+import iconBase from './icon-base.vue';
 export default {
   props: {
     task: {
@@ -59,25 +57,25 @@ export default {
   methods: {
     formatDate() {
       const date = new Date(this.task.dueDate);
-      return date.toLocaleString("default", {
-        month: "short",
-        day: "numeric",
+      return date.toLocaleString('default', {
+        month: 'short',
+        day: 'numeric',
       });
     },
     toggleLabelsExpand(e) {
       e.stopPropagation();
-      this.$emit("toggleLabelsExpanded");
+      this.$emit('toggleLabelsExpanded');
     },
     openModalDetails() {
-      this.$emit("onOpen");
+      this.$emit('onOpen');
     },
     async saveEdit() {
       this.isEditing = false;
-      this.$emit("editTask", this.taskToEditPartial);
+      this.$emit('editTask', this.taskToEditPartial);
     },
 
     removeTask(taskId, groupId) {
-      this.$emit("removeTask", taskId, groupId);
+      this.$emit('removeTask', taskId, groupId);
     },
 
     editTask(task, groupId) {
@@ -85,8 +83,7 @@ export default {
       this.$nextTick(() => this.$refs.textarea.focus());
     },
     updateHeigh() {
-      this.$refs.textarea.style.height =
-        this.$refs.textarea.scrollHeight + "px";
+      this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
     },
   },
   mounted() {

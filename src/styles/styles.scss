@@ -1,33 +1,33 @@
 // SETUP
-@import "./setup/functions";
-@import "setup/typography";
-@import "setup/variables";
-@import "setup/_mixins";
+@import './setup/functions';
+@import 'setup/typography';
+@import 'setup/variables';
+@import 'setup/_mixins';
 // @import 'setup/functions';
 
 // BASICS
-@import "basic/base";
+@import 'basic/base';
 // @import 'basics/base';
 // @import 'basics/layout';
 
 // VIEWS
-@import "views/welcome-page";
-@import "views/home-page";
-@import "views/main-board";
+@import 'views/welcome-page';
+@import 'views/home-page';
+@import 'views/main-board';
 
 // COMPONENTS
-@import "components/main-header";
-@import "components/board-header";
-@import "components/board-group";
-@import "components/task-preview";
-@import "components/create-board";
-@import "components/task-details";
-@import "components/activity-details";
-@import "components/task-details-menu";
-@import "components/board-menu";
+@import 'components/main-header';
+@import 'components/board-header';
+@import 'components/board-group';
+@import 'components/task-preview';
+@import 'components/create-board';
+@import 'components/task-details';
+@import 'components/activity-details';
+@import 'components/task-details-menu';
+@import 'components/board-menu';
 
 // DYNAMIC-COMPONENTS
-@import "components/dynamic-components/label-cmp";
-@import "components/dynamic-components/member-cmp";
-@import "components/dynamic-components/checklist-cmp";
-@import "components/dynamic-components/calendar-cmp";
+@import 'components/dynamic-components/label-cmp';
+@import 'components/dynamic-components/member-cmp';
+@import 'components/dynamic-components/checklist-cmp';
+@import 'components/dynamic-components/calendar-cmp';

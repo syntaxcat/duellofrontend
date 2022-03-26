@@ -48,10 +48,10 @@
 </template>
 
 <script>
-import { VueDraggableNext } from "vue-draggable-next";
-import iconBase from "./icon-base.vue";
-import taskPreview from "../components/task-preview.vue";
-import IconBase from "./icon-base.vue";
+import { VueDraggableNext } from 'vue-draggable-next';
+import iconBase from './icon-base.vue';
+import taskPreview from '../components/task-preview.vue';
+import IconBase from './icon-base.vue';
 
 export default {
   props: {
@@ -64,48 +64,48 @@ export default {
     return {
       isEditing: false,
       title: this.group.title,
-      taskTitle: "",
+      taskTitle: '',
       isNewTask: false,
       isTaskDragged: false,
     };
   },
   created() {
-    this.$store.commit({ type: "setGroup", group: this.group });
+    this.$store.commit({ type: 'setGroup', group: this.group });
   },
   methods: {
     toggleLabelsExpanded() {
       this.$store.dispatch({
-        type: "toggleLabelsExpanded",
+        type: 'toggleLabelsExpanded',
       });
     },
     openModalDetails(taskId) {
-      this.$emit("onOpen", taskId, this.group.id);
+      this.$emit('onOpen', taskId, this.group.id);
     },
     editGroup(group) {
       group.title;
-      this.$emit("editGroup", group);
+      this.$emit('editGroup', group);
       this.isEditing = false;
     },
     changeGroupTitle() {
       this.isEditing = true;
     },
     removeGroup(groupId) {
-      this.$emit("removeGroup", groupId);
+      this.$emit('removeGroup', groupId);
     },
     removeTask(taskId, groupId) {
-      this.$emit("removeTask", taskId, groupId);
+      this.$emit('removeTask', taskId, groupId);
     },
     updateTask(taskPartial) {
       const groupId = this.group.id;
-      this.$emit("updateTask", taskPartial, groupId);
+      this.$emit('updateTask', taskPartial, groupId);
     },
     createTask() {
       this.isNewTask = true;
     },
     addTask(groupId) {
-      this.$emit("addTask", this.taskTitle, groupId);
+      this.$emit('addTask', this.taskTitle, groupId);
       this.isNewTask = false;
-      this.taskTitle = "";
+      this.taskTitle = '';
     },
     log(evt) {
       console.log(evt);
@@ -119,7 +119,7 @@ export default {
       set(value) {
         setTimeout(() => {
           this.$store.dispatch({
-            type: "dragTask",
+            type: 'dragTask',
             value,
             group: { ...this.group },
           });

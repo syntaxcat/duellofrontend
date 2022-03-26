@@ -6,18 +6,10 @@
       <h3>Description</h3>
     </div>
     <div class="description-content">
-      <div
-        class="fake-textarea"
-        v-if="!addDescription && !taskToEdit.description"
-        @click="addDesc"
-      >
+      <div class="fake-textarea" v-if="!addDescription && !taskToEdit.description" @click="addDesc">
         Add a more detailed description...
       </div>
-      <div
-        class="fake-textarea description"
-        v-else-if="!addDescription && taskToEdit.description"
-        @click="addDesc"
-      >
+      <div class="fake-textarea description" v-else-if="!addDescription && taskToEdit.description" @click="addDesc">
         {{ taskToEdit.description }}
       </div>
 
@@ -33,11 +25,7 @@
         <div class="actions">
           <button class="save-description" @click="saveDesc">Save</button>
           <button class="close-btn">
-            <img
-              src="../assets/icons/x.svg"
-              alt="close"
-              @click="addDescription = !addDescription"
-            />
+            <img src="../assets/icons/x.svg" alt="close" @click="addDescription = !addDescription" />
           </button>
         </div>
       </div>
@@ -46,7 +34,7 @@
 </template>
 
 <script>
-import iconBase from "./icon-base.vue";
+import iconBase from './icon-base.vue';
 export default {
   components: { iconBase },
   props: {
@@ -66,7 +54,7 @@ export default {
       this.$nextTick(() => this.$refs.addDesc.focus());
     },
     saveDesc() {
-      this.$emit("save", { ...this.taskToEdit });
+      this.$emit('save', { ...this.taskToEdit });
       this.addDescription = !this.addDescription;
     },
   },

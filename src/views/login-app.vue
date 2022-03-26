@@ -19,33 +19,33 @@ export default {
   data() {
     return {
       user: {
-        _id: "u101",
-        username: "user",
+        _id: 'u101',
+        username: 'user',
         password: 123,
       },
       newUser: {
-        username: "",
-        password: "",
-        fullname: "",
+        username: '',
+        password: '',
+        fullname: '',
       },
     };
   },
   methods: {
     async login() {
       const user = await this.$store.dispatch({
-        type: "login",
+        type: 'login',
         user: this.user,
       });
       console.log(user);
-      if (user) this.$router.replace("/");
+      if (user) this.$router.replace('/');
     },
     async signup() {
       const user = await this.$store.dispatch({
-        type: "signup",
+        type: 'signup',
         user: this.newUser,
       });
       console.log(user);
-      if (user) this.$router.replace("/");
+      if (user) this.$router.replace('/');
     },
   },
 };

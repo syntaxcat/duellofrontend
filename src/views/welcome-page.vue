@@ -14,17 +14,12 @@
       <div class="welcome-signin">
         <h1>Duello helps teams move work forward.</h1>
         <p>
-          Collaborate, manage projects, and reach new productivity peaks. From
-          high rises to the home office, the way your team works is
-          unique—accomplish it all with Duello.
+          Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way
+          your team works is unique—accomplish it all with Duello.
         </p>
         <form>
           <!-- <input type="text" /> -->
-          <input
-            class="welcome-btn"
-            type="submit"
-            value="Check us out - it's free!"
-          />
+          <input class="welcome-btn" type="submit" value="Check us out - it's free!" />
         </form>
       </div>
       <img class="welcome-img" src="../assets/imgs/welcome-img.png" />
@@ -36,7 +31,7 @@
 export default {
   methods: {
     login() {
-      this.$router.replace("/login");
+      this.$router.replace('/login');
     },
   },
 };

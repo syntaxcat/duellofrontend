@@ -66,17 +66,17 @@
 </template>
 
 <script>
-import iconBase from "./icon-base.vue";
+import iconBase from './icon-base.vue';
 export default {
   data() {
     return {
-      menuTitle: "Menu",
+      menuTitle: 'Menu',
     };
   },
   components: { iconBase },
   methods: {
     closeMenu() {
-      this.$emit("closeMenu");
+      this.$emit('closeMenu');
     },
   },
 };

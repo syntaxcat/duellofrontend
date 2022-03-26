@@ -39,7 +39,7 @@
         border-radius: 3px;
         padding: 6px 12px;
         background-color: #091e420a;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
         &:hover {
           cursor: pointer;
@@ -118,7 +118,7 @@
           color: #172b4d;
           font-size: rem(14px);
           font-weight: 400;
-          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           box-sizing: initial;
 
           &:hover {
@@ -149,8 +149,7 @@
           transform: translateY(48px);
 
           transition-duration: 85ms;
-          transition-property: background-color, border-color, box-shadow,
-            opacity, transform;
+          transition-property: background-color, border-color, box-shadow, opacity, transform;
           transition-timing-function: ease;
 
           &.allowed {

@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import { boardService } from "../services/board.service";
-import { userService } from "../services/user.service";
-import iconBase from "./icon-base.vue";
+import { boardService } from '../services/board.service';
+import { userService } from '../services/user.service';
+import iconBase from './icon-base.vue';
 
 export default {
   data() {
@@ -54,15 +54,10 @@ export default {
       this.boardToEdit.style.backgroundImg = src;
     },
     create() {
-      if (
-        !this.boardToEdit.style.backgroundImg ||
-        !this.boardToEdit.title ||
-        !this.loggedinUser
-      )
-        return;
+      if (!this.boardToEdit.style.backgroundImg || !this.boardToEdit.title || !this.loggedinUser) return;
 
       this.boardToEdit.createdBy = this.loggedinUser;
-      this.$emit("create", { ...this.boardToEdit });
+      this.$emit('create', { ...this.boardToEdit });
     },
   },
   components: { iconBase },

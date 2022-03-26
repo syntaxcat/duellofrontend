@@ -6,23 +6,14 @@
         <icon-base iconName="x" />
       </button>
     </header>
-    <v-date-picker
-      class="calendar"
-      v-model="selectedDate"
-    />
-    <button
-      class="save-btn"
-      @click="saveDate"
-    >Save</button>
-    <button
-      class="remove-btn"
-      @click="removeDate"
-    >Remove</button>
+    <v-date-picker class="calendar" v-model="selectedDate" />
+    <button class="save-btn" @click="saveDate">Save</button>
+    <button class="remove-btn" @click="removeDate">Remove</button>
   </section>
 </template>
 <script>
-import { DatePicker } from "v-calendar";
-import iconBase from "../icon-base.vue";
+import { DatePicker } from 'v-calendar';
+import iconBase from '../icon-base.vue';
 export default {
   props: {
     date: {
@@ -37,14 +28,14 @@ export default {
   },
   methods: {
     saveDate() {
-      this.$emit("saveDate", this.selectedDate);
+      this.$emit('saveDate', this.selectedDate);
     },
 
     removeDate() {
-      this.$emit("removeDate");
+      this.$emit('removeDate');
     },
     close() {
-      this.$emit("closeCalendar");
+      this.$emit('closeCalendar');
     },
   },
   components: {

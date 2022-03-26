@@ -1,6 +1,6 @@
-import { storageService } from "./storage.service";
-import { boardService } from "./board.service";
-import { utilService } from "./util.service";
+import { storageService } from './storage.service';
+import { boardService } from './board.service';
+import { utilService } from './util.service';
 
 export const taskService = {
   addTask,
@@ -8,7 +8,7 @@ export const taskService = {
   updateTask,
   getById,
 };
-const BOARD_KEY = "boardDB";
+const BOARD_KEY = 'boardDB';
 var counter = 0;
 
 async function addTask(taskTitle, groupId, boardId) {

@@ -6,28 +6,14 @@
         <icon-base iconName="x" />
       </button>
     </header>
-    <input
-      type="search"
-      placeholder="Search labels..."
-      v-model="search"
-    />
+    <input type="search" placeholder="Search labels..." v-model="search" />
     <div class="main-content">
       <h2>Labels</h2>
       <ul>
-        <li
-          v-for="label in filteredLabels"
-          :key="label.id"
-        >
-          <div
-            @click="addLabel(label)"
-            class="edit-label"
-            :style="'background-color:' + label.color"
-          >
+        <li v-for="label in filteredLabels" :key="label.id">
+          <div @click="addLabel(label)" class="edit-label" :style="'background-color:' + label.color">
             <span>{{ label.title }}</span>
-            <icon-base
-              iconName="check"
-              v-if="isLabelSelected(label)"
-            />
+            <icon-base iconName="check" v-if="isLabelSelected(label)" />
           </div>
           <label>
             <icon-base iconName="pencil" />
@@ -39,21 +25,21 @@
   </section>
 </template>
 <script>
-import iconBase from "../icon-base.vue";
+import iconBase from '../icon-base.vue';
 export default {
   components: { iconBase },
-  props: ["board", "task"],
+  props: ['board', 'task'],
   data() {
     return {
-      search: "",
+      search: '',
     };
   },
   methods: {
     addLabel(label) {
-      this.$emit("addLabel", label);
+      this.$emit('addLabel', label);
     },
     close() {
-      this.$emit("closeLabel");
+      this.$emit('closeLabel');
     },
     isLabelSelected(label) {
       for (let i = 0; i < this.task.labels.length; i++) {
@@ -66,9 +52,7 @@ export default {
   },
   computed: {
     filteredLabels() {
-      return this.board.labels.filter((label) =>
-        label.title.includes(this.search.trim())
-      );
+      return this.board.labels.filter((label) => label.title.includes(this.search.trim()));
     },
   },
 };

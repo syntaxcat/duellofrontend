@@ -1,5 +1,5 @@
-import { storageService } from "./storage.service";
-import { utilService } from "./util.service";
+import { storageService } from './storage.service';
+import { utilService } from './util.service';
 
 export const boardService = {
   query,
@@ -11,15 +11,14 @@ export const boardService = {
   addNewBoard,
 };
 
-const BOARD_KEY = "boardDB";
+const BOARD_KEY = 'boardDB';
 
 _createBoard();
 
 async function query(filterBy) {
   try {
     const boards = await storageService.query(BOARD_KEY);
-    if (filterBy.boardId)
-      return boards.find((board) => filterBy.boardId === board._id);
+    if (filterBy.boardId) return boards.find((board) => filterBy.boardId === board._id);
     else if (filterBy.userId) {
       boards.filter((board) => filterBy.userId === board.createdBy._id);
       return boards.filter((board) => filterBy.userId === board.createdBy._id);
@@ -77,8 +76,8 @@ async function addNewBoard(board) {
 
 function getEmptyBoard() {
   return {
-    _id: "",
-    title: "",
+    _id: '',
+    title: '',
     createdAt: null,
     createdBy: {},
     style: {
@@ -96,15 +95,15 @@ async function _createBoard() {
     var board = await storageService.query(BOARD_KEY);
     // console.log('board!', board)
     if (!board || !board.length) {
-      console.log("query");
+      console.log('query');
       board = {
-        _id: "b101",
-        title: "Robot dev proj",
+        _id: 'b101',
+        title: 'Robot dev proj',
         createdAt: 1589983468418,
         createdBy: {
-          _id: "u101",
-          fullname: "Abi Abambi",
-          imgUrl: "http://some-img",
+          _id: 'u101',
+          fullname: 'Abi Abambi',
+          imgUrl: 'http://some-img',
         },
         style: {
           backgroundImg: null,
@@ -112,65 +111,64 @@ async function _createBoard() {
         labels: _createLabels(),
         members: [
           {
-            _id: "u101",
-            fullname: "Tal Tarablus",
-            imgUrl: "https://www.google.com",
+            _id: 'u101',
+            fullname: 'Tal Tarablus',
+            imgUrl: 'https://www.google.com',
           },
         ],
         groups: [
           {
-            id: "g101",
-            title: "Group 1",
+            id: 'g101',
+            title: 'Group 1',
             tasks: [
               {
-                id: "c101",
-                title: "Replace logo",
+                id: 'c101',
+                title: 'Replace logo',
                 labels: [],
               },
               {
-                id: "c102",
-                title: "Add Samples",
+                id: 'c102',
+                title: 'Add Samples',
                 labels: [],
               },
             ],
             style: {},
           },
           {
-            id: "g102",
-            title: "Group 2",
+            id: 'g102',
+            title: 'Group 2',
             tasks: [
               {
-                id: "c103",
-                title: "Do that",
+                id: 'c103',
+                title: 'Do that',
                 labels: [],
               },
               {
-                id: "c104",
-                title: "Help me",
-                status: "in-progress",
-                description: "description",
+                id: 'c104',
+                title: 'Help me',
+                status: 'in-progress',
+                description: 'description',
                 labels: [],
                 comments: [
                   {
-                    id: "ZdPnm",
-                    txt: "also @yaronb please CR this",
+                    id: 'ZdPnm',
+                    txt: 'also @yaronb please CR this',
                     createdAt: 1590999817436.0,
                     byMember: {
-                      _id: "u101",
-                      fullname: "Tal Tarablus",
-                      imgUrl:
-                        "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+                      _id: 'u101',
+                      fullname: 'Tal Tarablus',
+                      imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
                     },
                   },
                 ],
                 checklists: [
                   {
-                    id: "YEhmF",
-                    title: "Checklist",
+                    id: 'YEhmF',
+                    title: 'Checklist',
                     todos: [
                       {
-                        id: "212jX",
-                        title: "To Do 1",
+                        id: '212jX',
+                        title: 'To Do 1',
                         isDone: false,
                       },
                     ],
@@ -178,26 +176,24 @@ async function _createBoard() {
                 ],
                 members: [
                   {
-                    _id: "u101",
-                    username: "Tal",
-                    fullname: "Tal Tarablus",
-                    imgUrl:
-                      "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+                    _id: 'u101',
+                    username: 'Tal',
+                    fullname: 'Tal Tarablus',
+                    imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
                   },
                 ],
-                labelIds: ["l101", "l102"],
+                labelIds: ['l101', 'l102'],
                 createdAt: 1590999730348,
                 dueDate: 1648249455832,
                 isDueDateDone: false,
                 byMember: {
-                  _id: "u101",
-                  username: "Tal",
-                  fullname: "Tal Tarablus",
-                  imgUrl:
-                    "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+                  _id: 'u101',
+                  username: 'Tal',
+                  fullname: 'Tal Tarablus',
+                  imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
                 },
                 style: {
-                  bgColor: "#26de81",
+                  bgColor: '#26de81',
                 },
               },
             ],
@@ -206,17 +202,17 @@ async function _createBoard() {
         ],
         activities: [
           {
-            id: "a101",
-            txt: "Changed Color",
+            id: 'a101',
+            txt: 'Changed Color',
             createdAt: 154514,
             byMember: {
-              _id: "u101",
-              fullname: "Abi Abambi",
-              imgUrl: "http://some-img",
+              _id: 'u101',
+              fullname: 'Abi Abambi',
+              imgUrl: 'http://some-img',
             },
             task: {
-              id: "c101",
-              title: "Replace Logo",
+              id: 'c101',
+              title: 'Replace Logo',
             },
           },
         ],
@@ -231,64 +227,64 @@ async function _createBoard() {
 function _createLabels() {
   return [
     {
-      title: "urgent",
+      title: 'urgent',
       id: utilService.makeId(),
-      color: "#61bd4f",
+      color: '#61bd4f',
     },
     {
-      title: "doing",
+      title: 'doing',
       id: utilService.makeId(),
-      color: "#f2d600",
+      color: '#f2d600',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#f2d600",
+      color: '#f2d600',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#ff9f1a",
+      color: '#ff9f1a',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#eb5a46",
+      color: '#eb5a46',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#c377e0",
+      color: '#c377e0',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#0079bf",
+      color: '#0079bf',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#00c2e0",
+      color: '#00c2e0',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#51e898",
+      color: '#51e898',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#ff78cb",
+      color: '#ff78cb',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#344563",
+      color: '#344563',
     },
     {
-      title: "",
+      title: '',
       id: utilService.makeId(),
-      color: "#b3bac5",
+      color: '#b3bac5',
     },
   ];
 }

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  props: ["board"],
+  props: ['board'],
 };
 </script>
 

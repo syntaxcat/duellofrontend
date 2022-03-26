@@ -14,12 +14,7 @@
 
       <div :class="['comment-frame', isShow]">
         <div class="comment-box">
-          <textarea
-            type="text"
-            placeholder="Write a comment..."
-            v-model="comment"
-            @click="add = !add"
-          ></textarea>
+          <textarea type="text" placeholder="Write a comment..." v-model="comment" @click="add = !add"></textarea>
 
           <button :class="['save-comment', isAllowed]">Save</button>
 
@@ -36,7 +31,7 @@
 </template>
 
 <script>
-import iconBase from "./icon-base.vue";
+import iconBase from './icon-base.vue';
 export default {
   props: {
     task: {
@@ -55,26 +50,26 @@ export default {
   data() {
     return {
       show: true,
-      comment: "",
+      comment: '',
       add: false,
     };
   },
   methods: {
     log() {
-      console.log("hi");
+      console.log('hi');
     },
   },
   computed: {
     showDetails() {
-      return this.show ? "Hide details" : "Show details";
+      return this.show ? 'Hide details' : 'Show details';
     },
     isAllowed() {
-      return this.comment ? "allowed" : "";
+      return this.comment ? 'allowed' : '';
     },
     isShow() {
-      if (!this.isFocus) return "";
-      else if (this.add) return "show";
-      else return "";
+      if (!this.isFocus) return '';
+      else if (this.add) return 'show';
+      else return '';
     },
   },
   components: { iconBase },

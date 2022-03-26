@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import mainHeader from "../components/main-header.vue";
-import boardList from "../components/board-list.vue";
-import createBoard from "../components/create-board.vue";
+import mainHeader from '../components/main-header.vue';
+import boardList from '../components/board-list.vue';
+import createBoard from '../components/create-board.vue';
 
 export default {
   data() {
@@ -28,7 +28,7 @@ export default {
     // if (!user) this.$router.push('/welcome')
     this.loggedinUser = this.$store.getters.user;
     const boards = await this.$store.dispatch({
-      type: "loadBoards",
+      type: 'loadBoards',
       filterBy: { userId: this.loggedinUser._id },
     });
     console.log(boards);
@@ -37,7 +37,7 @@ export default {
   methods: {
     async createBoard(newBoard) {
       const boardId = await this.$store.dispatch({
-        type: "createBoard",
+        type: 'createBoard',
         board: newBoard,
       });
       console.log(boardId);

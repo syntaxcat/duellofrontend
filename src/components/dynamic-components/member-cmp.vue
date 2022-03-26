@@ -23,9 +23,9 @@ export default {
     return {
       members: [
         {
-          _id: "u101",
-          fullname: "Tal Tarablus",
-          imgUrl: "https://www.google.com",
+          _id: 'u101',
+          fullname: 'Tal Tarablus',
+          imgUrl: 'https://www.google.com',
         },
       ],
     };

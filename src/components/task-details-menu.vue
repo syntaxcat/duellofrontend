@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     openModal(type) {
-      this.$emit("openModal", type);
+      this.$emit('openModal', type);
     },
     //   copyTask() {},
     //   archiveTask() {},

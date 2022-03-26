@@ -1,30 +1,18 @@
 <template>
   <section class="icon-base">
-    <svg
-      v-if="iconName === 'sticker'"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
+    <svg v-if="iconName === 'sticker'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
         d="M21.796 9.982C20.849 5.357 16.729 2 12 2 6.486 2 2 6.486 2 12c0 4.729 3.357 8.849 7.982 9.796a.988.988 0 0 0 .908-.272l10.633-10.633c.238-.238.34-.578.273-.909zM11 18a7.93 7.93 0 0 1 1.365-4.471 8.18 8.18 0 0 1 .978-1.186 8.211 8.211 0 0 1 1.184-.977 8.128 8.128 0 0 1 1.36-.738c.481-.203.986-.36 1.501-.466a8.112 8.112 0 0 1 2.17-.134l-8.529 8.529c-.013-.185-.029-.37-.029-.557zm-7-6c0-4.411 3.589-8 8-8 2.909 0 5.528 1.589 6.929 4.005a9.99 9.99 0 0 0-1.943.198c-.643.132-1.274.328-1.879.583a10.15 10.15 0 0 0-1.699.923c-.533.361-1.03.771-1.479 1.22s-.858.945-1.221 1.48c-.359.533-.67 1.104-.922 1.698A10.013 10.013 0 0 0 9 18c0 .491.048.979.119 1.461C6.089 18.288 4 15.336 4 12z"
       />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'more'"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
+    <svg v-else-if="iconName === 'more'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
         d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
       />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'rocket'"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg v-else-if="iconName === 'rocket'" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M20.92 2.38A15.72 15.72 0 0 0 17.5 2a8.26 8.26 0 0 0-6 2.06Q9.89 5.67 8.31 7.27c-1.21-.13-4.08-.2-6 1.74a1 1 0 0 0 0 1.41l11.3 11.32a1 1 0 0 0 1.41 0c1.95-2 1.89-4.82 1.77-6l3.21-3.2c3.19-3.19 1.74-9.18 1.68-9.43a1 1 0 0 0-.76-.73zm-2.36 8.75L15 14.67a1 1 0 0 0-.27.9 6.81 6.81 0 0 1-.54 3.94L4.52 9.82a6.67 6.67 0 0 1 4-.5A1 1 0 0 0 9.39 9s1.4-1.45 3.51-3.56A6.61 6.61 0 0 1 17.5 4a14.51 14.51 0 0 1 2.33.2c.24 1.43.62 5.04-1.27 6.93z"
       />
@@ -49,11 +37,7 @@
       <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'trello-block'"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 50 50"
-    >
+    <svg v-else-if="iconName === 'trello-block'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
       <path
         d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M21,36c0,1.1-0.9,2-2,2h-7 c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7c1.1,0,2,0.9,2,2V36z M40,24c0,1.1-0.9,2-2,2h-7c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7 c1.1,0,2,0.9,2,2V24z"
       />
@@ -73,11 +57,7 @@
       <line x1="5" y1="12" x2="19" y2="12" />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'pencil'"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
+    <svg v-else-if="iconName === 'pencil'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
         d="M4 21a1 1 0 0 0 .24 0l4-1a1 1 0 0 0 .47-.26L21 7.41a2 2 0 0 0 0-2.82L19.42 3a2 2 0 0 0-2.83 0L4.3 15.29a1.06 1.06 0 0 0-.27.47l-1 4A1 1 0 0 0 3.76 21 1 1 0 0 0 4 21zM18 4.41 19.59 6 18 7.59 16.42 6zM5.91 16.51 15 7.41 16.59 9l-9.1 9.1-2.11.52z"
       />
@@ -99,16 +79,8 @@
       />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'check'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      fill="currentColor"
-    >
-      <path
-        d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"
-      ></path>
+    <svg v-else-if="iconName === 'check'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
+      <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
     </svg>
 
     <svg
@@ -229,13 +201,7 @@
       </g>
     </svg>
 
-    <svg
-      v-else-if="iconName === 'plus'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      fill="currentColor"
-    >
+    <svg v-else-if="iconName === 'plus'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
     </svg>
 
@@ -246,9 +212,7 @@
       height="24"
       fill="currentColor"
     >
-      <path
-        d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"
-      />
+      <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z" />
     </svg>
     <svg
       v-else-if="iconName === 'clock'"
@@ -264,13 +228,7 @@
       <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path>
     </svg>
 
-    <svg
-      v-else-if="iconName === 'description'"
-      width="24"
-      height="24"
-      version="1.2"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg v-else-if="iconName === 'description'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -283,7 +241,7 @@
 
 <script>
 export default {
-  props: ["iconName"],
+  props: ['iconName'],
 };
 </script>
 

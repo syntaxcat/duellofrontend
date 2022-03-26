@@ -18,12 +18,7 @@
           <div v-if="!isEditing" @click="editMode">{{ boardName }}</div>
 
           <button @click="setFavorite">
-            <img
-              :class="isFavorite"
-              class="starred"
-              src="../assets/icons/bx-star.svg"
-              alt="star"
-            />
+            <img :class="isFavorite" class="starred" src="../assets/icons/bx-star.svg" alt="star" />
           </button>
           |
         </div>
@@ -51,12 +46,12 @@
 </template>
 
 <script>
-import boardMenu from "./board-menu.vue";
+import boardMenu from './board-menu.vue';
 export default {
   components: { boardMenu },
   data() {
     return {
-      boardName: "Duello",
+      boardName: 'Duello',
       isEditing: false,
       isFull: false,
       isMenuOpen: false,
@@ -77,7 +72,7 @@ export default {
   },
   computed: {
     isFavorite() {
-      return this.isFull ? "full-star" : "empty-star";
+      return this.isFull ? 'full-star' : 'empty-star';
     },
     width() {
       return this.boardName.length;

@@ -1,9 +1,9 @@
-import { utilService } from "../../services/util.service.js";
-import { userService } from "../../services/user.service.js";
+import { utilService } from '../../services/util.service.js';
+import { userService } from '../../services/user.service.js';
 
 export const userStore = {
   state: {
-    loggedinUser: utilService.loadFromSessionStorage("user"),
+    loggedinUser: utilService.loadFromSessionStorage('user'),
   },
   getters: {
     user(state) {
@@ -26,16 +26,16 @@ export const userStore = {
     async login(context, { user }) {
       const loggedinUser = await userService.login(user);
       if (!loggedinUser) return;
-      await utilService.saveToSessionStorage("user", loggedinUser);
-      context.commit({ type: "setUser", user: loggedinUser });
+      await utilService.saveToSessionStorage('user', loggedinUser);
+      context.commit({ type: 'setUser', user: loggedinUser });
       return loggedinUser;
     },
     async signup(context, { user }) {
       const loggedinUser = await userService.signup(user);
       console.log(loggedinUser);
       if (!loggedinUser) return;
-      await utilService.saveToSessionStorage("user", loggedinUser);
-      context.commit({ type: "setUser", loggedinUser });
+      await utilService.saveToSessionStorage('user', loggedinUser);
+      context.commit({ type: 'setUser', loggedinUser });
       return loggedinUser;
     },
   },

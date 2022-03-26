@@ -21,16 +21,16 @@ export default {
   data() {
     return {
       addedGroup: false,
-      title: "",
+      title: '',
     };
   },
   methods: {
     addGroup() {
       if (!this.title) return;
 
-      this.$emit("addGroup", this.title);
+      this.$emit('addGroup', this.title);
 
-      this.title = "";
+      this.title = '';
     },
   },
 };

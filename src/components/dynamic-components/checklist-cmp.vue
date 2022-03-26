@@ -21,12 +21,12 @@ export default {
     return {
       checklists: [
         {
-          id: "YEhmF",
-          title: "Checklist",
+          id: 'YEhmF',
+          title: 'Checklist',
           todos: [
             {
-              id: "212jX",
-              title: "To Do 1",
+              id: '212jX',
+              title: 'To Do 1',
               isDone: false,
             },
           ],
