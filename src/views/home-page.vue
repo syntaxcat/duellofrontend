@@ -36,9 +36,54 @@
           </div>
 
           <div>
-            <div class="letter">S</div>
-            <span>Sprint</span>
-            <icon-base iconName="presentation" :class="[direction]"  @click="isOpen = !isOpen" />
+            <div :class="['container', direction]" @click="isOpen = !isOpen">
+              <div class="letter">S</div>
+              <span>Sprint</span>
+              <icon-base iconName="presentation" class="presentation" />
+            </div>
+
+            <ul :class="['dropdown', direction]">
+              <li>
+                <div class="li-icon">
+                  <icon-base iconName="board" />
+                </div>
+                <span>Boards</span>
+              </li>
+              <li>
+                <div class="li-icon">
+                  <icon-base iconName="hart" />
+                </div>
+                <span>Highlights</span>
+              </li>
+              <li>
+                <div class="li-icon">
+                  <icon-base iconName="views" />
+                </div>
+                <span>Views</span>
+                <div class="icon-plus">
+                  <icon-base iconName="forward" />
+                </div>
+              </li>
+              <li>
+                <div class="li-icon">
+                  <icon-base iconName="members" />
+                </div>
+                <span>Members</span>
+                <div class="icon-plus">
+                  <icon-base iconName="plus-s" />
+                  <icon-base iconName="forward" />
+                </div>
+              </li>
+              <li>
+                <div class="li-icon">
+                  <icon-base iconName="settings" />
+                </div>
+                <span>Settings</span>
+                <div class="icon-plus">
+                  <icon-base iconName="forward" />
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -65,7 +110,7 @@ export default {
     return {
       loggedinUser: null,
       boards: null,
-      isOpen: false
+      isOpen: false,
     };
   },
   async created() {
@@ -87,10 +132,10 @@ export default {
       this.$router.push({ path: `/board/${boardId}` });
     },
   },
-  computed:{
-    direction(){
-      return this.isOpen ? 'open' : ''
-    }
+  computed: {
+    direction() {
+      return this.isOpen ? 'open' : '';
+    },
   },
   components: {
     mainHeader,
