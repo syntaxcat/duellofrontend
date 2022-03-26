@@ -47,6 +47,7 @@ export default {
       this.title = '';
     },
     showForm() {
+      this.title = '';
       this.addedGroup = true;
     },
   },
