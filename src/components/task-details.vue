@@ -22,12 +22,17 @@
       <div class="content-displayed">
         <div class="container">
           <div class="member-list">
-            <ul>
-              <h1>memeber!</h1>
-              <li v-for="member in taskToEdit.members" :key="member._id">
-                <img :src="member.avatarUrl" />
-              </li>
-            </ul>
+            <h2>Memebers</h2>
+            <div class="member-container">
+              <ul>
+                <li v-for="member in taskToEdit.members" :key="member._id">
+                  <img :src="member.imgUrl" />
+                </li>
+              </ul>
+              <button class="add-btn" @click="toggleMemberModal">
+                <icon-base iconName="plus" />
+              </button>
+            </div>
           </div>
           <div class="labels-for-display" v-if="taskToEdit.labels.length >= 1">
             <h2>Labels</h2>
@@ -37,9 +42,7 @@
                 v-for="label in taskToEdit.labels"
                 :key="label.id"
                 :style="'background-color:' + label.color"
-              >
-                {{ label.title }}
-              </div>
+              >{{ label.title }}</div>
               <button class="add-btn" @click="toggleLabelsModal">
                 <icon-base iconName="plus" />
               </button>
@@ -69,6 +72,7 @@
           :date="taskToEdit.dueDate"
           @closeCalendar="closeCalendar"
           @closeLabel="closeLabel"
+          @addMember="addMember"
         />
       </div>
     </div>
@@ -112,9 +116,7 @@ export default {
   },
   async created() {
     const user = await this.$store.getters.user;
-    console.log(user);
     this.loggedinUser = user;
-    console.log(this.loggedinUser);
     const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
     this.taskToEdit = { ...res.task };
     this.group = { ...res.group };
@@ -131,14 +133,14 @@ export default {
     formatDate(dateString) {
       return new Date(dateString).toDateString();
     },
-    joinTask() {
-      console.log('adding memeber');
+    async joinTask() {
       this.taskToEdit.members.unshift(this.loggedinUser);
       this.$store.dispatch({
         type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify({ id: this.taskToEdit.id, memebers: this.taskToEdit.memebers })),
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
+
     },
     toggleCalendar() {
       if (this.cmp === null) {
@@ -150,6 +152,13 @@ export default {
     toggleLabelsModal() {
       if (this.cmp === null) {
         this.openModal('label-cmp');
+      } else {
+        this.closeLabel();
+      }
+    },
+    toggleMemberModal() {
+      if (this.cmp === null) {
+        this.openModal('member-cmp');
       } else {
         this.closeLabel();
       }
@@ -175,11 +184,11 @@ export default {
       this.$emit('closeTaskDetails');
     },
     // joinTask() { },
-    makeChecklist() {},
-    addAttachment() {},
-    changeCover() {},
-    copyTask() {},
-    archiveTask() {},
+    makeChecklist() { },
+    addAttachment() { },
+    changeCover() { },
+    copyTask() { },
+    archiveTask() { },
 
     async saveDate(date) {
       this.cmp = null;
@@ -193,6 +202,19 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+    addMember(member) {
+      const idx = this.taskToEdit.members.findIndex((mmbr) => mmbr._id === member._id);
+      if (idx === -1) {
+        this.taskToEdit.members.unshift(member);
+      } else {
+        this.taskToEdit.members.splice(idx, 1);
+      }
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId
+      })
     },
 
     async removeDate() {
@@ -227,7 +249,6 @@ export default {
       return this.$store.getters.board;
     },
     isMember() {
-      console.log(this.loggedinUser);
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
     // loggedinUser() {

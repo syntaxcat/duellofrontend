@@ -1,3 +1,19 @@
 .members-cmp {
-  background-color: lightgoldenrodyellow;
+  width: rem(305px);
+  background-color: white;
+  padding: 0 12px 12px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+  .memeber-list{
+    padding: 0px;
+    list-style-type: none;
+    li{
+      display: flex;
+      img{
+        width: 30px;
+        border-radius: 50%;
+      }
+    }
+  }
 }

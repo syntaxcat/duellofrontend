@@ -18,19 +18,25 @@
       ref="textarea"
       :disabled="!isEditing"
       @blur="saveEdit(task)"
-    >
-    </textarea>
-    <span v-if="task.dueDate" class="due-date">
+    ></textarea>
+    <div class="task-extras">
+      <div>
+
+        <span v-if="task.dueDate" class="due-date">
       <icon-base iconName="clock" />
       {{ formatDate(this.task.dueDate) }}
     </span>
-
     <button @click="removeTask(task.id, group.id)">
       <img src="../assets/icons/x.svg" alt="delete" />
     </button>
     <button @click.stop="editTask(task, group.id)">
       <img src="../assets/icons/bx-pencil.svg" alt="edit" />
     </button>
+      </div>
+    <div class="member-list">
+      <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
+    </div>
+      </div>
   </section>
 </template>
 
