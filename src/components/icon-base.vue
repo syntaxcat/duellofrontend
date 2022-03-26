@@ -54,7 +54,11 @@
       <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
 
-    <svg v-else-if="iconName === 'trello-block'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+    <svg
+      v-else-if="iconName === 'trello-block'"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 50 50"
+    >
       <path
         d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M21,36c0,1.1-0.9,2-2,2h-7 c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7c1.1,0,2,0.9,2,2V36z M40,24c0,1.1-0.9,2-2,2h-7c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7 c1.1,0,2,0.9,2,2V24z"
       />
@@ -96,8 +100,14 @@
       />
     </svg>
 
-    <svg v-else-if="iconName === 'check'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
-      <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+    <svg
+      v-else-if="iconName === 'check'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="currentColor"
+    >
+      <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z" />
     </svg>
 
     <svg
@@ -218,8 +228,14 @@
       </g>
     </svg>
 
-    <svg v-else-if="iconName === 'plus'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
-      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+    <svg
+      v-else-if="iconName === 'plus'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="currentColor"
+    >
+      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
     </svg>
 
     <svg
@@ -241,11 +257,17 @@
     >
       <path
         d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
-      ></path>
-      <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path>
+      />
+      <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z" />
     </svg>
 
-    <svg v-else-if="iconName === 'description'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      v-else-if="iconName === 'description'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -334,7 +356,7 @@
       viewBox="0 0 24 24"
       fill="currentColor"
     >
-      <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+      <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z" />
     </svg>
     <svg
       v-else-if="iconName === 'Plus'"
@@ -344,7 +366,18 @@
       viewBox="0 0 24 24"
       fill="currentColor"
     >
-      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
+    </svg>
+    <svg
+      v-else-if="iconName === 'check'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+      />
     </svg>
   </section>
 </template>

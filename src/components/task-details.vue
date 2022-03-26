@@ -1,87 +1,92 @@
 <template>
-  <section class="task-details" v-if="taskToEdit">
-    <button @click="closeTaskDetails">
-      <img src="../assets/icons/x.svg" alt="close" />
-    </button>
-    <div class="task-header-container">
-      <div class="cover-container">
-        <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
-      </div>
-      <div class="task-details-container">
-        <icon-base class="card-header" iconName="cardB" />
-        <textarea type="text" v-model="taskToEdit.title"></textarea>
-        <div class="info-in-group">
-          <p>
-            in list
-            <span>{{ group.title }}</span>
-          </p>
+    <div class="details-bc">
+  <div class="task-details" v-if="taskToEdit">
+      <div class="task-header-container">
+        <div class="cover-container">
+          <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
+          <label @click="closeTaskDetails">
+          <icon-base iconName="x"/>
+            </label>
+        </div>
+        <div class="task-details-container">
+          <icon-base class="card-header" iconName="cardB" />
+          <textarea type="text" v-model="taskToEdit.title"></textarea>
+          <div class="info-in-group">
+            <p>
+              in list
+              <span>{{ group.title }}</span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="main-container">
-      <div class="content-displayed">
-        <div class="container">
-          <div v-if="taskToEdit.members" class="member-list">
-            <h2>Memebers</h2>
-            <div class="member-container">
-              <ul>
-                <li v-for="member in taskToEdit.members" :key="member._id">
-                  <img :src="member.imgUrl" />
-                </li>
-              </ul>
-              <button class="add-btn" @click="toggleMemberModal">
-                <icon-base iconName="plus" />
-              </button>
-            </div>
-          </div>
-          <div class="labels-for-display" v-if="labels.length >= 1">
-            <h2>Labels</h2>
-            <div class="labels-container">
-              <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
-                {{ label.title }}
+      <div class="main-container">
+        <div class="content-displayed">
+          <div class="container">
+            <div v-if="taskToEdit.members" class="member-list">
+              <h2>Memebers</h2>
+              <div class="member-container">
+                <ul>
+                  <li v-for="member in taskToEdit.members" :key="member._id">
+                    <img :src="member.imgUrl" />
+                  </li>
+                </ul>
+                <button class="add-btn" @click="toggleMemberModal">
+                  <icon-base iconName="plus" />
+                </button>
               </div>
-              <button class="add-btn" @click="toggleLabelsModal">
-                <icon-base iconName="plus" />
-              </button>
+            </div>
+            <div class="labels-for-display" v-if="labels.length >= 1">
+              <h2>Labels</h2>
+              <div class="labels-container">
+                <div
+                  class="label"
+                  v-for="label in labels"
+                  :key="label.id"
+                  :style="'background-color:' + label.color"
+                >{{ label.title }}</div>
+                <button class="add-btn" @click="toggleLabelsModal">
+                  <icon-base iconName="plus" />
+                </button>
+              </div>
+            </div>
+            <div class="dueDate" v-if="taskToEdit.dueDate" @click="toggleCalendar">
+              <h2>Due date</h2>
+              <span>
+                {{ formatDate(taskToEdit.dueDate) }}
+                <icon-base iconName="chevron-down" />
+              </span>
             </div>
           </div>
-          <div class="dueDate" v-if="taskToEdit.dueDate" @click="toggleCalendar">
-            <h2>Due date</h2>
-            <span>
-              {{ formatDate(taskToEdit.dueDate) }}
-              <icon-base iconName="chevron-down" />
-            </span>
-          </div>
+          <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
+          <activity-details
+            :task="taskToEdit"
+            :user="loggedinUser"
+            @save="saveComment"
+            @edit="editComment"
+            @deleteComment="deleteComment"
+          />
         </div>
-        <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-        <activity-details
-          :task="taskToEdit"
-          :user="loggedinUser"
-          @save="saveComment"
-          @edit="editComment"
-          @deleteComment="deleteComment"
-        />
-      </div>
-      <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" />
-      <div class="dynamic-cmp">
-        <component
-          :is="cmp"
-          @openModal="openModal"
-          :board="board"
-          :task="taskToEdit"
-          @saveDate="saveDate"
-          @removeDate="removeDate"
-          @addLabel="addLabel"
-          @updateBoardLabel="updateBoardLabel"
-          @createBoardLabel="createBoardLabel"
-          :date="taskToEdit.dueDate"
-          @closeCalendar="closeCalendar"
-          @closeLabel="closeLabel"
-          @addMember="addMember"
-        />
+        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" />
+        <div class="dynamic-cmp">
+          <component
+            :is="cmp"
+            @openModal="openModal"
+            :board="board"
+            :task="taskToEdit"
+            @saveDate="saveDate"
+            @removeDate="removeDate"
+            @addLabel="addLabel"
+            @updateBoardLabel="updateBoardLabel"
+            @createBoardLabel="createBoardLabel"
+            :date="taskToEdit.dueDate"
+            @closeCalendar="closeCalendar"
+            @closeLabel="closeLabel"
+            @addMember="addMember"
+          />
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -94,6 +99,7 @@ import calendarCmp from './dynamic-components/calendar-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
 import iconBase from './icon-base.vue';
+import IconBase from './icon-base.vue';
 
 export default {
   props: {
@@ -211,11 +217,11 @@ export default {
     closeTaskDetails() {
       this.$emit('closeTaskDetails');
     },
-    makeChecklist() {},
-    addAttachment() {},
-    changeCover() {},
-    copyTask() {},
-    archiveTask() {},
+    makeChecklist() { },
+    addAttachment() { },
+    changeCover() { },
+    copyTask() { },
+    archiveTask() { },
 
     async saveDate(date) {
       this.cmp = null;
@@ -313,6 +319,7 @@ export default {
     descriptionDetails,
     activityDetails,
     iconBase,
-  },
+    IconBase
+},
 };
 </script>
