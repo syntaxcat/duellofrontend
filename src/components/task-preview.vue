@@ -28,7 +28,7 @@
           <icon-base iconName="clock" />
           {{ formatDate(this.task.dueDate) }}
         </span>
-        <button @click="removeTask(task.id, group.id)">
+        <button @click.stop="removeTask(task.id, group.id)">
           <img src="../assets/icons/x.svg" alt="delete" />
         </button>
       </div>
