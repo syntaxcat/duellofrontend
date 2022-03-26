@@ -1,7 +1,7 @@
 <template>
   <section class="members-cmp">
     <header>
-      <h1>Members</h1>
+      <h2>Members</h2>
       <button @click="close">
         <icon-base iconName="x" />
       </button>
@@ -14,14 +14,14 @@
         <div>
           <span>{{ member.fullname }}</span>
         </div>
-        <label v-if="test(member._id)" ><icon-base iconName="check"/></label>
+        <label v-if="test(member._id)"><icon-base iconName="check" /></label>
       </li>
     </ul>
   </section>
 </template>
 <script>
-import iconBase from "../icon-base.vue";
-import IconBase from "../icon-base.vue";
+import iconBase from '../icon-base.vue';
+import IconBase from '../icon-base.vue';
 export default {
   props: {
     board: {
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      members: this.board.members
+      members: this.board.members,
     };
   },
   methods: {
@@ -43,17 +43,16 @@ export default {
       this.$emit('closeLabel');
     },
     addMember(member) {
-      console.log('adding member...')
-      this.$emit('addMember', member)
+      console.log('adding member...');
+      this.$emit('addMember', member);
     },
     isMemberSelected(memberId) {
-    return this.task.members.some(member => member.id === memberId)
+      return this.task.members.some((member) => member.id === memberId);
     },
-    test(memberId){
-      console.log(memberId)
-      return this.task.members.some(member => member._id===memberId)
-    }
+    test(memberId) {
+      return this.task.members.some((member) => member._id === memberId);
+    },
   },
-  components: { iconBase, IconBase }
+  components: { iconBase, IconBase },
 };
 </script>
