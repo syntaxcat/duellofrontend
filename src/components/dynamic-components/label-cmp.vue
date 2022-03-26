@@ -18,7 +18,7 @@
           <icon-base iconName="check" v-if="editingLabel.color === option" />
         </li>
       </ul>
-      <button @click="updateLabel">Save</button>
+      <button class="save-btn" @click="updateLabel">Save</button>
     </div>
   </section>
 
@@ -41,7 +41,7 @@
           <icon-base iconName="check" v-if="creatingLabel.color === option" />
         </li>
       </ul>
-      <button @click="createLabel">Create</button>
+      <button class="create-btn" @click="createLabel">Create</button>
     </div>
   </section>
 
@@ -67,7 +67,7 @@
         </li>
       </ul>
     </div>
-    <button @click="create">Create a new label</button>
+    <button class="createNew-btn" @click="create">Create a new label</button>
   </section>
 </template>
 <script>
