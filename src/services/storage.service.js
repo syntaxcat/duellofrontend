@@ -18,7 +18,7 @@ async function get(entityType, entityId) {
 }
 
 async function post(entityType, newEntity) {
-  if(!newEntity._id) newEntity._id = _makeId();
+  if (!newEntity._id) newEntity._id = _makeId();
   const entities = await query(entityType);
   entities.push(newEntity);
   _save(entityType, entities);

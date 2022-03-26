@@ -37,7 +37,9 @@
                 v-for="label in taskToEdit.labels"
                 :key="label.id"
                 :style="'background-color:' + label.color"
-              >{{ label.title }}</div>
+              >
+                {{ label.title }}
+              </div>
               <button class="add-btn" @click="toggleLabelsModal">
                 <icon-base iconName="plus" />
               </button>
@@ -110,27 +112,27 @@ export default {
       isFocus: true,
     };
   },
-    async created() {
-      const user = await this.$store.getters.user
-      console.log(user)
-      this.loggedinUser = user
-      console.log(this.loggedinUser)
-      const res = await taskService.getById(
-        this.taskId,
-        this.groupId,
-        this.boardId
-      );
-      this.taskToEdit = { ...res.task };
-      this.group = { ...res.group };
-    },
+  async created() {
+    const user = await this.$store.getters.user;
+    console.log(user);
+    this.loggedinUser = user;
+    console.log(this.loggedinUser);
+    const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
+    this.taskToEdit = { ...res.task };
+    this.group = { ...res.group };
+  },
   methods: {
     formatDate(dateString) {
       return new Date(dateString).toDateString();
     },
     joinTask() {
-      console.log('adding memeber')
-      this.taskToEdit.members.unshift(this.loggedinUser)
-      this.$store.dispatch({ type: 'updateTask', taskPartial: JSON.parse(JSON.stringify({ id: this.taskToEdit.id, memebers: this.taskToEdit.memebers })), groupId: this.groupId })
+      console.log('adding memeber');
+      this.taskToEdit.members.unshift(this.loggedinUser);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify({ id: this.taskToEdit.id, memebers: this.taskToEdit.memebers })),
+        groupId: this.groupId,
+      });
     },
     toggleCalendar() {
       if (this.cmp === null) {
@@ -167,11 +169,11 @@ export default {
       this.$emit('closeTaskDetails');
     },
     // joinTask() { },
-    makeChecklist() { },
-    addAttachment() { },
-    changeCover() { },
-    copyTask() { },
-    archiveTask() { },
+    makeChecklist() {},
+    addAttachment() {},
+    changeCover() {},
+    copyTask() {},
+    archiveTask() {},
 
     async saveDate(date) {
       this.cmp = null;
@@ -218,10 +220,10 @@ export default {
     board() {
       return this.$store.getters.board;
     },
-    isMember(){
-      console.log(this.loggedinUser)
-      return this.taskToEdit.members.some(member => member._id===this.loggedinUser._id)
-    }
+    isMember() {
+      console.log(this.loggedinUser);
+      return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
+    },
     // loggedinUser() {
     //   return this.$store.getters.user;
     // },

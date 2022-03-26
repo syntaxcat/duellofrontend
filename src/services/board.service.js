@@ -125,7 +125,7 @@ async function _createBoard() {
                 id: 'c101',
                 title: 'Replace logo',
                 labels: [],
-                members: [],             
+                members: [],
               },
               {
                 id: 'c102',

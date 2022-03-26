@@ -69,10 +69,10 @@ export default {
     openModal(type) {
       this.$emit('openModal', type);
     },
-    joinTask(){
+    joinTask() {
       // console.log('join task')
-      this.$emit('joinTask')
-    }
+      this.$emit('joinTask');
+    },
     //   copyTask() {},
     //   archiveTask() {},
   },

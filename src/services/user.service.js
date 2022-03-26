@@ -30,11 +30,11 @@ async function _createUsers() {
   const users = await _query();
   if (!users || !users.length) {
     const user = {
-      _id: "u101",
-      username: "user",
-      fullname: "user",
+      _id: 'u101',
+      username: 'user',
+      fullname: 'user',
       password: 123,
-      avatarUrl:'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp'
+      avatarUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
     };
     storageService.post(USER_KEY, user);
   }
