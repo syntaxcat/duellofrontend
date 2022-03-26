@@ -10,8 +10,8 @@
     <h2>Board members</h2>
     <ul class="memeber-list">
       <li v-for="member in members" :key="member.id" @click="addMember(member)">
+      <div>
         <img :src="member.imgUrl" />
-        <div>
           <span>{{ member.fullname }}</span>
         </div>
         <label v-if="test(member._id)"><icon-base iconName="check" /></label>

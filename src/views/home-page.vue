@@ -117,6 +117,8 @@ export default {
     };
   },
   async created() {
+    // const user = await this.$store.dispatch('loadUser')
+    if (!this.$store.getters.user) this.$router.push('/welcome')
     this.loggedinUser = this.$store.getters.user;
     const boards = await this.$store.dispatch({
       type: 'loadBoards',

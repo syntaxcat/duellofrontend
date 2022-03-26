@@ -4,14 +4,14 @@
       <div class="task-header-container">
         <div v-if="isCover" class="cover-container">
           <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
-          <label @click="closeTaskDetails">
+          <button @click="closeTaskDetails">
             <icon-base iconName="x" />
-          </label>
+          </button>
         </div>
         <div v-else>
-          <label @click="closeTaskDetails">
+          <button @click="closeTaskDetails">
             <icon-base iconName="x" />
-          </label>
+          </button>
         </div>
         <div class="task-details-container">
           <icon-base class="card-header" iconName="cardB" />
