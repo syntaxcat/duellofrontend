@@ -25,8 +25,7 @@
       v-if="task.dueDate"
       class="due-date"
     >
-      <!-- <icon-base iconName="clock" /> -->
-
+      <icon-base iconName="clock" />
       {{formatDate(this.task.dueDate)}}
     </span>
 
