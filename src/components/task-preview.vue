@@ -28,9 +28,9 @@
           <icon-base iconName="clock" />
           {{ formatDate(this.task.dueDate) }}
         </span>
-        <button @click.stop="removeTask(task.id, group.id)">
+        <!-- <button @click.stop="removeTask(task.id, group.id)">
           <img src="../assets/icons/x.svg" alt="delete" />
-        </button>
+        </button> -->
       </div>
       <div class="member-list">
         <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
