@@ -20,6 +20,14 @@ async function addTask(taskTitle, groupId, boardId) {
     comments: [],
     activities: [],
     checklist: [],
+    style: {
+      cover: {
+        type: '',
+        style: '',
+        imgUrl: '',
+        color: ''
+      }
+    }
   };
   const group = await _findGroup(groupId, boardId);
   group.tasks.push(task);

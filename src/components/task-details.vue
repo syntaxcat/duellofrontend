@@ -45,12 +45,9 @@
             <div class="labels-for-display" v-if="labels.length >= 1">
               <h2>Labels</h2>
               <div class="labels-container">
-                <div
-                  class="label"
-                  v-for="label in labels"
-                  :key="label.id"
-                  :style="'background-color:' + label.color"
-                >{{ label.title }}</div>
+                <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
+                  {{ label.title }}
+                </div>
                 <button class="add-btn" @click="toggleLabelsModal">
                   <icon-base iconName="plus" />
                 </button>
@@ -65,6 +62,9 @@
             </div>
           </div>
           <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
+          <!-- <div class="attachment-container">
+            <attachment-cmp />
+          </div> -->
           <activity-details
             :task="taskToEdit"
             :user="loggedinUser"
@@ -73,12 +73,7 @@
             @deleteComment="deleteComment"
           />
         </div>
-        <task-details-menu
-          :isMember="isMember"
-          @joinTask="joinTask"
-          @openModal="openModal"
-          @removeTask="removeTask"
-        />
+        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" @removeTask="removeTask" />
         <div class="dynamic-cmp">
           <component
             :is="cmp"
@@ -247,22 +242,30 @@ export default {
       this.$emit('closeTaskDetails');
     },
     setCoverColor(color) {
-      this.taskToEdit.style.cover.type = 'color'
-      this.taskToEdit.style.cover.color = color
-      if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid'
-      this.$store.dispatch({ type: 'updateTask', taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)), groupId: this.groupId })
+      this.taskToEdit.style.cover.type = 'color';
+      this.taskToEdit.style.cover.color = color;
+      if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid';
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
     },
     setCoverImg(imgUrl) {
-      this.taskToEdit.style.cover.type = 'img'
-      this.taskToEdit.style.cover.imgUrl = imgUrl
-      if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid'
-      this.$store.dispatch({ type: 'updateTask', taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)), groupId: this.groupId })
+      this.taskToEdit.style.cover.type = 'img';
+      this.taskToEdit.style.cover.imgUrl = imgUrl;
+      if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid';
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
     },
-    makeChecklist() { },
-    addAttachment() { },
-    changeCover() { },
-    copyTask() { },
-    archiveTask() { },
+    makeChecklist() {},
+    addAttachment() {},
+    changeCover() {},
+    copyTask() {},
+    archiveTask() {},
 
     async saveDate(date) {
       this.cmp = null;
@@ -366,17 +369,16 @@ export default {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
     isCover() {
-      console.log(this.taskToEdit)
-      if(this.taskToEdit.style.cover.type) return true
+      console.log(this.taskToEdit);
+      if (this.taskToEdit.style.cover.type) return true;
       return false;
     },
     coverStyle() {
-      if(this.taskToEdit.style.cover.type === 'color'){
-        return `background-color: ${this.taskToEdit.style.cover.color}`
-      }else if(this.taskToEdit.style.cover.type === 'img'){
-        return `background-image: url(${this.taskToEdit.style.cover.imgUrl}); max-height: 160px `
-      }
-      else return '';
+      if (this.taskToEdit.style.cover.type === 'color') {
+        return `background-color: ${this.taskToEdit.style.cover.color}`;
+      } else if (this.taskToEdit.style.cover.type === 'img') {
+        return `background-image: url(${this.taskToEdit.style.cover.imgUrl}); max-height: 160px `;
+      } else return '';
     },
   },
   components: {
