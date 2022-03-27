@@ -53,13 +53,15 @@
 
     .add-task-btn {
       display: flex;
+      margin: auto;
       align-items: center;
       background-color: transparent;
       border: none;
       color: $boardAddClr;
       font-size: rem(14px);
       height: rem(38px);
-      width: 100%;
+      width: 94%;
+      // width: rem(272px);
       &:first-child {
         margin-bottom: 5px;
         // background-color: aqua;
@@ -84,18 +86,33 @@
     line-height: rem(40px);
     // width: rem(40px) ;
     // padding: 10px 8px;
-
+    button {
+      margin-right: 8px;
+      // padding: 10px 10px 10px 10px;
+      //  background-color: #0179bf;
+      align-self: center;
+      .icon-base svg {
+        //  line-height: 18px;
+        width: 18px;
+        height: 18px;
+        padding: 3px;
+        //  stroke: $menuTitleClr;
+      }
+      // width: 20px;
+    }
     .title-container {
       flex-grow: 1;
 
       input {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin-left: 16px;
+        margin-left: 8px;
+        padding: 4px 11px;
         font-size: rem(14px);
-        width: 80%;
+        width: 225px;
         background-color: transparent;
         border-color: transparent;
         font-weight: 600;
+        // background-color: #172b4d;
         // font-size: rem(20px);
         color: $menuTitleClr;
       }

@@ -6,11 +6,46 @@
       />
     </svg>
 
-    <svg v-else-if="iconName === 'more'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path
-        d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-      />
-    </svg>
+<svg v-else-if="iconName === 'more'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 32.055 32.055" style="enable-background:new 0 0 32.055 32.055;" xml:space="preserve">
+<g>
+	<path d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967
+		C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967
+		s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967
+		c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
 
     <svg v-else-if="iconName === 'rocket'" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -406,18 +441,6 @@
       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
     </svg>
     <svg
-      v-else-if="iconName === 'check'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
-      />
-    </svg>
-
-    <svg
       v-else-if="iconName === 'user'"
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -531,8 +554,13 @@
       />
     </svg>
 
-    <svg v-else-if="iconName === 'archive'" xmlns="http://www.w3.org/2000/svg" width="24"
-      height="24" viewBox="0 0 24 24">
+    <svg
+      v-else-if="iconName === 'archive'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
       <path
         d="M20 3H4a2 2 0 0 0-2 2v2a2 2 0 0 0 1 1.72V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.72A2 2 0 0 0 22 7V5a2 2 0 0 0-2-2zM4 5h16v2H4zm1 14V9h14v10z"
       />

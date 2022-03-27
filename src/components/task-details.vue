@@ -4,23 +4,25 @@
       <div class="task-header-container">
         <div v-if="isCover" class="cover-container">
           <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
-          <label @click="closeTaskDetails">
+          <button class="details-btn" @click="closeTaskDetails">
             <icon-base iconName="x" />
-          </label>
+          </button>
         </div>
         <div v-else>
-          <label @click="closeTaskDetails">
+          <button class="details-btn" @click="closeTaskDetails">
             <icon-base iconName="x" />
-          </label>
+          </button>
         </div>
         <div class="task-details-container">
           <icon-base class="card-header" iconName="cardB" />
-          <textarea type="text" v-model="taskToEdit.title"></textarea>
+          <div>
+            <textarea type="text" v-model="taskToEdit.title"></textarea>
           <div class="info-in-group">
             <p>
               in list
               <span>{{ group.title }}</span>
             </p>
+              </div>
           </div>
         </div>
       </div>
@@ -68,7 +70,7 @@
             @deleteComment="deleteComment"
           />
         </div>
-        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" />
+        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" @removeTask="removeTask" />
         <div class="dynamic-cmp">
           <component
             :is="cmp"
@@ -308,6 +310,11 @@ export default {
         groupId: this.groupId,
       });
     },
+    removeTask(){
+      console.log('removing...')
+      this.$store.dispatch({type:'removeTask', taskId: this.taskId, groupId:this.groupId})
+      this.closeTaskDetails()
+    }
   },
   computed: {
     labels() {

@@ -1,27 +1,27 @@
 <template>
   <section class="members-cmp">
     <header>
-      <h1>Members</h1>
+      <h2>Members</h2>
       <button @click="close">
         <icon-base iconName="x" />
       </button>
     </header>
-    <input type="search" placeholder="Search members..." />
-    <h2>Board members</h2>
-    <ul class="memeber-list">
-      <li v-for="member in members" :key="member.id" @click="addMember(member)">
-        <img :src="member.imgUrl" />
-        <div>
-          <span>{{ member.fullname }}</span>
-        </div>
-        <label v-if="test(member._id)" ><icon-base iconName="check"/></label>
-      </li>
-    </ul>
+    <div class="main-content">
+      <input type="search" placeholder="Search members..." v-model="searchMember" />
+      <h2>Board members</h2>
+      <ul class="memeber-list">
+        <li v-for="member in filteredMembers" :key="member.id" @click="addMember(member)">
+          <img :src="member.imgUrl" />
+          <span class="member-name">{{ member.fullname }}</span>
+          <label v-if="test(member._id)"><icon-base iconName="check" /></label>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 <script>
-import iconBase from "../icon-base.vue";
-import IconBase from "../icon-base.vue";
+import iconBase from '../icon-base.vue';
+import IconBase from '../icon-base.vue';
 export default {
   props: {
     board: {
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      members: this.board.members
+      searchMember: '',
     };
   },
   methods: {
@@ -43,17 +43,23 @@ export default {
       this.$emit('closeLabel');
     },
     addMember(member) {
-      console.log('adding member...')
-      this.$emit('addMember', member)
+      console.log('adding member...');
+      this.$emit('addMember', member);
     },
     isMemberSelected(memberId) {
-    return this.task.members.some(member => member.id === memberId)
+      return this.task.members.some((member) => member.id === memberId);
     },
-    test(memberId){
-      console.log(memberId)
-      return this.task.members.some(member => member._id===memberId)
-    }
+    test(memberId) {
+      return this.task.members.some((member) => member._id === memberId);
+    },
   },
-  components: { iconBase, IconBase }
+  computed: {
+    filteredMembers() {
+      return this.board.members.filter((member) => {
+        return member.fullname.toLowerCase().includes(this.searchMember.trim().toLowerCase());
+      });
+    },
+  },
+  components: { iconBase, IconBase },
 };
 </script>

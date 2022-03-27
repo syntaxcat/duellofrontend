@@ -1,6 +1,6 @@
 <template>
-  <section class="home-page" v-if="boards">
-    <mainHeader />
+  <section class="home-page">
+    <main-header />
 
     <div class="main-container">
       <div class="nav-bar">
@@ -115,6 +115,8 @@ export default {
     };
   },
   async created() {
+    // const user = await this.$store.dispatch('loadUser')
+    if (!this.$store.getters.user) this.$router.push('/welcome')
     this.loggedinUser = this.$store.getters.user;
     const boards = await this.$store.dispatch({
       type: 'loadBoards',
