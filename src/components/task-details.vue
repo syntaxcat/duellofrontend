@@ -112,7 +112,6 @@ import activityDetails from './activity-details.vue';
 import attachmentDetails from '../components/attachment-details.vue';
 import coverCmp from './dynamic-components/cover-cmp.vue';
 
-
 export default {
   props: {
     taskId: {
@@ -146,13 +145,13 @@ export default {
   },
   methods: {
     saveAttachment(attachment) {
-      const attachments = this.taskToEdit.attachments;
-      attachments.unshift(attachment);
+      const attachments = [attachment, ...this.taskToEdit.attachments];
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: { id: this.taskId, attachments },
         groupId: this.groupId,
       });
+      this.taskToEdit.attachments = attachments;
     },
     deleteComment(commentId) {
       const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);
