@@ -6,17 +6,17 @@
         <icon-base iconName="x" />
       </button>
     </header>
-    <input type="search" placeholder="Search members..." />
-    <h2>Board members</h2>
-    <ul class="memeber-list">
-      <li v-for="member in members" :key="member.id" @click="addMember(member)">
-      <div>
-        <img :src="member.imgUrl" />
-          <span>{{ member.fullname }}</span>
-        </div>
-        <label v-if="test(member._id)"><icon-base iconName="check" /></label>
-      </li>
-    </ul>
+    <div class="main-content">
+      <input type="search" placeholder="Search members..." v-model="searchMember" />
+      <h2>Board members</h2>
+      <ul class="memeber-list">
+        <li v-for="member in filteredMembers" :key="member.id" @click="addMember(member)">
+          <img :src="member.imgUrl" />
+          <span class="member-name">{{ member.fullname }}</span>
+          <label v-if="test(member._id)"><icon-base iconName="check" /></label>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 <script>
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      members: this.board.members,
+      searchMember: '',
     };
   },
   methods: {
@@ -51,6 +51,13 @@ export default {
     },
     test(memberId) {
       return this.task.members.some((member) => member._id === memberId);
+    },
+  },
+  computed: {
+    filteredMembers() {
+      return this.board.members.filter((member) => {
+        return member.fullname.toLowerCase().includes(this.searchMember.trim().toLowerCase());
+      });
     },
   },
   components: { iconBase, IconBase },

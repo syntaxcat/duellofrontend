@@ -151,7 +151,9 @@ export default {
   },
   computed: {
     filteredLabels() {
-      return this.board.labels.filter((label) => label.title.includes(this.search.trim()));
+      return this.board.labels.filter((label) => {
+        return label.title.toLowerCase().includes(this.search.trim().toLowerCase());
+      });
     },
   },
 };
