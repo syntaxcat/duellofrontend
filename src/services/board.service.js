@@ -49,7 +49,7 @@ async function addGroup(title, boardId) {
 async function updateGroup(newGroup, boardId) {
   // console.log(boardId);
   const board = await storageService.get(BOARD_KEY, boardId);
-  console.log(board);
+  // console.log(board);
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
     board.groups.splice(groupIdx, 1, newGroup);
@@ -181,6 +181,14 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  style: {
+                    cover: {
+                      type: '',
+                      style: '',
+                      imgUrl: '',
+                      color: ''
+                    }
+                  },
                 },
                 {
                   id: 'c102',
@@ -189,6 +197,14 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  style: {
+                    cover: {
+                      type: '',
+                      style: '',
+                      imgUrl: '',
+                      color: ''
+                    }
+                  },
                 },
               ],
               style: {},
@@ -204,6 +220,14 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  style: {
+                    cover: {
+                      type: '',
+                      style: '',
+                      imgUrl: '',
+                      color: ''
+                    }
+                  },
                 },
                 {
                   id: 'c104',
@@ -262,7 +286,12 @@ async function _createBoard() {
                     imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
                   },
                   style: {
-                    bgColor: '#26de81',
+                    cover: {
+                      type: '',
+                      style: '',
+                      imgUrl: '',
+                      color: ''
+                    }
                   },
                 },
               ],
@@ -286,287 +315,365 @@ async function _createBoard() {
             },
           ],
         },
-        {
-          _id: 'b101',
-          title: 'Webos',
-          subName: 'High-techs',
-          createdAt: 1589983468418,
-          createdBy: {
-            _id: 'u101',
-            fullname: 'user',
-            imgUrl:
-              'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/768x960/0de3084…/photo-1646657411842-704b5afe9036.jpg',
-          },
-          style: {
-            backgroundImg:
-              'https://images.unsplash.com/photo-1486728297118-82a07bc48a28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dHJlbGxvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-          },
-          labels: _createLabels(),
-          members: [
-            {
-              _id: 'u101',
-              fullname: 'user',
-              imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
-            },
-            {
-              _id: 'u102',
-              fullname: 'Tal Tarablus',
-              imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648298649/profile-mulan_w7o2uz.webp',
-            },
-          ],
-          groups: [
-            {
-              id: 'g101',
-              title: 'Group 1',
-              tasks: [
-                {
-                  id: 'c101',
-                  title: 'Replace logo',
-                  labels: [],
-                  members: [],
-                  comments: [],
-                },
-                {
-                  id: 'c102',
-                  title: 'Add Samples',
-                  labels: [],
-                  members: [],
-                  comments: [],
-                },
-              ],
-              style: {},
-            },
-            {
-              id: 'g102',
-              title: 'Group 2',
-              tasks: [
-                {
-                  id: 'c103',
-                  title: 'Do that',
-                  labels: [],
-                  members: [],
-                  comments: [],
-                },
-                {
-                  id: 'c104',
-                  title: 'Help me',
-                  status: 'in-progress',
-                  description: 'description',
-                  labels: [],
-                  members: [],
-                  comments: [
-                    {
-                      id: 'ZdPnm',
-                      txt: 'also @yaronb please CR this',
-                      createdAt: 1590999817436.0,
-                      byMember: {
-                        _id: 'u101',
-                        fullname: 'Tal Tarablus',
-                        imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-                      },
-                    },
-                  ],
-                  checklists: [
-                    {
-                      id: 'YEhmF',
-                      title: 'Checklist',
-                      todos: [
-                        {
-                          id: '212jX',
-                          title: 'To Do 1',
-                          isDone: false,
-                        },
-                      ],
-                    },
-                  ],
-                  members: [
-                    {
-                      _id: 'u102',
-                      username: 'Tal',
-                      fullname: 'Tal Tarablus',
-                      imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-                    },
-                    {
-                      _id: 'u101',
-                      fullname: 'user',
-                      imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
-                    },
-                  ],
-                  labelIds: ['l101', 'l102'],
-                  createdAt: 1590999730348,
-                  dueDate: 1648249455832,
-                  isDueDateDone: false,
-                  byMember: {
-                    _id: 'u101',
-                    username: 'Tal',
-                    fullname: 'Tal Tarablus',
-                    imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-                  },
-                  style: {
-                    bgColor: '#26de81',
-                  },
-                },
-              ],
-              style: {},
-            },
-          ],
-          activities: [
-            {
-              id: 'a101',
-              txt: 'Changed Color',
-              createdAt: 154514,
-              byMember: {
-                _id: 'u101',
-                fullname: 'Abi Abambi',
-                imgUrl: 'http://some-img',
-              },
-              task: {
-                id: 'c101',
-                title: 'Replace Logo',
-              },
-            },
-          ],
-        },
-        {
-          _id: 'b101',
-          title: 'Work',
-          subName: 'Work plan',
-          createdAt: 1589983468418,
-          createdBy: {
-            _id: 'u101',
-            fullname: 'user',
-            imgUrl:
-              'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/768x960/0de3084…/photo-1646657411842-704b5afe9036.jpg',
-          },
-          style: {
-            backgroundImg: 'https://mixkit.imgix.net/art/85/85-original.png-1000h.png',
-          },
-          labels: _createLabels(),
-          members: [
-            {
-              _id: 'u101',
-              fullname: 'user',
-              imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
-            },
-            {
-              _id: 'u102',
-              fullname: 'Tal Tarablus',
-              imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648298649/profile-mulan_w7o2uz.webp',
-            },
-          ],
-          groups: [
-            {
-              id: 'g101',
-              title: 'Group 1',
-              tasks: [
-                {
-                  id: 'c101',
-                  title: 'Replace logo',
-                  labels: [],
-                  members: [],
-                  comments: [],
-                },
-                {
-                  id: 'c102',
-                  title: 'Add Samples',
-                  labels: [],
-                  members: [],
-                  comments: [],
-                },
-              ],
-              style: {},
-            },
-            {
-              id: 'g102',
-              title: 'Group 2',
-              tasks: [
-                {
-                  id: 'c103',
-                  title: 'Do that',
-                  labels: [],
-                  members: [],
-                  comments: [],
-                },
-                {
-                  id: 'c104',
-                  title: 'Help me',
-                  status: 'in-progress',
-                  description: 'description',
-                  labels: [],
-                  members: [],
-                  comments: [
-                    {
-                      id: 'ZdPnm',
-                      txt: 'also @yaronb please CR this',
-                      createdAt: 1590999817436.0,
-                      byMember: {
-                        _id: 'u101',
-                        fullname: 'Tal Tarablus',
-                        imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-                      },
-                    },
-                  ],
-                  checklists: [
-                    {
-                      id: 'YEhmF',
-                      title: 'Checklist',
-                      todos: [
-                        {
-                          id: '212jX',
-                          title: 'To Do 1',
-                          isDone: false,
-                        },
-                      ],
-                    },
-                  ],
-                  members: [
-                    {
-                      _id: 'u102',
-                      username: 'Tal',
-                      fullname: 'Tal Tarablus',
-                      imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-                    },
-                    {
-                      _id: 'u101',
-                      fullname: 'user',
-                      imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
-                    },
-                  ],
-                  labelIds: ['l101', 'l102'],
-                  createdAt: 1590999730348,
-                  dueDate: 1648249455832,
-                  isDueDateDone: false,
-                  byMember: {
-                    _id: 'u101',
-                    username: 'Tal',
-                    fullname: 'Tal Tarablus',
-                    imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-                  },
-                  style: {
-                    bgColor: '#26de81',
-                  },
-                },
-              ],
-              style: {},
-            },
-          ],
-          activities: [
-            {
-              id: 'a101',
-              txt: 'Changed Color',
-              createdAt: 154514,
-              byMember: {
-                _id: 'u101',
-                fullname: 'Abi Abambi',
-                imgUrl: 'http://some-img',
-              },
-              task: {
-                id: 'c101',
-                title: 'Replace Logo',
-              },
-            },
-          ],
-        },
+        // {
+        //   _id: 'b101',
+        //   title: 'Robot dev proj',
+        //   createdAt: 1589983468418,
+        //   createdBy: {
+        //     _id: 'u101',
+        //     fullname: 'user',
+        //     imgUrl:
+        //       'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/768x960/0de3084…/photo-1646657411842-704b5afe9036.jpg',
+        //   },
+        //   style: {
+        //     backgroundImg:
+        //       'https://images.unsplash.com/photo-1486728297118-82a07bc48a28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dHJlbGxvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        //   },
+        //   labels: _createLabels(),
+        //   members: [
+        //     {
+        //       _id: 'u101',
+        //       fullname: 'user',
+        //       imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
+        //     },
+        //     {
+        //       _id: 'u102',
+        //       fullname: 'Tal Tarablus',
+        //       imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648298649/profile-mulan_w7o2uz.webp',
+        //     },
+        //   ],
+        //   groups: [
+        //     {
+        //       id: 'g101',
+        //       title: 'Group 1',
+        //       tasks: [
+        //         {
+        //           id: 'c101',
+        //           title: 'Replace logo',
+        //           labels: [],
+        //           members: [],
+        //           comments: [],
+        //           style: {
+        //             cover:{
+        //               type:'',
+        //               style:'',
+        //               imgUrl:'',
+        //               color: ''
+        //             }
+        //           },
+        //         },
+        //         {
+        //           id: 'c102',
+        //           title: 'Add Samples',
+        //           labels: [],
+        //           members: [],
+        //           comments: [],
+        //           style: {
+        //             cover:{
+        //               type:'',
+        //               style:'',
+        //               imgUrl:'',
+        //               color: ''
+        //             }
+        //           },
+        //         },
+        //       ],
+        //       style: {
+        //         cover: {
+        //           type: '',
+        //           style: '',
+        //           imgUrl: '',
+        //           color: ''
+        //         }
+        //       },
+        //     },
+        //     {
+        //       id: 'g102',
+        //       title: 'Group 2',
+        //       tasks: [
+        //         {
+        //           id: 'c103',
+        //           title: 'Do that',
+        //           labels: [],
+        //           members: [],
+        //           comments: [],
+        //           style: {
+        //             cover: {
+        //               type: '',
+        //               style: '',
+        //               imgUrl: '',
+        //               color: ''
+        //             }
+        //           },
+        //         },
+        //         {
+        //           id: 'c104',
+        //           title: 'Help me',
+        //           status: 'in-progress',
+        //           description: 'description',
+        //           labels: [],
+        //           members: [],
+        //           comments: [
+        //             {
+        //               id: 'ZdPnm',
+        //               txt: 'also @yaronb please CR this',
+        //               createdAt: 1590999817436.0,
+        //               byMember: {
+        //                 _id: 'u101',
+        //                 fullname: 'Tal Tarablus',
+        //                 imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+        //               },
+        //             },
+        //           ],
+        //           checklists: [
+        //             {
+        //               id: 'YEhmF',
+        //               title: 'Checklist',
+        //               todos: [
+        //                 {
+        //                   id: '212jX',
+        //                   title: 'To Do 1',
+        //                   isDone: false,
+        //                 },
+        //               ],
+        //             },
+        //           ],
+        //           members: [
+        //             {
+        //               _id: 'u102',
+        //               username: 'Tal',
+        //               fullname: 'Tal Tarablus',
+        //               imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+        //             },
+        //             {
+        //               _id: 'u101',
+        //               fullname: 'user',
+        //               imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
+        //             },
+        //           ],
+        //           labelIds: ['l101', 'l102'],
+        //           createdAt: 1590999730348,
+        //           dueDate: 1648249455832,
+        //           isDueDateDone: false,
+        //           byMember: {
+        //             _id: 'u101',
+        //             username: 'Tal',
+        //             fullname: 'Tal Tarablus',
+        //             imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+        //           },
+        //           style: {
+        //             cover: {
+        //               type: '',
+        //               style: '',
+        //               imgUrl: '',
+        //               color: ''
+        //             }
+        //           },
+        //         },
+        //       ],
+        //       style: {
+        //         cover: {
+        //           type: '',
+        //           style: '',
+        //           imgUrl: '',
+        //           color: ''
+        //         }
+        //       },
+        //     },
+        //   ],
+        //   activities: [
+        //     {
+        //       id: 'a101',
+        //       txt: 'Changed Color',
+        //       createdAt: 154514,
+        //       byMember: {
+        //         _id: 'u101',
+        //         fullname: 'Abi Abambi',
+        //         imgUrl: 'http://some-img',
+        //       },
+        //       task: {
+        //         id: 'c101',
+        //         title: 'Replace Logo',
+        //       },
+        //     },
+        //   ],
+        // },
+        // {
+        //   _id: 'b101',
+        //   title: 'Robot dev proj',
+        //   createdAt: 1589983468418,
+        //   createdBy: {
+        //     _id: 'u101',
+        //     fullname: 'user',
+        //     imgUrl:
+        //       'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/768x960/0de3084…/photo-1646657411842-704b5afe9036.jpg',
+        //   },
+        //   style: {
+        //     backgroundImg: 'https://mixkit.imgix.net/art/85/85-original.png-1000h.png',
+        //   },
+        //   labels: _createLabels(),
+        //   members: [
+        //     {
+        //       _id: 'u101',
+        //       fullname: 'user',
+        //       imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
+        //     },
+        //     {
+        //       _id: 'u102',
+        //       fullname: 'Tal Tarablus',
+        //       imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648298649/profile-mulan_w7o2uz.webp',
+        //     },
+        //   ],
+        //   groups: [
+        //     {
+        //       id: 'g101',
+        //       title: 'Group 1',
+        //       tasks: [
+        //         {
+        //           id: 'c101',
+        //           title: 'Replace logo',
+        //           labels: [],
+        //           members: [],
+        //           comments: [],
+        //           style: {
+        //             cover: {
+        //               type: '',
+        //               style: '',
+        //               imgUrl: '',
+        //               color: ''
+        //             }
+        //           },
+
+        //         },
+        //         {
+        //           id: 'c102',
+        //           title: 'Add Samples',
+        //           labels: [],
+        //           members: [],
+        //           comments: [],
+        //           style: {
+        //             cover: {
+        //               type: '',
+        //               style: '',
+        //               imgUrl: '',
+        //               color: ''
+        //             }
+        //           },
+        //         },
+        //       ],
+        //       style: {
+        //         cover: {
+        //           type: '',
+        //           style: '',
+        //           imgUrl: '',
+        //           color: ''
+        //         }
+        //       },
+        //     },
+        //     {
+        //       id: 'g102',
+        //       title: 'Group 2',
+        //       tasks: [
+        //         {
+        //           id: 'c103',
+        //           title: 'Do that',
+        //           labels: [],
+        //           members: [],
+        //           comments: [],
+        //           style: {
+        //             cover: {
+        //               type: '',
+        //               style: '',
+        //               imgUrl: '',
+        //               color: ''
+        //             }
+        //           },
+        //         },
+        //         {
+        //           id: 'c104',
+        //           title: 'Help me',
+        //           status: 'in-progress',
+        //           description: 'description',
+        //           labels: [],
+        //           members: [],
+        //           comments: [
+        //             {
+        //               id: 'ZdPnm',
+        //               txt: 'also @yaronb please CR this',
+        //               createdAt: 1590999817436.0,
+        //               byMember: {
+        //                 _id: 'u101',
+        //                 fullname: 'Tal Tarablus',
+        //                 imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+        //               },
+        //             },
+        //           ],
+        //           checklists: [
+        //             {
+        //               id: 'YEhmF',
+        //               title: 'Checklist',
+        //               todos: [
+        //                 {
+        //                   id: '212jX',
+        //                   title: 'To Do 1',
+        //                   isDone: false,
+        //                 },
+        //               ],
+        //             },
+        //           ],
+        //           members: [
+        //             {
+        //               _id: 'u102',
+        //               username: 'Tal',
+        //               fullname: 'Tal Tarablus',
+        //               imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+        //             },
+        //             {
+        //               _id: 'u101',
+        //               fullname: 'user',
+        //               imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',
+        //             },
+        //           ],
+        //           labelIds: ['l101', 'l102'],
+        //           createdAt: 1590999730348,
+        //           dueDate: 1648249455832,
+        //           isDueDateDone: false,
+        //           byMember: {
+        //             _id: 'u101',
+        //             username: 'Tal',
+        //             fullname: 'Tal Tarablus',
+        //             imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+        //           },
+        //           style: {
+        //             cover: {
+        //               type: '',
+        //               style: '',
+        //               imgUrl: '',
+        //               color: ''
+        //             }
+        //           },
+        //         },
+        //       ],
+        //       style: {},
+        //     },
+        //   ],
+        //   activities: [
+        //     {
+        //       id: 'a101',
+        //       txt: 'Changed Color',
+        //       createdAt: 154514,
+        //       byMember: {
+        //         _id: 'u101',
+        //         fullname: 'Abi Abambi',
+        //         imgUrl: 'http://some-img',
+        //       },
+        //       task: {
+        //         id: 'c101',
+        //         title: 'Replace Logo',
+        //       },
+        //     },
+        //   ],
+        // },
       ];
       storageService.postMany(BOARD_KEY, boards);
     }
