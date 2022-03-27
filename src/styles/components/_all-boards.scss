@@ -31,6 +31,9 @@
       li {
         position: relative;
         width: 175px;
+        max-width: 23.5%;
+        // the width changes with media query
+        
         height: 95px;
         margin: 0 2% 2% 0;
         padding: 4px 8px;
