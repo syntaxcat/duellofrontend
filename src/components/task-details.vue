@@ -101,6 +101,7 @@ import labelCmp from './dynamic-components/label-cmp.vue';
 import memberCmp from './dynamic-components/member-cmp.vue';
 import checklistCmp from './dynamic-components/checklist-cmp.vue';
 import calendarCmp from './dynamic-components/calendar-cmp.vue';
+import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
 import iconBase from './icon-base.vue';
@@ -340,6 +341,7 @@ export default {
     calendarCmp,
     descriptionDetails,
     activityDetails,
+    attachmentCmp,
     iconBase,
   },
 };
