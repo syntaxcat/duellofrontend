@@ -104,26 +104,21 @@
             </a>
           </li>
 
-
           <li class="last">
             <div class="board-title create">
               <!-- <span class="board-title-fade"></span> -->
               <p>Create new board</p>
               <p><span>5 remaining</span></p>
-              <li>
-                <div class="li-icon">
-                  <icon-base iconName="help" />
-                </div>
-              </li>
+              <div class="li-icon">
+                <icon-base iconName="help" />
+              </div>
             </div>
           </li>
-
-
         </ul>
       </div>
     </div>
 
-    <!-- <button>View all closed boards</button> -->
+    <button class="home-page-btn">View all closed boards</button>
   </section>
 </template>
 

@@ -6,23 +6,11 @@
       <div class="nav-bar">
         <div>
           <ul>
-            <li>
+            <li v-for="option in options" :key="option.name" :class="[option.class]" @click="visit(option.type)">
               <div class="li-icon">
-                <icon-base iconName="board" />
+                <icon-base :iconName="option.type" />
               </div>
-              <span>Boards</span>
-            </li>
-            <li>
-              <div class="li-icon">
-                <icon-base iconName="template-board" />
-              </div>
-              <span>Templates</span>
-            </li>
-            <li>
-              <div class="li-icon">
-                <icon-base iconName="home" />
-              </div>
-              <span>Home</span>
+              <span class="option">{{ option.txt }}</span>
             </li>
           </ul>
         </div>
@@ -90,12 +78,6 @@
 
       <all-boards v-if="boards" :boards="boards" />
     </div>
-
-    <!-- <div v-if="boards">
-      <div v-for="board in boards" :key="board._id">
-        <board-list :board="board"></board-list>
-      </div>
-    </div> -->
   </section>
 </template>
 
@@ -112,11 +94,16 @@ export default {
       loggedinUser: null,
       boards: null,
       isOpen: false,
+      options: [
+        { type: 'board', txt: 'Boards', class: 'visiting' },
+        { type: 'template-board', txt: 'Templates', class: '' },
+        { type: 'home', txt: 'Home', class: '' },
+      ],
     };
   },
   async created() {
     // const user = await this.$store.dispatch('loadUser')
-    if (!this.$store.getters.user) this.$router.push('/welcome')
+    if (!this.$store.getters.user) this.$router.push('/welcome');
     this.loggedinUser = this.$store.getters.user;
     const boards = await this.$store.dispatch({
       type: 'loadBoards',
@@ -131,6 +118,17 @@ export default {
         board: newBoard,
       });
       this.$router.push({ path: `/board/${boardId}` });
+    },
+    visit(type) {
+      this.options = this.options.map((option) => {
+        if (option.type === type) {
+          option.class = 'visiting';
+          return option;
+        }
+        option.class = '';
+
+        return option;
+      });
     },
   },
   computed: {
