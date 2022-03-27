@@ -85,8 +85,10 @@
             @deleteBoardLabel="deleteBoardLabel"
             @createBoardLabel="createBoardLabel"
             @closeCalendar="closeCalendar"
+            @closeAttachment="closeAttachment"
             @closeLabel="closeLabel"
             @addMember="addMember"
+            @saveImg="saveImg"
           />
         </div>
       </div>
@@ -128,6 +130,7 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
+      imgUrls: [],
     };
   },
   async created() {
@@ -138,6 +141,10 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
+    saveImg(imgUrl) {
+      this.imgUrls.push(imgUrl);
+      console.log('imgurls', [...this.imgUrls]);
+    },
     deleteComment(commentId) {
       const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);
       this.$store.dispatch({
@@ -213,6 +220,9 @@ export default {
       this.cmp = type;
     },
     closeCalendar() {
+      this.cmp = null;
+    },
+    closeAttachment() {
       this.cmp = null;
     },
     closeLabel() {
