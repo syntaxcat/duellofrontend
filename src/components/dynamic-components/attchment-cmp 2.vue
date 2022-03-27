@@ -8,13 +8,18 @@
     </header>
     <h2>Attach a link</h2>
     <input type="text" placeholder="Paste any link here..." />
-    <button class="attach-btn" @click="AttachLink">Attach</button>
+    <button class="remove-btn" @click="removeDate">Attach</button>
   </section>
 </template>
 <script>
 import iconBase from '../icon-base.vue';
 export default {
-  props: {},
+  props: {
+    date: {
+      type: String,
+      required: true,
+    },
+  },
   data() {},
   methods: {},
   components: {
