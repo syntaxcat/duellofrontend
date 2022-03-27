@@ -103,7 +103,6 @@ import checklistCmp from './dynamic-components/checklist-cmp.vue';
 import calendarCmp from './dynamic-components/calendar-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
-import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import iconBase from './icon-base.vue';
 
 export default {
@@ -342,7 +341,6 @@ export default {
     descriptionDetails,
     activityDetails,
     iconBase,
-    attachmentCmp,
   },
 };
 </script>
