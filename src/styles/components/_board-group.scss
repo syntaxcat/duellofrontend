@@ -217,7 +217,8 @@
       button:hover {
         background-color: $taskHoverBtnClr;
       }
-      img {
+      .icon-base {
+        height: 14px;
         width: 14px;
       }
     }

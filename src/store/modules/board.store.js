@@ -1,5 +1,6 @@
 import { boardService } from '../../services/board.service';
 import { taskService } from '../../services/task.service';
+import { designService } from '../../services/design.services';
 
 export const boardStore = {
   state: {
@@ -16,6 +17,8 @@ export const boardStore = {
         // groupGhost: 'groupGhost',
       },
     },
+    colors: null,
+    imgs: null,
   },
   getters: {
     board(state) {
@@ -36,6 +39,12 @@ export const boardStore = {
     labelsExpanded(state) {
       return state.labelsExpanded;
     },
+    imgs(state) {
+      return state.imgs
+    },
+    colors(state) {
+      return state.colors
+    }
   },
   mutations: {
     toggleLabelsExpanded(state) {
@@ -71,6 +80,12 @@ export const boardStore = {
     setGroup(state, { group }) {
       state.currGroup = group;
     },
+    setDesign(state, { design }) {
+      // console.log(design[0].imgs)
+      state.imgs = design[0].imgs
+      state.colors = design[0].colors
+      // console.log(state.imgs, state.colors)
+    }
   },
   actions: {
     async updateBoardLabel({ commit }, { label, boardId }) {
@@ -186,5 +201,13 @@ export const boardStore = {
         console.log(err);
       }
     },
+    async loadDesign({ commit }) {
+      try {
+        const design = await designService.query()
+        commit({ type: 'setDesign', design })
+      } catch (err) {
+        console.log(err)
+      }
+    }
   },
 };
