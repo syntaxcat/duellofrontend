@@ -11,7 +11,9 @@ export const boardStore = {
       options: {
         group: 'groups',
         direction: 'horizontal',
-        ghostClass: 'groupGhost',
+        groupGhost: 'groupGhost',
+        // groupGhost: 'groupGhost',
+        // groupGhost: 'groupGhost',
       },
     },
   },

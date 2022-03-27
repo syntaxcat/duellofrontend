@@ -37,6 +37,13 @@ body,
 .groupGhost {
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.192);
+  // transition: transform 0.18s ease;
+  // transform: rotateZ(5deg);
+}
+
+.dragged{
+  transition: transform 0.18s ease;
+  transform: rotateZ(5deg);
 }
 
 ::-webkit-scrollbar {

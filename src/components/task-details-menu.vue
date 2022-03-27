@@ -36,7 +36,7 @@
           <icon-base class="icon-fill" iconName="copy" />Copy
         </button>
         <button @click="removeTask">
-          <icon-base class="icon-fill" iconName="archive" />Delete
+          <icon-base class="icon-fill" iconName="archive" />Archive
         </button>
       </div>
     </div>

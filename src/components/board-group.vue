@@ -1,5 +1,5 @@
 <template>
-  <section class="board-group">
+  <section :class="['board-group',isDragged]" >
     <div class="board-group-container">
       <section class="board-group">
         <div class="group-title">
@@ -18,7 +18,7 @@
         </div>
         <div class="task-container">
           <ul>
-            <draggable v-model="tasks" group="tasks" @change="log">
+            <draggable v-model="tasks" group="tasks" @change="log" v-bind="{ghostClass: 'groupGhost'}">
               <li v-for="task in group.tasks" :key="task.id">
                 <task-preview
                   :task="task"
@@ -117,6 +117,7 @@ export default {
       isEditModal: false,
       xPos: null,
       yPos: null,
+      isDrag:false
     };
   },
   created() {
@@ -170,7 +171,8 @@ export default {
       this.taskTitle = '';
     },
     log(evt) {
-      // console.log(evt);
+      console.log(evt);
+      this.isDrag = !this.isDrag
     },
   },
   computed: {
@@ -179,11 +181,14 @@ export default {
         return this.group.tasks;
       },
       set(value) {
-          this.$store.dispatch({
-            type: 'dragTask',
-            value,
-            group: { ...this.group },
-          });
+        this.$store.dispatch({
+          type: 'dragTask',
+          value,
+          group: { ...this.group },
+        });
+      },
+      dragOptions() {
+        return this.$store.getters.dragOptions;
       },
     },
   },
