@@ -180,6 +180,7 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                 },
                 {
                   id: 'c102',
@@ -187,6 +188,7 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                 },
               ],
               style: {},
@@ -201,6 +203,7 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                 },
                 {
                   id: 'c104',
@@ -209,6 +212,7 @@ async function _createBoard() {
                   description: 'description',
                   labels: [],
                   members: [],
+                  attachments: [],
                   comments: [
                     {
                       id: 'ZdPnm',

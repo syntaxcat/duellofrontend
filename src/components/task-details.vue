@@ -17,12 +17,12 @@
           <icon-base class="card-header" iconName="cardB" />
           <div>
             <textarea type="text" v-model="taskToEdit.title"></textarea>
-          <div class="info-in-group">
-            <p>
-              in list
-              <span>{{ group.title }}</span>
-            </p>
-              </div>
+            <div class="info-in-group">
+              <p>
+                in list
+                <span>{{ group.title }}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -85,8 +85,10 @@
             @deleteBoardLabel="deleteBoardLabel"
             @createBoardLabel="createBoardLabel"
             @closeCalendar="closeCalendar"
+            @closeAttachment="closeAttachment"
             @closeLabel="closeLabel"
             @addMember="addMember"
+            @saveImg="saveImg"
           />
         </div>
       </div>
@@ -101,10 +103,10 @@ import labelCmp from './dynamic-components/label-cmp.vue';
 import memberCmp from './dynamic-components/member-cmp.vue';
 import checklistCmp from './dynamic-components/checklist-cmp.vue';
 import calendarCmp from './dynamic-components/calendar-cmp.vue';
+import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
 import iconBase from './icon-base.vue';
-import IconBase from './icon-base.vue';
 
 export default {
   props: {
@@ -128,6 +130,7 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
+      imgUrls: [],
     };
   },
   async created() {
@@ -138,6 +141,10 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
+    saveImg(imgUrl) {
+      this.imgUrls.push(imgUrl);
+      console.log('imgurls', [...this.imgUrls]);
+    },
     deleteComment(commentId) {
       const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);
       this.$store.dispatch({
@@ -213,6 +220,9 @@ export default {
       this.cmp = type;
     },
     closeCalendar() {
+      this.cmp = null;
+    },
+    closeAttachment() {
       this.cmp = null;
     },
     closeLabel() {
@@ -310,11 +320,11 @@ export default {
         groupId: this.groupId,
       });
     },
-    removeTask(){
-      console.log('removing...')
-      this.$store.dispatch({type:'removeTask', taskId: this.taskId, groupId:this.groupId})
-      this.closeTaskDetails()
-    }
+    removeTask() {
+      console.log('removing...');
+      this.$store.dispatch({ type: 'removeTask', taskId: this.taskId, groupId: this.groupId });
+      this.closeTaskDetails();
+    },
   },
   computed: {
     labels() {
@@ -341,8 +351,8 @@ export default {
     calendarCmp,
     descriptionDetails,
     activityDetails,
+    attachmentCmp,
     iconBase,
-    IconBase,
   },
 };
 </script>
