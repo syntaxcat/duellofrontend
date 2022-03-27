@@ -170,7 +170,7 @@ export default {
       this.taskTitle = '';
     },
     log(evt) {
-      console.log(evt);
+      // console.log(evt);
     },
   },
   computed: {
@@ -179,13 +179,11 @@ export default {
         return this.group.tasks;
       },
       set(value) {
-        setTimeout(() => {
           this.$store.dispatch({
             type: 'dragTask',
             value,
             group: { ...this.group },
           });
-        }, 2);
       },
     },
   },

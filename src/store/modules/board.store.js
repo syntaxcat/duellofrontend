@@ -172,12 +172,21 @@ export const boardStore = {
     async dragTask({ commit, state }, { value, group }) {
       try {
         group.tasks = value;
-        const updatedGroup = await boardService.updateGroup(group, state.board._id);
+        const updatedGroup = await boardService.updateAfterTaskDrag(group, JSON.parse(JSON.stringify(state.board)));
         commit({ type: 'updateGroup', updatedGroup });
       } catch (err) {
         console.log(err);
       }
     },
+    // async dragTask({ commit, state }, { value, group }) {
+    //   try {
+    //     group.tasks = value;
+    //     const updatedGroup = await boardService.updateGroup({...group}, state.board._id);
+    //     commit({ type: 'updateGroup', updatedGroup });
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // },
     async createBoard({ commit }, { board }) {
       try {
         const newBoard = await boardService.addNewBoard(board);

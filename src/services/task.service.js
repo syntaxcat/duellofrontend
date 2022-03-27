@@ -10,17 +10,16 @@ export const taskService = {
   getEmptyComment,
 };
 const BOARD_KEY = 'boardDB';
-var counter = 0;
 
 async function addTask(taskTitle, groupId, boardId) {
   const task = {
     title: taskTitle,
     id: utilService.makeId(),
     labels: [],
-    members:[], 
-    comments:[],
-    activities:[],
-    checklist:[]
+    members: [],
+    comments: [],
+    activities: [],
+    checklist: [],
   };
   const group = await _findGroup(groupId, boardId);
   group.tasks.push(task);
@@ -51,6 +50,7 @@ async function getById(taskId, groupId, boardId) {
   const task = group.tasks.find((task) => task.id === taskId);
   return { task, group };
 }
+
 
 function getEmptyComment() {
   return {

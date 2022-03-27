@@ -12,9 +12,11 @@ export const boardService = {
   updateBoardLabel,
   createBoardLabel,
   deleteBoardLabel,
+  updateAfterTaskDrag
 };
 
 const BOARD_KEY = 'boardDB';
+var newBoard = '';
 
 _createBoard();
 
@@ -45,7 +47,9 @@ async function addGroup(title, boardId) {
 }
 
 async function updateGroup(newGroup, boardId) {
+  // console.log(boardId);
   const board = await storageService.get(BOARD_KEY, boardId);
+  console.log(board);
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
     board.groups.splice(groupIdx, 1, newGroup);
@@ -58,6 +62,20 @@ async function updateGroups(newOrder, board) {
   board.groups = newOrder;
   storageService.put(BOARD_KEY, board);
   return newOrder;
+}
+
+async function updateAfterTaskDrag(group, board) {
+  const groupIdx = board.groups.findIndex((grp) => grp.id === group.id);
+  if (board.groups[groupIdx].tasks.length !== group.tasks.length  && newBoard) {
+    newBoard.groups[groupIdx] = group;
+    await storageService.put(BOARD_KEY, newBoard);
+    newBoard = '';
+    return group
+  }
+  board.groups[groupIdx] = group;
+  newBoard = board;
+  await storageService.put(BOARD_KEY, newBoard);
+  return group;
 }
 
 async function getById(boardId) {
