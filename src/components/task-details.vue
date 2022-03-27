@@ -70,7 +70,7 @@
             @deleteComment="deleteComment"
           />
         </div>
-        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" />
+        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" @removeTask="removeTask" />
         <div class="dynamic-cmp">
           <component
             :is="cmp"
@@ -128,7 +128,6 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
-      isCover: false
     };
   },
   async created() {
@@ -311,6 +310,11 @@ export default {
         groupId: this.groupId,
       });
     },
+    removeTask(){
+      console.log('removing...')
+      this.$store.dispatch({type:'removeTask', taskId: this.taskId, groupId:this.groupId})
+      this.closeTaskDetails()
+    }
   },
   computed: {
     labels() {

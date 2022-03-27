@@ -35,7 +35,7 @@
         <button @click="copyTask">
           <icon-base class="icon-fill" iconName="copy" />Copy
         </button>
-        <button @click="archiveTask">
+        <button @click="removeTask">
           <icon-base class="icon-fill" iconName="archive" />Delete
         </button>
       </div>
@@ -65,7 +65,9 @@ export default {
       this.$emit('joinTask');
     },
     //   copyTask() {},
-    //   archiveTask() {},
+      removeTask() {
+        this.$emit('removeTask')
+      },
   },
   computed: {},
   components: { iconBase },
