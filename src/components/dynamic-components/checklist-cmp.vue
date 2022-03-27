@@ -1,38 +1,54 @@
 <template>
   <section class="checklist-cmp">
     <header>
-      <h2>Add checklist</h2>
+      <span>Add checklist</span>
+      <!-- <button> -->
+      <icon-base iconName="x"></icon-base>
+      <!-- </button> -->
     </header>
-    <h2>Title</h2>
-    <input type="search" />
-    <h2>Copy items from…</h2>
-    <select>
-      <option value="">(none)</option>
-      <option value="Option A">Option A</option>
-      <option value="Option B">Option B</option>
-      <option value="Option C">Option C</option>
-    </select>
-    <button>Add</button>
+
+    <div class="container">
+      <form class="add-checklist">
+        <label for="title" class="input-label">Title</label>
+        <input type="text" id="title" placeholder="Checklist" />
+
+        <label class="input-label">Copy items from…</label>
+
+        <select @change="addTodos" v-model="todosToAdd">
+          <optgroup>
+            <option value=".">(none)</option>
+          </optgroup>
+          <optgroup v-for="check in checklists" :key="check.id" :label="check.taskTitle">
+            <option :value="check.todos">{{ check.title }}</option>
+          </optgroup>
+        </select>
+        <button>Add</button>
+      </form>
+    </div>
   </section>
 </template>
 <script>
+import iconBase from '../icon-base.vue';
+
 export default {
   data() {
     return {
-      checklists: [
-        {
-          id: 'YEhmF',
-          title: 'Checklist',
-          todos: [
-            {
-              id: '212jX',
-              title: 'To Do 1',
-              isDone: false,
-            },
-          ],
-        },
-      ],
+      todosToAdd: '.',
     };
   },
+  created() {
+    this.$store.commit({ type: 'getChecklists' });
+  },
+  methods: {
+    addTodos() {
+      console.log(this.todosToAdd);
+    },
+  },
+  computed: {
+    checklists() {
+      return this.$store.getters.checklists;
+    },
+  },
+  components: { iconBase },
 };
 </script>

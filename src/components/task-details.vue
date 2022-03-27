@@ -104,6 +104,7 @@
 
 <script>
 import { taskService } from '../services/task.service';
+import iconBase from './icon-base.vue';
 import taskDetailsMenu from '../components/task-details-menu.vue';
 import labelCmp from './dynamic-components/label-cmp.vue';
 import memberCmp from './dynamic-components/member-cmp.vue';
@@ -112,8 +113,9 @@ import calendarCmp from './dynamic-components/calendar-cmp.vue';
 import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
-import iconBase from './icon-base.vue';
 import coverCmp from './dynamic-components/cover-cmp.vue';
+
+
 export default {
   props: {
     taskId: {
@@ -149,7 +151,7 @@ export default {
   methods: {
     saveImg(imgUrl) {
       this.imgUrls.push(imgUrl);
-      console.log('imgurls', [...this.imgUrls]);
+      // console.log('imgurls', [...this.imgUrls]);
     },
     deleteComment(commentId) {
       const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);
@@ -316,7 +318,7 @@ export default {
     },
 
     deleteBoardLabel(labelId) {
-      console.log(labelId);
+      // console.log(labelId);
       this.$store.dispatch({
         type: 'deleteBoardLabel',
         labelId: labelId,
@@ -350,7 +352,7 @@ export default {
       });
     },
     removeTask() {
-      console.log('removing...');
+      // console.log('removing...');
       this.$store.dispatch({ type: 'removeTask', taskId: this.taskId, groupId: this.groupId });
       this.closeTaskDetails();
     },
@@ -369,7 +371,7 @@ export default {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
     isCover() {
-      console.log(this.taskToEdit);
+      // console.log(this.taskToEdit);
       if (this.taskToEdit.style.cover.type) return true;
       return false;
     },

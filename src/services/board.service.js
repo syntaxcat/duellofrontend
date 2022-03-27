@@ -220,6 +220,32 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  checklists:[
+                    {
+                      id: 'list5',
+                      title: 'Checklist5',
+                      taskTitle:'',
+                      todos: [
+                        {
+                          id: '212jX',
+                          title: 'To Do 5',
+                          isDone: true,
+                        },
+                      ],
+                    },
+                    {
+                      id: 'list6',
+                      title: 'Checklist6',
+                      taskTitle:'',
+                      todos: [
+                        {
+                          id: '212jX',
+                          title: 'To Do 6',
+                          isDone: false,
+                        },
+                      ],
+                    },
+                  ],
                   style: {
                     cover: {
                       type: '',
@@ -251,8 +277,45 @@ async function _createBoard() {
                   ],
                   checklists: [
                     {
-                      id: 'YEhmF',
-                      title: 'Checklist',
+                      id: 'list1',
+                      title: 'Checklist1',
+                      taskTitle:'',
+                      todos: [
+                        {
+                          id: '212jX',
+                          title: 'To Do 1',
+                          isDone: false,
+                        },
+                      ],
+                    },
+                    {
+                      id: 'list2',
+                      title: 'Checklist2',
+                      taskTitle:'',
+                      todos: [
+                        {
+                          id: '212jX',
+                          title: 'To Do 1',
+                          isDone: false,
+                        },
+                      ],
+                    },
+                    {
+                      id: 'list3',
+                      title: 'Checklist3',
+                      taskTitle:'',
+                      todos: [
+                        {
+                          id: '212jX',
+                          title: 'To Do 1',
+                          isDone: false,
+                        },
+                      ],
+                    },
+                    {
+                      id: 'list4',
+                      title: 'Checklist4',
+                      taskTitle:'',
                       todos: [
                         {
                           id: '212jX',

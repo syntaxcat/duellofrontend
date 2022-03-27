@@ -124,7 +124,7 @@ export default {
       return true
     },
     coverStyle() {
-      console.log(this.task)
+      // console.log(this.task)
       if (this.task.style.cover.type === 'color') {
         // console.log(`background-color: ${this.task.style.cover.color}`)
         return `background-color: ${this.task.style.cover.color}; height: 32px`

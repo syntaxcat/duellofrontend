@@ -1,5 +1,5 @@
 <template>
-  <section :class="['board-group',isDragged]" >
+  <section class="board-group" >
     <div class="board-group-container">
       <section class="board-group">
         <div class="group-title">

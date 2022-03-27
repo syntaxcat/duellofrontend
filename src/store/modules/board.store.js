@@ -19,6 +19,7 @@ export const boardStore = {
     },
     colors: null,
     imgs: null,
+    checklists: [],
   },
   getters: {
     board(state) {
@@ -40,13 +41,34 @@ export const boardStore = {
       return state.labelsExpanded;
     },
     imgs(state) {
-      return state.imgs
+      return state.imgs;
     },
     colors(state) {
-      return state.colors
-    }
+      return state.colors;
+    },
+    checklists(state) {
+      return [...state.checklists];
+    },
   },
   mutations: {
+    getChecklists(state) {
+      var lists = [];
+
+      state.boardGroups.forEach((grp) => {
+        grp.tasks.forEach((task) => {
+          if (task.checklists && task.checklists.length) {
+            task.checklists.forEach((list) => {
+              list.taskTitle = task.title;
+              lists.push(list);
+            });
+          }
+        });
+      });
+
+      console.log(lists);
+      state.checklists = lists;
+      lists = [];
+    },
     toggleLabelsExpanded(state) {
       state.labelsExpanded = !state.labelsExpanded;
     },
@@ -82,10 +104,10 @@ export const boardStore = {
     },
     setDesign(state, { design }) {
       // console.log(design[0].imgs)
-      state.imgs = design[0].imgs
-      state.colors = design[0].colors
+      state.imgs = design[0].imgs;
+      state.colors = design[0].colors;
       // console.log(state.imgs, state.colors)
-    }
+    },
   },
   actions: {
     async updateBoardLabel({ commit }, { label, boardId }) {
@@ -203,11 +225,11 @@ export const boardStore = {
     },
     async loadDesign({ commit }) {
       try {
-        const design = await designService.query()
-        commit({ type: 'setDesign', design })
+        const design = await designService.query();
+        commit({ type: 'setDesign', design });
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    },
   },
 };

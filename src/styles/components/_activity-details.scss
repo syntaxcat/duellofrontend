@@ -149,7 +149,7 @@
           transform: translateY(48px);
 
           transition-duration: 85ms;
-          transition-property: background-color, border-color, box-shadow, opacity, transform;
+          transition-property: background-color, opacity, transform;
           transition-timing-function: ease;
 
           &.allowed {

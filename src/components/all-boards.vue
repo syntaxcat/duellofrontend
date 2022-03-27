@@ -30,6 +30,7 @@
               :style="{ backgroundImage: 'url(' + board.style.backgroundImg + ')' }"
             >
               <span class="board-title-fade"></span>
+              
               <div class="board-title-content">
                 <div class="title">{{ board.title }}</div>
                 <div class="container">
