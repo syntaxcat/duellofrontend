@@ -1,5 +1,5 @@
 <template>
-  <section class="home-page">
+  <section class="home-page" v-if="boards">
     <mainHeader />
 
     <div class="main-container">
@@ -88,11 +88,8 @@
         </div>
       </div>
 
-      <div class="all-boards"></div>
+      <all-boards :boards="boards" />
     </div>
-
-
-    
 
     <!-- <div v-if="boards">
       <div v-for="board in boards" :key="board._id">
@@ -103,10 +100,11 @@
 </template>
 
 <script>
+import iconBase from '../components/icon-base.vue';
 import mainHeader from '../components/main-header.vue';
 import boardList from '../components/board-list.vue';
 import createBoard from '../components/create-board.vue';
-import iconBase from '../components/icon-base.vue';
+import allBoards from '../components/all-boards.vue';
 
 export default {
   data() {
@@ -122,7 +120,6 @@ export default {
       type: 'loadBoards',
       filterBy: { userId: this.loggedinUser._id },
     });
-    console.log(boards);
     this.boards = boards;
   },
   methods: {
@@ -131,7 +128,6 @@ export default {
         type: 'createBoard',
         board: newBoard,
       });
-      console.log(boardId);
       this.$router.push({ path: `/board/${boardId}` });
     },
   },
@@ -145,6 +141,7 @@ export default {
     boardList,
     createBoard,
     iconBase,
+    allBoards,
   },
 };
 </script>

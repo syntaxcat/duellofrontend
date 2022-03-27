@@ -88,6 +88,14 @@
 
 <svg v-else-if="iconName === 'forward'" width="16" height="16" version="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m16.707 12.707-7.07 7.071a1 1 0 1 1-1.415-1.414L14.586 12 8.222 5.636a1 1 0 1 1 1.414-1.414l7.071 7.07a1 1 0 0 1 0 1.415z" fill="currentColor"/></svg>
 
+<svg v-else-if="iconName === 'star'" viewBox="0 0 24 24" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.495 20.995 12 18.627l4.505 2.368a1.546 1.546 0 0 0 2.244-1.63l-.86-5.016 3.644-3.553a1.546 1.546 0 0 0-.857-2.638l-5.037-.732-2.252-4.564a1.547 1.547 0 0 0-2.774 0L8.361 7.426l-5.037.732a1.546 1.546 0 0 0-.857 2.638l3.645 3.553-.86 5.016a1.547 1.547 0 0 0 2.243 1.63zm11.85-10.947-3.672 3.58.867 5.056L12 16.297l-4.54 2.387.867-5.055-3.673-3.58L9.73 9.31 12 4.71l2.27 4.6 5.076.738z" fill="currentColor"/></svg>
+
+<svg v-else-if="iconName === 'trello-clock'" viewBox="0 0 24 24" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path d="M13 6a1 1 0 1 0-2 0v6a1 1 0 0 0 .293.707l2.5 2.5a1 1 0 0 0 1.414-1.414L13 11.586V6z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-10 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" fill="currentColor"/></svg>
+
+<svg v-else-if="iconName === 'suitcase'" viewBox="0 0 24 24" width="16" height="16" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 5C7 3.89543 7.89543 3 9 3H15C16.1046 3 17 3.89543 17 5V6H19V20H5V6H7V5ZM9 6H15V5H9V6ZM7 9C7 8.44772 7.44772 8 8 8H10C10.5523 8 11 8.44772 11 9V16C11 16.5523 10.5523 17 10 17H8C7.44772 17 7 16.5523 7 16V9ZM14 8C13.4477 8 13 8.44772 13 9V14C13 14.5523 13.4477 15 14 15H16C16.5523 15 17 14.5523 17 14V9C17 8.44772 16.5523 8 16 8H14Z" fill="currentColor"></path><path d="M4 6C2.89543 6 2 6.89543 2 8V18C2 19.1046 2.89543 20 4 20L4 6Z" fill="currentColor"></path><path d="M20 20V6C21.1046 6 22 6.89543 22 8V18C22 19.1046 21.1046 20 20 20Z" fill="currentColor"></path></svg>
+
+<svg v-else-if="iconName === 'help'" viewBox="0 0 24 24" width="16" height="16" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm2 0a8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8zm4-2a4.005 4.005 0 0 1 4.939-3.893 3.971 3.971 0 0 1 2.95 2.941 3.991 3.991 0 0 1-2.53 4.7.507.507 0 0 0-.35.471V14a1 1 0 1 1-2 0v-1.013A.997.997 0 0 1 12 12c1.104 0 2-.898 2-2 0-1.103-.896-2-2-2-1.103 0-2 .923-1.999 2.027a1.002 1.002 0 0 1-1.996.061S8 10.03 8 10zm4 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" fill="currentColor"/></svg>
+
     <svg
       v-else-if="iconName === 'plus-s'"
       xmlns="http://www.w3.org/2000/svg"
