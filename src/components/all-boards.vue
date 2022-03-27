@@ -24,7 +24,7 @@
       <div class="boards-container">
         <ul>
           <li v-for="board in boards" :key="board._id">
-            <a :href="'/board/' + board._id" class="board-title" :style="{backgroundImage: 'url(' + board.style.backgroundImg + ')'}"></a>
+            <a :href="'/#/board/' + board._id" class="board-title" :style="{backgroundImage: 'url(' + board.style.backgroundImg + ')'}"></a>
           </li>
         </ul>
       </div>

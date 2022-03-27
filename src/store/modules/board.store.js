@@ -10,10 +10,7 @@ export const boardStore = {
     draggable: {
       options: {
         group: 'groups',
-        // animation: 200,
         direction: 'horizontal',
-        // delay: 200,
-        // delayOnTouchOnly: true,
         ghostClass: 'groupGhost',
       },
     },
@@ -178,15 +175,6 @@ export const boardStore = {
         console.log(err);
       }
     },
-    // async dragTask({ commit, state }, { value, group }) {
-    //   try {
-    //     group.tasks = value;
-    //     const updatedGroup = await boardService.updateGroup({...group}, state.board._id);
-    //     commit({ type: 'updateGroup', updatedGroup });
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // },
     async createBoard({ commit }, { board }) {
       try {
         const newBoard = await boardService.addNewBoard(board);

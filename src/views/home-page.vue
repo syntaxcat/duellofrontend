@@ -91,11 +91,11 @@
       <all-boards :boards="boards" />
     </div>
 
-    <div v-if="boards">
+    <!-- <div v-if="boards">
       <div v-for="board in boards" :key="board._id">
         <board-list :board="board"></board-list>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 
