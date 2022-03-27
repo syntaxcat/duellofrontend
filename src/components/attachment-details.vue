@@ -21,7 +21,7 @@
               {{ attachment.fileName }}
             </div>
             <div class="attach-created">
-              {{ attachment.created }}
+              {{ formatDate(attachment.created) }}
             </div>
           </div>
         </li>
@@ -41,15 +41,13 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    formatDate(date) {
+      return new Date(date).toDateString();
+    },
+  },
   components: {
     iconBase,
   },
 };
 </script>
-
-<!-- formatDate(dateString) {
-      return new Date(dateString).toDateString();
-    }, -->
-
-<!-- new Date(dateString).toDateString() -->

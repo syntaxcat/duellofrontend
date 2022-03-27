@@ -44,6 +44,7 @@ export default {
         fileName: `${original_filename}.${original_extension}`,
         created: new Date().getTime(),
       };
+      this.close();
       this.$emit('saveAttachment', attachment);
     },
 
