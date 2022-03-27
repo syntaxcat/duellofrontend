@@ -7,11 +7,7 @@
         </button>
 
         <div v-if="taskToEdit.style.cover.type" class="cover-container">
-          <img
-            class="cover-img"
-            v-if="taskToEdit.style.cover.type === 'img'"
-            :src="taskToEdit.style.cover.imgUrl"
-          />
+          <img class="cover-img" v-if="taskToEdit.style.cover.type === 'img'" :src="taskToEdit.style.cover.imgUrl" />
           <div class="cover-clr" v-else :style="'background-color:' + taskToEdit.style.cover.color"></div>
         </div>
         <div class="task-details-container">
@@ -46,12 +42,9 @@
             <div class="labels-for-display" v-if="labels.length >= 1">
               <h2>Labels</h2>
               <div class="labels-container">
-                <div
-                  class="label"
-                  v-for="label in labels"
-                  :key="label.id"
-                  :style="'background-color:' + label.color"
-                >{{ label.title }}</div>
+                <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
+                  {{ label.title }}
+                </div>
                 <button class="add-btn" @click="toggleLabelsModal">
                   <icon-base iconName="plus" />
                 </button>
@@ -66,7 +59,7 @@
             </div>
           </div>
           <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-          <attachment-details />
+          <attachment-details :attachments="taskToEdit.attachments" />
           <activity-details
             :task="taskToEdit"
             :user="loggedinUser"
@@ -75,12 +68,7 @@
             @deleteComment="deleteComment"
           />
         </div>
-        <task-details-menu
-          :isMember="isMember"
-          @joinTask="joinTask"
-          @openModal="openModal"
-          @removeTask="removeTask"
-        />
+        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" @removeTask="removeTask" />
         <div class="dynamic-cmp">
           <component
             :is="cmp"
@@ -99,7 +87,7 @@
             @closeAttachment="closeAttachment"
             @closeLabel="closeLabel"
             @addMember="addMember"
-            @saveImg="saveImg"
+            @saveAttachment="saveAttachment"
             @setCoverColor="setCoverColor"
             @setCoverImg="setCoverImg"
             @setCoverStyle="setCoverStyle"
@@ -145,7 +133,6 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
-      imgUrls: [],
     };
   },
   async created() {
@@ -156,9 +143,14 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
-    saveImg(imgUrl) {
-      this.imgUrls.push(imgUrl);
-      console.log('imgurls', [...this.imgUrls]);
+    saveAttachment(attachment) {
+      const attachments = this.taskToEdit.attachments;
+      attachments.unshift(attachment);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: { id: this.taskId, attachments },
+        groupId: this.groupId,
+      });
     },
     deleteComment(commentId) {
       const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);
@@ -270,7 +262,7 @@ export default {
         groupId: this.groupId,
       });
     },
-    setCoverStyle(coverStyle){
+    setCoverStyle(coverStyle) {
       this.taskToEdit.style.cover.style = coverStyle;
       this.$store.dispatch({
         type: 'updateTask',
@@ -278,11 +270,6 @@ export default {
         groupId: this.groupId,
       });
     },
-    makeChecklist() { },
-    addAttachment() { },
-    changeCover() { },
-    copyTask() { },
-    archiveTask() { },
 
     async saveDate(date) {
       this.cmp = null;
@@ -386,7 +373,6 @@ export default {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
     isCover() {
-      console.log(this.taskToEdit);
       if (this.taskToEdit.style.cover.type) return true;
       return false;
     },

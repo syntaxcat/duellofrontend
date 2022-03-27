@@ -8,8 +8,11 @@
     </header>
     <div class="upload-container">
       <label for="uploadImg">
-        Computer
-        <input id="uploadImg" type="file" @change="onUploadImg" hidden />
+        <span v-if="loading">Uploading Image...</span>
+        <div v-else>
+          Computer
+          <input id="uploadImg" type="file" @change="onUploadImg" hidden />
+        </div>
       </label>
     </div>
     <div class="attach-link-container">
@@ -25,12 +28,23 @@ import { uploadImg } from '../../services/imgUpload.service.js';
 export default {
   props: {},
   data() {
-    return {};
+    return {
+      loading: false,
+    };
   },
   methods: {
     async onUploadImg(ev) {
+      this.loading = true;
       const res = await uploadImg(ev);
-      this.$emit('saveImg', res.url);
+      this.loading = false;
+      const { url, original_filename, original_extension } = res;
+      const attachment = {
+        type: 'image',
+        url,
+        fileName: `${original_filename}.${original_extension}`,
+        created: new Date().getTime(),
+      };
+      this.$emit('saveAttachment', attachment);
     },
 
     close() {

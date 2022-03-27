@@ -1,30 +1,55 @@
 <template>
   <section class="attachment-details">
     <div class="header">
-      <!-- <img src="../assets/icons/align-left.svg" /> -->
-      <icon-base class="description-icon" iconName="attachment"></icon-base>
-      <h2>Attachments</h2>
+      <icon-base iconName="attachment"></icon-base>
+      <h3>Attachments</h3>
     </div>
-    <ul>
-      <!-- <li v-for="attachment in task.attachments">
-            <div>{{img}}</div>
-            
-        </li> -->
-    </ul>
+    <div class="attachment-content">
+      <ul>
+        <li v-for="attachment in attachments">
+          <div class="imgAttachment" v-if="attachment.type === 'image'">
+            <img :src="attachment.url" />
+          </div>
+          <div v-else>
+            <div class="linkAttachment"></div>
+          </div>
+          <div class="details-container-display">
+            <div class="attach-title">
+              {{ attachment.title }}
+            </div>
+            <div class="attach-fileName">
+              {{ attachment.fileName }}
+            </div>
+            <div class="attach-created">
+              {{ attachment.created }}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 <script>
 import iconBase from '../components/icon-base.vue';
-import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 export default {
-  props: {},
+  props: {
+    attachments: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {};
   },
   methods: {},
   components: {
-    attachmentCmp,
     iconBase,
   },
 };
 </script>
+
+<!-- formatDate(dateString) {
+      return new Date(dateString).toDateString();
+    }, -->
+
+<!-- new Date(dateString).toDateString() -->
