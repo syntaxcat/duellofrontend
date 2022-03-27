@@ -1,5 +1,5 @@
 <template>
-  <section class="attchment-cmp">
+  <section class="attachment-cmp">
     <header>
       <h2>Attach from…</h2>
       <button @click="close">
