@@ -17,12 +17,12 @@
           <icon-base class="card-header" iconName="cardB" />
           <div>
             <textarea type="text" v-model="taskToEdit.title"></textarea>
-          <div class="info-in-group">
-            <p>
-              in list
-              <span>{{ group.title }}</span>
-            </p>
-              </div>
+            <div class="info-in-group">
+              <p>
+                in list
+                <span>{{ group.title }}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -103,8 +103,8 @@ import checklistCmp from './dynamic-components/checklist-cmp.vue';
 import calendarCmp from './dynamic-components/calendar-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
+import attchmentCmp from './dynamic-components/attchment-cmp.vue';
 import iconBase from './icon-base.vue';
-import IconBase from './icon-base.vue';
 
 export default {
   props: {
@@ -310,11 +310,11 @@ export default {
         groupId: this.groupId,
       });
     },
-    removeTask(){
-      console.log('removing...')
-      this.$store.dispatch({type:'removeTask', taskId: this.taskId, groupId:this.groupId})
-      this.closeTaskDetails()
-    }
+    removeTask() {
+      console.log('removing...');
+      this.$store.dispatch({ type: 'removeTask', taskId: this.taskId, groupId: this.groupId });
+      this.closeTaskDetails();
+    },
   },
   computed: {
     labels() {
@@ -342,7 +342,7 @@ export default {
     descriptionDetails,
     activityDetails,
     iconBase,
-    IconBase,
+    attchmentCmp,
   },
 };
 </script>
