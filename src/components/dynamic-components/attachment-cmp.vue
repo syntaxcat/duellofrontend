@@ -17,7 +17,11 @@
     </div>
     <div class="attach-link-container">
       <h2>Attach a link</h2>
-      <input type="text" name="" id="" placeholder="Paste any link here..." />
+      <input type="text" placeholder="Paste any link here..." />
+      <!-- <div v-if="">
+        <h2>Link name (optional)</h2>
+        <input type="text" />
+      </div> -->
       <button class="attach-btn" @click="attachLink">Attach</button>
     </div>
   </section>
