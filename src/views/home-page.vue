@@ -88,7 +88,7 @@
         </div>
       </div>
 
-      <all-boards :boards="boards" />
+      <all-boards v-if="boards" :boards="boards" />
     </div>
 
     <!-- <div v-if="boards">

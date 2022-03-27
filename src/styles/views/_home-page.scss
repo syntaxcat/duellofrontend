@@ -5,6 +5,11 @@
 
   .main-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    // max-width: 1270px;
+    width: 100%;
+
     .nav-bar {
       display: block;
       // height: 272px;
@@ -25,7 +30,9 @@
 
           li:first-child {
             background-color: #e4f0f6;
-            color: #0079bf;
+            >*{
+              color: #0079bf;
+            }
           }
 
           li {
