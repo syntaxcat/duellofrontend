@@ -173,6 +173,7 @@
 .task-prev-clr{
   display: flex;
   min-height: 56px;
+  border-radius: 3px;
   textarea {
     align-self: flex-end;
     color: white;
@@ -191,6 +192,7 @@
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
+  border-radius: 3px;
   
   
   textarea {
