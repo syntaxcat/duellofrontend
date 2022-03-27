@@ -37,13 +37,14 @@ export default {
       this.loading = true;
       const res = await uploadImg(ev);
       this.loading = false;
-      const { url, original_filename, original_extension } = res;
+      const { url, original_filename, original_extension, format } = res;
       const attachment = {
         type: 'image',
         url,
-        fileName: `${original_filename}.${original_extension}`,
+        fileName: `${original_filename}.${original_extension ?? format}`,
         created: new Date().getTime(),
       };
+      this.close();
       this.$emit('saveAttachment', attachment);
     },
 

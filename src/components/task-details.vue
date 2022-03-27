@@ -151,13 +151,13 @@ export default {
       this.closeModal();
     },
     saveAttachment(attachment) {
-      const attachments = this.taskToEdit.attachments;
-      attachments.unshift(attachment);
+      const attachments = [attachment, ...this.taskToEdit.attachments];
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: { id: this.taskId, attachments },
         groupId: this.groupId,
       });
+      this.taskToEdit.attachments = attachments;
     },
     deleteComment(commentId) {
       const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);

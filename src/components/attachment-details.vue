@@ -1,12 +1,12 @@
 <template>
-  <section class="attachment-details">
+  <section class="attachment-details" v-if="attachments.length >= 1">
     <div class="header">
       <icon-base iconName="attachment"></icon-base>
       <h3>Attachments</h3>
     </div>
     <div class="attachment-content">
       <ul>
-        <li v-for="attachment in attachments">
+        <li v-for="attachment in attachments" key="attachment.url">
           <div class="imgAttachment" v-if="attachment.type === 'image'">
             <img :src="attachment.url" />
           </div>
@@ -14,14 +14,11 @@
             <div class="linkAttachment"></div>
           </div>
           <div class="details-container-display">
-            <div class="attach-title">
-              {{ attachment.title }}
-            </div>
             <div class="attach-fileName">
               {{ attachment.fileName }}
             </div>
             <div class="attach-created">
-              {{ attachment.created }}
+              {{ formatDate(attachment.created) }}
             </div>
           </div>
         </li>
@@ -41,15 +38,13 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    formatDate(date) {
+      return new Date(date).toDateString();
+    },
+  },
   components: {
     iconBase,
   },
 };
 </script>
-
-<!-- formatDate(dateString) {
-      return new Date(dateString).toDateString();
-    }, -->
-
-<!-- new Date(dateString).toDateString() -->
