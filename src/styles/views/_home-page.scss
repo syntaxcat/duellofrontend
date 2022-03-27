@@ -12,12 +12,10 @@
 
     .nav-bar {
       display: block;
-      // height: 272px;
       width: 240px;
       margin: 40px 0 0;
       padding: 0 16px;
-
-      position: sticky;
+      align-self: flex-start;
 
       div:first-child {
         margin-bottom: 12px;
