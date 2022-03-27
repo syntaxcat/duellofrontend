@@ -186,8 +186,8 @@ async function _createBoard() {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
                 {
@@ -202,8 +202,8 @@ async function _createBoard() {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
               ],
@@ -220,11 +220,11 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
-                  checklists:[
+                  checklists: [
                     {
                       id: 'list5',
                       title: 'Checklist5',
-                      taskTitle:'',
+                      taskTitle: '',
                       todos: [
                         {
                           id: '212jX',
@@ -236,7 +236,7 @@ async function _createBoard() {
                     {
                       id: 'list6',
                       title: 'Checklist6',
-                      taskTitle:'',
+                      taskTitle: '',
                       todos: [
                         {
                           id: '212jX',
@@ -251,8 +251,8 @@ async function _createBoard() {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
                 {
@@ -262,7 +262,6 @@ async function _createBoard() {
                   description: 'description',
                   labels: [],
                   members: [],
-                  attachments: [],
                   comments: [
                     {
                       id: 'ZdPnm',
@@ -275,11 +274,12 @@ async function _createBoard() {
                       },
                     },
                   ],
+                  attachments: [],
                   checklists: [
                     {
                       id: 'list1',
                       title: 'Checklist1',
-                      taskTitle:'',
+                      taskTitle: '',
                       todos: [
                         {
                           id: '212jX',
@@ -291,7 +291,7 @@ async function _createBoard() {
                     {
                       id: 'list2',
                       title: 'Checklist2',
-                      taskTitle:'',
+                      taskTitle: '',
                       todos: [
                         {
                           id: '212jX',
@@ -303,7 +303,7 @@ async function _createBoard() {
                     {
                       id: 'list3',
                       title: 'Checklist3',
-                      taskTitle:'',
+                      taskTitle: '',
                       todos: [
                         {
                           id: '212jX',
@@ -315,7 +315,7 @@ async function _createBoard() {
                     {
                       id: 'list4',
                       title: 'Checklist4',
-                      taskTitle:'',
+                      taskTitle: '',
                       todos: [
                         {
                           id: '212jX',
@@ -353,8 +353,8 @@ async function _createBoard() {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
               ],
@@ -382,7 +382,7 @@ async function _createBoard() {
           _id: 'b102',
           title: 'Fun',
           createdAt: 1589983468418,
-        subName: 'Kill me',
+          subName: 'Kill me',
           createdBy: {
             _id: 'u101',
             fullname: 'user',
@@ -417,13 +417,14 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                   style: {
-                    cover:{
-                      type:'',
-                      style:'',
-                      imgUrl:'',
-                      color: ''
-                    }
+                    cover: {
+                      type: '',
+                      style: '',
+                      imgUrl: '',
+                      color: '',
+                    },
                   },
                 },
                 {
@@ -432,13 +433,14 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                   style: {
-                    cover:{
-                      type:'',
-                      style:'',
-                      imgUrl:'',
-                      color: ''
-                    }
+                    cover: {
+                      type: '',
+                      style: '',
+                      imgUrl: '',
+                      color: '',
+                    },
                   },
                 },
               ],
@@ -447,8 +449,8 @@ async function _createBoard() {
                   type: '',
                   style: '',
                   imgUrl: '',
-                  color: ''
-                }
+                  color: '',
+                },
               },
             },
             {
@@ -461,13 +463,14 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                   style: {
                     cover: {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
                 {
@@ -489,6 +492,7 @@ async function _createBoard() {
                       },
                     },
                   ],
+                  attachments: [],
                   checklists: [
                     {
                       id: 'YEhmF',
@@ -530,8 +534,8 @@ async function _createBoard() {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
               ],
@@ -540,8 +544,8 @@ async function _createBoard() {
                   type: '',
                   style: '',
                   imgUrl: '',
-                  color: ''
-                }
+                  color: '',
+                },
               },
             },
           ],
@@ -566,7 +570,7 @@ async function _createBoard() {
           _id: 'b103',
           title: 'Robot dev proj',
           createdAt: 1589983468418,
-        subName: 'Working',
+          subName: 'Working',
           createdBy: {
             _id: 'u101',
             fullname: 'user',
@@ -600,15 +604,15 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                   style: {
                     cover: {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
-
                 },
                 {
                   id: 'c102',
@@ -616,13 +620,14 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                   style: {
                     cover: {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
               ],
@@ -631,8 +636,8 @@ async function _createBoard() {
                   type: '',
                   style: '',
                   imgUrl: '',
-                  color: ''
-                }
+                  color: '',
+                },
               },
             },
             {
@@ -645,13 +650,14 @@ async function _createBoard() {
                   labels: [],
                   members: [],
                   comments: [],
+                  attachments: [],
                   style: {
                     cover: {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
                 {
@@ -673,6 +679,7 @@ async function _createBoard() {
                       },
                     },
                   ],
+                  attachments: [],
                   checklists: [
                     {
                       id: 'YEhmF',
@@ -714,8 +721,8 @@ async function _createBoard() {
                       type: '',
                       style: '',
                       imgUrl: '',
-                      color: ''
-                    }
+                      color: '',
+                    },
                   },
                 },
               ],
