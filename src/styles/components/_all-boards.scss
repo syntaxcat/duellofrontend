@@ -1,10 +1,10 @@
 .all-boards {
-  position: relative;
+  position: sticky;
+  top: 0;
   margin: 40px 16px 0;
   max-width: 825px;
   min-width: 288px;
   width: 100%;
-  // background-color: lightblue;
 
   > * {
     max-width: 1266px;
@@ -30,31 +30,132 @@
 
       li {
         position: relative;
-        width: 175px;
-        max-width: 23.5%;
-        // the width changes with media query
-        
-        height: 95px;
         margin: 0 2% 2% 0;
-        padding: 4px 8px;
-        cursor: pointer;
+        width: 23.5%;
+        // the width changes with media query
+
+        .board-title-fade {
+          background-color: #00000026;
+          bottom: 0;
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+
+          transition: background-color 35ms ease;
+        }
 
         .board-title {
-            height: 100%;
-            width: 100%;
+          height: 100%;
+          width: 100%;
           position: relative;
           display: block;
-          line-height: 20px;
-          color: #fff;
+
           text-decoration: none;
           border-radius: 3px;
           margin-right: 0;
           padding: 8px;
-          //   background-color: #97a0af;
-          //   background-image: url('https://trello-backgrounds.s3.amazonaws.com/SharedBackground/768x960/0de3084…/photo-1646657411842-704b5afe9036.jpg');
           background-position: 50%;
           background-size: cover;
+
+          &:hover {
+            .board-title-content {
+              .container {
+                .board-title-icon {
+                  opacity: 1;
+                  top: 2px;
+                  left: 0px;
+                }
+              }
+            }
+
+            .board-title-fade {
+              background-color: #00000040;
+              cursor: pointer;
+            }
+          }
+
+          .board-title-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            height: 80px;
+            color: #fff;
+            line-height: 20px;
+
+            .title {
+              font-size: 16px;
+              font-weight: 700;
+              max-height: 40px;
+              overflow: hidden;
+              width: 100%;
+            }
+
+            .container {
+              display: flex;
+              flex: 0 0 auto;
+              align-items: baseline;
+              position: relative;
+
+              span {
+                font-size: 14px;
+                color: #ffffffd9;
+                display: block;
+                flex: 1 1 auto;
+                letter-spacing: 0.02em;
+                line-height: 18px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+
+              .board-title-icon {
+                position: relative;
+                margin-right: -2px;
+                opacity: 0;
+                top: 2px;
+                left: 22px;
+
+                transition-duration: 0.15s;
+                transition-property: left, opacity;
+              }
+            }
+          }
         }
+
+        .last{
+          height: 96px;
+        }
+      }
+    }
+  }
+
+  .create {
+    position: relative;
+    background-color: #f0f2f5;
+    color: #172b4d;
+    text-align: center;
+    line-height: 20px;
+    
+
+    transition-duration: 85ms;
+    transition-property: background-color, border-color, box-shadow;
+    transition-timing-function: ease;
+
+    &:hover {
+      background-color: #e7e9ed;
+      cursor: pointer;
+    }
+
+    p {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 400;
+
+      &:first-child{
+        font-size: 14px;
+      }
+      &:last-of-type{
+        font-size: 12px;
       }
     }
   }
@@ -89,5 +190,129 @@
   }
 
   .workspace {
+    h3 {
+      color: #5e6c84;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      margin: 20px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .container-header {
+      display: flex;
+      position: relative;
+      width: 100%;
+
+      .letter {
+        height: 32px;
+        width: 32px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        background: linear-gradient(#0747a6, #008da6);
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        left: -40px;
+        position: absolute;
+        top: 0;
+      }
+
+      h3 {
+        display: inline-block;
+        flex: 1;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        margin: 6px 0 0;
+      }
+
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 8px;
+        white-space: nowrap;
+
+        a {
+          background-color: #f0f2f5;
+          color: #172b4d;
+          border: none;
+          border-radius: 3px;
+          box-shadow: none;
+          display: inline-flex;
+          margin-bottom: 8px;
+          margin-left: 8px;
+          padding: 6px 12px 6px 6px;
+          position: relative;
+          text-decoration: none;
+
+          &:hover {
+            background-color: #e7e9ed;
+          }
+
+          span {
+            font-size: 14px;
+          }
+
+          .li-icon {
+            margin-right: 6px;
+            height: 20px;
+            width: 20px;
+
+            .icon-base {
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+
+      .upgrade {
+        display: inline-block;
+        height: 32px;
+        margin-bottom: auto;
+        margin-left: 8px;
+
+        button {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #eddbf4;
+          border: none;
+          border-radius: 3px;
+          padding: 6px 12px 6px 6px;
+          position: relative;
+
+          &:hover {
+            background-color: #dfc0eb;
+            cursor: pointer;
+          }
+
+          .li-icon {
+            display: flex;
+            justify-content: center;
+            color: #ffffff;
+            background-color: #89609e;
+            border-radius: 2px;
+            height: 20px;
+            margin-right: 8px;
+            width: 20px;
+
+            .icon-base {
+              margin-top: 2px;
+            }
+          }
+
+          div:last-child {
+            color: #42526e;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          }
+        }
+      }
+    }
   }
 }

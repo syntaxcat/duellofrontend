@@ -276,6 +276,8 @@
       />
     </svg>
 
+<svg v-else-if="iconName === 'member'" viewBox="0 0 24 24" width="16" height="16" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.025 3a5.007 5.007 0 0 0-5.014 5c0 2.761 2.245 5 5.014 5a5.007 5.007 0 0 0 5.014-5c0-2.761-2.244-5-5.014-5zM9.017 8c0 1.657 1.347 3 3.008 3a3.004 3.004 0 0 0 3.009-3c0-1.657-1.347-3-3.009-3a3.004 3.004 0 0 0-3.008 3z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M12.025 11c4.755 0 8.652 3.667 9 8.32a2.004 2.004 0 0 1-1.98 1.68H5.006a2.004 2.004 0 0 1-1.98-1.68c.348-4.653 4.244-8.32 9-8.32zm-6.948 8h13.897a7.015 7.015 0 0 0-6.949-6 7.015 7.015 0 0 0-6.948 6zm13.968.977v.046-.046z" fill="currentColor"/></svg>
+
     <svg
       v-else-if="iconName === 'plus-s'"
       xmlns="http://www.w3.org/2000/svg"
@@ -649,8 +651,6 @@
     <svg
       v-else-if="iconName === 'attachment'"
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

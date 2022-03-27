@@ -123,6 +123,7 @@ function getEmptyBoard() {
   return {
     _id: '',
     title: '',
+    subName: '',
     createdAt: null,
     createdBy: {},
     style: {
@@ -138,12 +139,12 @@ function getEmptyBoard() {
 async function _createBoard() {
   try {
     var boards = await storageService.query(BOARD_KEY);
-    // console.log('board!', board)
     if (!boards || !boards.length) {
       boards = [
         {
           _id: 'b101',
           title: 'Robot dev proj',
+          subName: 'sprint',
           createdAt: 1589983468418,
           createdBy: {
             _id: 'u101',
