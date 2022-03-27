@@ -46,7 +46,7 @@
 <script>
 import iconBase from './icon-base.vue';
 import { eventBus } from '../services/eventBus.service.js';
-import { RSA_NO_PADDING } from 'constants';
+// import { RSA_NO_PADDING } from 'constants';
 export default {
   props: {
     task: {
@@ -63,7 +63,7 @@ export default {
     return {
       isEditing: false,
       taskToEditPartial: { title: this.task.title, id: this.task.id },
-      taskCover: null
+      taskCover: null,
     };
   },
   methods: {
@@ -95,7 +95,6 @@ export default {
     },
     updateHeigh() {
       this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
-      
     },
   },
   mounted() {
@@ -121,33 +120,33 @@ export default {
     },
     isCover() {
       // console.log(this.task)
-      if (!this.task.style.cover.type) return false
-      return true
+      if (!this.task.style.cover.type) return false;
+      return true;
     },
     coverStyle() {
       if (this.task.style.cover.type === 'color') {
         // console.log(`background-color: ${this.task.style.cover.color}`)
-        return `background-color: ${this.task.style.cover.color}; height: 32px`
+        return `background-color: ${this.task.style.cover.color}; height: 32px`;
       }
       // else if (this.task.style.cover.type === 'img') {
       //   return `background-image: url(${this.task.style.cover.imgUrl}); max-height: 260px`
       // }
       else return '';
     },
-    isCoverBcg(){
-      if(this.task.style.cover.style==='background') return true
-      else return false
-    }
+    isCoverBcg() {
+      if (this.task.style.cover.style === 'background') return true;
+      else return false;
+    },
   },
   components: {
     iconBase,
   },
   created() {
-    this.unsubscribe = eventBus.on('editTask', this.editTask)
+    this.unsubscribe = eventBus.on('editTask', this.editTask);
     // this.taskCover = this.task.style.cover
   },
   unmounted() {
-    this.unsubscribe()
-  }
+    this.unsubscribe();
+  },
 };
 </script>
