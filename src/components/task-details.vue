@@ -62,6 +62,9 @@
             </div>
           </div>
           <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
+          <!-- <div class="attachment-container">
+            <attachment-cmp />
+          </div> -->
           <activity-details
             :task="taskToEdit"
             :user="loggedinUser"
@@ -107,6 +110,7 @@ import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
 import iconBase from './icon-base.vue';
+import AttachmentCmp from './dynamic-components/attachment-cmp.vue';
 
 export default {
   props: {
@@ -353,6 +357,7 @@ export default {
     activityDetails,
     attachmentCmp,
     iconBase,
+    AttachmentCmp,
   },
 };
 </script>
