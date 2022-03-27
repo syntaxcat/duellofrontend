@@ -1,5 +1,8 @@
 <template>
   <section class="task-preview" @click="openModalDetails">
+    <div v-if="isCover" class="task-prev-cover" :style="coverStyle">
+      <img class="cover-img" v-if="task.style.cover.type === 'img'" :src="task.style.cover.imgUrl" />
+    </div>
     <div class="task-labels">
       <div
         class="task-label"
@@ -20,7 +23,8 @@
       @blur="saveEdit(task)"
     ></textarea>
     <button @click.stop="editTask(task, group.id)" class="edit-btn">
-      <img src="../assets/icons/bx-pencil.svg" alt="edit" />
+    <icon-base iconName="pencil"></icon-base>
+      <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->
     </button>
     <div class="task-extras">
       <div>
@@ -30,7 +34,7 @@
         </span>
         <!-- <button @click.stop="removeTask(task.id, group.id)">
           <img src="../assets/icons/x.svg" alt="delete" />
-        </button> -->
+        </button>-->
       </div>
       <div class="member-list">
         <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
@@ -41,6 +45,7 @@
 
 <script>
 import iconBase from './icon-base.vue';
+import IconBase from './icon-base.vue';
 export default {
   props: {
     task: {
@@ -57,6 +62,7 @@ export default {
     return {
       isEditing: false,
       taskToEditPartial: { title: this.task.title, id: this.task.id },
+      taskCover: null
     };
   },
   methods: {
@@ -112,9 +118,29 @@ export default {
         return this.task.labelIds.includes(label.id);
       });
     },
+    isCover() {
+      // console.log(this.task)
+      if (!this.task.style.cover.type) return false
+      return true
+    },
+    coverStyle() {
+      console.log(this.task)
+      if (this.task.style.cover.type === 'color') {
+        // console.log(`background-color: ${this.task.style.cover.color}`)
+        return `background-color: ${this.task.style.cover.color}; height: 32px`
+      } 
+      // else if (this.task.style.cover.type === 'img') {
+      //   return `background-image: url(${this.task.style.cover.imgUrl}); max-height: 260px`
+      // }
+      else return '';
+    }
   },
   components: {
     iconBase,
-  },
+    IconBase
+},
+  created() {
+    // this.taskCover = this.task.style.cover
+  }
 };
 </script>

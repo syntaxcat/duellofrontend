@@ -2,7 +2,7 @@
   <div class="details-bc">
     <div class="task-details" v-if="taskToEdit">
       <div class="task-header-container">
-        <div v-if="isCover" class="cover-container">
+        <div v-if="isCover" class="cover-container" :style="coverStyle">
           <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
           <button class="details-btn" @click="closeTaskDetails">
             <icon-base iconName="x" />
@@ -84,6 +84,7 @@
             @saveDate="saveDate"
             @removeDate="removeDate"
             @addLabel="addLabel"
+            @closeModal="closeModal"
             @updateBoardLabel="updateBoardLabel"
             @deleteBoardLabel="deleteBoardLabel"
             @createBoardLabel="createBoardLabel"
@@ -92,6 +93,8 @@
             @closeLabel="closeLabel"
             @addMember="addMember"
             @saveImg="saveImg"
+            @setCoverColor="setCoverColor"
+            @setCoverImg="setCoverImg"
           />
         </div>
       </div>
@@ -110,8 +113,7 @@ import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
 import iconBase from './icon-base.vue';
-import AttachmentCmp from './dynamic-components/attachment-cmp.vue';
-
+import coverCmp from './dynamic-components/cover-cmp.vue';
 export default {
   props: {
     taskId: {
@@ -232,9 +234,32 @@ export default {
     closeLabel() {
       this.cmp = null;
     },
+    closeModal() {
+      this.cmp = null;
+    },
 
     closeTaskDetails() {
       this.$emit('closeTaskDetails');
+    },
+    setCoverColor(color) {
+      this.taskToEdit.style.cover.type = 'color';
+      this.taskToEdit.style.cover.color = color;
+      if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid';
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
+    },
+    setCoverImg(imgUrl) {
+      this.taskToEdit.style.cover.type = 'img';
+      this.taskToEdit.style.cover.imgUrl = imgUrl;
+      if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid';
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
     },
     makeChecklist() {},
     addAttachment() {},
@@ -344,7 +369,16 @@ export default {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
     isCover() {
+      console.log(this.taskToEdit);
+      if (this.taskToEdit.style.cover.type) return true;
       return false;
+    },
+    coverStyle() {
+      if (this.taskToEdit.style.cover.type === 'color') {
+        return `background-color: ${this.taskToEdit.style.cover.color}`;
+      } else if (this.taskToEdit.style.cover.type === 'img') {
+        return `background-image: url(${this.taskToEdit.style.cover.imgUrl}); max-height: 160px `;
+      } else return '';
     },
   },
   components: {
@@ -353,11 +387,11 @@ export default {
     memberCmp,
     checklistCmp,
     calendarCmp,
+    coverCmp,
     descriptionDetails,
     activityDetails,
     attachmentCmp,
     iconBase,
-    AttachmentCmp,
   },
 };
 </script>

@@ -1,0 +1,39 @@
+.cover-cmp {
+  background-color: white;
+  .color-container {
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(5, 1fr);
+    gap: 8px;
+    .color-boxes {
+      width: 50px;
+      height: 30px;
+      border-radius: 3px;
+      //   margin: 10px;
+    }
+  }
+  .img-container {
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+    gap: 8px;
+    .img-boxes img {
+      border-radius: 3px;
+      width: 90px;
+    }
+  }
+  .cover-container {
+    display: flex;
+    justify-content: center;
+    .cover-prev {
+      width: 136px;
+      height: 64px;
+      margin: 8px;
+      background-color: $coverEmptyClr;
+      border-radius: 3px;
+      background-size: contain;
+      background-size: cover;
+      background-position-x: center;
+      background-position-y: center;
+      //   background-size: 100% 100%;
+    }
+  }
+}

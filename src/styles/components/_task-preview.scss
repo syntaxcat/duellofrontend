@@ -53,6 +53,17 @@
 .task-preview {
   padding: 6px 8px 2px;
   width: 100%;
+  .task-prev-cover {
+    .cover-img{
+      max-height: 180px;
+
+    }
+    // min-height: 32px;
+    // width: 100%;
+    // background-size: auto 100%;
+    // background-repeat: no-repeat;
+    // background-position: center;
+  }
   textarea {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 100%;
