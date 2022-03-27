@@ -62,9 +62,7 @@
             </div>
           </div>
           <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-          <!-- <div class="attachment-container">
-            <attachment-cmp />
-          </div> -->
+          <attachment-details />
           <activity-details
             :task="taskToEdit"
             :user="loggedinUser"
@@ -112,6 +110,7 @@ import calendarCmp from './dynamic-components/calendar-cmp.vue';
 import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
+import attachmentDetails from '../components/attachment-details.vue';
 import iconBase from './icon-base.vue';
 import coverCmp from './dynamic-components/cover-cmp.vue';
 export default {
@@ -391,6 +390,7 @@ export default {
     descriptionDetails,
     activityDetails,
     attachmentCmp,
+    attachmentDetails,
     iconBase,
   },
 };

@@ -4,13 +4,13 @@
       <!-- <img src="../assets/icons/align-left.svg" /> -->
       <icon-base class="description-icon" iconName="attachment"></icon-base>
       <h2>Attachments</h2>
-      <ul>
-        <!-- <li v-for="attachment in task.attachments">
+    </div>
+    <ul>
+      <!-- <li v-for="attachment in task.attachments">
             <div>{{img}}</div>
             
         </li> -->
-      </ul>
-    </div>
+    </ul>
   </section>
 </template>
 <script>
