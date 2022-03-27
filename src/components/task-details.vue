@@ -91,6 +91,7 @@
             @setCoverColor="setCoverColor"
             @setCoverImg="setCoverImg"
             @setCoverStyle="setCoverStyle"
+            @addChecklist="addChecklist"
           />
         </div>
       </div>
@@ -111,7 +112,6 @@ import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
 import attachmentDetails from '../components/attachment-details.vue';
 import coverCmp from './dynamic-components/cover-cmp.vue';
-
 
 export default {
   props: {
@@ -145,6 +145,11 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
+    addChecklist(newChecklist) {
+      console.log(newChecklist);
+
+      this.closeModal();
+    },
     saveAttachment(attachment) {
       const attachments = this.taskToEdit.attachments;
       attachments.unshift(attachment);
