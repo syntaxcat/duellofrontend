@@ -54,6 +54,7 @@
   padding: 6px 8px 2px;
   width: 100%;
   textarea {
+    // padding-top: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 100%;
     resize: none;
@@ -169,22 +170,37 @@
     border-color: $clr6;
   }
 }
-
+.task-prev-clr{
+  display: flex;
+  min-height: 56px;
+  textarea {
+    align-self: flex-end;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    // height: 30px;
+    text-shadow: -1px 2px 7px rgba(0,0,0,0.25);
+    // line-height: 39px;
+    padding-top: 10px;
+  }
+  
+}
 .task-prev-bcg {
   height: 200px;
-  position: relative;
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
-
-
+  
+  
   textarea {
+    padding-top: 10px;
     align-self: flex-end;
     color: white;
     font-weight: 500;
     font-size: 16px;
     height: 30px;
     text-shadow: -1px 2px 7px rgba(0,0,0,0.43);
+    // line-height: 39px;
   }
 }

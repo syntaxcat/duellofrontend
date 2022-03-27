@@ -252,6 +252,7 @@ export default {
     setCoverColor(color) {
       this.taskToEdit.style.cover.type = 'color';
       this.taskToEdit.style.cover.color = color;
+        this.taskToEdit.style.cover.imgUrl = ''
       if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid';
       this.$store.dispatch({
         type: 'updateTask',
@@ -262,6 +263,7 @@ export default {
     setCoverImg(imgUrl) {
       this.taskToEdit.style.cover.type = 'img';
       this.taskToEdit.style.cover.imgUrl = imgUrl;
+      this.taskToEdit.style.cover.color = ''
       if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid';
       this.$store.dispatch({
         type: 'updateTask',

@@ -85,6 +85,7 @@
 }
 .task-header-container {
   // display: flex;
+  position: relative;
   flex-direction: row-reverse;
   justify-content: space-between;
   .details-btn{
@@ -157,9 +158,6 @@
     padding: 4px 8px;
     position: relative;
     margin: 20px 0 8px 56px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
 
     textarea {
       // background-color: #172b4d;

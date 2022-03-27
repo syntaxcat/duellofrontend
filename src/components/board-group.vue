@@ -1,5 +1,5 @@
 <template>
-  <section class="board-group" >
+  <section class="board-group">
     <div class="board-group-container">
       <section class="board-group">
         <div class="group-title">
@@ -45,15 +45,15 @@
 
                 <task-preview
                   :style="(task.style.cover.style === 'background') ? `background-image: url(${task.style.cover.imgUrl}); background-color:${task.style.cover.color}` : ''"
-                  :class="(task.style.cover.style === 'background') ? 'task-prev-bcg' : ''"
+                  :class="[(task.style.cover.style === 'background' && task.style.cover.type === 'img') ? 'task-prev-bcg' : '',
+                  (task.style.cover.style === 'background' && task.style.cover.type === 'color') ? 'task-prev-clr' : '']"
                   :task="task"
                   :group="group"
                   @editTask="updateTask"
                   @removeTask="removeTask"
                   @toggleLabelsExpanded="toggleLabelsExpanded"
-                >
-                </task-preview>
-                  <span class="bcg-helper" v-if="task.style.cover.style === 'background'"></span>
+                ></task-preview>
+                <span class="bcg-helper" v-if="task.style.cover.style === 'background'"></span>
               </li>
             </draggable>
           </ul>
