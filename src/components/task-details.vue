@@ -2,16 +2,17 @@
   <div class="details-bc">
     <div class="task-details" v-if="taskToEdit">
       <div class="task-header-container">
-        <div v-if="isCover" class="cover-container" :style="coverStyle">
-          <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
-          <button class="details-btn" @click="closeTaskDetails">
-            <icon-base iconName="x" />
-          </button>
-        </div>
-        <div v-else>
-          <button class="details-btn" @click="closeTaskDetails">
-            <icon-base iconName="x" />
-          </button>
+        <button class="details-btn" @click="closeTaskDetails">
+          <icon-base iconName="x" />
+        </button>
+
+        <div v-if="taskToEdit.style.cover.type" class="cover-container">
+          <img
+            class="cover-img"
+            v-if="taskToEdit.style.cover.type === 'img'"
+            :src="taskToEdit.style.cover.imgUrl"
+          />
+          <div class="cover-clr" v-else :style="'background-color:' + taskToEdit.style.cover.color"></div>
         </div>
         <div class="task-details-container">
           <icon-base class="card-header" iconName="cardB" />
@@ -45,9 +46,12 @@
             <div class="labels-for-display" v-if="labels.length >= 1">
               <h2>Labels</h2>
               <div class="labels-container">
-                <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
-                  {{ label.title }}
-                </div>
+                <div
+                  class="label"
+                  v-for="label in labels"
+                  :key="label.id"
+                  :style="'background-color:' + label.color"
+                >{{ label.title }}</div>
                 <button class="add-btn" @click="toggleLabelsModal">
                   <icon-base iconName="plus" />
                 </button>
@@ -71,7 +75,12 @@
             @deleteComment="deleteComment"
           />
         </div>
-        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" @removeTask="removeTask" />
+        <task-details-menu
+          :isMember="isMember"
+          @joinTask="joinTask"
+          @openModal="openModal"
+          @removeTask="removeTask"
+        />
         <div class="dynamic-cmp">
           <component
             :is="cmp"
@@ -93,6 +102,7 @@
             @saveImg="saveImg"
             @setCoverColor="setCoverColor"
             @setCoverImg="setCoverImg"
+            @setCoverStyle="setCoverStyle"
           />
         </div>
       </div>
@@ -260,11 +270,19 @@ export default {
         groupId: this.groupId,
       });
     },
-    makeChecklist() {},
-    addAttachment() {},
-    changeCover() {},
-    copyTask() {},
-    archiveTask() {},
+    setCoverStyle(coverStyle){
+      this.taskToEdit.style.cover.style = coverStyle;
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
+    },
+    makeChecklist() { },
+    addAttachment() { },
+    changeCover() { },
+    copyTask() { },
+    archiveTask() { },
 
     async saveDate(date) {
       this.cmp = null;

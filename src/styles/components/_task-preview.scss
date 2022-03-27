@@ -53,17 +53,6 @@
 .task-preview {
   padding: 6px 8px 2px;
   width: 100%;
-  .task-prev-cover {
-    .cover-img{
-      max-height: 180px;
-
-    }
-    // min-height: 32px;
-    // width: 100%;
-    // background-size: auto 100%;
-    // background-repeat: no-repeat;
-    // background-position: center;
-  }
   textarea {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 100%;
@@ -80,7 +69,6 @@
       display: block;
     }
   }
-
   .edit-btn {
     display: none;
     position: absolute;
@@ -179,5 +167,24 @@
   textarea.isEditing {
     // background-color: $clr3;
     border-color: $clr6;
+  }
+}
+
+.task-prev-bcg {
+  height: 200px;
+  position: relative;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+
+
+  textarea {
+    align-self: flex-end;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    height: 30px;
+    text-shadow: -1px 2px 7px rgba(0,0,0,0.43);
   }
 }
