@@ -10,8 +10,8 @@
         <div>
             <p>Size</p>
             <div class="cover-container">
-                <div :style="coverStyle" class="cover-prev"></div>
-                <div :style="coverStyle" class="cover-prev"></div>
+                <div :style="coverStyle" @click="setCoverStyle('solid')" class="cover-prev"></div>
+                <div :style="coverStyle" @click="setCoverStyle('background')" class="cover-prev"></div>
             </div>
         </div>
         <hr />
@@ -98,11 +98,15 @@ export default {
             this.currColor = ''
             this.$emit('setCoverImg', this.currImg)
         },
+        setCoverStyle(coverStyle){
+            this.$emit('setCoverStyle', coverStyle)
+        }
     },
     async created() {
         this.$store.dispatch('loadDesign')
         console.log(this.task.style.cover)
         this.currColor = this.task.style.cover.color
+        this.currImg = this.task.style.cover.imgUrl
     }
 };
 </script>

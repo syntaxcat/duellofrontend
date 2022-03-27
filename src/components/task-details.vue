@@ -2,16 +2,13 @@
   <div class="details-bc">
     <div class="task-details" v-if="taskToEdit">
       <div class="task-header-container">
-        <div v-if="isCover" class="cover-container" :style="coverStyle">
-          <!-- <img src="../assets/imgs/background.jpg" alt="" /> -->
-          <button class="details-btn" @click="closeTaskDetails">
-            <icon-base iconName="x" />
-          </button>
-        </div>
-        <div v-else>
-          <button class="details-btn" @click="closeTaskDetails">
-            <icon-base iconName="x" />
-          </button>
+        <button class="details-btn" @click="closeTaskDetails">
+          <icon-base iconName="x" />
+        </button>
+
+        <div v-if="taskToEdit.style.cover.type" class="cover-container">
+          <img class="cover-img" v-if="taskToEdit.style.cover.type === 'img'" :src="taskToEdit.style.cover.imgUrl" />
+          <div class="cover-clr" v-else :style="'background-color:' + taskToEdit.style.cover.color"></div>
         </div>
         <div class="task-details-container">
           <icon-base class="card-header" iconName="cardB" />
@@ -62,9 +59,7 @@
             </div>
           </div>
           <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
-          <!-- <div class="attachment-container">
-            <attachment-cmp />
-          </div> -->
+          <attachment-details :attachments="taskToEdit.attachments" />
           <activity-details
             :task="taskToEdit"
             :user="loggedinUser"
@@ -92,9 +87,10 @@
             @closeAttachment="closeAttachment"
             @closeLabel="closeLabel"
             @addMember="addMember"
-            @saveImg="saveImg"
+            @saveAttachment="saveAttachment"
             @setCoverColor="setCoverColor"
             @setCoverImg="setCoverImg"
+            @setCoverStyle="setCoverStyle"
           />
         </div>
       </div>
@@ -113,6 +109,7 @@ import calendarCmp from './dynamic-components/calendar-cmp.vue';
 import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
+import attachmentDetails from '../components/attachment-details.vue';
 import coverCmp from './dynamic-components/cover-cmp.vue';
 
 
@@ -138,7 +135,6 @@ export default {
       group: null,
       savedDate: null,
       cmp: null,
-      imgUrls: [],
     };
   },
   async created() {
@@ -149,9 +145,14 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
-    saveImg(imgUrl) {
-      this.imgUrls.push(imgUrl);
-      // console.log('imgurls', [...this.imgUrls]);
+    saveAttachment(attachment) {
+      const attachments = this.taskToEdit.attachments;
+      attachments.unshift(attachment);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: { id: this.taskId, attachments },
+        groupId: this.groupId,
+      });
     },
     deleteComment(commentId) {
       const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);
@@ -263,11 +264,14 @@ export default {
         groupId: this.groupId,
       });
     },
-    makeChecklist() {},
-    addAttachment() {},
-    changeCover() {},
-    copyTask() {},
-    archiveTask() {},
+    setCoverStyle(coverStyle) {
+      this.taskToEdit.style.cover.style = coverStyle;
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
+    },
 
     async saveDate(date) {
       this.cmp = null;
@@ -371,7 +375,6 @@ export default {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
     isCover() {
-      // console.log(this.taskToEdit);
       if (this.taskToEdit.style.cover.type) return true;
       return false;
     },
@@ -393,6 +396,7 @@ export default {
     descriptionDetails,
     activityDetails,
     attachmentCmp,
+    attachmentDetails,
     iconBase,
   },
 };

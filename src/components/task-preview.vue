@@ -1,9 +1,9 @@
 <template>
-  <section class="task-preview" @click="openModalDetails">
-    <div v-if="isCover" class="task-prev-cover" :style="coverStyle">
+  <section class="task-preview">
+    <!-- <div v-if="isCover" class="task-prev-cover" :style="coverStyle">
       <img class="cover-img" v-if="task.style.cover.type === 'img'" :src="task.style.cover.imgUrl" />
-    </div>
-    <div class="task-labels">
+    </div>-->
+    <div v-if="!isCoverBcg" class="task-labels">
       <div
         class="task-label"
         v-for="label in labels"
@@ -22,30 +22,30 @@
       :disabled="!isEditing"
       @blur="saveEdit(task)"
     ></textarea>
-    <button @click.stop="editTask(task, group.id)" class="edit-btn">
-    <icon-base iconName="pencil"></icon-base>
-      <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->
-    </button>
-    <div class="task-extras">
+    <!-- <button @click.stop="editTask(task, group.id)" class="edit-btn"> -->
+    <!-- <icon-base iconName="pencil"></icon-base> -->
+    <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->
+    <!-- </button> -->
+    <div v-if="!isCoverBcg" class="task-extras">
       <div>
         <span v-if="task.dueDate" class="due-date">
           <icon-base iconName="clock" />
           {{ formatDate(this.task.dueDate) }}
         </span>
-        <!-- <button @click.stop="removeTask(task.id, group.id)">
-          <img src="../assets/icons/x.svg" alt="delete" />
-        </button>-->
       </div>
       <div class="member-list">
         <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
       </div>
     </div>
   </section>
+  <!-- <button @click.stop="removeTask(task.id, group.id)">
+          <img src="../assets/icons/x.svg" alt="delete" />
+  </button>-->
 </template>
 
 <script>
 import iconBase from './icon-base.vue';
-import IconBase from './icon-base.vue';
+import { eventBus } from '../services/eventBus.service.js';
 export default {
   props: {
     task: {
@@ -77,9 +77,6 @@ export default {
       e.stopPropagation();
       this.$emit('toggleLabelsExpanded');
     },
-    openModalDetails() {
-      this.$emit('onOpen');
-    },
     async saveEdit() {
       this.isEditing = false;
       this.$emit('editTask', this.taskToEditPartial);
@@ -89,9 +86,11 @@ export default {
       this.$emit('removeTask', taskId, groupId);
     },
 
-    editTask(task, groupId) {
-      this.isEditing = true;
-      this.$nextTick(() => this.$refs.textarea.focus());
+    editTask(taskId) {
+      if (taskId === this.task.id) {
+        this.isEditing = true;
+        this.$nextTick(() => this.$refs.textarea.focus());
+      }
     },
     updateHeigh() {
       this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
@@ -124,23 +123,29 @@ export default {
       return true
     },
     coverStyle() {
-      // console.log(this.task)
       if (this.task.style.cover.type === 'color') {
         // console.log(`background-color: ${this.task.style.cover.color}`)
         return `background-color: ${this.task.style.cover.color}; height: 32px`
-      } 
+      }
       // else if (this.task.style.cover.type === 'img') {
       //   return `background-image: url(${this.task.style.cover.imgUrl}); max-height: 260px`
       // }
       else return '';
+    },
+    isCoverBcg(){
+      if(this.task.style.cover.style==='background') return true
+      else return false
     }
   },
   components: {
     iconBase,
-    IconBase
-},
+  },
   created() {
+    this.unsubscribe = eventBus.on('editTask', this.editTask)
     // this.taskCover = this.task.style.cover
+  },
+  unmounted() {
+    this.unsubscribe()
   }
 };
 </script>

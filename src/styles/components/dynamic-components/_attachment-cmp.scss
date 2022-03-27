@@ -42,25 +42,28 @@
 
   .upload-container {
     label {
-      margin: 0 -12px;
-    }
-    cursor: pointer;
-    color: #172b4d;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
-      sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    background-color: transparent;
-    padding: 6px 12px;
-    border-bottom: 1px solid rgba(9, 30, 66, 0.13);
-    margin-bottom: 8px;
+      margin-left: -9px;
+      margin-right: -9px;
+      display: block;
+      cursor: pointer;
+      color: #172b4d;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
+        sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      background-color: transparent;
+      padding: 6px 12px;
+      margin-bottom: 8px;
 
-    &:hover {
-      background-color: #091e420a;
+      &:hover {
+        background-color: #091e420a;
+      }
     }
   }
 
   .attach-link-container {
+    border-top: 1px solid rgba(9, 30, 66, 0.13);
+    padding-top: 0.25rem;
     h2 {
       color: #5e6c84;
       font-size: 12px;
