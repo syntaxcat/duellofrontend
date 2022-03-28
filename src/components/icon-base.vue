@@ -6,8 +6,21 @@
       />
     </svg>
 
-      
-    <svg v-else-if="iconName === 'more'" width="24" height="24" viewBox="0 0 24 24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm7 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm9-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" fill="currentColor"/></svg>
+    <svg
+      v-else-if="iconName === 'more'"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm7 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm9-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"
+        fill="currentColor"
+      />
+    </svg>
 
     <svg v-else-if="iconName === 'rocket'" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -70,9 +83,6 @@
       <line x1="12" y1="5" x2="12" y2="19" />
       <line x1="5" y1="12" x2="19" y2="12" />
     </svg>
-
-    <svg v-else-if="iconName === 'add-member'" width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C14.7614 13 17 10.7614 17 8C17 5.23858 14.7614 3 12 3C9.23858 3 7 5.23858 7 8C7 9.44777 7.61532 10.7518 8.59871 11.6649C5.31433 13.0065 3 16.233 3 20C3 20.5523 3.44772 21 4 21H12C12.5523 21 13 20.5523 13 20C13 19.4477 12.5523 19 12 19H5.07089C5.55612 15.6077 8.47353 13 12 13ZM15 8C15 9.65685 13.6569 11 12 11C10.3431 11 9 9.65685 9 8C9 6.34315 10.3431 5 12 5C13.6569 5 15 6.34315 15 8Z" fill="currentColor"></path><path d="M17 14C17 13.4477 17.4477 13 18 13C18.5523 13 19 13.4477 19 14V16H21C21.5523 16 22 16.4477 22 17C22 17.5523 21.5523 18 21 18H19V20C19 20.5523 18.5523 21 18 21C17.4477 21 17 20.5523 17 20V18H15C14.4477 18 14 17.5523 14 17C14 16.4477 14.4477 16 15 16H17V14Z" fill="currentColor"></path></svg>
-
     <svg
       v-else-if="iconName === 'hart'"
       width="16"
@@ -126,23 +136,6 @@
     </svg>
 
     <svg
-      v-else-if="iconName === 'members'"
-      width="16"
-      height="16"
-      role="presentation"
-      focusable="false"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M12.5048 5.67168C11.9099 5.32669 11.2374 5.10082 10.5198 5.0267C11.2076 3.81639 12.5085 3 14 3C16.2092 3 18 4.79086 18 7C18 7.99184 17.639 8.89936 17.0413 9.59835C19.9512 10.7953 22 13.6584 22 17C22 17.5523 21.5523 18 21 18H18.777C18.6179 17.2987 18.3768 16.6285 18.0645 16H19.917C19.4892 13.4497 17.4525 11.445 14.8863 11.065C14.9608 10.7218 15 10.3655 15 10C15 9.58908 14.9504 9.18974 14.857 8.80763C15.5328 8.48668 16 7.79791 16 7C16 5.89543 15.1046 5 14 5C13.4053 5 12.8711 5.25961 12.5048 5.67168ZM10 12C11.1046 12 12 11.1046 12 10C12 8.89543 11.1046 8 10 8C8.89543 8 8 8.89543 8 10C8 11.1046 8.89543 12 10 12ZM14 10C14 10.9918 13.639 11.8994 13.0412 12.5984C15.9512 13.7953 18 16.6584 18 20C18 20.5523 17.5523 21 17 21H3C2.44772 21 2 20.5523 2 20C2 16.6584 4.04879 13.7953 6.95875 12.5984C6.36099 11.8994 6 10.9918 6 10C6 7.79086 7.79086 6 10 6C12.2091 6 14 7.79086 14 10ZM9.99999 14C12.973 14 15.441 16.1623 15.917 19H4.08295C4.55902 16.1623 7.02699 14 9.99999 14Z"
-        fill="currentColor"
-      ></path>
-    </svg>
-
-    <svg
       v-else-if="iconName === 'settings'"
       width="16"
       height="16"
@@ -172,23 +165,6 @@
         fill="currentColor"
       />
     </svg>
-
-    <svg
-      v-else-if="iconName === 'star'"
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-      version="1.2"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M7.495 20.995 12 18.627l4.505 2.368a1.546 1.546 0 0 0 2.244-1.63l-.86-5.016 3.644-3.553a1.546 1.546 0 0 0-.857-2.638l-5.037-.732-2.252-4.564a1.547 1.547 0 0 0-2.774 0L8.361 7.426l-5.037.732a1.546 1.546 0 0 0-.857 2.638l3.645 3.553-.86 5.016a1.547 1.547 0 0 0 2.243 1.63zm11.85-10.947-3.672 3.58.867 5.056L12 16.297l-4.54 2.387.867-5.055-3.673-3.58L9.73 9.31 12 4.71l2.27 4.6 5.076.738z"
-        fill="currentColor"
-      />
-    </svg>
-
     <svg
       v-else-if="iconName === 'starS'"
       viewBox="0 0 24 24"
@@ -204,9 +180,6 @@
         fill="currentColor"
       />
     </svg>
-
-    <svg v-else-if="iconName === 'checklist'" width="24" height="24"  viewBox="0 0 24 24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 1 0-2 0v5H6V6h10a1 1 0 1 0 0-2H6zm2.735 6.322a1 1 0 1 0-1.47 1.356l3.612 3.919c.537.526 1.337.526 1.834.03l.364-.359.977-.96c1.01-.995 2.02-1.991 2.962-2.923l.04-.04a493.191 493.191 0 0 0 3.658-3.643 1 1 0 0 0-1.424-1.404c-.704.713-1.971 1.974-3.64 3.625l-.04.04c-.942.93-1.95 1.926-2.96 2.92l-.815.802-3.098-3.363z" fill="currentColor"/></svg>
-
     <svg
       v-else-if="iconName === 'trello-clock'"
       viewBox="0 0 24 24"
@@ -258,28 +231,6 @@
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm2 0a8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8zm4-2a4.005 4.005 0 0 1 4.939-3.893 3.971 3.971 0 0 1 2.95 2.941 3.991 3.991 0 0 1-2.53 4.7.507.507 0 0 0-.35.471V14a1 1 0 1 1-2 0v-1.013A.997.997 0 0 1 12 12c1.104 0 2-.898 2-2 0-1.103-.896-2-2-2-1.103 0-2 .923-1.999 2.027a1.002 1.002 0 0 1-1.996.061S8 10.03 8 10zm4 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
-        fill="currentColor"
-      />
-    </svg>
-
-    <svg
-      v-else-if="iconName === 'member'"
-      viewBox="0 0 24 24"
-      width="16"
-      height="16"
-      version="1.2"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M12.025 3a5.007 5.007 0 0 0-5.014 5c0 2.761 2.245 5 5.014 5a5.007 5.007 0 0 0 5.014-5c0-2.761-2.244-5-5.014-5zM9.017 8c0 1.657 1.347 3 3.008 3a3.004 3.004 0 0 0 3.009-3c0-1.657-1.347-3-3.009-3a3.004 3.004 0 0 0-3.008 3z"
-        fill="currentColor"
-      />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M12.025 11c4.755 0 8.652 3.667 9 8.32a2.004 2.004 0 0 1-1.98 1.68H5.006a2.004 2.004 0 0 1-1.98-1.68c.348-4.653 4.244-8.32 9-8.32zm-6.948 8h13.897a7.015 7.015 0 0 0-6.949-6 7.015 7.015 0 0 0-6.948 6zm13.968.977v.046-.046z"
         fill="currentColor"
       />
     </svg>
@@ -338,7 +289,14 @@
       />
     </svg>
 
-    <svg v-else-if="iconName === 'check'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <svg
+      v-else-if="iconName === 'check'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
       <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z" />
     </svg>
 
@@ -473,19 +431,6 @@
     >
       <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z" />
     </svg>
-    <svg
-      v-else-if="iconName === 'clock'"
-      width="24"
-      height="24"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
-      />
-      <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z" />
-    </svg>
 
     <svg v-else-if="iconName === 'description'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -612,24 +557,6 @@
       <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
-
-    <svg
-      v-else-if="iconName === 'labels'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="feather feather-tag"
-    >
-      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-      <line x1="7" y1="7" x2="7.01" y2="7" />
-    </svg>
-
     <svg
       v-else-if="iconName === 'check-box'"
       xmlns="http://www.w3.org/2000/svg"
@@ -669,38 +596,6 @@
         d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
       />
     </svg>
-
-    <svg
-      v-else-if="iconName === 'cover'"
-      xmlns=" http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M5 21h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 5l.001 9H5V5h14z"
-      />
-    </svg>
-
-    <svg v-else-if="iconName === 'copy'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path
-        d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"
-      />
-    </svg>
-
-    <svg
-      v-else-if="iconName === 'archive'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M20 3H4a2 2 0 0 0-2 2v2a2 2 0 0 0 1 1.72V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.72A2 2 0 0 0 22 7V5a2 2 0 0 0-2-2zM4 5h16v2H4zm1 14V9h14v10z"
-      />
-      <path d="M8 11h8v2H8z" />
-    </svg>
-
     <svg
       v-else-if="iconName === 'board'"
       width="16"
@@ -767,6 +662,157 @@
         fill="currentColor"
       />
     </svg>
+    <svg
+      v-else-if="iconName === 'filter'"
+      width="22"
+      height="22"
+      role="presentation"
+      focusable="false"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M4.61799 6C3.87461 6 3.39111 6.78231 3.72356 7.44721L3.99996 8H20L20.2763 7.44721C20.6088 6.78231 20.1253 6 19.3819 6H4.61799ZM10.8618 17.7236C10.9465 17.893 11.1196 18 11.309 18H12.6909C12.8803 18 13.0535 17.893 13.1382 17.7236L14 16H9.99996L10.8618 17.7236ZM17 13H6.99996L5.99996 11H18L17 13Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+    <svg
+      v-else-if="iconName === 'star'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M7.495 20.995 12 18.627l4.505 2.368a1.546 1.546 0 0 0 2.244-1.63l-.86-5.016 3.644-3.553a1.546 1.546 0 0 0-.857-2.638l-5.037-.732-2.252-4.564a1.547 1.547 0 0 0-2.774 0L8.361 7.426l-5.037.732a1.546 1.546 0 0 0-.857 2.638l3.645 3.553-.86 5.016a1.547 1.547 0 0 0 2.243 1.63zm11.85-10.947-3.672 3.58.867 5.056L12 16.297l-4.54 2.387.867-5.055-3.673-3.58L9.73 9.31 12 4.71l2.27 4.6 5.076.738z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      v-else-if="iconName === 'member'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M12.025 3a5.007 5.007 0 0 0-5.014 5c0 2.761 2.245 5 5.014 5a5.007 5.007 0 0 0 5.014-5c0-2.761-2.244-5-5.014-5zM9.017 8c0 1.657 1.347 3 3.008 3a3.004 3.004 0 0 0 3.009-3c0-1.657-1.347-3-3.009-3a3.004 3.004 0 0 0-3.008 3z"
+        fill="currentColor"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M12.025 11c4.755 0 8.652 3.667 9 8.32a2.004 2.004 0 0 1-1.98 1.68H5.006a2.004 2.004 0 0 1-1.98-1.68c.348-4.653 4.244-8.32 9-8.32zm-6.948 8h13.897a7.015 7.015 0 0 0-6.949-6 7.015 7.015 0 0 0-6.948 6zm13.968.977v.046-.046z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      v-else-if="iconName === 'label'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M13.121 2.808a2 2 0 0 0-2.828 0L3.929 9.172a7 7 0 0 0 9.9 9.9l6.363-6.365a2 2 0 0 0 0-2.828l-7.07-7.071zm5.657 8.485-7.07-7.071-6.365 6.364a5 5 0 0 0 7.071 7.07l6.364-6.363zM10 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      v-else-if="iconName === 'checklist'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 1 0-2 0v5H6V6h10a1 1 0 1 0 0-2H6zm2.735 6.322a1 1 0 1 0-1.47 1.356l3.612 3.919c.537.526 1.337.526 1.834.03l.364-.359.977-.96c1.01-.995 2.02-1.991 2.962-2.923l.04-.04a493.191 493.191 0 0 0 3.658-3.643 1 1 0 0 0-1.424-1.404c-.704.713-1.971 1.974-3.64 3.625l-.04.04c-.942.93-1.95 1.926-2.96 2.92l-.815.802-3.098-3.363z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      v-else-if="iconName === 'date'"
+      width="24"
+      height="24"
+      role="presentation"
+      focusable="false"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 6C13 5.44772 12.5523 5 12 5C11.4477 5 11 5.44772 11 6V12C11 12.2652 11.1054 12.5196 11.2929 12.7071L13.7929 15.2071C14.1834 15.5976 14.8166 15.5976 15.2071 15.2071C15.5976 14.8166 15.5976 14.1834 15.2071 13.7929L13 11.5858V6Z"
+        fill="currentColor"
+      ></path>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+    <svg
+      v-else-if="iconName === 'cover'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M5 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5zm14 2H5v6h14V7z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      v-else-if="iconName === 'copy'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M5 16V4.992C5 3.892 5.902 3 7.009 3H15v2H7v11H5zm3 3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v11zm2-11v11h8V8h-8z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      v-else-if="iconName === 'archive'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M3.034 5.596a1 1 0 0 1 .91-1.083l15.938-1.395a1 1 0 0 1 1.084.91l.087.996L3.12 6.592l-.087-.996zM9 13a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1z"
+        fill="currentColor"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M3 19V8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm2-9h14v9H5v-9z"
+        fill="currentColor"
+      />
+    </svg>
   </section>
 </template>
 
@@ -775,5 +821,3 @@ export default {
   props: ['iconName'],
 };
 </script>
-
-<style></style>
