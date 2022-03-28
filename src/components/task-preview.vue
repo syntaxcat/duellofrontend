@@ -1,5 +1,5 @@
 <template>
-  <section class="task-preview">
+  <section class="task-preview" v-if="task">
     <!-- <div v-if="isCover" class="task-prev-cover" :style="coverStyle">
       <img class="cover-img" v-if="task.style.cover.type === 'img'" :src="task.style.cover.imgUrl" />
     </div>-->
@@ -113,6 +113,7 @@ export default {
   },
   computed: {
     numberOfAttachments() {
+      // return 5;
       return this.task.attachments.length;
     },
     labelsExpanded() {
