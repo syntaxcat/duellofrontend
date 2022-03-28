@@ -1,11 +1,11 @@
 .main-header {
 
-    .logo-img{
+  .logo-img{
     background-image: url('./src/assets/imgs/logo-still.png');
     background-size: 16px 16px;
     height: 16px;
     width: 16px;
-    margin-right:6px ;
+    margin-right:4px ;
     // background-position: 100%;
   }
   // background-color: $clr1;
@@ -32,7 +32,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans',
       'Helvetica Neue', sans-serif;
 
-    button {
+    button:not(:nth-of-type(2n)) {
       gap: 0.25rem;
 
       .grid {
