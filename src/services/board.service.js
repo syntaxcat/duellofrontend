@@ -181,6 +181,7 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  checklists:[],
                   style: {
                     cover: {
                       type: '',
@@ -197,6 +198,7 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  checklists:[],
                   style: {
                     cover: {
                       type: '',
@@ -227,9 +229,14 @@ async function _createBoard() {
                       taskTitle: '',
                       todos: [
                         {
-                          id: '212jX',
+                          id: utilService.makeId(),
                           title: 'To Do 5',
                           isDone: true,
+                        },
+                        {
+                          id: utilService.makeId(),
+                          title: 'Sleep well',
+                          isDone: false,
                         },
                       ],
                     },
@@ -239,8 +246,18 @@ async function _createBoard() {
                       taskTitle: '',
                       todos: [
                         {
-                          id: '212jX',
+                          id: utilService.makeId(),
                           title: 'To Do 6',
+                          isDone: false,
+                        },
+                        {
+                          id: utilService.makeId(),
+                          title: 'Do that',
+                          isDone: true,
+                        },
+                        {
+                          id: utilService.makeId(),
+                          title: 'Do it!',
                           isDone: false,
                         },
                       ],
@@ -282,8 +299,13 @@ async function _createBoard() {
                       taskTitle: '',
                       todos: [
                         {
-                          id: '212jX',
+                          id: utilService.makeId(),
                           title: 'To Do 1',
+                          isDone: true,
+                        },
+                        {
+                          id: utilService.makeId(),
+                          title: 'To Do To Do',
                           isDone: false,
                         },
                       ],
@@ -294,7 +316,7 @@ async function _createBoard() {
                       taskTitle: '',
                       todos: [
                         {
-                          id: '212jX',
+                          id: utilService.makeId(),
                           title: 'To Do 1',
                           isDone: false,
                         },
@@ -306,9 +328,9 @@ async function _createBoard() {
                       taskTitle: '',
                       todos: [
                         {
-                          id: '212jX',
+                          id: utilService.makeId(),
                           title: 'To Do 1',
-                          isDone: false,
+                          isDone: true,
                         },
                       ],
                     },
@@ -318,7 +340,7 @@ async function _createBoard() {
                       taskTitle: '',
                       todos: [
                         {
-                          id: '212jX',
+                          id: utilService.makeId(),
                           title: 'To Do 1',
                           isDone: false,
                         },
@@ -464,6 +486,7 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  checklists:[],
                   style: {
                     cover: {
                       type: '',
@@ -499,7 +522,7 @@ async function _createBoard() {
                       title: 'Checklist',
                       todos: [
                         {
-                          id: '212jX',
+                          id: utilService.makeId(),
                           title: 'To Do 1',
                           isDone: false,
                         },
@@ -605,6 +628,7 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  checklists:[],
                   style: {
                     cover: {
                       type: '',
@@ -621,6 +645,7 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  checklists: [],
                   style: {
                     cover: {
                       type: '',
@@ -651,6 +676,7 @@ async function _createBoard() {
                   members: [],
                   comments: [],
                   attachments: [],
+                  checklists:[],
                   style: {
                     cover: {
                       type: '',
@@ -686,9 +712,9 @@ async function _createBoard() {
                       title: 'Checklist',
                       todos: [
                         {
-                          id: '212jX',
-                          title: 'To Do 1',
-                          isDone: false,
+                          id: utilService.makeId(),
+                          title: 'To Do ....',
+                          isDone: true,
                         },
                       ],
                     },

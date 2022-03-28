@@ -1,9 +1,9 @@
 <template>
-  <section class="checklist-details">
+  <section class="checklist-details" v-if="checklist">
     <div class="header">
       <icon-base class="checklist-icon" iconName="checklist" />
       <div class="container">
-        <h3>Checklist name</h3>
+        <h3>{{ checklist.title }}</h3>
         <div>
           <button @click.stop="show = !show">filteredTodos</button>
           <button @click.stop="deleteChecklist">Delete</button>
@@ -17,20 +17,16 @@
     </div>
 
     <div class="todos-container">
-      <div class="checklist-item">
-        <div class="checkbox" :class="{ complete: false }">
-          <!-- <div class="checkbox" :class="{ complete: todo.isDone }"> -->
+      <div class="checklist-item" v-for="todo in checklist.todos" :key="todo.id">
+        <div class="checkbox" :class="{ complete: todo.isDone }">
           <span>
-            <icon-base iconName="check" :class="{ checked: false }" />
-            <!-- <icon-base iconName="check" :class="{ checked: todo.isDone }" /> -->
+            <icon-base iconName="check" :class="{ checked: todo.isDone }" />
           </span>
         </div>
 
         <div class="todo-details">
-          <!-- <div class="row"> -->
-
           <div class="text-and-controls">
-            <span>Home</span>
+            <span :class="{ done: todo.isDone }">{{ todo.title }}</span>
             <div class="todo-controls">
               <div class="todo-controller" @click="log">
                 <button>
@@ -51,19 +47,37 @@
           </div>
 
           <div class="edit-todo"></div>
-
-          <!-- </div> -->
         </div>
       </div>
-
-      <!-- <div class="checklist-item" v-for="todo in todos" :key="todo.id">
-        <div class="checkbox">
-          <span>item</span>
-        </div>
-      </div> -->
     </div>
 
-    <!-- <div class="add-todo">Add item</div> -->
+    <div class="add-todo">
+      <button v-if="!isAdd" @click="isAdd = !isAdd">Add an item</button>
+      <textarea placeholder="Add an item" v-if="isAdd"></textarea>
+
+      <div class="add-controls" v-if="isAdd">
+
+        <div class="container">
+          <button class="add-btn" @click.stop="save">Add</button>
+          <icon-base class="close-btn" iconName="x" @click="isAdd = !isAdd" />
+        </div>
+
+        <div class="actions">
+          <span>
+            <icon-base iconName="add-member" />
+            Assign
+          </span>
+
+          <span>
+            <icon-base iconName="trello-clock" />
+            Due date
+          </span>
+
+          <icon-base class="option" @click="log" iconName="mention" />
+          <icon-base class="option" @click="log" iconName="emoji" />
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -71,18 +85,31 @@
 import iconBase from './icon-base.vue';
 
 export default {
-  props: {},
+  props: {
+      checklist:{
+          type: Object,
+          required: true
+      }
+  },
   data() {
     return {
       percent: 30,
+      isAdd: false,
     };
   },
-  methods: {
-      log(){
-          console.log('yes');
-      }
+  created() {
+    console.log(this.checklist);
   },
-  computed: {},
+  methods: {
+    log() {
+      console.log('yes');
+    },
+  },
+  computed: {
+    // checklists() {
+    //   return this.$store.getters.checklists;
+    // },
+  },
   components: { iconBase },
 };
 </script>

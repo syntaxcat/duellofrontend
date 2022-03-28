@@ -82,6 +82,7 @@ export default {
   },
   components: {
     iconBase,
+    boardMenu
   },
 };
 </script>

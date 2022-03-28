@@ -60,7 +60,11 @@
           </div>
           <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
           <attachment-details :attachments="taskToEdit.attachments" />
-          <checklist-details />
+          <checklist-details
+            v-for="checklist in taskToEdit.checklists"
+            :key="checklist"
+            :checklist="checklist"
+          />
           <activity-details
             :task="taskToEdit"
             :user="loggedinUser"
@@ -113,7 +117,7 @@ import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
 import attachmentDetails from '../components/attachment-details.vue';
 import checklistDetails from './checklist-details.vue';
-import coverCmp from './dynamic-components/cover-cmp.vue'
+import coverCmp from './dynamic-components/cover-cmp.vue';
 
 export default {
   props: {
@@ -144,6 +148,7 @@ export default {
     this.loggedinUser = user;
     const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
     this.taskToEdit = { ...res.task };
+    console.log(this.taskToEdit);
     this.group = { ...res.group };
   },
   methods: {
@@ -254,8 +259,8 @@ export default {
     setCoverColor(color) {
       this.taskToEdit.style.cover.type = 'color';
       this.taskToEdit.style.cover.color = color;
-        this.taskToEdit.style.cover.imgUrl = ''
-      if (!this.taskToEdit.style.cover.style&&color) this.taskToEdit.style.cover.style = 'solid';
+      this.taskToEdit.style.cover.imgUrl = '';
+      if (!this.taskToEdit.style.cover.style && color) this.taskToEdit.style.cover.style = 'solid';
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
@@ -265,8 +270,8 @@ export default {
     setCoverImg(imgUrl) {
       this.taskToEdit.style.cover.type = 'img';
       this.taskToEdit.style.cover.imgUrl = imgUrl;
-      this.taskToEdit.style.cover.color = ''
-      if (!this.taskToEdit.style.cover.style&&imgUrl) this.taskToEdit.style.cover.style = 'solid';
+      this.taskToEdit.style.cover.color = '';
+      if (!this.taskToEdit.style.cover.style && imgUrl) this.taskToEdit.style.cover.style = 'solid';
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
