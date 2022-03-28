@@ -23,7 +23,7 @@
             @blur="close"
           ></textarea>
 
-          <button :class="['save-comment', isAllowed]" @click="save">Save</button>
+          <button :class="['save-comment', isAllowed]" @click.stop="save">Save</button>
 
           <div class="comment-box-options">
             <icon-base class="option" @click="log" iconName="paperclip" />
@@ -94,6 +94,7 @@ export default {
       this.add = !this.add;
     },
     save() {
+      if(!this.commentToEdit.txt) return
       this.commentToEdit.byMember = {
         id: this.user._id,
         fullname: this.user.fullname,
@@ -103,6 +104,7 @@ export default {
       this.$emit('save', { ...this.commentToEdit }, this.task.id);
       this.$refs.textarea.blur();
       this.commentToEdit = taskService.getEmptyComment();
+      this.commentToEdit.txt = '';
     },
   },
   computed: {

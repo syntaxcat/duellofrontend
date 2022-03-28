@@ -6,42 +6,8 @@
       />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'more'"
-      version="1.1"
-      id="Capa_1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      viewBox="0 0 32.055 32.055"
-      style="enable-background: new 0 0 32.055 32.055"
-      xml:space="preserve"
-    >
-      <g>
-        <path
-          d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967
-		C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967
-		s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967
-		c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z"
-        />
-      </g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-    </svg>
+      
+    <svg v-else-if="iconName === 'more'" width="24" height="24" viewBox="0 0 24 24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm7 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm9-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" fill="currentColor"/></svg>
 
     <svg v-else-if="iconName === 'rocket'" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -104,6 +70,8 @@
       <line x1="12" y1="5" x2="12" y2="19" />
       <line x1="5" y1="12" x2="19" y2="12" />
     </svg>
+
+    <svg v-else-if="iconName === 'add-member'" width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C14.7614 13 17 10.7614 17 8C17 5.23858 14.7614 3 12 3C9.23858 3 7 5.23858 7 8C7 9.44777 7.61532 10.7518 8.59871 11.6649C5.31433 13.0065 3 16.233 3 20C3 20.5523 3.44772 21 4 21H12C12.5523 21 13 20.5523 13 20C13 19.4477 12.5523 19 12 19H5.07089C5.55612 15.6077 8.47353 13 12 13ZM15 8C15 9.65685 13.6569 11 12 11C10.3431 11 9 9.65685 9 8C9 6.34315 10.3431 5 12 5C13.6569 5 15 6.34315 15 8Z" fill="currentColor"></path><path d="M17 14C17 13.4477 17.4477 13 18 13C18.5523 13 19 13.4477 19 14V16H21C21.5523 16 22 16.4477 22 17C22 17.5523 21.5523 18 21 18H19V20C19 20.5523 18.5523 21 18 21C17.4477 21 17 20.5523 17 20V18H15C14.4477 18 14 17.5523 14 17C14 16.4477 14.4477 16 15 16H17V14Z" fill="currentColor"></path></svg>
 
     <svg
       v-else-if="iconName === 'hart'"
@@ -237,6 +205,8 @@
       />
     </svg>
 
+    <svg v-else-if="iconName === 'checklist'" width="24" height="24"  viewBox="0 0 24 24" version="1.2" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 1 0-2 0v5H6V6h10a1 1 0 1 0 0-2H6zm2.735 6.322a1 1 0 1 0-1.47 1.356l3.612 3.919c.537.526 1.337.526 1.834.03l.364-.359.977-.96c1.01-.995 2.02-1.991 2.962-2.923l.04-.04a493.191 493.191 0 0 0 3.658-3.643 1 1 0 0 0-1.424-1.404c-.704.713-1.971 1.974-3.64 3.625l-.04.04c-.942.93-1.95 1.926-2.96 2.92l-.815.802-3.098-3.363z" fill="currentColor"/></svg>
+
     <svg
       v-else-if="iconName === 'trello-clock'"
       viewBox="0 0 24 24"
@@ -368,7 +338,7 @@
       />
     </svg>
 
-    <svg v-else-if="iconName === 'check'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
+    <svg v-else-if="iconName === 'check'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
       <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z" />
     </svg>
 

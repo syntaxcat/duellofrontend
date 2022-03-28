@@ -9,6 +9,7 @@
     "test:unit": "vitest --environment jsdom"
   },
   "dependencies": {
+    "k-progress-v3": "^1.0.0",
     "v-calendar": "^3.0.0-alpha.8",
     "vue": "^3.2.31",
     "vue-draggable-next": "^2.1.1",

@@ -60,6 +60,7 @@
           </div>
           <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
           <attachment-details :attachments="taskToEdit.attachments" />
+          <checklist-details />
           <activity-details
             :task="taskToEdit"
             :user="loggedinUser"
@@ -111,7 +112,8 @@ import attachmentCmp from './dynamic-components/attachment-cmp.vue';
 import descriptionDetails from './description-details.vue';
 import activityDetails from './activity-details.vue';
 import attachmentDetails from '../components/attachment-details.vue';
-import coverCmp from './dynamic-components/cover-cmp.vue';
+import checklistDetails from './checklist-details.vue';
+import coverCmp from './dynamic-components/cover-cmp.vue'
 
 export default {
   props: {
@@ -398,6 +400,7 @@ export default {
     labelCmp,
     memberCmp,
     checklistCmp,
+    checklistDetails,
     calendarCmp,
     coverCmp,
     descriptionDetails,
