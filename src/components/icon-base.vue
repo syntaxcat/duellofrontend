@@ -752,6 +752,21 @@
         fill="#42526e"
       />
     </svg>
+    <svg
+      v-else-if="iconName === 'more'"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm7 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm9-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"
+        fill="currentColor"
+      />
+    </svg>
   </section>
 </template>
 

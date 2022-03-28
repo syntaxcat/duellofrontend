@@ -97,7 +97,7 @@ export default {
       }
     },
     updateHeigh() {
-      this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
+      this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight - 15 + 'px';
     },
   },
   mounted() {

@@ -16,14 +16,10 @@
             <icon-base iconName="more"></icon-base>
           </button>
         </div>
+
         <div class="task-container">
           <ul>
-            <draggable
-              v-model="tasks"
-              group="tasks"
-              @change="log"
-              v-bind="{ ghostClass: 'groupGhost' }"
-            >
+            <draggable v-model="tasks" group="tasks" @change="log" v-bind="{ ghostClass: 'groupGhost' }">
               <li @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
                 <button @click.stop="editTask(task.id)" class="edit-btn">
                   <icon-base iconName="pencil"></icon-base>
@@ -31,22 +27,20 @@
                 </button>
 
                 <div v-if="task.style.cover.style === 'solid'" class="task-prev-cover">
-                  <img
-                    class="cover-img"
-                    v-if="task.style.cover.type === 'img'"
-                    :src="task.style.cover.imgUrl"
-                  />
-                  <div
-                    v-else
-                    class="cover-clr"
-                    :style="'background-color:' + task.style.cover.color"
-                  ></div>
+                  <img class="cover-img" v-if="task.style.cover.type === 'img'" :src="task.style.cover.imgUrl" />
+                  <div v-else class="cover-clr" :style="'background-color:' + task.style.cover.color"></div>
                 </div>
 
                 <task-preview
-                  :style="(task.style.cover.style === 'background') ? `background-image: url(${task.style.cover.imgUrl}); background-color:${task.style.cover.color}` : ''"
-                  :class="[(task.style.cover.style === 'background' && task.style.cover.type === 'img') ? 'task-prev-bcg' : '',
-                  (task.style.cover.style === 'background' && task.style.cover.type === 'color') ? 'task-prev-clr' : '']"
+                  :style="
+                    task.style.cover.style === 'background'
+                      ? `background-image: url(${task.style.cover.imgUrl}); background-color:${task.style.cover.color}`
+                      : ''
+                  "
+                  :class="[
+                    task.style.cover.style === 'background' && task.style.cover.type === 'img' ? 'task-prev-bcg' : '',
+                    task.style.cover.style === 'background' && task.style.cover.type === 'color' ? 'task-prev-clr' : '',
+                  ]"
                   :task="task"
                   :group="group"
                   @editTask="updateTask"
@@ -58,30 +52,26 @@
             </draggable>
           </ul>
         </div>
+
         <div class="create-btn">
           <div v-if="isNewTask" class="new-task-container">
-            <textarea
-              class="new-task"
-              v-model="taskTitle"
-              ref="taskInput"
-              @blur="isNewTask = false"
-            ></textarea>
+            <textarea class="new-task" v-model="taskTitle" ref="taskInput" @blur="isNewTask = false"></textarea>
             <div class="buttons-container">
-              <button
-                @mousedown="addTask(group.id)"
-                @touchstart="addTask(group.id)"
-                class="add-card-btn"
-              >Add card</button>
+              <button @mousedown="addTask(group.id)" @touchstart="addTask(group.id)" class="add-card-btn">
+                Add card
+              </button>
               <button @click="isNewTask = false">
                 <img src="../assets/icons/x.svg" alt="close form" />
               </button>
             </div>
           </div>
-          <button v-else class="add-task-btn" @click="createTask(group.id)">
-            <!-- <button class="add-task-btn" @click="createTask(group.id)"> -->
-            <icon-base iconName="+"></icon-base>
-            <span>Add a card</span>
-          </button>
+
+          <div v-else class="add-task-container">
+            <button class="add-task-btn" @click="createTask(group.id)">
+              <icon-base iconName="+" />
+              <span>Add a card</span>
+            </button>
+          </div>
         </div>
       </section>
     </div>
@@ -153,7 +143,7 @@ export default {
       xPos: null,
       yPos: null,
       isDrag: false,
-      isEditingTask: false
+      isEditingTask: false,
     };
   },
   created() {
@@ -208,11 +198,11 @@ export default {
     },
     log(evt) {
       console.log(evt);
-      this.isDrag = !this.isDrag
+      this.isDrag = !this.isDrag;
     },
     editTask(taskId) {
-      eventBus.emit('editTask', taskId)
-    }
+      eventBus.emit('editTask', taskId);
+    },
   },
   computed: {
     tasks: {

@@ -37,7 +37,8 @@
           <span>Filter</span>
         </button>
         <button @click="toggleMenu">
-          <img src="../assets/icons/more-horizontal.svg" alt="more" />
+          <icon-base iconName="more" />
+          <!-- <img src="../assets/icons/more-horizontal.svg" alt="more" /> -->
           <span>Show menu</span>
         </button>
       </div>
@@ -46,6 +47,7 @@
 </template>
 
 <script>
+import iconBase from '../components/icon-base.vue';
 import boardMenu from './board-menu.vue';
 export default {
   components: { boardMenu },
@@ -77,6 +79,9 @@ export default {
     width() {
       return this.boardName.length;
     },
+  },
+  components: {
+    iconBase,
   },
 };
 </script>
