@@ -20,15 +20,19 @@ async function addTask(taskTitle, groupId, boardId) {
     comments: [],
     activities: [],
     checklist: [],
+<<<<<<< HEAD
     attachments:[],
+=======
+    attachments: [],
+>>>>>>> 7593eef (??)
     style: {
       cover: {
         type: '',
         style: '',
         imgUrl: '',
-        color: ''
-      }
-    }
+        color: '',
+      },
+    },
   };
   const group = await _findGroup(groupId, boardId);
   group.tasks.push(task);
@@ -59,7 +63,6 @@ async function getById(taskId, groupId, boardId) {
   const task = group.tasks.find((task) => task.id === taskId);
   return { task, group };
 }
-
 
 function getEmptyComment() {
   return {
