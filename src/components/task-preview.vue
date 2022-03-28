@@ -27,7 +27,7 @@
     <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->
     <!-- </button> -->
     <div v-if="!isCoverBcg" class="task-extras">
-      <div>
+      <div class="left">
         <span v-if="task.dueDate" class="due-date">
           <icon-base iconName="clock" />
           {{ formatDate(this.task.dueDate) }}
@@ -35,6 +35,13 @@
         <span v-if="numberOfAttachments > 0" class="number-of-attachments">
           <icon-base iconName="attachment" />
           {{ numberOfAttachments }}
+        </span>
+        <span v-if="task.description" class="description-display">
+          <icon-base iconName="description" />
+        </span>
+        <span v-if="numberOfComments > 0" class="comment-display">
+          <icon-base iconName="comment" />
+          {{ numberOfComments }}
         </span>
       </div>
       <div class="member-list">
@@ -97,10 +104,9 @@ export default {
       }
     },
     updateHeigh() {
-      if(this.task.style.cover.style === 'background'){
+      if (this.task.style.cover.style === 'background') {
         this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
-      }
-      else this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight - 15 + 'px';
+      } else this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight - 15 + 'px';
     },
   },
   mounted() {
@@ -117,6 +123,9 @@ export default {
   computed: {
     numberOfAttachments() {
       return this.task.attachments.length;
+    },
+    numberOfComments() {
+      return this.task.comments.length;
     },
     labelsExpanded() {
       return this.$store.getters.labelsExpanded;
