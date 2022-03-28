@@ -13,6 +13,7 @@ export const boardService = {
   createBoardLabel,
   deleteBoardLabel,
   updateAfterTaskDrag,
+  updateBoard
 };
 
 const BOARD_KEY = 'boardDB';
@@ -57,6 +58,10 @@ async function updateGroup(newGroup, boardId) {
     return newGroup;
   }
 }
+async function updateBoard(board) {
+  return storageService.put(BOARD_KEY, board)
+}
+
 
 async function updateGroups(newOrder, board) {
   board.groups = newOrder;
@@ -128,6 +133,8 @@ function getEmptyBoard() {
     createdBy: {},
     style: {
       backgroundImg: null,
+      color: null,
+      type: 'img'
     },
     labels: _createLabels(),
     members: [],
@@ -155,6 +162,7 @@ async function _createBoard() {
           style: {
             backgroundImg:
               'https://embedwistia-a.akamaihd.net/deliveries/d5ae8190f0aa7dfbe0b01f336f29d44094b967b5.webp?image_crop_resized=1280x720',
+            type: 'img'
           },
           labels: _createLabels(),
           members: [
@@ -414,6 +422,7 @@ async function _createBoard() {
           style: {
             backgroundImg:
               'https://images.unsplash.com/photo-1486728297118-82a07bc48a28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dHJlbGxvfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+            type: 'img'
           },
           labels: _createLabels(),
           members: [
@@ -599,9 +608,11 @@ async function _createBoard() {
             fullname: 'user',
             imgUrl:
               'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/768x960/0de3084…/photo-1646657411842-704b5afe9036.jpg',
+
           },
           style: {
             backgroundImg: 'https://mixkit.imgix.net/art/85/85-original.png-1000h.png',
+            type: 'img'
           },
           labels: _createLabels(),
           members: [

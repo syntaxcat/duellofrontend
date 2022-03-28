@@ -1,5 +1,5 @@
 <template>
-  <section class="main-board">
+  <section class="main-board" :style="bcg">
     <main-header />
     <board-header />
     <!-- <create-board @create="createBoard" /> -->
@@ -82,13 +82,13 @@ export default {
     addTask(taskTitle, groupId, boardId) {
       this.$store.dispatch({ type: 'addTask', taskTitle, groupId, boardId });
     },
-    async createBoard(newBoard) {
-      const boardId = await this.$store.dispatch({
-        type: 'createBoard',
-        board: newBoard,
-      });
-      this.$router.push({ path: `/board/${boardId}` });
-    },
+    // async createBoard(newBoard) {
+    //   const boardId = await this.$store.dispatch({
+    //     type: 'createBoard',
+    //     board: newBoard,
+    //   });
+    //   this.$router.push({ path: `/board/${boardId}` });
+    // },
   },
   computed: {
     board() {
@@ -102,6 +102,11 @@ export default {
         this.$store.dispatch({ type: 'drag', value });
       },
     },
+    bcg(){
+      if(!this.board) return
+      if(this.board.style.type==='img')return `background-image: url(${this.board.style.backgroundImg})`
+      else return `background-color: ${this.board.style.color}`
+    }
   },
   components: {
     boardHeader,

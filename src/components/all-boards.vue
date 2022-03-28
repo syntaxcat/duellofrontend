@@ -27,7 +27,7 @@
             <a
               :href="'/#/board/' + board._id"
               class="board-title"
-              :style="{ backgroundImage: 'url(' + board.style.backgroundImg + ')' }"
+              :style="(board.style.type==='img')?`background-image: url(${board.style.backgroundImg})`:`background-color:${board.style.color}`"
             >
               <span class="board-title-fade"></span>
               
@@ -92,7 +92,7 @@
             <a
               :href="'/#/board/' + board._id"
               class="board-title"
-              :style="{ backgroundImage: 'url(' + board.style.backgroundImg + ')' }"
+              :style="(board.style.type==='img')?`background-image: url(${board.style.backgroundImg})`:`background-color:${board.style.color}`"
             >
               <span class="board-title-fade"></span>
               <div class="board-title-content">

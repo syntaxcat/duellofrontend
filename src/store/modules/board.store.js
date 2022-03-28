@@ -19,6 +19,7 @@ export const boardStore = {
     },
     colors: null,
     imgs: null,
+    imgSearches: null,
     checklists: [],
   },
   getters: {
@@ -45,6 +46,9 @@ export const boardStore = {
     },
     colors(state) {
       return state.colors;
+    },
+    imgSearches(state) {
+      return state.imgSearches
     },
     checklists(state) {
       return [...state.checklists];
@@ -104,10 +108,9 @@ export const boardStore = {
       state.currGroup = group;
     },
     setDesign(state, { design }) {
-      // console.log(design[0].imgs)
       state.imgs = design[0].imgs;
       state.colors = design[0].colors;
-      // console.log(state.imgs, state.colors)
+      state.imgSearches = design[0].suggestedSearches
     },
   },
   actions: {
@@ -232,5 +235,14 @@ export const boardStore = {
         console.log(err);
       }
     },
+    async updateBoard({ commit }, { board }) {
+      try {
+        const newBoard = await boardService.updateBoard(board)
+        commit({ type: 'setBoard', board: newBoard });
+
+      } catch (err) {
+        console.log(err);
+      }
+    }
   },
 };

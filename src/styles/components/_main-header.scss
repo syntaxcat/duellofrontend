@@ -1,4 +1,18 @@
 .main-header {
+  .logo-img{
+    background-image: url('./src/assets/imgs/logo-still.png');
+    background-size: 16px 16px;
+    height: 16px;
+    width: 16px;
+    margin-right:6px ;
+    // background-position: 100%;
+  }
+  // background-color: $clr1;
+  &:hover .logo-img{
+    
+    background-image: url('./src/assets/imgs/logo-ani.gif');
+  }
+
   background-color: $clr1;
   nav {
     height: rem(45px);
@@ -12,7 +26,30 @@
     cursor: pointer;
     margin-left: 1rem;
     gap: 0.5rem;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans',
+      'Helvetica Neue', sans-serif;
+
+    button {
+      gap: 0.25rem;
+
+      .grid {
+        svg {
+          width: 24px;
+        }
+      }
+    }
+
+    .icon-base {
+      display: flex;
+
+      svg {
+        width: 16px;
+      }
+    }
   }
+
   button {
     cursor: pointer;
     display: inline-flex;
@@ -42,8 +79,25 @@
     margin-right: 1rem;
     gap: 0.5rem;
 
+    .search {
+      display: flex;
+      color: white;
+    }
+
+    .info {
+      display: flex;
+    }
+
+    .alert {
+      display: flex;
+    }
+
     .bell-btn {
       background-color: $clr4;
+
+      &:hover {
+        background-color: #cf513d;
+      }
 
       img {
         width: 20px;
@@ -63,7 +117,7 @@
       background-color: transparent;
       border: none;
       width: rem(250px);
-      padding-left: rem(35px);
+      padding-left: 0.5rem;
       outline: none;
     }
     img {

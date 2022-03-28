@@ -1,14 +1,36 @@
 import { storageService } from './storage.service.js'
 import { utilService } from './util.service.js'
+import axios from 'axios'
+import FastAverageColor from 'fast-average-color'
+
 
 export const designService = {
+    getImgs,
     query,
+    getAvgColor,
+    getImgsLarge
 }
 
 const DESIGN_KEY = 'designDB'
 
+async function getImgs(amount = 6, searchWord = 'desktop background') {
+    const imgs = await axios.get(`https://api.unsplash.com/search/photos?client_id=QTIqWCQzY5ksfEbIUOklkb-vvjwfZZUeWemdkfe0IjA&per_page=${amount}&query=${searchWord}`)
+    return imgs.data.results.map(res => res.urls.small)
+}
+async function getImgsLarge(amount = 6, searchWord = 'desktop background') {
+    const imgs = await axios.get(`https://api.unsplash.com/search/photos?client_id=QTIqWCQzY5ksfEbIUOklkb-vvjwfZZUeWemdkfe0IjA&per_page=${amount}&query=${searchWord}`)
+    return imgs.data.results.map(res => res.urls.regular)
+}
+
+
 async function query() {
     return storageService.query(DESIGN_KEY)
+}
+async function getAvgColor(imgUrl) {
+    const fac = new FastAverageColor();
+    const color = await fac.getColorAsync(imgUrl)
+    return color
+
 }
 
 _createDesignlist()
@@ -101,9 +123,11 @@ async function _createDesignlist() {
                     id: utilService.makeId(),
                     color: '#344563'
                 },
+            ],
+            suggestedSearches: [
+                'Productivity', 'Prespective', 'Organization', 'Colorful', 'Nature', 'Business', 'Minimal', 'Space', 'Animal'
             ]
         }
-console.log('blooooop')
         storageService.post(DESIGN_KEY, design)
     }
 }

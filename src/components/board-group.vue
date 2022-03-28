@@ -27,8 +27,16 @@
                 </button>
 
                 <div v-if="task.style.cover.style === 'solid'" class="task-prev-cover">
-                  <img class="cover-img" v-if="task.style.cover.type === 'img'" :src="task.style.cover.imgUrl" />
-                  <div v-else class="cover-clr" :style="'background-color:' + task.style.cover.color"></div>
+                  <div
+                    class="cover-clr"
+                    :style="'background-color:' + task.style.cover.color"
+                  >
+                  <img
+                    class="cover-img"
+                    v-if="task.style.cover.type === 'img'"
+                    :src="task.style.cover.imgUrl"
+                  />
+                  </div>
                 </div>
 
                 <task-preview

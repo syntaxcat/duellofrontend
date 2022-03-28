@@ -97,7 +97,10 @@ export default {
       }
     },
     updateHeigh() {
-      this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight - 15 + 'px';
+      if(this.task.style.cover.style === 'background'){
+        this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
+      }
+      else this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight - 15 + 'px';
     },
   },
   mounted() {

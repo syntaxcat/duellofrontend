@@ -4,18 +4,19 @@
       <board-menu @closeMenu="toggleMenu" v-if="isMenuOpen"></board-menu>
     </section>
 
-    <section class="board-header">
+    <section class="board-header" v-if="board">
       <div class="board-details">
         <div class="board-name-and-star">
           <input
             type="text"
             ref="myInput"
-            v-model="boardName"
+            v-model="board.title"
             v-if="isEditing"
             @blur="isEditing = !isEditing"
+            @input="changeTitle"
             :size="width"
           />
-          <div v-if="!isEditing" @click="editMode">{{ boardName }}</div>
+          <div v-if="!isEditing" @click="editMode">{{ board.title }}</div>
 
           <button @click="setFavorite">
             <icon-base iconName="star" :class="[isFavorite, 'starred']" />
@@ -53,7 +54,7 @@ export default {
   components: { boardMenu },
   data() {
     return {
-      boardName: 'Duello',
+      // boardName: 'Duello',
       isEditing: false,
       isFull: false,
       isMenuOpen: false,
@@ -71,14 +72,20 @@ export default {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+    changeTitle(){
+      this.$store.dispatch({type:'updateBoard', board:this.board})
+    }
   },
   computed: {
     isFavorite() {
       return this.isFull ? 'full-star' : 'empty-star';
     },
     width() {
-      return this.boardName.length;
+      return this.board.title.length;
     },
+    board(){
+      return JSON.parse(JSON.stringify(this.$store.getters.board))
+    }
   },
   components: {
     iconBase,
