@@ -20,11 +20,7 @@ async function addTask(taskTitle, groupId, boardId) {
     comments: [],
     activities: [],
     checklist: [],
-<<<<<<< HEAD
-    attachments:[],
-=======
     attachments: [],
->>>>>>> 7593eef (??)
     style: {
       cover: {
         type: '',

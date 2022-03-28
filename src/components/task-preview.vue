@@ -113,7 +113,6 @@ export default {
   },
   computed: {
     numberOfAttachments() {
-      // return 5;
       return this.task.attachments.length;
     },
     labelsExpanded() {
