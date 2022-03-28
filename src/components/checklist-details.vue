@@ -35,7 +35,7 @@
               </div>
               <div class="todo-controller" @click="log">
                 <button class="round">
-                  <icon-base iconName="add-member" />
+                  <icon-base iconName="member" />
                 </button>
               </div>
               <div class="todo-controller" @click="log">
@@ -64,7 +64,7 @@
 
         <div class="actions">
           <span>
-            <icon-base iconName="add-member" />
+            <icon-base iconName="member" />
             Assign
           </span>
 
