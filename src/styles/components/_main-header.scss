@@ -1,5 +1,6 @@
 .main-header {
-  .logo-img{
+
+    .logo-img{
     background-image: url('./src/assets/imgs/logo-still.png');
     background-size: 16px 16px;
     height: 16px;
@@ -12,8 +13,8 @@
     
     background-image: url('./src/assets/imgs/logo-ani.gif');
   }
-
-  background-color: $clr1;
+  // background-color: var(--dynamic-background-color, #026AA7)
+  background-color: hsl(0deg 0% 0% / 16%);
   nav {
     height: rem(45px);
     margin: 0;
@@ -69,8 +70,10 @@
   }
 
   span {
-    font-size: 1.6rem;
-    font-family: ubuntu-bold;
+    letter-spacing: 1px;
+    font-size: rem(18px);
+    font-weight: bold;
+    font-family: ubuntu-reg;
   }
 
   .information {
