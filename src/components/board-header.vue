@@ -18,7 +18,7 @@
           <div v-if="!isEditing" @click="editMode">{{ boardName }}</div>
 
           <button @click="setFavorite">
-            <img :class="isFavorite" class="starred" src="../assets/icons/bx-star.svg" alt="star" />
+            <icon-base iconName="star" :class="[isFavorite, 'starred']" />
           </button>
           |
         </div>
@@ -32,11 +32,11 @@
       </div>
 
       <div class="options">
-        <button>
-          <img src="../assets/icons/bx-filter.svg" alt="filter" />
+        <button class="filter-btn">
+          <icon-base iconName="filter" />
           <span>Filter</span>
         </button>
-        <button @click="toggleMenu">
+        <button class="show-menu-btn" @click="toggleMenu">
           <icon-base iconName="more" />
           <!-- <img src="../assets/icons/more-horizontal.svg" alt="more" /> -->
           <span>Show menu</span>
