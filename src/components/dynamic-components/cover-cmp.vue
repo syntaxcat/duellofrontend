@@ -2,11 +2,10 @@
     <section class="cover-cmp">
         <header>
             <h2>Cover</h2>
-            <label>
+            <button>
                 <icon-base @click="closeModal" iconName="x"></icon-base>
-            </label>
+            </button>
         </header>
-        <hr />
         <div>
             <p>Size</p>
             <div class="cover-container">
@@ -48,7 +47,7 @@
                     :key="img._id"
                 >
                     <img :src="img.url" />
-                    <span :class="(color.color === task.style.cover.color) ? 'focused' : ''"></span>
+                    <span :class="(img.url === task.style.cover.imgUrl) ? 'focused' : ''"></span>
                 </div>
             </div>
         </div>
@@ -82,13 +81,16 @@ export default {
             return `background-color: ${this.currColor}`
         },
         isSolidFocus() {
+            console.log(this.task.style.cover.style)
             if (this.task.style.cover.style === 'solid') {
-                console.log(this.task.style.cover.style)
                 return 'focused'
             }
+                else return ''
         },
         isBcgFocus() {
+            console.log(this.task.style.cover.style)
             if (this.task.style.cover.style === 'background') return 'focused'
+            else return ''
         },
     },
     components: { iconBase },
@@ -100,6 +102,8 @@ export default {
             console.log(this.currColor, color)
             if (color === this.currColor) {
                 this.currColor = ''
+                // this.task.style.cover.style= ''
+                this.setCoverStyle(false)
                 // console.log(this.currColor)
             } else {
                 this.currColor = color
@@ -110,6 +114,8 @@ export default {
         setCoverImg(imgUrl) {
             if (imgUrl === this.currImg) {
                 this.currImg = ''
+                this.task.style.cover.style=''
+                this.setCoverStyle(false)
             } else {
                 this.currImg = imgUrl
             }
@@ -117,6 +123,7 @@ export default {
             this.$emit('setCoverImg', this.currImg)
         },
         setCoverStyle(coverStyle) {
+            console.log('fglkdfjg',coverStyle)
             this.$emit('setCoverStyle', coverStyle)
         },
     },

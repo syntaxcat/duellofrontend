@@ -253,7 +253,7 @@ export default {
       this.taskToEdit.style.cover.type = 'color';
       this.taskToEdit.style.cover.color = color;
         this.taskToEdit.style.cover.imgUrl = ''
-      if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid';
+      if (!this.taskToEdit.style.cover.style&&color) this.taskToEdit.style.cover.style = 'solid';
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
@@ -264,7 +264,7 @@ export default {
       this.taskToEdit.style.cover.type = 'img';
       this.taskToEdit.style.cover.imgUrl = imgUrl;
       this.taskToEdit.style.cover.color = ''
-      if (!this.taskToEdit.style.cover.style) this.taskToEdit.style.cover.style = 'solid';
+      if (!this.taskToEdit.style.cover.style&&imgUrl) this.taskToEdit.style.cover.style = 'solid';
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),

@@ -2,9 +2,49 @@
   background-color: white;
   border: 1px solid lightgray;
   border-radius: 3px;
-  padding: 0 12px 12px;
-  width: 308px;
+  padding: 0 10px 10px;
+  width: 306px;
   box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+  header {
+    border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+    font-weight: 400;
+    line-height: 40px;
+    height: 40px;
+    position: relative;
+    margin-bottom: 8px;
+    h2 {
+      color: #5e6c84;
+      padding: 0 32px;
+      font-size: 14px;
+      text-align: center;
+    }
+    button {
+      cursor: pointer;
+      height: 40px;
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      svg {
+        width: 16px;
+        color: #5e6c84;
+
+        &:hover {
+          color: #172b4d;
+        }
+      }
+    }
+  }
+  p{
+    color: #5e6c84;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    margin: 16px 0 8px 0;
+    // margin: 0 0 8px;
+  }
   .color-container {
     display: grid;
     position: relative;
@@ -17,30 +57,44 @@
       //   margin: 10px;
       padding: 2px;
       position: relative;
-      .focused{
-       position: absolute;
-       width: 58px;
-       height: 38px;
-      //  padding: 0 25px;
-      //  margin-right:20px ;
-       border: 3px $labe5 solid;
-       bottom: -4px;
-       left: -4px;
-      //  z-index: 1;
-      //  left: -5px;
-       border-radius: 6px;
-       
-     }
+      .focused {
+        position: absolute;
+        width: 58px;
+        height: 38px;
+        //  padding: 0 25px;
+        //  margin-right:20px ;
+        border: 3px $labe5 solid;
+        bottom: -4px;
+        left: -4px;
+        //  z-index: 1;
+        //  left: -5px;
+        border-radius: 6px;
+      }
     }
   }
   .img-container {
     display: grid;
     grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+    position: relative;
     gap: 4px;
-    .img-boxes img {
-      border-radius: 3px;
-      width: 88px;
-      height:48px ;
+    .img-boxes {
+      position: relative;
+
+      img {
+        border-radius: 3px;
+        width: 88px;
+        height: 48px;
+      }
+      .focused {
+        position: absolute;
+        width: 97px;
+        height: 58px;
+        padding: 10px;
+        border: 3px $labe5 solid;
+        bottom: -1px;
+        left: -4px;
+        border-radius: 6px;
+      }
     }
   }
   .cover-container {
@@ -59,7 +113,7 @@
       background-position-x: center;
       background-position-y: center;
       //   background-size: 100% 100%;
-      .focused{
+      .focused {
         position: absolute;
         width: 135px;
         height: 74px;
@@ -68,12 +122,11 @@
         bottom: -5px;
         left: -5px;
         border-radius: 6px;
-        
       }
-      img{
+      img {
         position: absolute;
-        width: 128px ;
-        left:0;
+        width: 128px;
+        left: 0;
         bottom: 0;
       }
     }
