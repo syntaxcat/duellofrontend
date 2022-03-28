@@ -48,6 +48,7 @@ export default {
       isOpenModal: false,
       taskId: null,
       groupId: null,
+      board: null
     };
   },
   async created() {
@@ -55,6 +56,7 @@ export default {
       type: 'loadBoards',
       filterBy: { boardId: this.$route.params.boardId },
     });
+    this.board = this.$store.getters.board
   },
   methods: {
     openModal(taskId, groupId) {
@@ -93,9 +95,9 @@ export default {
     // },
   },
   computed: {
-    board() {
-      return this.$store.getters.board;
-    },
+    // board() {
+    //   return this.$store.getters.board;
+    // },
     groups: {
       get() {
         return this.$store.getters.groups;
