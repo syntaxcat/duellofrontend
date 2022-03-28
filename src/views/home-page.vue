@@ -6,7 +6,12 @@
       <div class="nav-bar">
         <div>
           <ul>
-            <li v-for="option in options" :key="option.name" :class="[option.class]" @click="visit(option.type)">
+            <li
+              v-for="option in options"
+              :key="option.name"
+              :class="[option.class]"
+              @click="visit(option.type)"
+            >
               <div class="li-icon">
                 <icon-base :iconName="option.type" />
               </div>
@@ -75,10 +80,10 @@
           </div>
         </div>
       </div>
-
       <all-boards v-if="boards" :boards="boards" />
     </div>
   </section>
+  <section></section>
 </template>
 
 <script>

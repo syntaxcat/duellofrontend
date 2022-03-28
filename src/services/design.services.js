@@ -7,7 +7,8 @@ import FastAverageColor from 'fast-average-color'
 export const designService = {
     getImgs,
     query,
-    getAvgColor
+    getAvgColor,
+    getImgsLarge
 }
 
 const DESIGN_KEY = 'designDB'
@@ -15,6 +16,10 @@ const DESIGN_KEY = 'designDB'
 async function getImgs(amount = 6, searchWord = 'desktop background') {
     const imgs = await axios.get(`https://api.unsplash.com/search/photos?client_id=QTIqWCQzY5ksfEbIUOklkb-vvjwfZZUeWemdkfe0IjA&per_page=${amount}&query=${searchWord}`)
     return imgs.data.results.map(res => res.urls.small)
+}
+async function getImgsLarge(amount = 6, searchWord = 'desktop background') {
+    const imgs = await axios.get(`https://api.unsplash.com/search/photos?client_id=QTIqWCQzY5ksfEbIUOklkb-vvjwfZZUeWemdkfe0IjA&per_page=${amount}&query=${searchWord}`)
+    return imgs.data.results.map(res => res.urls.regular)
 }
 
 

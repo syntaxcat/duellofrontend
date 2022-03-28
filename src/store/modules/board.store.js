@@ -47,7 +47,7 @@ export const boardStore = {
     colors(state) {
       return state.colors;
     },
-    imgSearches(state){
+    imgSearches(state) {
       return state.imgSearches
     },
     checklists(state) {
@@ -234,5 +234,14 @@ export const boardStore = {
         console.log(err);
       }
     },
+    async updateBoard({ commit }, { board }) {
+      try {
+        const newBoard = await boardService.updateBoard(board)
+        commit({ type: 'setBoard', board: newBoard });
+
+      } catch (err) {
+        console.log(err);
+      }
+    }
   },
 };

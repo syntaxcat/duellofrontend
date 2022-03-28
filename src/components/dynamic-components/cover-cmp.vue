@@ -6,7 +6,6 @@
                 <icon-base @click="closeModal" iconName="x"></icon-base>
             </button>
         </header>
-        <div>
             <p>Size</p>
             <div class="cover-container">
                 <div :style="coverStyle" @click="setCoverStyle('solid')" :class="['cover-prev',]">
@@ -20,7 +19,6 @@
                     <span class="board-title-fade"></span>
                 </div>
             </div>
-        </div>
         <hr />
         <div v-if="colors">
             <p>Colors</p>
@@ -43,8 +41,8 @@
             <div class="upload-container">
                 <label for="uploadImg">
                     <span v-if="loading">Uploading Image...</span>
-                    <div v-else>
-                        <button class="search-btn">Upload a cover image</button>
+                    <div class="search-btn" v-else>
+                     <span>Upload a cover image</span>
                         <input
                             id="uploadImg"
                             type="file"
