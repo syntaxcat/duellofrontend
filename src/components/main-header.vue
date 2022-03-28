@@ -3,7 +3,7 @@
     <nav>
       <div class="buttons">
         <button>
-          <img src="../assets/icons/bxs-grid.svg" alt="grid" />
+          <icon-base iconName="grid" class="grid" />
         </button>
         <button @click="goHome">
           <img src="../assets/icons/trello.svg" alt="trello" />
@@ -11,32 +11,32 @@
         </button>
         <button>
           Workspaces
-          <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow" />
+          <icon-base iconName="chevron-down" />
         </button>
         <button>
           Recent
-          <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow" />
+          <icon-base iconName="chevron-down" />
         </button>
         <button>
           Starred
-          <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow" />
+          <icon-base iconName="chevron-down" />
         </button>
         <button>
           Templates
-          <img src="../assets/icons/bx-chevron-down.svg" alt="down-arrow" />
+          <icon-base iconName="chevron-down" />
         </button>
         <button class="create-btn">Create</button>
       </div>
       <div class="information">
         <div class="search-input">
-          <img src="../assets/icons/bx-search.svg" alt="search" />
+          <icon-base iconName="search" class="search" />
           <input type="text" placeholder="Search" />
         </div>
         <button>
-          <img src="../assets/icons/bx-info-circle.svg" alt="information" />
+          <icon-base iconName="information" class="info" />
         </button>
         <button class="bell-btn">
-          <img src="../assets/icons/bx-bell.svg" alt="alert" />
+          <icon-base iconName="alert" class="alert" />
         </button>
         <label v-if="user" class="user-icon">
           <img :src="user.imgUrl" />
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import iconBase from './icon-base.vue';
 export default {
   methods: {
     goHome() {
@@ -58,5 +59,6 @@ export default {
       return this.$store.getters.user;
     },
   },
+  components: { iconBase },
 };
 </script>
