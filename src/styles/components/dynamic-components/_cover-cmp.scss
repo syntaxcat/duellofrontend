@@ -7,6 +7,7 @@
   box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
   .color-container {
     display: grid;
+    position: relative;
     grid-template: repeat(2, 1fr) / repeat(5, 1fr);
     gap: 8px;
     .color-boxes {
@@ -14,6 +15,22 @@
       height: 30px;
       border-radius: 3px;
       //   margin: 10px;
+      padding: 2px;
+      position: relative;
+      .focused{
+       position: absolute;
+       width: 58px;
+       height: 38px;
+      //  padding: 0 25px;
+      //  margin-right:20px ;
+       border: 3px $labe5 solid;
+       bottom: -4px;
+       left: -4px;
+      //  z-index: 1;
+      //  left: -5px;
+       border-radius: 6px;
+       
+     }
     }
   }
   .img-container {
@@ -27,9 +44,11 @@
     }
   }
   .cover-container {
+    position: relative;
     display: flex;
     justify-content: center;
     .cover-prev {
+      position: relative;
       width: 136px;
       height: 64px;
       margin: 8px;
@@ -40,6 +59,23 @@
       background-position-x: center;
       background-position-y: center;
       //   background-size: 100% 100%;
+      .focused{
+        position: absolute;
+        width: 135px;
+        height: 74px;
+        padding: 10px;
+        border: 3px $labe5 solid;
+        bottom: -5px;
+        left: -5px;
+        border-radius: 6px;
+        
+      }
+      img{
+        position: absolute;
+        width: 128px ;
+        left:0;
+        bottom: 0;
+      }
     }
   }
 }

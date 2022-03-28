@@ -10,21 +10,29 @@
         <div>
             <p>Size</p>
             <div class="cover-container">
-                <div :style="coverStyle" @click="setCoverStyle('solid')" class="cover-prev"></div>
-                <div :style="coverStyle" @click="setCoverStyle('background')" class="cover-prev"></div>
+                <div :style="coverStyle" @click="setCoverStyle('solid')" :class="['cover-prev',]">
+                    <img src="../../assets/imgs/cover-img-solid.png" />
+                    <span :class="isSolidFocus"></span>
+                </div>
+                <div :style="coverStyle" @click="setCoverStyle('background')" :class="'cover-prev'">
+                    <img src="../../assets/imgs/cover-img-bcg.png" />
+                    <span :class="isBcgFocus"></span>
+                </div>
             </div>
         </div>
         <hr />
         <div v-if="colors">
             <p>Colors</p>
             <div class="color-container">
-                <div
-                    @click="setCoverColor(color.color)"
-                    class="color-boxes"
-                    v-for="color in colors"
-                    :key="color.id"
-                    :style="'background-color:' + color.color"
-                ></div>
+                <div v-for="color in colors" :key="color.id">
+                    <div
+                        @click="setCoverColor(color.color)"
+                        class="color-boxes"
+                        :style="'background-color:' + color.color"
+                    >
+                    <span :class="(color.color === task.style.cover.color) ? 'focused' : ''"></span>
+                    </div>
+                </div>
             </div>
         </div>
         <div>
@@ -40,6 +48,7 @@
                     :key="img._id"
                 >
                     <img :src="img.url" />
+                    <span :class="(color.color === task.style.cover.color) ? 'focused' : ''"></span>
                 </div>
             </div>
         </div>
@@ -69,9 +78,18 @@ export default {
             return this.$store.getters.imgs
         },
         coverStyle() {
-            if(this.currImg) return `background-image: url(${this.currImg})`
+            if (this.currImg) return `background-image: url(${this.currImg})`
             return `background-color: ${this.currColor}`
-        }
+        },
+        isSolidFocus() {
+            if (this.task.style.cover.style === 'solid') {
+                console.log(this.task.style.cover.style)
+                return 'focused'
+            }
+        },
+        isBcgFocus() {
+            if (this.task.style.cover.style === 'background') return 'focused'
+        },
     },
     components: { iconBase },
     methods: {
@@ -98,9 +116,9 @@ export default {
             this.currColor = ''
             this.$emit('setCoverImg', this.currImg)
         },
-        setCoverStyle(coverStyle){
+        setCoverStyle(coverStyle) {
             this.$emit('setCoverStyle', coverStyle)
-        }
+        },
     },
     async created() {
         this.$store.dispatch('loadDesign')
