@@ -40,6 +40,20 @@
         </div>
         <div>
             <p>Attachments</p>
+            <div class="upload-container">
+                <label for="uploadImg">
+                    <span v-if="loading">Uploading Image...</span>
+                    <div v-else>
+                        <button class="search-btn">Upload a cover image</button>
+                        <input
+                            id="uploadImg"
+                            type="file"
+                            @change="onUploadImg"
+                            hidden
+                        />
+                    </div>
+                </label>
+            </div>
         </div>
 
         <div v-if="imgs">
@@ -110,6 +124,8 @@
 <script>
 import iconBase from '../icon-base.vue'
 import { designService } from '../../services/design.services.js';
+import { uploadImg } from '../../services/imgUpload.service.js';
+
 export default {
     props: {
         task: {
@@ -123,14 +139,15 @@ export default {
             currImg: '',
             imgs: null,
             isSearch: false,
-            imgSearch: ''
+            imgSearch: '',
+            loading: false,
         }
     },
     computed: {
         colors() {
             return this.$store.getters.colors
         },
-       
+
         coverStyle() {
             if (this.currImg) return `background-image: url(${this.currImg})`
             return `background-color: ${this.currColor}`
@@ -206,7 +223,22 @@ export default {
                 imgs.splice(0, 1, this.currImg)
             }
             this.imgs = imgs
-        }
+        },
+        async onUploadImg(ev) {
+            this.loading = true;
+            const res = await uploadImg(ev);
+            this.loading = false;
+            const { url, original_filename, original_extension, format } = res;
+            const attachment = {
+                type: 'image',
+                url,
+                fileName: `${original_filename}.${original_extension ?? format}`,
+                created: new Date().getTime(),
+            };
+            this.$emit('saveAttachment', attachment);
+            this.setCoverImg(attachment.url)
+            console.log(attachment)
+        },
     },
     async created() {
         this.$store.dispatch('loadDesign')
