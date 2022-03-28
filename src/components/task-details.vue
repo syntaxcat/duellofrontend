@@ -7,8 +7,13 @@
         </button>
 
         <div v-if="taskToEdit.style.cover.type" class="cover-container">
-          <img class="cover-img" v-if="taskToEdit.style.cover.type === 'img'" :src="taskToEdit.style.cover.imgUrl" />
-          <div class="cover-clr" v-else :style="'background-color:' + taskToEdit.style.cover.color"></div>
+          <div class="cover-clr" :style="'background-color:' + taskToEdit.style.cover.color">
+          <img
+            class="cover-img"
+            v-if="taskToEdit.style.cover.type === 'img'"
+            :src="taskToEdit.style.cover.imgUrl"
+          />
+          </div>
         </div>
         <div class="task-details-container">
           <icon-base class="card-header" iconName="cardB" />
@@ -42,9 +47,12 @@
             <div class="labels-for-display" v-if="labels.length >= 1">
               <h2>Labels</h2>
               <div class="labels-container">
-                <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
-                  {{ label.title }}
-                </div>
+                <div
+                  class="label"
+                  v-for="label in labels"
+                  :key="label.id"
+                  :style="'background-color:' + label.color"
+                >{{ label.title }}</div>
                 <button class="add-btn" @click="toggleLabelsModal">
                   <icon-base iconName="plus" />
                 </button>
@@ -73,7 +81,12 @@
             @deleteComment="deleteComment"
           />
         </div>
-        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" @removeTask="removeTask" />
+        <task-details-menu
+          :isMember="isMember"
+          @joinTask="joinTask"
+          @openModal="openModal"
+          @removeTask="removeTask"
+        />
         <div class="dynamic-cmp">
           <component
             :is="cmp"
@@ -106,6 +119,7 @@
 
 <script>
 import { taskService } from '../services/task.service';
+import { designService } from '../services/design.services';
 import iconBase from './icon-base.vue';
 import taskDetailsMenu from '../components/task-details-menu.vue';
 import labelCmp from './dynamic-components/label-cmp.vue';
@@ -267,10 +281,11 @@ export default {
         groupId: this.groupId,
       });
     },
-    setCoverImg(imgUrl) {
+    async setCoverImg(imgUrl) {
       this.taskToEdit.style.cover.type = 'img';
       this.taskToEdit.style.cover.imgUrl = imgUrl;
-      this.taskToEdit.style.cover.color = '';
+      if (imgUrl) this.taskToEdit.style.cover.color = (await designService.getAvgColor(this.taskToEdit.style.cover.imgUrl)).hex
+      else this.taskToEdit.style.cover.color = '';
       if (!this.taskToEdit.style.cover.style && imgUrl) this.taskToEdit.style.cover.style = 'solid';
       this.$store.dispatch({
         type: 'updateTask',
@@ -374,6 +389,8 @@ export default {
       this.$store.dispatch({ type: 'removeTask', taskId: this.taskId, groupId: this.groupId });
       this.closeTaskDetails();
     },
+    // getBcg(){
+    // }
   },
   computed: {
     labels() {

@@ -1,5 +1,5 @@
 <template>
-    <section class="cover-cmp">
+    <section v-if="!isSearch" class="cover-cmp">
         <header>
             <h2>Cover</h2>
             <button>
@@ -11,11 +11,13 @@
             <div class="cover-container">
                 <div :style="coverStyle" @click="setCoverStyle('solid')" :class="['cover-prev',]">
                     <img src="../../assets/imgs/cover-img-solid.png" />
+                    <span class="board-title-fade"></span>
                     <span :class="isSolidFocus"></span>
                 </div>
                 <div :style="coverStyle" @click="setCoverStyle('background')" :class="'cover-prev'">
                     <img src="../../assets/imgs/cover-img-bcg.png" />
                     <span :class="isBcgFocus"></span>
+                    <span class="board-title-fade"></span>
                 </div>
             </div>
         </div>
@@ -29,7 +31,9 @@
                         class="color-boxes"
                         :style="'background-color:' + color.color"
                     >
-                    <span :class="(color.color === task.style.cover.color) ? 'focused' : ''"></span>
+                        <span class="board-title-fade"></span>
+
+                        <span :class="(color.color === task.style.cover.color) ? 'focused' : ''"></span>
                     </div>
                 </div>
             </div>
@@ -37,17 +41,67 @@
         <div>
             <p>Attachments</p>
         </div>
+
         <div v-if="imgs">
-            <p>Pohots:</p>
+            <p>Pohots from Unsplash</p>
             <div class="img-container">
-                <div
-                    @click="setCoverImg(img.url)"
-                    class="img-boxes"
-                    v-for=" img in imgs"
-                    :key="img._id"
-                >
-                    <img :src="img.url" />
-                    <span :class="(img.url === task.style.cover.imgUrl) ? 'focused' : ''"></span>
+                <div @click="setCoverImg(img)" class="img-boxes" v-for=" img in imgs" :key="img">
+                    <img :src="img" />
+                    <span class="board-title-fade"></span>
+                    <span :class="(img === task.style.cover.imgUrl) ? 'focused' : ''"></span>
+                </div>
+            </div>
+            <button @click="openImgSearch" class="search-btn">Search for photos</button>
+        </div>
+    </section>
+
+    <section v-else class="cover-cmp">
+        <header>
+            <button class="back">
+                <icon-base @click="closeSearch" iconName="icon-back"></icon-base>
+            </button>
+            <h2>Photo search</h2>
+            <button>
+                <icon-base @click="closeModal" iconName="x"></icon-base>
+            </button>
+        </header>
+        <div class="main-content search">
+            <input
+                @input="searchImg"
+                type="text"
+                placeholder="Search Unsplash for pohotos"
+                v-model="imgSearch"
+            />
+            <label>
+                <icon-base v-if="imgSearch" class="x" @click="setSearch('')" iconName="x"></icon-base>
+            </label>
+            <div v-if="!imgSearch" class="suggested">
+                <div class="search-words">
+                    <p>Suggested searches</p>
+                    <button
+                        v-for="keys in suggested"
+                        :key="keys"
+                        @click="setSearch(keys)"
+                    >{{ keys }}</button>
+                </div>
+                <p>Top photos</p>
+                <div class="img-container">
+                    <div @click="setCoverImg(img)" class="img-boxes" v-for="img in imgs">
+                        <img :src="img" />
+                        <span class="board-title-fade"></span>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="results">
+                <div class="search-words">
+                    <p>Suggested searches</p>
+                </div>
+                <p>Results</p>
+                <div class="img-container">
+                    <div @click="setCoverImg(img)" class="img-boxes" v-for="img in imgs">
+                        <img :src="img" />
+                        <span class="board-title-fade"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,6 +109,7 @@
 </template>
 <script>
 import iconBase from '../icon-base.vue'
+import { designService } from '../../services/design.services.js';
 export default {
     props: {
         task: {
@@ -66,72 +121,102 @@ export default {
         return {
             currColor: '',
             currImg: '',
+            imgs: null,
+            isSearch: false,
+            imgSearch: ''
         }
     },
     computed: {
         colors() {
-            // console.log(this.$store.getters.colors)
             return this.$store.getters.colors
         },
-        imgs() {
-            return this.$store.getters.imgs
-        },
+       
         coverStyle() {
             if (this.currImg) return `background-image: url(${this.currImg})`
             return `background-color: ${this.currColor}`
         },
+        suggested() {
+            return this.$store.getters.imgSearches
+        },
         isSolidFocus() {
-            console.log(this.task.style.cover.style)
             if (this.task.style.cover.style === 'solid') {
                 return 'focused'
             }
-                else return ''
+            else return ''
         },
         isBcgFocus() {
-            console.log(this.task.style.cover.style)
             if (this.task.style.cover.style === 'background') return 'focused'
             else return ''
         },
     },
     components: { iconBase },
     methods: {
+        async searchImg() {
+            var imgs
+            if (!this.imgSearch) imgs = await designService.getImgs(12)
+            else imgs = await designService.getImgs(60, this.imgSearch)
+            this.imgs = imgs
+        },
         closeModal() {
             this.$emit('closeModal')
         },
         setCoverColor(color) {
-            console.log(this.currColor, color)
             if (color === this.currColor) {
                 this.currColor = ''
-                // this.task.style.cover.style= ''
                 this.setCoverStyle(false)
-                // console.log(this.currColor)
             } else {
                 this.currColor = color
             }
             this.currImg = ''
             this.$emit('setCoverColor', this.currColor)
         },
-        setCoverImg(imgUrl) {
+        async setCoverImg(imgUrl) {
             if (imgUrl === this.currImg) {
                 this.currImg = ''
-                this.task.style.cover.style=''
+                this.task.style.cover.style = ''
                 this.setCoverStyle(false)
             } else {
                 this.currImg = imgUrl
             }
             this.currColor = ''
             this.$emit('setCoverImg', this.currImg)
+            if (this.isSearch) {
+                this.isSearch = false
+                const imgs = await designService.getImgs(5)
+                imgs.unshift(this.currImg)
+                this.imgs = imgs
+            }
         },
         setCoverStyle(coverStyle) {
-            console.log('fglkdfjg',coverStyle)
             this.$emit('setCoverStyle', coverStyle)
         },
+        async openImgSearch() {
+            this.isSearch = true
+            const img = await designService.getImgs(12)
+            this.imgs = img
+        },
+        setSearch(keys) {
+            this.imgSearch = keys
+            this.searchImg()
+        },
+        async closeSearch() {
+            this.isSearch = false
+            const imgs = await designService.getImgs()
+            if (this.currImg && !imgs.some(img => img === this.currImg)) {
+                imgs.splice(0, 1, this.currImg)
+            }
+            this.imgs = imgs
+        }
     },
     async created() {
         this.$store.dispatch('loadDesign')
-        console.log(this.task.style.cover)
         this.currColor = this.task.style.cover.color
         this.currImg = this.task.style.cover.imgUrl
+        const imgs = await designService.getImgs()
+        if (this.currImg && !imgs.some(img => img === this.currImg)) {
+            imgs.splice(0, 1, this.currImg)
+        }
+        this.imgs = imgs
     }
 };
 </script>

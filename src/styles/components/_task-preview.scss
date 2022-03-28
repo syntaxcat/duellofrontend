@@ -196,9 +196,12 @@
 }
 .task-prev-bcg {
   height: 200px;
-  background-size: auto 100%;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
+  // background-size: auto 100%;
+  // background-repeat: no-repeat;
+  // background-position: center;
   display: flex;
   border-radius: 3px;
 
