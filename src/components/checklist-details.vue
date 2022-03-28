@@ -6,9 +6,19 @@
         <h3>{{ listToEdit.title }}</h3>
         <div>
           <button @click.stop="show = !show">filteredTodos</button>
-          <button @click.stop="deleteChecklist">Delete</button>
+          <button @click.stop="isRemoveCheck = !isRemoveCheck">Delete</button>
         </div>
       </div>
+
+      <delete-modal
+        :id="checklist.id"
+        element="checklist"
+        :pos="{ right: -240, top: 45 }"
+        v-if="isRemoveCheck"
+        @close="isRemoveCheck = !isRemoveCheck"
+        @remove="removeChecklist"
+      />
+
       <div class="progress-bar">
         <span class="percent">{{ percent }}%</span>
 
@@ -35,7 +45,6 @@
           <div class="text-and-controls">
             <span :class="{ done: todo.isDone }">{{ todo.title }}</span>
             <div class="todo-controls">
-
               <div class="todo-controller" @click="log">
                 <button>
                   <icon-base iconName="trello-clock" />
@@ -46,13 +55,19 @@
                   <icon-base iconName="member" />
                 </button>
               </div>
-              <div class="todo-controller" @click="setModalType('delete-todo')">
+              <div class="todo-controller" @click.stop="setModalType('delete-todo', todo.id)">
                 <button class="empty">
                   <icon-base iconName="more" />
                 </button>
               </div>
 
-              <component :is="modalType" :todo="todo" />
+              <component
+                :is="modalType"
+                :todo="todo"
+                v-if="modalType && todo.id === target"
+                @remove="removeTodo"
+                @close="modalType = null"
+              />
             </div>
           </div>
 
@@ -93,6 +108,8 @@
 <script>
 import { utilService } from '../services/util.service';
 import iconBase from './icon-base.vue';
+import deleteTodo from './dynamic-components/delete-todo-cmp.vue';
+import deleteModal from './delete-modal.vue';
 
 export default {
   props: {
@@ -109,15 +126,28 @@ export default {
       isEdit: false,
       listToEdit: { ...this.checklist },
       todoToAdd: { id: utilService.makeId(), title: '', isDone: false },
-      modalType: '',
+      modalType: null,
+      target: null,
+      isRemoveCheck: false,
     };
   },
   created() {
     this.calcDone();
   },
   methods: {
-    setModalType(type) {
-      this.modalType = type
+    setModalType(type, todoId) {
+      if (this.modalType) {
+        this.modalType = null;
+        this.target = null;
+        return;
+      }
+      this.target = todoId;
+      this.modalType = type;
+    },
+    removeTodo(todoId) {
+      const idx = this.listToEdit.todos.findIndex((todo) => todo.id === todoId);
+      this.listToEdit.todos.splice(idx, 1);
+      this.$emit('save', { ...this.listToEdit });
     },
     addTodo() {
       if (!this.todoToAdd.title) return;
@@ -127,8 +157,11 @@ export default {
       this.calcDone();
     },
     saveChecklist() {
-      //   console.log('save');
       this.$emit('save', this.listToEdit);
+    },
+    removeChecklist(checkId) {
+      console.log(checkId);
+      this.$emit('remove', checkId)
     },
     calcDone() {
       this.length = this.checklist.todos.length;
@@ -141,7 +174,11 @@ export default {
       return +((this.areDone / this.length) * 100).toFixed();
     },
   },
-  components: { iconBase },
+  components: {
+    iconBase,
+    deleteTodo,
+    deleteModal,
+  },
 };
 </script>
 

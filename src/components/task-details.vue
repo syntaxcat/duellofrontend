@@ -73,6 +73,7 @@
             :key="checklist.id"
             :checklist="checklist"
             @save="updateChecklist"
+            @remove="removeChecklist"
           />
           <activity-details
             :task="taskToEdit"
@@ -167,6 +168,9 @@ export default {
     this.group = { ...res.group };
   },
   methods: {
+    removeChecklist(checkId){
+      
+    },
     updateChecklist(checklist) {
       console.log('save');
       const idx = this.taskToEdit.checklists.findIndex((list) => list.id === checklist.id);

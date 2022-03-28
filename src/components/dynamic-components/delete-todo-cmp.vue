@@ -2,7 +2,7 @@
   <section class="delete-todo-modal">
     <div class="delete-header">
       <span>Item actions</span>
-      <icon-base iconName="xs" @click="openModal = !openModal" />
+      <icon-base iconName="xs" @click="close" />
     </div>
 
     <div>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import iconBase from "../icon-base.vue";
+
 export default {
   props: {
     todo: {
@@ -24,7 +26,13 @@ export default {
       deleteTodo(){
           this.$emit('remove', this.todo.id)
       },
-      convertToCard(){}
+      convertToCard(){},
+      close(){
+        this.$emit('close')
+      }
+  },
+  components:{
+    iconBase
   }
 };
 </script>

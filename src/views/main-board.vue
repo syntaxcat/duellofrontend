@@ -105,7 +105,7 @@ export default {
       },
     },
     bcg(){
-      if(!this.board) return
+      if(!this.board) return 
       if(this.board.style.type==='img')return `background-image: url(${this.board.style.backgroundImg})`
       else return `background-color: ${this.board.style.color}`
     }
