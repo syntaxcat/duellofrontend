@@ -1,5 +1,5 @@
 <template>
-  <section class="add-group" :class="{ open: addedGroup }">
+  <section class="group add-group" :class="{ open: addedGroup }">
     <div class="add-group-content" @click="showForm">
       <icon-base class="plus-btn" iconName="Plus"></icon-base>
       <span>Add another list</span>

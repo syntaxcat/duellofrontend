@@ -5,20 +5,22 @@
     <!-- <create-board @create="createBoard" /> -->
 
     <section class="groups-container" v-if="board">
-      <draggable v-model="groups" group="groups" class="groups" handle=".mover">
-        <div class="group" v-for="group in board.groups" :key="group.id">
-          <board-group
-            :group="JSON.parse(JSON.stringify(group))"
-            @editGroup="editGroup"
-            @removeGroup="removeGroup"
-            @removeTask="removeTask"
-            @updateTask="updateTask"
-            @addTask="addTask"
-            @onOpen="openModal"
-          />
-        </div>
-      </draggable>
-      <add-group @addGroup="addGroup" />
+      <div class="groups-container-wrapper">
+        <draggable v-model="groups" handle=".mover">
+          <div class="group-wrapper" v-for="group in board.groups" :key="group.id">
+            <board-group
+              :group="JSON.parse(JSON.stringify(group))"
+              @editGroup="editGroup"
+              @removeGroup="removeGroup"
+              @removeTask="removeTask"
+              @updateTask="updateTask"
+              @addTask="addTask"
+              @onOpen="openModal"
+            />
+          </div>
+        </draggable>
+        <add-group @addGroup="addGroup" class="group-wrapper" />
+      </div>
     </section>
     <task-details
       v-if="isOpenModal"

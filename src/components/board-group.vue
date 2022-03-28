@@ -1,87 +1,78 @@
 <template>
   <section class="board-group">
-    <div class="board-group-container">
-      <section class="board-group">
-        <div class="group-title">
-          <div class="title-container">
-            <input
-              type="text"
-              :class="{ isEditing: isEditing, mover: true }"
-              v-model="group.title"
-              @blur="editGroup(group)"
-              @click="changeGroupTitle"
-            />
-          </div>
-          <button @click="openEditModal" class="more-btn mover">
-            <icon-base iconName="more"></icon-base>
-          </button>
-        </div>
+    <div class="group-title">
+      <div class="title-container">
+        <input
+          type="text"
+          :class="{ isEditing: isEditing, mover: true }"
+          v-model="group.title"
+          @blur="editGroup(group)"
+          @click="changeGroupTitle"
+        />
+      </div>
+      <button @click="openEditModal" class="more-btn mover">
+        <icon-base iconName="more"></icon-base>
+      </button>
+    </div>
 
-        <div class="task-container">
-          <ul>
-            <draggable v-model="tasks" group="tasks" @change="log" v-bind="{ ghostClass: 'groupGhost' }">
-              <li @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
-                <button @click.stop="editTask(task.id)" class="edit-btn">
-                  <icon-base iconName="pencil"></icon-base>
-                  <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->
-                </button>
+    <div class="task-container">
+      <ul>
+        <draggable v-model="tasks" group="tasks" @change="log" v-bind="{ ghostClass: 'groupGhost' }">
+          <li @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
+            <button @click.stop="editTask(task.id)" class="edit-btn">
+              <icon-base iconName="pencil"></icon-base>
+              <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->
+            </button>
 
-                <div v-if="task.style.cover.style === 'solid'" class="task-prev-cover">
-                  <div
-                    class="cover-clr"
-                    :style="'background-color:' + task.style.cover.color"
-                  >
-                  <img
-                    class="cover-img"
-                    v-if="task.style.cover.type === 'img'"
-                    :src="task.style.cover.imgUrl"
-                  />
-                  </div>
-                </div>
-
-                <task-preview
-                  :style="
-                    task.style.cover.style === 'background'
-                      ? `background-image: url(${task.style.cover.imgUrl}); background-color:${task.style.cover.color}`
-                      : ''
-                  "
-                  :class="[
-                    task.style.cover.style === 'background' && task.style.cover.type === 'img' ? 'task-prev-bcg' : '',
-                    task.style.cover.style === 'background' && task.style.cover.type === 'color' ? 'task-prev-clr' : '',
-                  ]"
-                  :task="task"
-                  :group="group"
-                  @editTask="updateTask"
-                  @removeTask="removeTask"
-                  @toggleLabelsExpanded="toggleLabelsExpanded"
-                ></task-preview>
-                <span class="bcg-helper" v-if="task.style.cover.style === 'background'"></span>
-              </li>
-            </draggable>
-          </ul>
-        </div>
-
-        <div class="create-btn">
-          <div v-if="isNewTask" class="new-task-container">
-            <textarea class="new-task" v-model="taskTitle" ref="taskInput" @blur="isNewTask = false"></textarea>
-            <div class="buttons-container">
-              <button @mousedown="addTask(group.id)" @touchstart="addTask(group.id)" class="add-card-btn">
-                Add card
-              </button>
-              <button @click="isNewTask = false">
-                <img src="../assets/icons/x.svg" alt="close form" />
-              </button>
+            <div v-if="task.style.cover.style === 'solid'" class="task-prev-cover">
+              <div class="cover-clr" :style="'background-color:' + task.style.cover.color">
+                <img class="cover-img" v-if="task.style.cover.type === 'img'" :src="task.style.cover.imgUrl" />
+              </div>
             </div>
-          </div>
 
-          <div v-else class="add-task-container">
-            <button class="add-task-btn" @click="createTask(group.id)">
-              <icon-base iconName="+" />
-              <span>Add a card</span>
+            <task-preview
+              :style="
+                task.style.cover.style === 'background'
+                  ? `background-image: url(${task.style.cover.imgUrl}); background-color:${task.style.cover.color}`
+                  : ''
+              "
+              :class="[
+                task.style.cover.style === 'background' && task.style.cover.type === 'img' ? 'task-prev-bcg' : '',
+                task.style.cover.style === 'background' && task.style.cover.type === 'color' ? 'task-prev-clr' : '',
+              ]"
+              :task="task"
+              :group="group"
+              @editTask="updateTask"
+              @removeTask="removeTask"
+              @toggleLabelsExpanded="toggleLabelsExpanded"
+            ></task-preview>
+            <span class="bcg-helper" v-if="task.style.cover.style === 'background'"></span>
+          </li>
+        </draggable>
+      </ul>
+
+      <div class="create-btn" v-if="isNewTask">
+        <div v-if="isNewTask" class="new-task-container">
+          <textarea class="new-task" v-model="taskTitle" ref="taskInput" @blur="isNewTask = false"></textarea>
+          <div class="buttons-container">
+            <button @mousedown="addTask(group.id)" @touchstart="addTask(group.id)" class="add-card-btn">
+              Add card
+            </button>
+            <button @click="isNewTask = false">
+              <img src="../assets/icons/x.svg" alt="close form" />
             </button>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+
+    <div class="create-btn">
+      <div v-if="!isNewTask" class="add-task-container">
+        <button class="add-task-btn" @click="createTask(group.id)">
+          <icon-base iconName="+" />
+          <span>Add a card</span>
+        </button>
+      </div>
     </div>
     <div
       @blur="openEditModal"
