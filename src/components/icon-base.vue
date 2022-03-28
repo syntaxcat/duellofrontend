@@ -64,11 +64,7 @@
       <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'trello-block'"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 50 50"
-    >
+    <svg v-else-if="iconName === 'trello-block'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
       <path
         d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M21,36c0,1.1-0.9,2-2,2h-7 c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7c1.1,0,2,0.9,2,2V36z M40,24c0,1.1-0.9,2-2,2h-7c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7 c1.1,0,2,0.9,2,2V24z"
       />
@@ -237,10 +233,7 @@
         fill="currentColor"
       />
       <path d="M4 6C2.89543 6 2 6.89543 2 8V18C2 19.1046 2.89543 20 4 20L4 6Z" fill="currentColor" />
-      <path
-        d="M20 20V6C21.1046 6 22 6.89543 22 8V18C22 19.1046 21.1046 20 20 20Z"
-        fill="currentColor"
-      />
+      <path d="M20 20V6C21.1046 6 22 6.89543 22 8V18C22 19.1046 21.1046 20 20 20Z" fill="currentColor" />
     </svg>
 
     <svg
@@ -442,13 +435,7 @@
       </g>
     </svg>
 
-    <svg
-      v-else-if="iconName === 'plus'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      fill="currentColor"
-    >
+    <svg v-else-if="iconName === 'plus'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
     </svg>
 
@@ -475,13 +462,7 @@
       <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z" />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'description'"
-      width="24"
-      height="24"
-      version="1.2"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg v-else-if="iconName === 'description'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -582,13 +563,7 @@
     >
       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
     </svg>
-    <svg
-      v-else-if="iconName === 'user'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
+    <svg v-else-if="iconName === 'user'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path
         d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"
       />
@@ -664,13 +639,7 @@
       />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'copy'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
+    <svg v-else-if="iconName === 'copy'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path
         d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"
       />
@@ -740,7 +709,8 @@
         fill="#42526e"
       />
     </svg>
-    <svg v-else-if="iconName === 'icon-back'"
+    <svg
+      v-else-if="iconName === 'icon-back'"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -992,66 +962,111 @@
       ></path>
     </svg>
 
-    <svg v-else-if="iconName === 'board-prev'" width="186" height="103" viewBox="0 0 186 103" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="64.4185" y="14.3774" width="57.8728" height="54.8552" rx="1.31379" fill="#E3E3E3"/>
-<rect x="67.9799" y="27.5364" width="51.0468" height="12.574" rx="1.31379" fill="white"/>
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="67" y="27" width="53" height="14">
-<rect x="67.9799" y="27.5364" width="51.0468" height="12.574" rx="1.31379" fill="white"/>
-</mask>
-<g mask="url(#mask0)">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M70.651 32.5795C70.651 32.2167 70.9451 31.9226 71.3079 31.9226H80.3815C80.7443 31.9226 81.0384 32.2167 81.0384 32.5795V35.0672C81.0384 35.43 80.7443 35.7241 80.3815 35.7241H71.3079C70.9451 35.7241 70.651 35.43 70.651 35.0672V32.5795Z" fill="#E4E4E4"/>
-</g>
-<rect x="67.9799" y="43.0345" width="51.0468" height="22.8087" rx="1.31379" fill="white"/>
-<mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="67" y="43" width="53" height="23">
-<rect x="67.9799" y="43.0345" width="51.0468" height="22.8087" rx="1.31379" fill="white"/>
-</mask>
-<g mask="url(#mask1)">
-<rect x="70.651" y="47.4208" width="38.5819" height="3.80145" rx="0.656896" fill="#E4E4E4"/>
-<rect x="70.651" y="54.1465" width="14.2456" height="3.80145" rx="0.656896" fill="#E4E4E4"/>
-</g>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M68.2767 20.0055C68.2767 19.6427 68.5708 19.3486 68.9336 19.3486H90.7689C91.1317 19.3486 91.4258 19.6427 91.4258 20.0055V23.078C91.4258 23.4408 91.1317 23.7349 90.7689 23.7349H68.9336C68.5708 23.7349 68.2767 23.4408 68.2767 23.078V20.0055Z" fill="white"/>
-<rect x="127.93" y="14.3774" width="57.8728" height="84.2168" rx="1.31379" fill="#E3E3E3"/>
-<rect x="131.492" y="27.8287" width="51.0468" height="35.3827" rx="1.31379" fill="white"/>
-<mask id="mask2" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="27" width="52" height="37">
-<rect x="131.492" y="27.8287" width="51.0468" height="35.3827" rx="1.31379" fill="white"/>
-</mask>
-<g mask="url(#mask2)">
-<rect x="131.51" y="26.6929" width="55.3861" height="27.0612" fill="#F1F1F1"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M134.163 57.1427C134.163 56.7799 134.457 56.4858 134.82 56.4858H145.674C146.037 56.4858 146.331 56.7799 146.331 57.1427V59.6304C146.331 59.9932 146.037 60.2873 145.674 60.2873H134.82C134.457 60.2873 134.163 59.9932 134.163 59.6304V57.1427Z" fill="#E4E4E4"/>
-</g>
-<rect x="131.195" y="67.0129" width="51.0468" height="11.4044" rx="1.31379" fill="white"/>
-<mask id="mask3" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="67" width="52" height="12">
-<rect x="131.195" y="67.0129" width="51.0468" height="11.4044" rx="1.31379" fill="white"/>
-</mask>
-<g mask="url(#mask3)">
-</g>
-<rect x="133.866" y="70.8143" width="19.2909" height="3.80145" rx="0.656896" fill="#E4E4E4"/>
-<rect x="131.195" y="81.9263" width="51.0468" height="11.4044" rx="1.31379" fill="white"/>
-<mask id="mask4" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="81" width="52" height="13">
-<rect x="131.195" y="81.9263" width="51.0468" height="11.4044" rx="1.31379" fill="white"/>
-</mask>
-<g mask="url(#mask4)">
-</g>
-<rect x="133.866" y="85.7277" width="13.3553" height="3.80145" rx="0.656896" fill="#E4E4E4"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M131.788 20.0055C131.788 19.6427 132.082 19.3486 132.445 19.3486H146.267C146.63 19.3486 146.924 19.6427 146.924 20.0055V23.078C146.924 23.4408 146.63 23.7349 146.267 23.7349H132.445C132.082 23.7349 131.788 23.4408 131.788 23.078V20.0055Z" fill="white"/>
-<rect x="0.90686" y="14.3774" width="57.8728" height="85.9713" rx="1.31379" fill="#E3E3E3"/>
-<rect x="4.46826" y="27.8287" width="51.0468" height="12.2816" rx="1.31379" fill="white"/>
-<rect x="7.13928" y="31.9226" width="25.8202" height="3.80145" rx="0.656896" fill="#E4E4E4"/>
-<rect x="4.46826" y="43.9119" width="51.0468" height="12.2816" rx="1.31379" fill="white"/>
-<rect x="7.13928" y="48.0057" width="19.5877" height="3.80145" rx="0.656896" fill="#E4E4E4"/>
-<rect x="6.84247" y="87.7747" width="13.3553" height="3.80145" rx="0.656896" fill="#E4E4E4"/>
-<rect x="4.39703" y="59.6907" width="51.0468" height="35.3827" rx="1.31379" fill="white"/>
-<mask id="mask5" mask-type="alpha" maskUnits="userSpaceOnUse" x="4" y="59" width="52" height="37">
-<rect x="4.39703" y="59.6907" width="51.0468" height="35.3827" rx="1.31379" fill="white"/>
-</mask>
-<g mask="url(#mask5)">
-<rect x="4.41547" y="58.5548" width="55.3861" height="27.0612" fill="#F1F1F1"/>
-<rect x="7.06805" y="88.3478" width="12.1681" height="3.80145" rx="0.656896" fill="#E4E4E4"/>
-</g>
-<rect x="4.76501" y="19.3486" width="14.2456" height="4.38629" rx="0.656896" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M89.5882 0.101685C88.8344 0.101685 88.2234 0.709591 88.2234 1.45876V9.60063C88.2234 10.3501 88.8347 10.9577 89.5882 10.9577H97.7762C98.53 10.9577 99.141 10.3498 99.141 9.60063V1.45876C99.141 0.709269 98.5297 0.101685 97.7762 0.101685H89.5882ZM95.0468 1.51297C94.6851 1.51297 94.3919 1.80458 94.3919 2.16464V5.63796C94.3919 5.99787 94.6852 6.28962 95.0468 6.28962H97.0669C97.4285 6.28962 97.7218 5.99801 97.7218 5.63796V2.16464C97.7218 1.80473 97.4284 1.51297 97.0669 1.51297H95.0468ZM90.2976 1.51297C89.9359 1.51297 89.6427 1.80432 89.6427 2.16462V8.35199C89.6427 8.71188 89.936 9.00363 90.2976 9.00363H92.3177C92.6794 9.00363 92.9726 8.71229 92.9726 8.35199V2.16462C92.9726 1.80473 92.6793 1.51297 92.3177 1.51297H90.2976Z" fill="white"/>
-</svg>
+    <svg
+      v-else-if="iconName === 'board-prev'"
+      width="186"
+      height="103"
+      viewBox="0 0 186 103"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect x="64.4185" y="14.3774" width="57.8728" height="54.8552" rx="1.31379" fill="#E3E3E3" />
+      <rect x="67.9799" y="27.5364" width="51.0468" height="12.574" rx="1.31379" fill="white" />
+      <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="67" y="27" width="53" height="14">
+        <rect x="67.9799" y="27.5364" width="51.0468" height="12.574" rx="1.31379" fill="white" />
+      </mask>
+      <g mask="url(#mask0)">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M70.651 32.5795C70.651 32.2167 70.9451 31.9226 71.3079 31.9226H80.3815C80.7443 31.9226 81.0384 32.2167 81.0384 32.5795V35.0672C81.0384 35.43 80.7443 35.7241 80.3815 35.7241H71.3079C70.9451 35.7241 70.651 35.43 70.651 35.0672V32.5795Z"
+          fill="#E4E4E4"
+        />
+      </g>
+      <rect x="67.9799" y="43.0345" width="51.0468" height="22.8087" rx="1.31379" fill="white" />
+      <mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="67" y="43" width="53" height="23">
+        <rect x="67.9799" y="43.0345" width="51.0468" height="22.8087" rx="1.31379" fill="white" />
+      </mask>
+      <g mask="url(#mask1)">
+        <rect x="70.651" y="47.4208" width="38.5819" height="3.80145" rx="0.656896" fill="#E4E4E4" />
+        <rect x="70.651" y="54.1465" width="14.2456" height="3.80145" rx="0.656896" fill="#E4E4E4" />
+      </g>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M68.2767 20.0055C68.2767 19.6427 68.5708 19.3486 68.9336 19.3486H90.7689C91.1317 19.3486 91.4258 19.6427 91.4258 20.0055V23.078C91.4258 23.4408 91.1317 23.7349 90.7689 23.7349H68.9336C68.5708 23.7349 68.2767 23.4408 68.2767 23.078V20.0055Z"
+        fill="white"
+      />
+      <rect x="127.93" y="14.3774" width="57.8728" height="84.2168" rx="1.31379" fill="#E3E3E3" />
+      <rect x="131.492" y="27.8287" width="51.0468" height="35.3827" rx="1.31379" fill="white" />
+      <mask id="mask2" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="27" width="52" height="37">
+        <rect x="131.492" y="27.8287" width="51.0468" height="35.3827" rx="1.31379" fill="white" />
+      </mask>
+      <g mask="url(#mask2)">
+        <rect x="131.51" y="26.6929" width="55.3861" height="27.0612" fill="#F1F1F1" />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M134.163 57.1427C134.163 56.7799 134.457 56.4858 134.82 56.4858H145.674C146.037 56.4858 146.331 56.7799 146.331 57.1427V59.6304C146.331 59.9932 146.037 60.2873 145.674 60.2873H134.82C134.457 60.2873 134.163 59.9932 134.163 59.6304V57.1427Z"
+          fill="#E4E4E4"
+        />
+      </g>
+      <rect x="131.195" y="67.0129" width="51.0468" height="11.4044" rx="1.31379" fill="white" />
+      <mask id="mask3" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="67" width="52" height="12">
+        <rect x="131.195" y="67.0129" width="51.0468" height="11.4044" rx="1.31379" fill="white" />
+      </mask>
+      <g mask="url(#mask3)"></g>
+      <rect x="133.866" y="70.8143" width="19.2909" height="3.80145" rx="0.656896" fill="#E4E4E4" />
+      <rect x="131.195" y="81.9263" width="51.0468" height="11.4044" rx="1.31379" fill="white" />
+      <mask id="mask4" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="81" width="52" height="13">
+        <rect x="131.195" y="81.9263" width="51.0468" height="11.4044" rx="1.31379" fill="white" />
+      </mask>
+      <g mask="url(#mask4)"></g>
+      <rect x="133.866" y="85.7277" width="13.3553" height="3.80145" rx="0.656896" fill="#E4E4E4" />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M131.788 20.0055C131.788 19.6427 132.082 19.3486 132.445 19.3486H146.267C146.63 19.3486 146.924 19.6427 146.924 20.0055V23.078C146.924 23.4408 146.63 23.7349 146.267 23.7349H132.445C132.082 23.7349 131.788 23.4408 131.788 23.078V20.0055Z"
+        fill="white"
+      />
+      <rect x="0.90686" y="14.3774" width="57.8728" height="85.9713" rx="1.31379" fill="#E3E3E3" />
+      <rect x="4.46826" y="27.8287" width="51.0468" height="12.2816" rx="1.31379" fill="white" />
+      <rect x="7.13928" y="31.9226" width="25.8202" height="3.80145" rx="0.656896" fill="#E4E4E4" />
+      <rect x="4.46826" y="43.9119" width="51.0468" height="12.2816" rx="1.31379" fill="white" />
+      <rect x="7.13928" y="48.0057" width="19.5877" height="3.80145" rx="0.656896" fill="#E4E4E4" />
+      <rect x="6.84247" y="87.7747" width="13.3553" height="3.80145" rx="0.656896" fill="#E4E4E4" />
+      <rect x="4.39703" y="59.6907" width="51.0468" height="35.3827" rx="1.31379" fill="white" />
+      <mask id="mask5" mask-type="alpha" maskUnits="userSpaceOnUse" x="4" y="59" width="52" height="37">
+        <rect x="4.39703" y="59.6907" width="51.0468" height="35.3827" rx="1.31379" fill="white" />
+      </mask>
+      <g mask="url(#mask5)">
+        <rect x="4.41547" y="58.5548" width="55.3861" height="27.0612" fill="#F1F1F1" />
+        <rect x="7.06805" y="88.3478" width="12.1681" height="3.80145" rx="0.656896" fill="#E4E4E4" />
+      </g>
+      <rect x="4.76501" y="19.3486" width="14.2456" height="4.38629" rx="0.656896" fill="white" />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M89.5882 0.101685C88.8344 0.101685 88.2234 0.709591 88.2234 1.45876V9.60063C88.2234 10.3501 88.8347 10.9577 89.5882 10.9577H97.7762C98.53 10.9577 99.141 10.3498 99.141 9.60063V1.45876C99.141 0.709269 98.5297 0.101685 97.7762 0.101685H89.5882ZM95.0468 1.51297C94.6851 1.51297 94.3919 1.80458 94.3919 2.16464V5.63796C94.3919 5.99787 94.6852 6.28962 95.0468 6.28962H97.0669C97.4285 6.28962 97.7218 5.99801 97.7218 5.63796V2.16464C97.7218 1.80473 97.4284 1.51297 97.0669 1.51297H95.0468ZM90.2976 1.51297C89.9359 1.51297 89.6427 1.80432 89.6427 2.16462V8.35199C89.6427 8.71188 89.936 9.00363 90.2976 9.00363H92.3177C92.6794 9.00363 92.9726 8.71229 92.9726 8.35199V2.16462C92.9726 1.80473 92.6793 1.51297 92.3177 1.51297H90.2976Z"
+        fill="white"
+      />
+    </svg>
 
+    <svg
+      v-else-if="iconName === 'comment'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M16 17h-3.5l-4.22 3.401C6.978 21.487 5 20.561 5 18.865v-2.668A6 6 0 0 1 8 5h8a6 6 0 0 1 0 12zm0-10H8a4 4 0 0 0-1 7.874V19l5-4h4a4 4 0 0 0 0-8z"
+        fill="currentColor"
+      />
+    </svg>
   </section>
 </template>
 
