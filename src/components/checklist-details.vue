@@ -3,7 +3,7 @@
     <div class="header">
       <icon-base class="checklist-icon" iconName="checklist" />
       <div class="container">
-        <h3>{{ checklist.title }}</h3>
+        <h3>{{ listToEdit.title }}</h3>
         <div>
           <button @click.stop="show = !show">filteredTodos</button>
           <button @click.stop="deleteChecklist">Delete</button>
@@ -17,17 +17,25 @@
     </div>
 
     <div class="todos-container">
-      <div class="checklist-item" v-for="todo in checklist.todos" :key="todo.id">
-        <div class="checkbox" :class="{ complete: todo.isDone }">
+      <div class="checklist-item" v-for="todo in listToEdit.todos" :key="todo.id">
+        <div
+          :class="{ checkbox: true, complete: todo.isDone }"
+          @click="
+            todo.isDone = !todo.isDone;
+            saveChecklist();
+            calcDone();
+          "
+        >
           <span>
             <icon-base iconName="check" :class="{ checked: todo.isDone }" />
           </span>
         </div>
 
-        <div class="todo-details">
+        <div class="todo-details" @click="isEdit = !isEdit">
           <div class="text-and-controls">
             <span :class="{ done: todo.isDone }">{{ todo.title }}</span>
             <div class="todo-controls">
+
               <div class="todo-controller" @click="log">
                 <button>
                   <icon-base iconName="trello-clock" />
@@ -38,11 +46,13 @@
                   <icon-base iconName="member" />
                 </button>
               </div>
-              <div class="todo-controller" @click="log">
+              <div class="todo-controller" @click="setModalType('delete-todo')">
                 <button class="empty">
                   <icon-base iconName="more" />
                 </button>
               </div>
+
+              <component :is="modalType" :todo="todo" />
             </div>
           </div>
 
@@ -53,12 +63,11 @@
 
     <div class="add-todo">
       <button v-if="!isAdd" @click="isAdd = !isAdd">Add an item</button>
-      <textarea placeholder="Add an item" v-if="isAdd"></textarea>
+      <textarea placeholder="Add an item" v-if="isAdd" v-model="todoToAdd.title"></textarea>
 
       <div class="add-controls" v-if="isAdd">
-
         <div class="container">
-          <button class="add-btn" @click.stop="save">Add</button>
+          <button class="add-btn" @click.stop="addTodo">Add</button>
           <icon-base class="close-btn" iconName="x" @click="isAdd = !isAdd" />
         </div>
 
@@ -82,33 +91,55 @@
 </template>
 
 <script>
+import { utilService } from '../services/util.service';
 import iconBase from './icon-base.vue';
 
 export default {
   props: {
-      checklist:{
-          type: Object,
-          required: true
-      }
+    checklist: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
-      percent: 30,
+      length: null,
+      areDone: null,
       isAdd: false,
+      isEdit: false,
+      listToEdit: { ...this.checklist },
+      todoToAdd: { id: utilService.makeId(), title: '', isDone: false },
+      modalType: '',
     };
   },
   created() {
-    console.log(this.checklist);
+    this.calcDone();
   },
   methods: {
-    log() {
-      console.log('yes');
+    setModalType(type) {
+      this.modalType = type
+    },
+    addTodo() {
+      if (!this.todoToAdd.title) return;
+      this.listToEdit.todos.push(this.todoToAdd);
+      this.$emit('save', { ...this.listToEdit });
+      this.todoToAdd = { id: utilService.makeId(), title: '', isDone: false };
+      this.calcDone();
+    },
+    saveChecklist() {
+      //   console.log('save');
+      this.$emit('save', this.listToEdit);
+    },
+    calcDone() {
+      this.length = this.checklist.todos.length;
+      const done = this.checklist.todos.filter((todo) => todo.isDone);
+      this.areDone = done.length;
     },
   },
   computed: {
-    // checklists() {
-    //   return this.$store.getters.checklists;
-    // },
+    percent() {
+      return +((this.areDone / this.length) * 100).toFixed();
+    },
   },
   components: { iconBase },
 };

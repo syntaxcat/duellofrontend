@@ -58,6 +58,7 @@ export const boardStore = {
         grp.tasks.forEach((task) => {
           if (task.checklists && task.checklists.length) {
             task.checklists.forEach((list) => {
+              console.log(task.title);
               list.taskTitle = task.title;
               lists.push(list);
             });

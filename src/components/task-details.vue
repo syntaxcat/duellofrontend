@@ -62,8 +62,9 @@
           <attachment-details :attachments="taskToEdit.attachments" />
           <checklist-details
             v-for="checklist in taskToEdit.checklists"
-            :key="checklist"
+            :key="checklist.id"
             :checklist="checklist"
+            @save="updateChecklist"
           />
           <activity-details
             :task="taskToEdit"
@@ -148,10 +149,20 @@ export default {
     this.loggedinUser = user;
     const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
     this.taskToEdit = { ...res.task };
-    console.log(this.taskToEdit);
+    // console.log(this.taskToEdit);
     this.group = { ...res.group };
   },
   methods: {
+    updateChecklist(checklist) {
+      console.log('save');
+      const idx = this.taskToEdit.checklists.findIndex((list) => list.id === checklist.id);
+      this.taskToEdit.checklists.splice(idx, 1, checklist);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
+    },
     addChecklist(newChecklist) {
       console.log(newChecklist);
 
