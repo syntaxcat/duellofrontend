@@ -34,6 +34,7 @@
   }
 }
 .board-group-container {
+  height: 100%;
   background-color: red;
   display: flex;
   flex-grow: 1;
@@ -46,6 +47,7 @@
     fill: #6b778c;
   }
   .board-group {
+    height: 100%;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -143,6 +145,9 @@
   }
 }
 
+.group > .board-group {
+  height: 100%;
+}
 .group-edit-modal {
   color: $boardAddClr;
   position: fixed;
