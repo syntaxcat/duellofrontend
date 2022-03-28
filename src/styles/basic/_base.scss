@@ -41,7 +41,7 @@ body,
   // transform: rotateZ(5deg);
 }
 
-.dragged{
+.dragged {
   transition: transform 0.18s ease;
   transform: rotateZ(5deg);
 }
@@ -60,12 +60,12 @@ body,
 // }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   border-radius: 20px;
   background: #f1f1f1;
-  margin: 10px;
+  margin: 20px;
 }
 
 ::-webkit-scrollbar-track {
