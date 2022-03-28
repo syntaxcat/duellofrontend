@@ -15,7 +15,7 @@
         </button>
         <button @click="openModal('calendar-cmp')"><icon-base class="icon-color" iconName="clock" />Dates</button>
         <button @click="openModal('attachment-cmp')">
-          <icon-base class="icon-color" iconName="attachment" />Attachment
+          <icon-base class="icon-color attach-icon" iconName="attachment" />Attachment
         </button>
         <button @click="openModal('cover-cmp')"><icon-base class="icon-fill" iconName="cover" />Cover</button>
       </div>

@@ -574,7 +574,7 @@
       <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
     </svg>
 
-    <svg v-else-if="iconName === 'clock'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <svg v-else-if="iconName === 'clock'" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
         d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
       />

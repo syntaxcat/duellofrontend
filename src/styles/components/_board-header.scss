@@ -62,11 +62,11 @@
       padding: 0;
       gap: 0.5rem;
 
-      icon-base {
+      .icon-base {
         display: flex;
+
         svg {
-          margin-top: 8px;
-          justify-content: center;
+          width: 18px;
         }
       }
       div {
