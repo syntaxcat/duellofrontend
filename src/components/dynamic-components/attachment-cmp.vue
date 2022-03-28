@@ -17,11 +17,11 @@
     </div>
     <div class="attach-link-container">
       <h2>Attach a link</h2>
-      <input type="text" placeholder="Paste any link here..." />
-      <!-- <div v-if="">
+      <input v-model="url" type="text" placeholder="Paste any link here..." />
+      <div v-if="url !== ''">
         <h2>Link name (optional)</h2>
-        <input type="text" />
-      </div> -->
+        <input v-model="linkName" type="text" />
+      </div>
       <button class="attach-btn" @click="attachLink">Attach</button>
     </div>
   </section>
@@ -34,9 +34,22 @@ export default {
   data() {
     return {
       loading: false,
+      linkName: '',
+      url: '',
     };
   },
   methods: {
+    attachLink() {
+      if (!this.url.includes('https://')) return;
+      const attachment = {
+        type: 'link',
+        url: this.url,
+        name: this.linkName,
+        created: new Date().getTime(),
+      };
+      this.close();
+      this.$emit('saveAttachment', attachment);
+    },
     async onUploadImg(ev) {
       this.loading = true;
       const res = await uploadImg(ev);

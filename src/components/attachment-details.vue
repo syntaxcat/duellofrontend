@@ -7,20 +7,29 @@
     <div class="attachment-content">
       <ul>
         <li v-for="attachment in attachments" key="attachment.url">
-          <div class="imgAttachment" v-if="attachment.type === 'image'">
-            <img :src="attachment.url" />
-          </div>
-          <div v-else>
-            <div class="linkAttachment"></div>
-          </div>
-          <div class="details-container-display">
-            <div class="attach-fileName">
-              {{ attachment.fileName }}
-            </div>
-            <div class="attach-created">
-              {{ formatDate(attachment.created) }}
+          <div v-if="attachment.type === 'image'" class="attachment-item">
+            <img class="img-attachment" :src="attachment.url" />
+            <div class="details-container-display">
+              <div class="attach-fileName">
+                {{ attachment.fileName }}
+              </div>
+              <div class="attach-created">
+                {{ formatDate(attachment.created) }}
+              </div>
             </div>
           </div>
+
+          <a v-if="attachment.type === 'link'" :href="attachment.url" target="_blank" class="attachment-item">
+            <div class="link-box">LINK</div>
+            <div class="details-container-display">
+              <div class="attach-fileName">
+                {{ attachment.url }}
+              </div>
+              <div class="attach-created">
+                {{ formatDate(attachment.created) }}
+              </div>
+            </div>
+          </a>
         </li>
       </ul>
     </div>

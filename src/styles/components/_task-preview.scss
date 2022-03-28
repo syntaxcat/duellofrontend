@@ -93,7 +93,8 @@
     }
   }
 
-  .due-date {
+  .due-date,
+  .number-of-attachments {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -118,6 +119,14 @@
     svg {
       width: 18px;
       height: 18px;
+    }
+  }
+
+  .number-of-attachments {
+    margin-left: 0.75rem;
+    svg {
+      width: 16px;
+      height: 16px;
     }
   }
   .task-labels {
@@ -170,7 +179,7 @@
     border-color: $clr6;
   }
 }
-.task-prev-clr{
+.task-prev-clr {
   display: flex;
   min-height: 56px;
   border-radius: 3px;
@@ -180,11 +189,10 @@
     font-weight: 500;
     font-size: 16px;
     // height: 30px;
-    text-shadow: -1px 2px 7px rgba(0,0,0,0.25);
+    text-shadow: -1px 2px 7px rgba(0, 0, 0, 0.25);
     // line-height: 39px;
     padding-top: 10px;
   }
-  
 }
 .task-prev-bcg {
   height: 200px;
@@ -193,8 +201,7 @@
   background-position: center;
   display: flex;
   border-radius: 3px;
-  
-  
+
   textarea {
     padding-top: 10px;
     align-self: flex-end;
@@ -202,7 +209,7 @@
     font-weight: 500;
     font-size: 16px;
     height: 30px;
-    text-shadow: -1px 2px 7px rgba(0,0,0,0.43);
+    text-shadow: -1px 2px 7px rgba(0, 0, 0, 0.43);
     // line-height: 39px;
   }
 }

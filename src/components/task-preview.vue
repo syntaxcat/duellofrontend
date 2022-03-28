@@ -32,6 +32,10 @@
           <icon-base iconName="clock" />
           {{ formatDate(this.task.dueDate) }}
         </span>
+        <span v-if="numberOfAttachments > 0" class="number-of-attachments">
+          <icon-base iconName="attachment" />
+          {{ numberOfAttachments }}
+        </span>
       </div>
       <div class="member-list">
         <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
@@ -108,6 +112,9 @@ export default {
     },
   },
   computed: {
+    numberOfAttachments() {
+      return this.task.attachments.length;
+    },
     labelsExpanded() {
       return this.$store.getters.labelsExpanded;
     },
