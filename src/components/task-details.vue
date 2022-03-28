@@ -8,11 +8,7 @@
 
         <div v-if="taskToEdit.style.cover.type" class="cover-container">
           <div class="cover-clr" :style="'background-color:' + taskToEdit.style.cover.color">
-          <img
-            class="cover-img"
-            v-if="taskToEdit.style.cover.type === 'img'"
-            :src="taskToEdit.style.cover.imgUrl"
-          />
+            <img class="cover-img" v-if="taskToEdit.style.cover.type === 'img'" :src="taskToEdit.style.cover.imgUrl" />
           </div>
         </div>
         <div class="task-details-container">
@@ -47,12 +43,9 @@
             <div class="labels-for-display" v-if="labels.length >= 1">
               <h2>Labels</h2>
               <div class="labels-container">
-                <div
-                  class="label"
-                  v-for="label in labels"
-                  :key="label.id"
-                  :style="'background-color:' + label.color"
-                >{{ label.title }}</div>
+                <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
+                  {{ label.title }}
+                </div>
                 <button class="add-btn" @click="toggleLabelsModal">
                   <icon-base iconName="plus" />
                 </button>
@@ -83,12 +76,7 @@
             @deleteComment="deleteComment"
           />
         </div>
-        <task-details-menu
-          :isMember="isMember"
-          @joinTask="joinTask"
-          @openModal="openModal"
-          @removeTask="removeTask"
-        />
+        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" @removeTask="removeTask" />
         <div class="dynamic-cmp">
           <component
             :is="cmp"
@@ -164,12 +152,17 @@ export default {
     this.loggedinUser = user;
     const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
     this.taskToEdit = { ...res.task };
-    // console.log(this.taskToEdit);
     this.group = { ...res.group };
   },
   methods: {
-    removeChecklist(checkId){
-      
+    removeChecklist(checkId) {
+      const idx = this.taskToEdit.checklists.findIndex((list) => list.id === checkId);
+      this.taskToEdit.checklists.splice(idx, 1);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
     },
     updateChecklist(checklist) {
       console.log('save');
@@ -299,7 +292,8 @@ export default {
     async setCoverImg(imgUrl) {
       this.taskToEdit.style.cover.type = 'img';
       this.taskToEdit.style.cover.imgUrl = imgUrl;
-      if (imgUrl) this.taskToEdit.style.cover.color = (await designService.getAvgColor(this.taskToEdit.style.cover.imgUrl)).hex
+      if (imgUrl)
+        this.taskToEdit.style.cover.color = (await designService.getAvgColor(this.taskToEdit.style.cover.imgUrl)).hex;
       else this.taskToEdit.style.cover.color = '';
       if (!this.taskToEdit.style.cover.style && imgUrl) this.taskToEdit.style.cover.style = 'solid';
       this.$store.dispatch({
