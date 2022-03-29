@@ -280,7 +280,6 @@ export default {
     closeModal() {
       this.cmp = null;
     },
-
     closeTaskDetails() {
       this.$emit('closeTaskDetails');
     },
@@ -316,7 +315,6 @@ export default {
         groupId: this.groupId,
       });
     },
-
     async saveDate(date) {
       this.cmp = null;
       this.taskToEdit.dueDate = date;
@@ -343,7 +341,6 @@ export default {
         groupId: this.groupId,
       });
     },
-
     async removeDate() {
       this.cmp = null;
       this.taskToEdit.dueDate = null;
@@ -366,7 +363,6 @@ export default {
     },
 
     deleteBoardLabel(labelId) {
-      // console.log(labelId);
       this.$store.dispatch({
         type: 'deleteBoardLabel',
         labelId: labelId,
@@ -400,12 +396,9 @@ export default {
       });
     },
     removeTask() {
-      // console.log('removing...');
       this.$store.dispatch({ type: 'removeTask', taskId: this.taskId, groupId: this.groupId });
       this.closeTaskDetails();
     },
-    // getBcg(){
-    // }
   },
   computed: {
     labels() {

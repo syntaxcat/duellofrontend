@@ -33,31 +33,9 @@ body,
 .icon-base {
   margin: 0px;
 }
-
-.groupGhost {
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.192);
-  // transition: transform 0.18s ease;
-  // transform: rotateZ(5deg);
-}
-
-.dragged {
-  transition: transform 0.18s ease;
-  transform: rotateZ(5deg);
-}
 .no-move {
   transition: transform 0s;
 }
-// .ghost {
-
-.draggble {
-  // opacity: 2;
-  opacity: 0.5;
-  background: black;
-}
-// display: none;
-// background-color: rgb(0, 0, 0);
-// }
 
 ::-webkit-scrollbar {
   width: 5px;

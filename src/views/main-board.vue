@@ -52,13 +52,10 @@ export default {
     };
   },
   async created() {
-    console.log(this.$route.params.boardId);
     const board = await this.$store.dispatch({
       type: 'loadBoard',
       boardId: this.$route.params.boardId,
     });
-    console.log('main board', board);
-
     this.board = board;
   },
   methods: {
@@ -89,18 +86,8 @@ export default {
     addTask(taskTitle, groupId, boardId) {
       this.$store.dispatch({ type: 'addTask', taskTitle, groupId, boardId });
     },
-    // async createBoard(newBoard) {
-    //   const boardId = await this.$store.dispatch({
-    //     type: 'createBoard',
-    //     board: newBoard,
-    //   });
-    //   this.$router.push({ path: `/board/${boardId}` });
-    // },
   },
   computed: {
-    // board() {
-    //   return this.$store.getters.board;
-    // },
     groups: {
       get() {
         return this.$store.getters.groups;
