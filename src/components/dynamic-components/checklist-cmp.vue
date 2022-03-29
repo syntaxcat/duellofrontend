@@ -46,7 +46,7 @@ export default {
       const title = this.checkToAdd ? this.checkToAdd.title : this.title;
       const list = { title, todos: [...this.checkToAdd.todos] };
       this.$emit('addChecklist', list);
-      this.checkToAdd = ''
+      this.checkToAdd = '';
     },
     toggleFocus(ev) {
       if (ev.type === 'mousedown' && !this.title) {
@@ -58,7 +58,7 @@ export default {
       }
     },
     close() {
-      this.$emit('closeModal');
+      this.$emit('close');
     },
   },
   computed: {

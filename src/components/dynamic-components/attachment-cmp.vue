@@ -66,7 +66,7 @@ export default {
     },
 
     close() {
-      this.$emit('closeAttachment');
+      this.$emit('close');
     },
   },
   components: {

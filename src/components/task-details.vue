@@ -35,7 +35,7 @@
                     <img :src="member.imgUrl" />
                   </li>
                 </ul>
-                <button class="add-btn" @click="toggleMemberModal">
+                <button class="add-btn" @click="selectComponent('member-cmp')">
                   <icon-base iconName="plus" />
                 </button>
               </div>
@@ -46,12 +46,12 @@
                 <div class="label" v-for="label in labels" :key="label.id" :style="'background-color:' + label.color">
                   {{ label.title }}
                 </div>
-                <button class="add-btn" @click="toggleLabelsModal">
+                <button class="add-btn" @click="selectComponent('label-cmp')">
                   <icon-base iconName="plus" />
                 </button>
               </div>
             </div>
-            <div class="dueDate" v-if="taskToEdit.dueDate" @click="toggleCalendar">
+            <div class="dueDate" v-if="taskToEdit.dueDate" @click="selectComponent('calendar-cmp')">
               <h2>Due date</h2>
               <span>
                 {{ formatDate(taskToEdit.dueDate) }}
@@ -76,24 +76,25 @@
             @deleteComment="deleteComment"
           />
         </div>
-        <task-details-menu :isMember="isMember" @joinTask="joinTask" @openModal="openModal" @removeTask="removeTask" />
+        <task-details-menu
+          :isMember="isMember"
+          @joinTask="joinTask"
+          @openModal="selectComponent"
+          @removeTask="removeTask"
+        />
         <div class="dynamic-cmp">
           <component
             :is="cmp"
             :board="board"
             :task="taskToEdit"
             :date="taskToEdit.dueDate"
-            @openModal="openModal"
             @saveDate="saveDate"
             @removeDate="removeDate"
             @addLabel="addLabel"
-            @closeModal="closeModal"
             @updateBoardLabel="updateBoardLabel"
             @deleteBoardLabel="deleteBoardLabel"
             @createBoardLabel="createBoardLabel"
-            @closeCalendar="closeCalendar"
-            @closeAttachment="closeAttachment"
-            @closeLabel="closeLabel"
+            @close="hideComponent"
             @addMember="addMember"
             @saveAttachment="saveAttachment"
             @setCoverColor="setCoverColor"
@@ -175,15 +176,13 @@ export default {
       });
     },
     addChecklist(newChecklist) {
-      console.log(newChecklist);
       this.taskToEdit.checklists.unshift(newChecklist);
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
-
-      this.closeModal();
+      this.hideComponent();
     },
     saveAttachment(attachment) {
       const attachments = [attachment, ...this.taskToEdit.attachments];
@@ -237,27 +236,6 @@ export default {
         groupId: this.groupId,
       });
     },
-    toggleCalendar() {
-      if (this.cmp === null) {
-        this.openModal('calendar-cmp');
-      } else {
-        this.closeLabel();
-      }
-    },
-    toggleLabelsModal() {
-      if (this.cmp === null) {
-        this.openModal('label-cmp');
-      } else {
-        this.closeLabel();
-      }
-    },
-    toggleMemberModal() {
-      if (this.cmp === null) {
-        this.openModal('member-cmp');
-      } else {
-        this.closeLabel();
-      }
-    },
     saveDesc(task) {
       this.$store.dispatch({
         type: 'updateTask',
@@ -265,19 +243,14 @@ export default {
         groupId: this.groupId,
       });
     },
-    openModal(type) {
-      this.cmp = type;
+    selectComponent(type) {
+      if (this.cmp === type) {
+        hideComponent();
+      } else {
+        this.cmp = type;
+      }
     },
-    closeCalendar() {
-      this.cmp = null;
-    },
-    closeAttachment() {
-      this.cmp = null;
-    },
-    closeLabel() {
-      this.cmp = null;
-    },
-    closeModal() {
+    hideComponent() {
       this.cmp = null;
     },
     closeTaskDetails() {
@@ -316,7 +289,7 @@ export default {
       });
     },
     async saveDate(date) {
-      this.cmp = null;
+      this.hideComponent();
       this.taskToEdit.dueDate = date;
       try {
         this.$store.dispatch({
@@ -329,7 +302,7 @@ export default {
       }
     },
     addMember(member) {
-      const idx = this.taskToEdit.members.findIndex((mmbr) => mmbr._id === member._id);
+      const idx = this.taskToEdit.members.findIndex((member) => member._id === member._id);
       if (idx === -1) {
         this.taskToEdit.members.unshift(member);
       } else {
@@ -342,7 +315,7 @@ export default {
       });
     },
     async removeDate() {
-      this.cmp = null;
+      this.hideComponent();
       this.taskToEdit.dueDate = null;
       try {
         this.$store.dispatch({
@@ -413,16 +386,14 @@ export default {
     isMember() {
       return this.taskToEdit.members.some((member) => member._id === this.loggedinUser._id);
     },
-    isCover() {
-      if (this.taskToEdit.style.cover.type) return true;
-      return false;
-    },
     coverStyle() {
       if (this.taskToEdit.style.cover.type === 'color') {
         return `background-color: ${this.taskToEdit.style.cover.color}`;
-      } else if (this.taskToEdit.style.cover.type === 'img') {
+      }
+      if (this.taskToEdit.style.cover.type === 'img') {
         return `background-image: url(${this.taskToEdit.style.cover.imgUrl}); max-height: 160px `;
-      } else return '';
+      }
+      return '';
     },
   },
   components: {

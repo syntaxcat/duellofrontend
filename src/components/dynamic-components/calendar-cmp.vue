@@ -35,7 +35,7 @@ export default {
       this.$emit('removeDate');
     },
     close() {
-      this.$emit('closeCalendar');
+      this.$emit('close');
     },
   },
   components: {

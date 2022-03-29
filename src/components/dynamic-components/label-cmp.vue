@@ -137,7 +137,7 @@ export default {
       this.$emit('addLabel', label);
     },
     close() {
-      this.$emit('closeLabel');
+      this.$emit('close');
     },
     isLabelSelected(label) {
       if (!this.task.labelIds) return false;

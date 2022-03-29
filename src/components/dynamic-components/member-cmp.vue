@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     close() {
-      this.$emit('closeLabel');
+      this.$emit('close');
     },
     addMember(member) {
       console.log('adding member...');
