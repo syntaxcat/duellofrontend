@@ -114,35 +114,65 @@ export const boardStore = {
     },
   },
   actions: {
-    async updateBoardLabel({ commit }, { label, boardId }) {
+    async updateBoardLabel({ commit, state }, { label }) {
       try {
-        const board = await boardService.updateBoardLabel(label, boardId);
+        const board = await boardService.updateBoardLabel(label, JSON.parse(JSON.stringify(state.board)));
+        console.log(board);
         commit({ type: 'setBoard', board });
         return board;
       } catch (err) {
         console.log(err);
       }
     },
+    // async updateBoardLabel({ commit }, { label, boardId }) {
+    //   try {
+    //     const board = await boardService.updateBoardLabel(label, boardId);
+    //     commit({ type: 'setBoard', board });
+    //     return board;
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // },
 
-    async deleteBoardLabel({ commit }, { labelId, boardId }) {
+    async deleteBoardLabel({ commit, state }, { labelId }) {
       try {
-        const board = await boardService.deleteBoardLabel(labelId, boardId);
+        const board = await boardService.deleteBoardLabel(labelId, JSON.parse(JSON.stringify(state.board)));
+        console.log(board);
         commit({ type: 'setBoard', board });
         return board;
       } catch (err) {
         console.log(err);
       }
     },
+    // async deleteBoardLabel({ commit }, { labelId, boardId }) {
+    //   try {
+    //     const board = await boardService.deleteBoardLabel(labelId, boardId);
+    //     commit({ type: 'setBoard', board });
+    //     return board;
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // },
 
-    async createBoardLabel({ commit }, { labelData, boardId }) {
+    async createBoardLabel({ commit, state }, { labelData }) {
       try {
-        const board = await boardService.createBoardLabel(labelData, boardId);
+
+        const board = await boardService.createBoardLabel(labelData, JSON.parse(JSON.stringify(state.board)));
         commit({ type: 'setBoard', board });
         return board;
       } catch (err) {
         console.log(err);
       }
     },
+    // async createBoardLabel({ commit }, { labelData, boardId }) {
+    //   try {
+    //     const board = await boardService.createBoardLabel(labelData, boardId);
+    //     commit({ type: 'setBoard', board });
+    //     return board;
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // },
     toggleLabelsExpanded({ commit }) {
       commit({ type: 'toggleLabelsExpanded' });
     },
@@ -150,6 +180,17 @@ export const boardStore = {
       console.log(filterBy);
       try {
         const board = await boardService.query(filterBy);
+        commit({ type: 'setBoards', board });
+        return board;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async loadBoard({ commit }, { boardId }) {
+      // console.log(filterBy);
+      try {
+        console.log('store', boardId);
+        const board = await boardService.getById(boardId);
         commit({ type: 'setBoard', board });
         return board;
       } catch (err) {
@@ -164,9 +205,17 @@ export const boardStore = {
         console.log(err);
       }
     },
+    // async addGroup({ commit }, { title, boardId }) {
+    //   try {
+    //     const newGroup = await boardService.addGroup(title, boardId);
+    //     commit({ type: 'addGroup', newGroup });
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // },
     async removeGroup({ state, commit }, { groupId }) {
       try {
-        await boardService.removeGroup(groupId, state.board._id);
+        await boardService.removeGroup(groupId, JSON.parse(JSON.stringify(state.board)));
         commit({ type: 'removeGroup', groupId });
       } catch (err) {
         console.log(err);

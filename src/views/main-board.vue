@@ -48,15 +48,18 @@ export default {
       isOpenModal: false,
       taskId: null,
       groupId: null,
-      board: null
+      board: null,
     };
   },
   async created() {
+    console.log(this.$route.params.boardId);
     const board = await this.$store.dispatch({
-      type: 'loadBoards',
-      filterBy: { boardId: this.$route.params.boardId },
+      type: 'loadBoard',
+      boardId: this.$route.params.boardId,
     });
-    this.board = this.$store.getters.board
+    console.log('main board', board);
+
+    this.board = board;
   },
   methods: {
     openModal(taskId, groupId) {
@@ -106,11 +109,11 @@ export default {
         this.$store.dispatch({ type: 'drag', value });
       },
     },
-    bcg(){
-      if(!this.board) return 
-      if(this.board.style.type==='img')return `background-image: url(${this.board.style.backgroundImg})`
-      else return `background-color: ${this.board.style.color}`
-    }
+    bcg() {
+      if (!this.board) return;
+      if (this.board.style.type === 'img') return `background-image: url(${this.board.style.backgroundImg})`;
+      else return `background-color: ${this.board.style.color}`;
+    },
   },
   components: {
     boardHeader,

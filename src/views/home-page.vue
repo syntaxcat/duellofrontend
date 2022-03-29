@@ -6,12 +6,7 @@
       <div class="nav-bar">
         <div>
           <ul>
-            <li
-              v-for="option in options"
-              :key="option.name"
-              :class="[option.class]"
-              @click="visit(option.type)"
-            >
+            <li v-for="option in options" :key="option.name" :class="[option.class]" @click="visit(option.type)">
               <div class="li-icon">
                 <icon-base :iconName="option.type" />
               </div>
@@ -83,7 +78,6 @@
       <all-boards v-if="boards" :boards="boards" />
     </div>
   </section>
-  <section></section>
 </template>
 
 <script>
@@ -117,13 +111,14 @@ export default {
     this.boards = boards;
   },
   methods: {
-    async createBoard(newBoard) {
-      const boardId = await this.$store.dispatch({
-        type: 'createBoard',
-        board: newBoard,
-      });
-      this.$router.push({ path: `/board/${boardId}` });
-    },
+    // async createBoard(newBoard) {
+    //   const boardId = await this.$store.dispatch({
+    //     type: 'createBoard',
+    //     board: newBoard,
+    //   });
+    //   debugger;
+    //   this.$router.push({ path: `/board/${boardId}` });
+    // },
     visit(type) {
       this.options = this.options.map((option) => {
         if (option.type === type) {

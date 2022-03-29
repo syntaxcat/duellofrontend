@@ -1,6 +1,7 @@
 import { storageService } from './storage.service';
 import { boardService } from './board.service';
 import { utilService } from './util.service';
+import { httpService } from './httpService';
 
 export const taskService = {
   addTask,
@@ -73,7 +74,8 @@ function getEmptyComment() {
 // async function updateTasks(taskId, groupId, board) {}
 
 async function _findGroup(groupId, boardId) {
-  const board = await storageService.get(BOARD_KEY, boardId);
+  // const board = await storageService.get(BOARD_KEY, boardId);
+  const board = await httpService.get(`board/${boardId}`)
   const group = board.groups.find((group) => group.id === groupId);
   return group;
 }

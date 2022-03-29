@@ -44,33 +44,33 @@
         </label>
       </div>
     </nav>
+    <create-board v-if="isCreate" @closeModal="toggleCreateModal" @create="createBoard" />
   </section>
-  <create-board v-if="isCreate" @closeModal="toggleCreateModal" @create="createBoard" />
 </template>
 
 <script>
 import iconBase from './icon-base.vue';
-import createBoard from "./create-board.vue";
+import createBoard from './create-board.vue';
 import { designService } from '../services/design.services';
 export default {
   data() {
     return {
       isCreate: false,
       currBoard: this.$store.getters.board,
-      bcg: null
-    }
+      bcg: null,
+    };
   },
   methods: {
     goHome() {
       this.$router.push({ path: '/' });
     },
     toggleCreateModal() {
-      this.isCreate = !this.isCreate
+      this.isCreate = !this.isCreate;
     },
-    createBoard(board) {
-      this.$store.dispatch({ type: 'createBoard', board })
-      this.$router.replace({ path: `/board/${board._id}` })
-    }
+    async createBoard(board) {
+      const id = await this.$store.dispatch({ type: 'createBoard', board });
+      this.$router.replace({ path: `/board/${id}` });
+    },
   },
   computed: {
     user() {
@@ -81,22 +81,19 @@ export default {
   //   return this.$store.getters.board
   // },
   async created() {
-    setTimeout(async ()=> {
-      const board = this.$store.getters.board
-      if (!board) this.bcg = '#026aa7'
+    setTimeout(async () => {
+      const board = this.$store.getters.board;
+      if (!board) this.bcg = '#026aa7';
       else if (board.style.type === 'img') {
-        const color = await designService.getAvgColor(board.style.backgroundImg)
+        const color = await designService.getAvgColor(board.style.backgroundImg);
         // console.log(color.hex)
-        this.bcg = color.hex
-      }
-      else {
+        this.bcg = color.hex;
+      } else {
         // console.log('wtf')
-        this.bcg = '#00000029'
+        this.bcg = '#00000029';
       }
       // console.log(this.bcg)
-
-    }, 1)
-
+    }, 1);
   },
   components: { iconBase, createBoard },
 };

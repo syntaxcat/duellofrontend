@@ -14,7 +14,7 @@
     </div>
     <p>Background</p>
     <div class="img-container">
-      <div class="img-boxes" v-for=" img in imgs" :key="img" @click="setBoardImg(img)">
+      <div class="img-boxes" v-for="img in imgs" :key="img" @click="setBoardImg(img)">
         <img :src="img" />
       </div>
     </div>
@@ -69,33 +69,32 @@ export default {
       boardToEdit: boardService.getEmptyBoard(),
       loggedinUser: null,
       backgrounds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      imgs: null
+      imgs: null,
     };
   },
   async created() {
     this.loggedinUser = this.$store.getters.user;
-    this.$store.dispatch('loadDesign')
-    const imgs = await designService.getImgsLarge(4)
-    this.imgs = imgs
-    this.boardToEdit.style.backgroundImg = imgs[0]
+    this.$store.dispatch('loadDesign');
+    const imgs = await designService.getImgsLarge(4);
+    this.imgs = imgs;
+    this.boardToEdit.style.backgroundImg = imgs[0];
   },
   mounted() {
     this.$refs.myInput.focus();
   },
   methods: {
     setBoardClr(color) {
-      console.log('dgfljsfgkjdhg')
-      this.boardToEdit.style.color = color
-      this.boardToEdit.style.type = 'color'
-      this.boardToEdit.style.backgroundImg =''
+      this.boardToEdit.style.color = color;
+      this.boardToEdit.style.type = 'color';
+      this.boardToEdit.style.backgroundImg = '';
     },
     setBoardImg(imgUrl) {
-      this.boardToEdit.style.backgroundImg = imgUrl
-      this.boardToEdit.style.type = 'img'
-      this.boardToEdit.style.color =''
+      this.boardToEdit.style.backgroundImg = imgUrl;
+      this.boardToEdit.style.type = 'img';
+      this.boardToEdit.style.color = '';
     },
     closeModal() {
-      this.$emit('closeModal')
+      this.$emit('closeModal');
     },
     create() {
       // if (!this.boardToEdit.title || !this.loggedinUser) return;
@@ -106,23 +105,23 @@ export default {
   },
   computed: {
     colors() {
-      return this.$store.getters.colors
+      return this.$store.getters.colors;
     },
     colorsPrev() {
-      if(!this.boardToEdit) return
-      console.log(JSON.parse(JSON.stringify(this.$store.getters.colors)).splice(0, 5))
-      return JSON.parse(JSON.stringify(this.$store.getters.colors)).splice(0, 5)
+      if (!this.boardToEdit) return;
+      // console.log(JSON.parse(JSON.stringify(this.$store.getters.colors)).splice(0, 5));
+      return JSON.parse(JSON.stringify(this.$store.getters.colors)).splice(0, 5);
     },
     getPrevStyle() {
-      if(!this.boardToEdit) return
+      if (!this.boardToEdit) return;
       if (this.boardToEdit.style.type === 'color') {
-        return `background-color: ${this.boardToEdit.style.color};`
-      } else return `background-image: url(${this.boardToEdit.style.backgroundImg});`
+        return `background-color: ${this.boardToEdit.style.color};`;
+      } else return `background-image: url(${this.boardToEdit.style.backgroundImg});`;
     },
     isTitle() {
-      console.log(!this.boardToEdit.title)
-      if (!this.boardToEdit.title) return 'no-title'
-    }
+      // console.log(!this.boardToEdit.title);
+      if (!this.boardToEdit.title) return 'no-title';
+    },
   },
   components: { iconBase },
 };
