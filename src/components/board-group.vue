@@ -17,7 +17,7 @@
 
     <div class="task-container">
       <ul>
-        <draggable v-model="tasks" group="tasks" @change="log" v-bind="{ ghostClass: 'groupGhost' }">
+        <draggable v-model="tasks" group="tasks" @change="log">
           <li @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
             <button @click.stop="editTask(task.id)" class="edit-btn">
               <icon-base iconName="pencil"></icon-base>
