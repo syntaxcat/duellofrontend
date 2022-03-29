@@ -176,6 +176,12 @@ export default {
     },
     addChecklist(newChecklist) {
       console.log(newChecklist);
+      this.taskToEdit.checklists.unshift(newChecklist);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
 
       this.closeModal();
     },

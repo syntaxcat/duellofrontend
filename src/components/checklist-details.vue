@@ -5,7 +5,7 @@
       <div class="container">
         <h3>{{ listToEdit.title }}</h3>
         <div>
-          <button @click.stop="show = !show">filteredTodos</button>
+          <button v-if="areDone" @click.stop="isFilter = !isFilter">{{ showHide }}</button>
           <button @click.stop="isRemoveCheck = !isRemoveCheck">Delete</button>
         </div>
       </div>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="todos-container">
-      <div class="checklist-item" v-for="todo in listToEdit.todos" :key="todo.id">
+      <div class="checklist-item" v-for="todo in todosForDisplay" :key="todo.id">
         <div
           :class="{ checkbox: true, complete: todo.isDone }"
           @click="
@@ -41,16 +41,16 @@
           </span>
         </div>
 
-        <div class="todo-details" @click="isEdit = !isEdit">
-          <div class="text-and-controls">
+        <div class="todo-details" @click="toggleEdit(todo.id)">
+          <div class="text-and-controls" v-if="!isEdit || target !== todo.id">
             <span :class="{ done: todo.isDone }">{{ todo.title }}</span>
             <div class="todo-controls">
-              <div class="todo-controller" @click="log">
+              <div class="todo-controller">
                 <button>
                   <icon-base iconName="trello-clock" />
                 </button>
               </div>
-              <div class="todo-controller" @click="log">
+              <div class="todo-controller">
                 <button class="round">
                   <icon-base iconName="member" />
                 </button>
@@ -71,7 +71,41 @@
             </div>
           </div>
 
-          <div class="edit-todo"></div>
+          <div class="add-todo edit-todo" v-if="isEdit && todo.id === target">
+            <textarea placeholder="Add an item" v-model="todo.title"></textarea>
+
+            <div class="add-controls">
+              <div class="container">
+                <button class="add-btn" @click.stop="saveChecklist">Save</button>
+                <icon-base class="close-btn" iconName="x" @click.stop="toggleEdit('')" />
+              </div>
+
+              <div class="actions">
+                <span>
+                  <icon-base iconName="member" />
+                  Assign
+                </span>
+
+                <span>
+                  <icon-base iconName="trello-clock" />
+                  Due date
+                </span>
+
+                <icon-base class="option" iconName="mention" />
+                <icon-base class="option" iconName="emoji" />
+                <icon-base class="option" iconName="more" @click.stop="setModalType('delete-todo', todo.id)" />
+              </div>
+            </div>
+
+            <component
+              :is="modalType"
+              :todo="todo"
+              :pos="{ right: -271, top: 105 }"
+              v-if="modalType && todo.id === target"
+              @remove="removeTodo"
+              @close="modalType = null"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -97,8 +131,8 @@
             Due date
           </span>
 
-          <icon-base class="option" @click="log" iconName="mention" />
-          <icon-base class="option" @click="log" iconName="emoji" />
+          <icon-base class="option" iconName="mention" />
+          <icon-base class="option" iconName="emoji" />
         </div>
       </div>
     </div>
@@ -107,6 +141,7 @@
 
 <script>
 import { utilService } from '../services/util.service';
+import { VueDraggableNext } from 'vue-draggable-next';
 import iconBase from './icon-base.vue';
 import deleteTodo from './dynamic-components/delete-todo-cmp.vue';
 import deleteModal from './delete-modal.vue';
@@ -129,19 +164,31 @@ export default {
       modalType: null,
       target: null,
       isRemoveCheck: false,
+      isFilter: false,
     };
   },
   created() {
     this.calcDone();
   },
   methods: {
-    setModalType(type, todoId) {
+    toggleEdit(todoId) {
+      console.log('edit');
+      if (this.target) {
+        this.target = null;
+        this.isEdit = false;
+        return;
+      }
+      this.target = todoId;
+      this.isEdit = true;
+    },
+    setModalType(type, id) {
+      console.log('delete');
       if (this.modalType) {
         this.modalType = null;
         this.target = null;
         return;
       }
-      this.target = todoId;
+      this.target = id;
       this.modalType = type;
     },
     removeTodo(todoId) {
@@ -158,12 +205,17 @@ export default {
     },
     saveChecklist() {
       this.$emit('save', this.listToEdit);
+      if (this.isEdit) this.isEdit = !this.isEdit;
     },
     removeChecklist(checkId) {
-      console.log(checkId);
-      this.$emit('remove', checkId)
+      this.$emit('remove', checkId);
     },
     calcDone() {
+      if (!this.checklist.todos.length) {
+        this.length = 1;
+        this.areDone = 0;
+        return;
+      }
       this.length = this.checklist.todos.length;
       const done = this.checklist.todos.filter((todo) => todo.isDone);
       this.areDone = done.length;
@@ -173,11 +225,22 @@ export default {
     percent() {
       return +((this.areDone / this.length) * 100).toFixed();
     },
+    todosForDisplay() {
+      if (this.isFilter) {
+        const unchecked = this.listToEdit.todos.filter((todo) => !todo.isDone);
+        return unchecked;
+      } else return this.listToEdit.todos;
+    },
+    showHide() {
+      if (!this.isFilter && this.areDone) return 'Hide checked items';
+      else return `Show checked items (${this.areDone})`;
+    },
   },
   components: {
     iconBase,
     deleteTodo,
     deleteModal,
+    draggable: VueDraggableNext,
   },
 };
 </script>

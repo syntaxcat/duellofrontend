@@ -86,14 +86,14 @@ export default {
       if (!board) this.bcg = '#026aa7'
       else if (board.style.type === 'img') {
         const color = await designService.getAvgColor(board.style.backgroundImg)
-        console.log(color.hex)
+        // console.log(color.hex)
         this.bcg = color.hex
       }
       else {
-        console.log('wtf')
+        // console.log('wtf')
         this.bcg = '#00000029'
       }
-      console.log(this.bcg)
+      // console.log(this.bcg)
 
     }, 1)
 

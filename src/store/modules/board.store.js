@@ -24,7 +24,6 @@ export const boardStore = {
   },
   getters: {
     board(state) {
-      console.log(state.board)
       return state.board;
     },
     boardLabels(state) {
