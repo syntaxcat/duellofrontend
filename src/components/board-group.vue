@@ -17,14 +17,8 @@
 
     <div class="task-container">
       <ul>
-        <li @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
-          <draggable
-            v-model="tasks"
-            group="groups"
-            @change="log"
-            sortable-ghost="sortable-ghost"
-            
-          >
+        <draggable v-model="tasks" group="tasks" @change="log">
+          <li @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
             <button @click.stop="editTask(task.id)" class="edit-btn">
               <icon-base iconName="pencil"></icon-base>
               <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->
@@ -53,8 +47,8 @@
               @toggleLabelsExpanded="toggleLabelsExpanded"
             ></task-preview>
             <span class="bcg-helper" v-if="task.style.cover.style === 'background'"></span>
-          </draggable>
-        </li>
+          </li>
+        </draggable>
       </ul>
 
       <div class="create-btn" v-if="isNewTask">
