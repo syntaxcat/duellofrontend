@@ -137,13 +137,11 @@ export default {
       });
     },
     isCover() {
-      // console.log(this.task)
       if (!this.task.style.cover.type) return false;
       return true;
     },
     coverStyle() {
       if (this.task.style.cover.type === 'color') {
-        // console.log(`background-color: ${this.task.style.cover.color}`)
         return `background-color: ${this.task.style.cover.color}; height: 32px`;
       }
       // else if (this.task.style.cover.type === 'img') {

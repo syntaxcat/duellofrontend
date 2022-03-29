@@ -43,7 +43,6 @@ export default {
       this.$emit('close');
     },
     addMember(member) {
-      console.log('adding member...');
       this.$emit('addMember', member);
     },
     isMemberSelected(memberId) {

@@ -196,7 +196,6 @@ export default {
       this.taskTitle = '';
     },
     log(evt) {
-      console.log(evt);
       this.isDrag = !this.isDrag;
     },
     editTask(taskId) {

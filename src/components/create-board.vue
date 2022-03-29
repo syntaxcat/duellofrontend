@@ -60,7 +60,6 @@
 <script>
 import { boardService } from '../services/board.service';
 import { designService } from '../services/design.services';
-import { userService } from '../services/user.service';
 import iconBase from './icon-base.vue';
 
 export default {
@@ -97,8 +96,6 @@ export default {
       this.$emit('closeModal');
     },
     create() {
-      // if (!this.boardToEdit.title || !this.loggedinUser) return;
-      // this.boardToEdit.style.backgroundImg
       this.boardToEdit.createdBy = this.loggedinUser;
       this.$emit('create', { ...this.boardToEdit });
     },
@@ -109,7 +106,6 @@ export default {
     },
     colorsPrev() {
       if (!this.boardToEdit) return;
-      // console.log(JSON.parse(JSON.stringify(this.$store.getters.colors)).splice(0, 5));
       return JSON.parse(JSON.stringify(this.$store.getters.colors)).splice(0, 5);
     },
     getPrevStyle() {
@@ -119,7 +115,6 @@ export default {
       } else return `background-image: url(${this.boardToEdit.style.backgroundImg});`;
     },
     isTitle() {
-      // console.log(!this.boardToEdit.title);
       if (!this.boardToEdit.title) return 'no-title';
     },
   },

@@ -7,7 +7,6 @@
         </button>
         <button @click="goHome">
           <div class="logo-img"></div>
-          <!-- <img src="../assets/icons/trello.svg" alt="trello" /> -->
           <span>Duello</span>
         </button>
         <button>
@@ -56,7 +55,6 @@ export default {
   data() {
     return {
       isCreate: false,
-      currBoard: this.$store.getters.board,
       bcg: null,
     };
   },
@@ -77,22 +75,16 @@ export default {
       return this.$store.getters.user;
     },
   },
-  // currBoard(){
-  //   return this.$store.getters.board
-  // },
   async created() {
     setTimeout(async () => {
       const board = this.$store.getters.board;
       if (!board) this.bcg = '#026aa7';
       else if (board.style.type === 'img') {
         const color = await designService.getAvgColor(board.style.backgroundImg);
-        // console.log(color.hex)
         this.bcg = color.hex;
       } else {
-        // console.log('wtf')
         this.bcg = '#00000029';
       }
-      // console.log(this.bcg)
     }, 1);
   },
   components: { iconBase, createBoard },
