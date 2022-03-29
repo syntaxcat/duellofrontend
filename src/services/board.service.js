@@ -13,11 +13,10 @@ export const boardService = {
   createBoardLabel,
   deleteBoardLabel,
   updateAfterTaskDrag,
-  getById
+  getById,
 };
 
 var newBoard = '';
-
 
 async function query(filterBy) {
   try {
@@ -49,9 +48,9 @@ async function addGroup(title, boardId) {
     title,
     tasks: [],
   };
-  const board = await _getBoard(boardId)
+  const board = await _getBoard(boardId);
   board.groups.push(group);
-  _updateBoard(boardId, board)
+  _updateBoard(boardId, board);
   return group;
 }
 
@@ -60,14 +59,14 @@ async function updateGroup(newGroup, boardId) {
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
     board.groups.splice(groupIdx, 1, newGroup);
-    _updateBoard(boardId, board)
+    _updateBoard(boardId, board);
     return newGroup;
   }
 }
 
 async function updateGroups(newOrder, board) {
   board.groups = newOrder;
-  await _updateBoard(board._id, board)
+  await _updateBoard(board._id, board);
   return newOrder;
 }
 
@@ -85,7 +84,7 @@ async function updateAfterTaskDrag(group, board) {
 }
 
 async function getById(boardId) {
-  return await httpService.get(`board/${boardId}`)
+  return await httpService.get(`board/${boardId}`);
 }
 
 async function removeGroup(groupId, board) {
@@ -110,7 +109,6 @@ async function deleteBoardLabel(labelId, board) {
 }
 
 async function createBoardLabel(labelData, board) {
-  debugger
   board.labels.push({
     id: utilService.makeId(),
     ...labelData,
@@ -120,7 +118,7 @@ async function createBoardLabel(labelData, board) {
 
 async function addNewBoard(board) {
   board.createdAt = Date.now();
-  return await httpService.post('board', board)
+  return await httpService.post('board', board);
   // return await storageService.post(BOARD_KEY, board);
 }
 
@@ -178,9 +176,9 @@ function _createLabels() {
 }
 
 async function _getBoard(boardId) {
-  return await httpService.get(`board/${boardId}`)
+  return await httpService.get(`board/${boardId}`);
 }
 
 async function _updateBoard(boardId, newUpdated) {
-  return await httpService.put(`board/${boardId}`, newUpdated)
+  return await httpService.put(`board/${boardId}`, newUpdated);
 }

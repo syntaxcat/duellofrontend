@@ -30,7 +30,6 @@
 </template>
 
 <script>
-// import { taskService } from "../services/task.service";
 import iconBase from './icon-base.vue';
 export default {
   props: {
@@ -39,23 +38,17 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {};
-  },
   methods: {
     openModal(type) {
       this.$emit('openModal', type);
     },
     joinTask() {
-      // console.log('join task')
       this.$emit('joinTask');
     },
-    //   copyTask() {},
     removeTask() {
       this.$emit('removeTask');
     },
   },
-  computed: {},
   components: { iconBase },
 };
 </script>

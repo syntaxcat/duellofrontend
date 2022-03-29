@@ -12,7 +12,7 @@
 
         <label class="input-label">Copy items from…</label>
 
-        <select v-model="checkToAdd">
+        <select v-model="selectedChecklist">
           <optgroup>
             <option value="">(none)</option>
           </optgroup>
@@ -26,13 +26,12 @@
   </section>
 </template>
 <script>
-// import { utilService } from '../../services/util.service';
 import iconBase from '../icon-base.vue';
 
 export default {
   data() {
     return {
-      checkToAdd: '',
+      selectedChecklist: null,
       title: 'Checklist',
     };
   },
@@ -42,11 +41,9 @@ export default {
   methods: {
     addChecklist() {
       if (!this.title) return;
-      console.log(this.checkToAdd);
-      const title = this.checkToAdd ? this.checkToAdd.title : this.title;
-      const list = { title, todos: [...this.checkToAdd.todos] };
-      this.$emit('addChecklist', list);
-      this.checkToAdd = '';
+      const todos = this.selectedChecklist === null ? [] : this.selectedChecklist.todos;
+      this.$emit('addChecklist', { title: this.title, todos });
+      this.selectedChecklist = null;
     },
     toggleFocus(ev) {
       if (ev.type === 'mousedown' && !this.title) {
@@ -59,6 +56,15 @@ export default {
     },
     close() {
       this.$emit('close');
+    },
+  },
+  watch: {
+    selectedChecklist() {
+      if (!this.selectedChecklist) {
+        this.title = 'Checklist';
+      } else {
+        this.title = this.selectedChecklist.title;
+      }
     },
   },
   computed: {

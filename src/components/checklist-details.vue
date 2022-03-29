@@ -208,6 +208,7 @@ export default {
       if (this.isEdit) this.isEdit = !this.isEdit;
     },
     removeChecklist(checkId) {
+      this.isRemoveCheck = false;
       this.$emit('remove', checkId);
     },
     calcDone() {
@@ -244,5 +245,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

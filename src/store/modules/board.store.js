@@ -61,8 +61,8 @@ export const boardStore = {
 
       state.boardGroups.forEach((grp) => {
         grp.tasks.forEach((task) => {
-          if (task.checklists && task.checklists.length) {
-            task.checklists.forEach((list) => {
+          if (task.checklist && task.checklist.length) {
+            task.checklist.forEach((list) => {
               console.log(task.title);
               list.taskTitle = task.title;
               lists.push(list);
@@ -137,7 +137,6 @@ export const boardStore = {
     },
     async createBoardLabel({ commit, state }, { labelData }) {
       try {
-
         const board = await boardService.createBoardLabel(labelData, JSON.parse(JSON.stringify(state.board)));
         commit({ type: 'setBoard', board });
         return board;

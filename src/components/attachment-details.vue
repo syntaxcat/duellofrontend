@@ -49,9 +49,6 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {};
-  },
   methods: {
     formatDate(date) {
       return new Date(date).toDateString();

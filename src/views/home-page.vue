@@ -111,14 +111,6 @@ export default {
     this.boards = boards;
   },
   methods: {
-    // async createBoard(newBoard) {
-    //   const boardId = await this.$store.dispatch({
-    //     type: 'createBoard',
-    //     board: newBoard,
-    //   });
-    //   debugger;
-    //   this.$router.push({ path: `/board/${boardId}` });
-    // },
     visit(type) {
       this.options = this.options.map((option) => {
         if (option.type === type) {

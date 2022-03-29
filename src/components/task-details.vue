@@ -62,7 +62,7 @@
           <description-details :taskToEdit="taskToEdit" @save="saveDesc" />
           <attachment-details :attachments="taskToEdit.attachments" />
           <checklist-details
-            v-for="checklist in taskToEdit.checklists"
+            v-for="checklist in taskToEdit.checklist"
             :key="checklist.id"
             :checklist="checklist"
             @save="updateChecklist"
@@ -157,8 +157,8 @@ export default {
   },
   methods: {
     removeChecklist(checkId) {
-      const idx = this.taskToEdit.checklists.findIndex((list) => list.id === checkId);
-      this.taskToEdit.checklists.splice(idx, 1);
+      const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checkId);
+      this.taskToEdit.checklist.splice(idx, 1);
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
@@ -166,9 +166,8 @@ export default {
       });
     },
     updateChecklist(checklist) {
-      console.log('save');
-      const idx = this.taskToEdit.checklists.findIndex((list) => list.id === checklist.id);
-      this.taskToEdit.checklists.splice(idx, 1, checklist);
+      const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checklist.id);
+      this.taskToEdit.checklist.splice(idx, 1, checklist);
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
@@ -176,7 +175,7 @@ export default {
       });
     },
     addChecklist(newChecklist) {
-      this.taskToEdit.checklists.unshift(newChecklist);
+      this.taskToEdit.checklist.unshift(newChecklist);
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
