@@ -30,8 +30,8 @@ async function _createUsers() {
   const users = await _query();
   if (!users || !users.length) {
     const user = {
-      _id: 'u101',
-      username: 'user',
+      _id: '6242f863997c38fd3b0699ee',
+      username: 'RonShitrit',
       fullname: 'user',
       password: 123,
       imgUrl: 'https://res.cloudinary.com/dtseyauom/image/upload/v1648287220/Profile-Ferb_jh83qj.webp',

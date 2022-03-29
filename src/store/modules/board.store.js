@@ -48,7 +48,7 @@ export const boardStore = {
       return state.colors;
     },
     imgSearches(state) {
-      return state.imgSearches
+      return state.imgSearches;
     },
     checklists(state) {
       return [...state.checklists];
@@ -110,7 +110,7 @@ export const boardStore = {
     setDesign(state, { design }) {
       state.imgs = design[0].imgs;
       state.colors = design[0].colors;
-      state.imgSearches = design[0].suggestedSearches
+      state.imgSearches = design[0].suggestedSearches;
     },
   },
   actions: {
@@ -147,6 +147,7 @@ export const boardStore = {
       commit({ type: 'toggleLabelsExpanded' });
     },
     async loadBoards({ commit }, { filterBy }) {
+      console.log(filterBy);
       try {
         const board = await boardService.query(filterBy);
         commit({ type: 'setBoard', board });
@@ -237,12 +238,11 @@ export const boardStore = {
     },
     async updateBoard({ commit }, { board }) {
       try {
-        const newBoard = await boardService.updateBoard(board)
+        const newBoard = await boardService.updateBoard(board);
         commit({ type: 'setBoard', board: newBoard });
-
       } catch (err) {
         console.log(err);
       }
-    }
+    },
   },
 };
