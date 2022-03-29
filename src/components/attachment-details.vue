@@ -23,7 +23,12 @@
             <div class="link-box">LINK</div>
             <div class="details-container-display">
               <div class="attach-fileName">
-                {{ attachment.url }}
+                <div v-if="attachment.name !== ''">
+                  {{ attachment.name }}
+                </div>
+                <div v-else>
+                  {{ attachment.url }}
+                </div>
               </div>
               <div class="attach-created">
                 {{ formatDate(attachment.created) }}
