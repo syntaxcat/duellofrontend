@@ -1,4 +1,5 @@
 import { httpService } from '../services/httpService.js';
+import { socketService } from './socket.service.js';
 import { utilService } from './util.service';
 
 export const boardService = {
@@ -51,7 +52,7 @@ async function addGroup(title, boardId) {
   };
   const board = await _getBoard(boardId);
   board.groups.push(group);
-  updateBoard( board);
+  updateBoard(board);
   return group;
 }
 
@@ -60,7 +61,7 @@ async function updateGroup(newGroup, boardId) {
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
     board.groups.splice(groupIdx, 1, newGroup);
-    updateBoard( board);
+    updateBoard(board);
     return newGroup;
   }
 }
@@ -181,5 +182,8 @@ async function _getBoard(boardId) {
 }
 
 async function updateBoard(newUpdated) {
-  return await httpService.put(`board/${newUpdated._id}`, newUpdated);
+  const board = await httpService.put(`board/${newUpdated._id}`, newUpdated);
+  console.log('update');
+  socketService.emit('update', newUpdated)
+  return board
 }

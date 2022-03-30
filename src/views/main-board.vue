@@ -6,8 +6,7 @@
 
     <section class="groups-container" v-if="board">
       <div class="groups-container-wrapper">
-        <draggable v-model="groups" handle=".mover" chosenClass="sortable-chosen"
-          forceFallback="true">
+        <draggable v-model="groups" handle=".mover" chosenClass="sortable-chosen" forceFallback="true">
           <div class="group-wrapper" v-for="group in board.groups" :key="group.id">
             <board-group
               :group="JSON.parse(JSON.stringify(group))"
@@ -35,6 +34,7 @@
 
 <script>
 import { VueDraggableNext } from 'vue-draggable-next';
+import { socketService } from '../services/socket.service';
 import boardHeader from '../components/board-header.vue';
 import mainHeader from '../components/main-header.vue';
 import boardGroup from '../components/board-group.vue';
@@ -58,6 +58,11 @@ export default {
       boardId: this.$route.params.boardId,
     });
     this.board = board;
+    socketService.emit('on-board', this.board._id);
+    socketService.on('update', (board) => {
+      console.log(board);
+      this.board = { ...board };
+    });
   },
   methods: {
     openModal(taskId, groupId) {

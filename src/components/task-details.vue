@@ -220,7 +220,6 @@ export default {
       });
       this.taskToEdit.comments = comments;
     },
-
     async saveComment(comment, taskId) {
       if (!taskId) {
         taskId = this.taskToEdit.id;
@@ -233,7 +232,6 @@ export default {
       });
       socketService.emit('added-comment', { ...this.taskToEdit });
     },
-
     formatDate(dateString) {
       return new Date(dateString).toDateString();
     },
@@ -343,7 +341,6 @@ export default {
         boardId: this.boardId,
       });
     },
-
     deleteBoardLabel(labelId) {
       this.$store.dispatch({
         type: 'deleteBoardLabel',
@@ -351,7 +348,6 @@ export default {
         boardId: this.boardId,
       });
     },
-
     createBoardLabel(labelData) {
       this.$store.dispatch({
         type: 'createBoardLabel',
