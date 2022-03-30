@@ -9,8 +9,8 @@
     </div>
 
     <div class="activity-form">
-      <!-- <img :src="user.imgUrl" alt="user" /> -->
-      <img src="../assets/imgs/background.jpg" alt="user" />
+      <img :src="user.imgUrl" alt="user" />
+      <!-- <img src="../assets/imgs/background.jpg" alt="user" /> -->
 
       <div :class="['comment-frame', isShow]">
         <div class="comment-box">

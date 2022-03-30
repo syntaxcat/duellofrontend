@@ -310,7 +310,9 @@ export default {
       }
     },
     addMember(member) {
-      const idx = this.taskToEdit.members.findIndex((member) => member._id === member._id);
+      console.log(member)
+      const idx = this.taskToEdit.members.findIndex((mmbr) => mmbr._id === member._id);
+      console.log(idx)
       if (idx === -1) {
         this.taskToEdit.members.unshift(member);
       } else {
