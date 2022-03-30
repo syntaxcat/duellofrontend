@@ -152,7 +152,7 @@ export default {
       this.imgs = imgs;
     },
     closeModal() {
-      this.$emit('closeModal');
+      this.$emit('close');
     },
     setCoverColor(color) {
       if (color === this.currColor) {

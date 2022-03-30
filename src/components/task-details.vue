@@ -1,5 +1,5 @@
 <template>
-  <div class="details-bc">
+  <div @click.self="closeTaskDetails" class="details-bc">
     <div class="task-details" v-if="taskToEdit">
       <div class="task-header-container">
         <button class="details-btn" @click="closeTaskDetails">
@@ -125,6 +125,7 @@ import activityDetails from './activity-details.vue';
 import attachmentDetails from '../components/attachment-details.vue';
 import checklistDetails from './checklist-details.vue';
 import coverCmp from './dynamic-components/cover-cmp.vue';
+import giphyCmp from './dynamic-components/giphy-cmp.vue';
 
 export default {
   props: {
@@ -271,7 +272,7 @@ export default {
     },
     selectComponent(type) {
       if (this.cmp === type) {
-        hideComponent();
+        this.hideComponent();
       } else {
         this.cmp = type;
       }
@@ -328,7 +329,9 @@ export default {
       }
     },
     addMember(member) {
-      const idx = this.taskToEdit.members.findIndex((member) => member._id === member._id);
+      console.log(member)
+      const idx = this.taskToEdit.members.findIndex((mmbr) => mmbr._id === member._id);
+      console.log(idx)
       if (idx === -1) {
         this.taskToEdit.members.unshift(member);
       } else {
@@ -433,6 +436,7 @@ export default {
     attachmentCmp,
     attachmentDetails,
     iconBase,
+    giphyCmp,
   },
 };
 </script>

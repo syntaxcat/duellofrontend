@@ -1,15 +1,14 @@
 <template>
   <section class="create-board">
     <header>
-      <button class="back">
+      <div class="header-btn-container">
+        <icon-base  @click="closeModal" iconName="x"></icon-base>
         <icon-base iconName="icon-back"></icon-base>
-      </button>
-      <span>Create board</span>
-      <button @click="closeModal">
-        <icon-base iconName="x"></icon-base>
-      </button>
+        </div>
+      <h2>Create board</h2>
     </header>
-    <div class="board-prev" :style="getPrevStyle">
+    <div class="main-content">
+      <div class="board-prev" :style="getPrevStyle">
       <icon-base iconName="board-prev"></icon-base>
     </div>
     <p>Background</p>
@@ -26,7 +25,7 @@
         class="color-boxes"
         :style="'background-color:' + color.color"
       ></div>
-      <button class="more-btn">
+      <button @click="toggleCostumizeModal" class="more-btn">
         <icon-base iconName="more"></icon-base>
       </button>
     </div>
@@ -54,6 +53,27 @@
 
     <button @click="create">Create</button>-->
     <!-- <img @click="setBackground(background.src)" :src="background.src"> -->
+      </div>
+  </section>
+  <section class="costumize-modal" v-if="isCostumize">
+    <header>
+      <div class="header-btn-container">
+        <icon-base iconName="x"></icon-base>
+      </div>
+        <h2>Board background</h2>
+    </header>
+    <div class="main-content">
+      <h3>Photos</h3>
+      <h6>See more</h6>
+      <div class="img-container">
+        <img v-for="img in imgs" :key="img" :src="img"/>
+      </div>
+        <h3>colors</h3>
+        <h6>See more</h6>
+      <div class="color-container">
+        <div v-for="color in colors" :key="color.color" :style="'background-color:'+color.color" class="color-box"></div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -65,10 +85,12 @@ import iconBase from './icon-base.vue';
 export default {
   data() {
     return {
+      isCostumize: false,
       boardToEdit: boardService.getEmptyBoard(),
       loggedinUser: null,
       backgrounds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       imgs: null,
+      searchImgs: null,
     };
   },
   async created() {
@@ -105,6 +127,9 @@ export default {
       this.boardToEdit.members.unshift(this.loggedinUser)
       this.$emit('create', { ...this.boardToEdit });
     },
+    toggleCostumizeModal(){
+      this.isCostumize = !this.isCostumize
+    }
   },
   computed: {
     colors() {

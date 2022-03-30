@@ -19,6 +19,12 @@
         </button>
         <button @click="openModal('cover-cmp')"><icon-base class="icon-fill" iconName="cover" />Cover</button>
       </div>
+      <div class="task-menu-group">
+        <h2>Power-Ups</h2>
+        <button @click="openModal('giphy-cmp')">
+          <icon-base class="icon-color attach-icon" iconName="giphy" />Giphy
+        </button>
+      </div>
 
       <div class="task-menu-group">
         <h2>Actions</h2>
