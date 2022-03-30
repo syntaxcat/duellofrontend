@@ -54,6 +54,9 @@ export const boardStore = {
     checklists(state) {
       return [...state.checklists];
     },
+    loggedinUser(state){
+      return state.loggedinUser
+    }
   },
   mutations: {
     getChecklists(state) {
@@ -243,7 +246,7 @@ export const boardStore = {
         const design = await designService.query();
         commit({ type: 'setDesign', design });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     },
     async updateBoard({ commit }, { board }) {

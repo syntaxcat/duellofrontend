@@ -16,13 +16,13 @@ export const userStore = {
     },
   },
   actions: {
-    // async loadUser(context) {
-    //     const user = await utilService.loadFromSessionStorage('user')
-    //     if (user) {
-    //         context.commit({ type: 'setUser', user })
-    //         return user
-    //     }
-    // },
+    async loadUser(context) {
+        const user = await utilService.loadFromSessionStorage('user')
+        if (user) {
+            context.commit({ type: 'setUser', user })
+            return user
+        }
+    },
     async login(context, { user }) {
       const loggedinUser = await userService.login(user);
       if (!loggedinUser) return;

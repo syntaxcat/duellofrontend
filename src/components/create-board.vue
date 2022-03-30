@@ -96,7 +96,9 @@ export default {
       this.$emit('closeModal');
     },
     create() {
+      console.log(this.boardToEdit)
       this.boardToEdit.createdBy = this.loggedinUser;
+      this.boardToEdit.members.unshift(this.loggedinUser)
       this.$emit('create', { ...this.boardToEdit });
     },
   },
