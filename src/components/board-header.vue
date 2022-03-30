@@ -24,12 +24,12 @@
           |
         </div>
         <button class="name-btn">Sprint</button> |
-        <!-- <section class="members">
-      <div class="member" v-for="member in members" :key="member._id">
+        <section class="members">
+      <div class="member" v-for="member in board.members" :key="member._id">
         <img :src="member.imgUrl" alt="member" />
       </div>
-      <button>Invite</button>
-    </section> -->
+      <button @click="toggleMembersModal">Invite</button>
+    </section>
       </div>
 
       <div class="options">
@@ -45,11 +45,34 @@
       </div>
     </section>
   </section>
+
+  <section v-if="isMemberModal" class="invite-member-modal">
+    <header>
+      <div class="header-btn-container">
+        <icon-base @click="toggleMembersModal" iconName="x"></icon-base>
+      </div>
+      <h2>Invite to board</h2>
+    </header>
+    <div class="main-content">
+      <input v-model="userSearch" @input="searchMembers" type="text" placeholder="Search memeber by name">
+      <button>Send invintation</button>
+    </div>
+    <div v-if="userSearch" class="member-res-modal">
+    <div @click="addMember(member)" v-for="member in membersRes"  :key="member._id"  v-if="membersRes" class="member-container">
+    <img :src="member.imgUrl">
+    <span>{{member.fullname}}</span>
+    </div>
+    <div v-else>
+      <span>No users found</span>
+    </div>
+    </div>
+  </section>
 </template>
 
 <script>
 import iconBase from '../components/icon-base.vue';
 import boardMenu from './board-menu.vue';
+import IconBase from '../components/icon-base.vue';
 export default {
   components: { boardMenu },
   data() {
@@ -58,6 +81,9 @@ export default {
       isEditing: false,
       isFull: false,
       isMenuOpen: false,
+      userSearch: '',
+      isMemberModal: false,
+      membersRes: null
       // openMenu: false
     };
   },
@@ -78,6 +104,21 @@ export default {
     toggleFavorites(){
       this.board.isStarred = !this.board.isStarred
       this.$store.dispatch({type: 'updateBoard', board:this.board})
+    },
+    toggleMembersModal(){
+      console.log('dgdfgdgdgdg')
+      this.isMemberModal = !this.isMemberModal
+    },
+    async searchMembers(){
+      console.log(this.userSearch)
+     const members = await this.$store.dispatch({type:'searchMembers', searchVal: this.userSearch})
+     this.membersRes = members
+     console.log(members)
+    },
+    addMember(member){
+     if( this.board.members.some(mmbr => mmbr._id === member._id)) return
+     else this.board.members.push(member)
+     this.$store.dispatch({type:'updateBoard', board:this.board})
     }
   },
   computed: {
@@ -96,7 +137,7 @@ export default {
   },
   components: {
     iconBase,
-    boardMenu
-  },
+    boardMenu,
+},
 };
 </script>

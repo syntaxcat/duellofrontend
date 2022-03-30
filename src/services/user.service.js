@@ -4,6 +4,7 @@ import { utilService } from './util.service';
 export const userService = {
   login,
   signup,
+  getUsers
 };
 const USER_KEY = 'userDB';
 
@@ -20,6 +21,12 @@ async function signup(newUser) {
   if (isUserExist) return;
   newUser._id = utilService.makeId();
   return storageService.post(USER_KEY, newUser);
+}
+
+async function getUsers(searchVal){
+  console.log(searchVal)
+  const users = await _query()
+  return users.filter(user => user.fullname.includes(searchVal)||user.fullname.includes(searchVal))
 }
 
 async function _query() {
