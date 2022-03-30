@@ -119,7 +119,7 @@
 
   ul {
     // margin: 0 4px;
-   padding-inline: 4px;
+    padding-inline: 4px;
 
     li {
       position: relative;
@@ -287,10 +287,10 @@
     // color: black !important;
     // border-color: black !important;
     // outline: none;
-    &>*{
+    & > * {
       visibility: hidden;
+    }
   }
-}
 }
 
 .sortable-drag .board-group {
