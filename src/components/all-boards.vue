@@ -10,7 +10,7 @@
         <ul>
           <!-- <li v-for="board in boards" :key="board._id">
               <a :href="'/board/' + board._id" class="board-title"></a>
-            </li> -->
+          </li>-->
         </ul>
       </div>
     </div>
@@ -27,10 +27,10 @@
             <a
               :href="'/#/board/' + board._id"
               class="board-title"
-              :style="(board.style.type==='img')?`background-image: url(${board.style.backgroundImg})`:`background-color:${board.style.color}`"
+              :style="(board.style.type === 'img') ? `background-image: url(${board.style.backgroundImg})` : `background-color:${board.style.color}`"
             >
               <span class="board-title-fade"></span>
-              
+
               <div class="board-title-content">
                 <div class="title">{{ board.title }}</div>
                 <div class="container">
@@ -92,14 +92,14 @@
             <a
               :href="'/#/board/' + board._id"
               class="board-title"
-              :style="(board.style.type==='img')?`background-image: url(${board.style.backgroundImg})`:`background-color:${board.style.color}`"
+              :style="(board.style.type === 'img') ? `background-image: url(${board.style.backgroundImg})` : `background-color:${board.style.color}`"
             >
               <span class="board-title-fade"></span>
               <div class="board-title-content">
                 <div class="title">{{ board.title }}</div>
                 <div class="container">
                   <span>{{ board.subName }}</span>
-                  <icon-base iconName="starS" class="board-title-icon" />
+                  <icon-base iconName="starS" :class="['board-title-icon', 'full-star']" />
                 </div>
               </div>
             </a>
@@ -109,7 +109,9 @@
             <div class="board-title create">
               <!-- <span class="board-title-fade"></span> -->
               <p>Create new board</p>
-              <p><span>5 remaining</span></p>
+              <p>
+                <span>5 remaining</span>
+              </p>
               <div class="li-icon">
                 <icon-base iconName="help" />
               </div>
@@ -132,6 +134,21 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  methods: {
+    // toggleFavorites() {
+    //   this.board.isStarred = !this.board.isStarred
+    //   this.$store.dispatch({ type: 'updateBoard', board: this.board })
+    // }
+  },
+  computed: {
+
+    // isFavorite() {
+    //   console.log(this.board.isStarred)
+    //   if (this.board.isStarred) return 'full-star'
+    //   else return 'empty-star'
+    //   // return this.isFull ? 'full-star' : 'empty-star';
+    // },
   },
   components: { iconBase },
 };

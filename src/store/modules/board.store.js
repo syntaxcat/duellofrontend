@@ -86,7 +86,8 @@ export const boardStore = {
     setBoard(state, { board }) {
       state.board = board;
       state.boardGroups = board.groups;
-      state.bcg = board.style.color;
+      if(board.style.type==='img') state.bcg = board.style.color
+      else state.bcg = '#00000029'
     },
     setBoards(state, { boards }) {
       state.boards = boards;

@@ -1158,11 +1158,23 @@
         fill="currentColor"
       />
     </svg>
-    <svg v-else-if="iconName === 'app'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      v-else-if="iconName === 'app'"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M4 5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5zm0 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2zm7-7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2zm-1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2zm7-7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2zm-1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2zM5 16a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H5zm5 1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2zm7-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z"
+        fill="currentColor"
+      />
+    </svg >
+    <svg  v-else-if="iconName === 'starred'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="m12 18.627-4.505 2.368a1.546 1.546 0 0 1-2.244-1.63l.86-5.016-3.644-3.553a1.546 1.546 0 0 1 .857-2.638l5.037-.732 2.252-4.564a1.546 1.546 0 0 1 2.774 0l2.252 4.564 5.037.732a1.546 1.546 0 0 1 .857 2.638l-3.645 3.553.86 5.016a1.546 1.546 0 0 1-2.243 1.63L12 18.627z"
         fill="currentColor"
       />
     </svg>

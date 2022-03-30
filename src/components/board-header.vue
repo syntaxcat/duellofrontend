@@ -19,7 +19,7 @@
           <div v-if="!isEditing" @click="editMode">{{ board.title }}</div>
 
           <button @click="setFavorite">
-            <icon-base iconName="star" :class="[isFavorite, 'starred']" />
+            <icon-base iconName="star" :class="[isFavorite, 'starred']" @click="toggleFavorites" />
           </button>
           |
         </div>
@@ -74,11 +74,18 @@ export default {
     },
     changeTitle(){
       this.$store.dispatch({type:'updateBoard', board:this.board})
+    },
+    toggleFavorites(){
+      this.board.isStarred = !this.board.isStarred
+      this.$store.dispatch({type: 'updateBoard', board:this.board})
     }
   },
   computed: {
     isFavorite() {
-      return this.isFull ? 'full-star' : 'empty-star';
+      console.log(this.board.isStarred)
+      if(this.board.isStarred) return 'full-star'
+      else return 'empty-star'
+      // return this.isFull ? 'full-star' : 'empty-star';
     },
     width() {
       return this.board.title.length;
