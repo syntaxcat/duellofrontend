@@ -109,6 +109,7 @@
 </template>
 
 <script>
+import { socketService } from '../services/socket.service';
 import { taskService } from '../services/task.service';
 import { designService } from '../services/design.services';
 import iconBase from './icon-base.vue';
@@ -154,6 +155,8 @@ export default {
     const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
     this.taskToEdit = { ...res.task };
     this.group = { ...res.group };
+    socketService.emit('details', this.taskToEdit.id);
+    socketService.on('added-comment', this.saveComment);
   },
   methods: {
     removeChecklist(checkId) {
@@ -218,6 +221,9 @@ export default {
       this.taskToEdit.comments = comments;
     },
     saveComment(comment, taskId) {
+      if (!taskId) {
+        taskId = this.taskToEdit.id;
+      }
       this.taskToEdit.comments.unshift(comment);
       this.$store.dispatch({
         type: 'updateTask',

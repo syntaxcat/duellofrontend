@@ -2,6 +2,7 @@ import { boardService } from '../../services/board.service';
 import { taskService } from '../../services/task.service';
 import { designService } from '../../services/design.services';
 import { utilService } from '../../services/util.service';
+import { socketService } from '../../services/socket.service';
 
 export const boardStore = {
   state: {
@@ -13,7 +14,7 @@ export const boardStore = {
     imgs: null,
     imgSearches: null,
     checklists: [],
-    bcg: '#026AA7'
+    bcg: '#026AA7',
   },
   getters: {
     board(state) {
@@ -47,11 +48,11 @@ export const boardStore = {
       return JSON.parse(JSON.stringify(state.checklists));
     },
     loggedinUser(state) {
-      return state.loggedinUser
+      return state.loggedinUser;
     },
     bcg(state) {
-      return state.bcg
-    }
+      return state.bcg;
+    },
   },
   mutations: {
     getChecklists(state) {
@@ -59,17 +60,14 @@ export const boardStore = {
 
       state.boardGroups.forEach((grp) => {
         grp.tasks.forEach((task) => {
-
           if (task.checklist && task.checklist.length) {
             task.checklist.forEach((checklist) => {
-
               if (checklist.todos && checklist.todos.length) {
-
-                const newChecklist = JSON.parse(JSON.stringify(checklist))
-                newChecklist.todos = newChecklist.todos.map(todo => {
-                  todo.id = utilService.makeId()
-                  return todo
-                })
+                const newChecklist = JSON.parse(JSON.stringify(checklist));
+                newChecklist.todos = newChecklist.todos.map((todo) => {
+                  todo.id = utilService.makeId();
+                  return todo;
+                });
                 newChecklist.taskTitle = task.title;
                 lists.push(newChecklist);
               }
@@ -88,7 +86,7 @@ export const boardStore = {
     setBoard(state, { board }) {
       state.board = board;
       state.boardGroups = board.groups;
-      state.bcg = board.style.color
+      state.bcg = board.style.color;
     },
     setBoards(state, { boards }) {
       state.boards = boards;
@@ -122,8 +120,8 @@ export const boardStore = {
       state.imgSearches = design[0].suggestedSearches;
     },
     resetBcg(state) {
-      state.bcg = '#026AA7'
-    }
+      state.bcg = '#026AA7';
+    },
   },
   actions: {
     async updateBoardLabel({ commit, state }, { label }) {
@@ -221,7 +219,9 @@ export const boardStore = {
       try {
         const updatedGroup = await taskService.updateTask(taskPartial, groupId, state.board._id);
         commit({ type: 'updateGroup', updatedGroup });
-        return updatedGroup
+        socketService.off('added-comment');
+        socketService.on('added-comment', taskPartial);
+        return updatedGroup;
       } catch (err) {
         console.log(err);
       }
@@ -267,7 +267,7 @@ export const boardStore = {
       }
     },
     getChecklists({ commit }) {
-      commit({ type: 'getChecklists' })
-    }
+      commit({ type: 'getChecklists' });
+    },
   },
 };
