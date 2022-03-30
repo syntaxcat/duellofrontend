@@ -2,18 +2,20 @@
   <section class="giphy-cmp">
     <header>
       <h2>Attach GIF</h2>
-      <button @click="close">
-        <icon-base iconName="x" />
-      </button>
+      <div class="header-btn-container">
+        <icon-base iconName="x" @click="close" />
+      </div>
     </header>
-    <h2>Search</h2>
-    <input v-model="searchTerm" type="text" placeholder="Search giphy..." />
-    <div class="giphy-container">
-      <button @click="search">Search</button>
-      <img src="../../assets/icons/Poweredby_100px-White_VertLogo.png" />
-    </div>
-    <div class="gif-options">
-      <img @click="select(url)" v-for="url in urls" :key="url" :src="url" alt="" />
+    <div class="main-content">
+      <p>Search</p>
+      <input v-model="searchTerm" type="text" placeholder="Search giphy..." />
+      <div class="giphy-container">
+        <button @click="search">Search</button>
+        <img src="../../assets/icons/Poweredby_100px-White_VertLogo.png" />
+      </div>
+      <div class="gif-options">
+        <img @click="select(url)" v-for="url in urls" :key="url" :src="url" alt="" />
+      </div>
     </div>
   </section>
 </template>
