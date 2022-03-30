@@ -1,15 +1,14 @@
 <template>
   <section class="create-board">
     <header>
-      <button class="back">
+      <div class="header-btn-container">
+        <icon-base  @click="closeModal" iconName="x"></icon-base>
         <icon-base iconName="icon-back"></icon-base>
-      </button>
-      <span>Create board</span>
-      <button @click="closeModal">
-        <icon-base iconName="x"></icon-base>
-      </button>
+        </div>
+      <h2>Create board</h2>
     </header>
-    <div class="board-prev" :style="getPrevStyle">
+    <div class="main-content">
+      <div class="board-prev" :style="getPrevStyle">
       <icon-base iconName="board-prev"></icon-base>
     </div>
     <p>Background</p>
@@ -54,6 +53,7 @@
 
     <button @click="create">Create</button>-->
     <!-- <img @click="setBackground(background.src)" :src="background.src"> -->
+      </div>
   </section>
 </template>
 

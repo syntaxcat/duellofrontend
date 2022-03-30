@@ -1,5 +1,5 @@
 <template>
-  <div class="details-bc">
+  <div @click.self="closeTaskDetails" class="details-bc">
     <div class="task-details" v-if="taskToEdit">
       <div class="task-header-container">
         <button class="details-btn" @click="closeTaskDetails">

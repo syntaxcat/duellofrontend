@@ -2,48 +2,51 @@
   width: 300px;
   position: fixed;
   z-index: 1;
-  color: $menuTitleClr;
-  font-size: rem(14px);
-  background-color: #ffffff;
-  border-radius: 3px;
-  box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
-  padding: 12px;
+  @include modalBc;
+  // color: $menuTitleClr;
+  // font-size: rem(14px);
+  // background-color: #ffffff;
+  // border-radius: 3px;
+  // box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+  // padding: 12px;
 
   header {
-    border-bottom: 1px solid rgba(9, 30, 66, 0.13);
-    font-weight: 400;
-    line-height: 40px;
-    height: 40px;
-    position: relative;
-    text-align: center;
-    margin-bottom: 8px;
-    h2 {
-      color: #5e6c84;
-      padding: 0 32px;
-      font-size: 14px;
-      margin: auto;
-    }
-    button {
-      cursor: pointer;
-      height: 40px;
-      background-color: transparent;
-      border: none;
-      position: absolute;
-      top: 0;
-      right: 0;
-      &.back {
-        left: -250px;
-      }
-      svg {
-        margin-right: 10px;
-        width: 16px;
-        color: #5e6c84;
+    @include modalHeader;
+  //   border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+  //   font-weight: 400;
+  //   line-height: 40px;
+  //   height: 40px;
+  //   position: relative;
+  //   text-align: center;
+  //   margin-bottom: 8px;
+  //   h2 {
+  //     color: #ff0000;
+  //     padding: 0 32px;
+  //     font-size: 14px;
+  //     margin: auto;
+  //   }
+  //   button {
+  //     cursor: pointer;
+  //     height: 40px;
+  //     background-color: transparent;
+  //     border: none;
+  //     position: absolute;
+  //     top: 0;
+  //     right: 0;
+  //     &.back {
+  //       left: -250px;
+  //     }
+  //     svg {
+  //       margin-right: 10px;
+  //       width: 16px;
+  //       color: #5e6c84;
 
-        &:hover {
-          color: #172b4d;
-        }
-      }
-    }
+  //       &:hover {
+  //         color: #172b4d;
+  //       }
+  //     }
+  //   }
+  // }
   }
   .board-prev {
     position: relative;
@@ -82,11 +85,14 @@
       height: 32px;
       border: none;
       background-color: $coverBtnClr;
+      display: flex;
+      justify-content: center;
 
       &:hover {
         cursor: pointer;
       }
       .icon-base svg {
+      
         margin-top: 2px;
         width: 16px;
 
