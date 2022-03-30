@@ -64,11 +64,7 @@
       <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'trello-block'"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 50 50"
-    >
+    <svg v-else-if="iconName === 'trello-block'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
       <path
         d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M21,36c0,1.1-0.9,2-2,2h-7 c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7c1.1,0,2,0.9,2,2V36z M40,24c0,1.1-0.9,2-2,2h-7c-1.1,0-2-0.9-2-2V12c0-1.1,0.9-2,2-2h7 c1.1,0,2,0.9,2,2V24z"
       />
@@ -237,10 +233,7 @@
         fill="currentColor"
       />
       <path d="M4 6C2.89543 6 2 6.89543 2 8V18C2 19.1046 2.89543 20 4 20L4 6Z" fill="currentColor" />
-      <path
-        d="M20 20V6C21.1046 6 22 6.89543 22 8V18C22 19.1046 21.1046 20 20 20Z"
-        fill="currentColor"
-      />
+      <path d="M20 20V6C21.1046 6 22 6.89543 22 8V18C22 19.1046 21.1046 20 20 20Z" fill="currentColor" />
     </svg>
 
     <svg
@@ -442,13 +435,7 @@
       </g>
     </svg>
 
-    <svg
-      v-else-if="iconName === 'plus'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      fill="currentColor"
-    >
+    <svg v-else-if="iconName === 'plus'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
     </svg>
 
@@ -475,13 +462,7 @@
       <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z" />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'description'"
-      width="24"
-      height="24"
-      version="1.2"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg v-else-if="iconName === 'description'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -582,13 +563,7 @@
     >
       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z" />
     </svg>
-    <svg
-      v-else-if="iconName === 'user'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
+    <svg v-else-if="iconName === 'user'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path
         d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"
       />
@@ -629,12 +604,7 @@
       <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'clock'"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
+    <svg v-else-if="iconName === 'clock'" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
         d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
       />
@@ -669,13 +639,7 @@
       />
     </svg>
 
-    <svg
-      v-else-if="iconName === 'copy'"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
+    <svg v-else-if="iconName === 'copy'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path
         d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"
       />
@@ -1008,15 +972,7 @@
     >
       <rect x="64.4185" y="14.3774" width="57.8728" height="54.8552" rx="1.31379" fill="#E3E3E3" />
       <rect x="67.9799" y="27.5364" width="51.0468" height="12.574" rx="1.31379" fill="white" />
-      <mask
-        id="mask0"
-        mask-type="alpha"
-        maskUnits="userSpaceOnUse"
-        x="67"
-        y="27"
-        width="53"
-        height="14"
-      >
+      <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="67" y="27" width="53" height="14">
         <rect x="67.9799" y="27.5364" width="51.0468" height="12.574" rx="1.31379" fill="white" />
       </mask>
       <g mask="url(#mask0)">
@@ -1028,15 +984,7 @@
         />
       </g>
       <rect x="67.9799" y="43.0345" width="51.0468" height="22.8087" rx="1.31379" fill="white" />
-      <mask
-        id="mask1"
-        mask-type="alpha"
-        maskUnits="userSpaceOnUse"
-        x="67"
-        y="43"
-        width="53"
-        height="23"
-      >
+      <mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="67" y="43" width="53" height="23">
         <rect x="67.9799" y="43.0345" width="51.0468" height="22.8087" rx="1.31379" fill="white" />
       </mask>
       <g mask="url(#mask1)">
@@ -1051,15 +999,7 @@
       />
       <rect x="127.93" y="14.3774" width="57.8728" height="84.2168" rx="1.31379" fill="#E3E3E3" />
       <rect x="131.492" y="27.8287" width="51.0468" height="35.3827" rx="1.31379" fill="white" />
-      <mask
-        id="mask2"
-        mask-type="alpha"
-        maskUnits="userSpaceOnUse"
-        x="131"
-        y="27"
-        width="52"
-        height="37"
-      >
+      <mask id="mask2" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="27" width="52" height="37">
         <rect x="131.492" y="27.8287" width="51.0468" height="35.3827" rx="1.31379" fill="white" />
       </mask>
       <g mask="url(#mask2)">
@@ -1072,29 +1012,13 @@
         />
       </g>
       <rect x="131.195" y="67.0129" width="51.0468" height="11.4044" rx="1.31379" fill="white" />
-      <mask
-        id="mask3"
-        mask-type="alpha"
-        maskUnits="userSpaceOnUse"
-        x="131"
-        y="67"
-        width="52"
-        height="12"
-      >
+      <mask id="mask3" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="67" width="52" height="12">
         <rect x="131.195" y="67.0129" width="51.0468" height="11.4044" rx="1.31379" fill="white" />
       </mask>
       <g mask="url(#mask3)" />
       <rect x="133.866" y="70.8143" width="19.2909" height="3.80145" rx="0.656896" fill="#E4E4E4" />
       <rect x="131.195" y="81.9263" width="51.0468" height="11.4044" rx="1.31379" fill="white" />
-      <mask
-        id="mask4"
-        mask-type="alpha"
-        maskUnits="userSpaceOnUse"
-        x="131"
-        y="81"
-        width="52"
-        height="13"
-      >
+      <mask id="mask4" mask-type="alpha" maskUnits="userSpaceOnUse" x="131" y="81" width="52" height="13">
         <rect x="131.195" y="81.9263" width="51.0468" height="11.4044" rx="1.31379" fill="white" />
       </mask>
       <g mask="url(#mask4)" />
@@ -1112,27 +1036,12 @@
       <rect x="7.13928" y="48.0057" width="19.5877" height="3.80145" rx="0.656896" fill="#E4E4E4" />
       <rect x="6.84247" y="87.7747" width="13.3553" height="3.80145" rx="0.656896" fill="#E4E4E4" />
       <rect x="4.39703" y="59.6907" width="51.0468" height="35.3827" rx="1.31379" fill="white" />
-      <mask
-        id="mask5"
-        mask-type="alpha"
-        maskUnits="userSpaceOnUse"
-        x="4"
-        y="59"
-        width="52"
-        height="37"
-      >
+      <mask id="mask5" mask-type="alpha" maskUnits="userSpaceOnUse" x="4" y="59" width="52" height="37">
         <rect x="4.39703" y="59.6907" width="51.0468" height="35.3827" rx="1.31379" fill="white" />
       </mask>
       <g mask="url(#mask5)">
         <rect x="4.41547" y="58.5548" width="55.3861" height="27.0612" fill="#F1F1F1" />
-        <rect
-          x="7.06805"
-          y="88.3478"
-          width="12.1681"
-          height="3.80145"
-          rx="0.656896"
-          fill="#E4E4E4"
-        />
+        <rect x="7.06805" y="88.3478" width="12.1681" height="3.80145" rx="0.656896" fill="#E4E4E4" />
       </g>
       <rect x="4.76501" y="19.3486" width="14.2456" height="4.38629" rx="0.656896" fill="white" />
       <path
@@ -1158,24 +1067,30 @@
         fill="currentColor"
       />
     </svg>
-    <svg
-      v-else-if="iconName === 'app'"
-      width="24"
-      height="24"
-      version="1.2"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg v-else-if="iconName === 'app'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M4 5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5zm0 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2zm7-7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2zm-1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2zm7-7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2zm-1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2zM5 16a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H5zm5 1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2zm7-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z"
         fill="currentColor"
       />
-    </svg >
-    <svg  v-else-if="iconName === 'starred'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
+    </svg>
+    <svg v-else-if="iconName === 'starred'" width="24" height="24" version="1.2" xmlns="http://www.w3.org/2000/svg">
       <path
         d="m12 18.627-4.505 2.368a1.546 1.546 0 0 1-2.244-1.63l.86-5.016-3.644-3.553a1.546 1.546 0 0 1 .857-2.638l5.037-.732 2.252-4.564a1.546 1.546 0 0 1 2.774 0l2.252 4.564 5.037.732a1.546 1.546 0 0 1 .857 2.638l-3.645 3.553.86 5.016a1.546 1.546 0 0 1-2.243 1.63L12 18.627z"
         fill="currentColor"
+      />
+    </svg>
+    <svg
+      v-else-if="iconName === 'giphy'"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M19.937 8.68c-.011-.032-.02-.063-.033-.094a.997.997 0 0 0-.196-.293l-6-6a.997.997 0 0 0-.293-.196c-.03-.014-.062-.022-.094-.033a.991.991 0 0 0-.259-.051C13.04 2.011 13.021 2 13 2H6c-1.103 0-2 .897-2 2v16c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V9c0-.021-.011-.04-.013-.062a.99.99 0 0 0-.05-.258zM16.586 8H14V5.414L16.586 8zM6 20V4h6v5a1 1 0 0 0 1 1h5l.002 10H6z"
       />
     </svg>
   </section>

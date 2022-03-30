@@ -82,15 +82,13 @@
   //   padding: rem(4px);
   //   margin: rem(4px);
   // }
-
-
 }
 .task-header-container {
   // display: flex;
   position: relative;
   flex-direction: row-reverse;
   justify-content: space-between;
-  .details-btn{
+  .details-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,18 +112,18 @@
   }
   .cover-container {
     position: relative;
-    .cover-clr{
+    .cover-clr {
       display: flex;
       justify-content: center;
-      min-height:116px ;
+      min-height: 116px;
       width: 100%;
     }
-    .cover-img{
+    .cover-img {
       max-height: 160px;
       margin: auto;
-      img{
+      img {
         max-width: 100%;
-          max-height: 100%;
+        max-height: 100%;
       }
     }
     width: 100%;
@@ -146,7 +144,7 @@
     // height: 0;
     // margin-top: 10px;
 
-    button{
+    button {
       height: 20px;
       position: absolute;
     }
@@ -307,5 +305,7 @@
   position: absolute;
   top: 3rem;
   right: 0;
+  bottom: 0;
   z-index: 10;
+  overflow: auto;
 }
