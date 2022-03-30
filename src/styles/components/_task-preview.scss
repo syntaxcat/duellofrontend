@@ -93,6 +93,8 @@
       right: 100%;
       img {
         width: rem(28px);
+        height: rem(28px);
+        object-fit: cover;
         border-radius: 50%;
         margin-left: 7px;
       }
