@@ -51,7 +51,7 @@ async function addGroup(title, boardId) {
   };
   const board = await _getBoard(boardId);
   board.groups.push(group);
-  updateBoard(boardId, board);
+  updateBoard( board);
   return group;
 }
 
@@ -60,14 +60,14 @@ async function updateGroup(newGroup, boardId) {
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
     board.groups.splice(groupIdx, 1, newGroup);
-    updateBoard(boardId, board);
+    updateBoard( board);
     return newGroup;
   }
 }
 
 async function updateGroups(newOrder, board) {
   board.groups = newOrder;
-  await updateBoard(board._id, board);
+  await updateBoard(board);
   return newOrder;
 }
 
@@ -79,7 +79,7 @@ async function updateAfterTaskDrag(group, board) {
     board.groups[groupIdx] = group;
     newBoard = board;
   }
-  await updateBoard(board._id, newBoard);
+  await updateBoard(newBoard);
   newBoard = '';
   return group;
 }
@@ -92,7 +92,7 @@ async function removeGroup(groupId, board) {
   const idx = board.groups.findIndex((group) => group.id === groupId);
   if (idx === -1) return;
   board.groups.splice(idx, 1);
-  await updateBoard(board._id, board);
+  await updateBoard(board);
 }
 
 async function updateBoardLabel(updatedLabel, board) {
