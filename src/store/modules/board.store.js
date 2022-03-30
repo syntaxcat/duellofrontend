@@ -45,7 +45,7 @@ export const boardStore = {
     checklists(state) {
       return JSON.parse(JSON.stringify(state.checklists));
     },
-    loggedinUser(state){
+    loggedinUser(state) {
       return state.loggedinUser
     }
   },
@@ -60,6 +60,7 @@ export const boardStore = {
             task.checklist.forEach((checklist) => {
 
               if (checklist.todos && checklist.todos.length) {
+
                 const newChecklist = JSON.parse(JSON.stringify(checklist))
                 newChecklist.todos = newChecklist.todos.map(todo => {
                   todo.id = utilService.makeId()
