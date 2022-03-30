@@ -49,7 +49,7 @@ export const boardStore = {
     loggedinUser(state) {
       return state.loggedinUser
     },
-    bcg(state){
+    bcg(state) {
       return state.bcg
     }
   },
@@ -121,7 +121,7 @@ export const boardStore = {
       state.colors = design[0].colors;
       state.imgSearches = design[0].suggestedSearches;
     },
-    resetBcg(state){
+    resetBcg(state) {
       state.bcg = '#026AA7'
     }
   },
