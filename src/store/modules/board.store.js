@@ -13,6 +13,7 @@ export const boardStore = {
     imgs: null,
     imgSearches: null,
     checklists: [],
+    bcg: '#026AA7'
   },
   getters: {
     board(state) {
@@ -47,6 +48,9 @@ export const boardStore = {
     },
     loggedinUser(state) {
       return state.loggedinUser
+    },
+    bcg(state){
+      return state.bcg
     }
   },
   mutations: {
@@ -84,6 +88,7 @@ export const boardStore = {
     setBoard(state, { board }) {
       state.board = board;
       state.boardGroups = board.groups;
+      state.bcg = board.style.color
     },
     setBoards(state, { boards }) {
       state.boards = boards;
@@ -116,6 +121,9 @@ export const boardStore = {
       state.colors = design[0].colors;
       state.imgSearches = design[0].suggestedSearches;
     },
+    resetBcg(state){
+      state.bcg = '#026AA7'
+    }
   },
   actions: {
     async updateBoardLabel({ commit, state }, { label }) {

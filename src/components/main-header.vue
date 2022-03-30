@@ -55,12 +55,13 @@ export default {
   data() {
     return {
       isCreate: false,
-      bcg: null,
+      // bcg: null,
     };
   },
   methods: {
     goHome() {
       this.$router.push({ path: '/' });
+      this.$store.commit('resetBcg')
     },
     toggleCreateModal() {
       this.isCreate = !this.isCreate;
@@ -74,18 +75,21 @@ export default {
     user() {
       return this.$store.getters.user;
     },
+    bcg(){
+      return this.$store.getters.bcg
+    }
   },
   async created() {
-    setTimeout(async () => {
-      const board = this.$store.getters.board;
-      if (!board) this.bcg = '#026aa7';
-      else if (board.style.type === 'img') {
-        const color = await designService.getAvgColor(board.style.backgroundImg);
-        this.bcg = color.hex;
-      } else {
-        this.bcg = '#00000029';
-      }
-    }, 1);
+    // setTimeout(async () => {
+    //   const board = this.$store.getters.board;
+    //   if (!board) this.bcg = '#026aa7';
+    //   else if (board.style.type === 'img') {
+    //     const color = await designService.getAvgColor(board.style.backgroundImg);
+    //     this.bcg = color.hex;
+    //   } else {
+    //     this.bcg = '#00000029';
+    //   }
+    // }, 1);
   },
   components: { iconBase, createBoard },
 };
