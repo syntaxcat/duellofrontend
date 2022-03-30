@@ -36,12 +36,10 @@
     </div>
 
     <div class="activity-list">
-      <div v-for="comment in task.comments" :key="comment.id">
+      <div v-for="comment in taskToEdit.comments" :key="comment.id">
         <comment-cmp :comment="comment" @edit="editComment" @deleteComment="deleteComment(comment.id)" />
       </div>
     </div>
-
-    
   </section>
 </template>
 
@@ -67,11 +65,18 @@ export default {
       commentToEdit: taskService.getEmptyComment(),
       add: false,
       isAction: false,
+      taskToEdit: { ...this.task },
     };
+  },
+  created() {
+    socketService.on('added-comment', (task) => {
+      console.log('got a comment');
+      this.taskToEdit = { ...task };
+    });
   },
   methods: {
     deleteComment(commentId) {
-      this.$emit('deleteComment', commentId)
+      this.$emit('deleteComment', commentId);
     },
     editComment(comment) {
       this.$emit('edit', comment, this.task.id);
@@ -94,7 +99,7 @@ export default {
       this.add = !this.add;
     },
     save() {
-      if(!this.commentToEdit.txt) return
+      if (!this.commentToEdit.txt) return;
       this.commentToEdit.byMember = {
         id: this.user._id,
         fullname: this.user.fullname,
@@ -117,6 +122,9 @@ export default {
     isShow() {
       return this.add ? 'show' : '';
     },
+  },
+  destroyed() {
+    socketService.off('added-comment');
   },
   components: { iconBase, commentCmp },
 };

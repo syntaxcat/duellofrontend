@@ -226,12 +226,12 @@ export default {
         taskId = this.taskToEdit.id;
       }
       this.taskToEdit.comments.unshift(comment);
-      const group = await this.$store.dispatch({
+      await this.$store.dispatch({
         type: 'updateTask',
         taskPartial: { id: taskId, comments: [...this.taskToEdit.comments] },
         groupId: this.groupId,
       });
-      socketService.emit('added-comment', group);
+      socketService.emit('added-comment', { ...this.taskToEdit });
     },
 
     formatDate(dateString) {
