@@ -25,11 +25,11 @@
         </div>
         <button class="name-btn">Sprint</button> |
         <section class="members">
-      <div class="member" v-for="member in board.members" :key="member._id">
-        <img :src="member.imgUrl" alt="member" />
-      </div>
-      <button @click="toggleMembersModal">Invite</button>
-    </section>
+          <div class="member" v-for="member in board.members" :key="member._id">
+            <img :src="member.imgUrl" alt="member" />
+          </div>
+          <button @click="toggleMembersModal">Invite</button>
+        </section>
       </div>
 
       <div class="options">
@@ -54,17 +54,23 @@
       <h2>Invite to board</h2>
     </header>
     <div class="main-content">
-      <input v-model="userSearch" @input="searchMembers" type="text" placeholder="Search memeber by name">
+      <input v-model="userSearch" @input="searchMembers" type="text" placeholder="Search memeber by name" />
       <button>Send invintation</button>
     </div>
     <div v-if="userSearch" class="member-res-modal">
-    <div @click="addMember(member)" v-for="member in membersRes"  :key="member._id"  v-if="membersRes" class="member-container">
-    <img :src="member.imgUrl">
-    <span>{{member.fullname}}</span>
-    </div>
-    <div v-else>
-      <span>No users found</span>
-    </div>
+      <div
+        @click="addMember(member)"
+        v-for="member in membersRes"
+        :key="member._id"
+        v-if="membersRes"
+        class="member-container"
+      >
+        <img :src="member.imgUrl" />
+        <span>{{ member.fullname }}</span>
+      </div>
+      <div v-else>
+        <span>No users found</span>
+      </div>
     </div>
   </section>
 </template>
@@ -83,7 +89,7 @@ export default {
       isMenuOpen: false,
       userSearch: '',
       isMemberModal: false,
-      membersRes: null
+      membersRes: null,
       // openMenu: false
     };
   },
@@ -98,46 +104,46 @@ export default {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
-    changeTitle(){
-      this.$store.dispatch({type:'updateBoard', board:this.board})
+    changeTitle() {
+      this.$store.dispatch({ type: 'updateBoard', board: this.board });
     },
-    toggleFavorites(){
-      this.board.isStarred = !this.board.isStarred
-      this.$store.dispatch({type: 'updateBoard', board:this.board})
+    toggleFavorites() {
+      this.board.isStarred = !this.board.isStarred;
+      this.$store.dispatch({ type: 'updateBoard', board: this.board });
     },
-    toggleMembersModal(){
-      console.log('dgdfgdgdgdg')
-      this.isMemberModal = !this.isMemberModal
+    toggleMembersModal() {
+      // console.log('dgdfgdgdgdg')
+      this.isMemberModal = !this.isMemberModal;
     },
-    async searchMembers(){
-      console.log(this.userSearch)
-     const members = await this.$store.dispatch({type:'searchMembers', searchVal: this.userSearch})
-     this.membersRes = members
-     console.log(members)
+    async searchMembers() {
+      // console.log(this.userSearch)
+      const members = await this.$store.dispatch({ type: 'searchMembers', searchVal: this.userSearch });
+      this.membersRes = members;
+      //  console.log(members)
     },
-    addMember(member){
-     if( this.board.members.some(mmbr => mmbr._id === member._id)) return
-     else this.board.members.push(member)
-     this.$store.dispatch({type:'updateBoard', board:this.board})
-    }
+    addMember(member) {
+      if (this.board.members.some((mmbr) => mmbr._id === member._id)) return;
+      else this.board.members.push(member);
+      this.$store.dispatch({ type: 'updateBoard', board: this.board });
+    },
   },
   computed: {
     isFavorite() {
-      console.log(this.board.isStarred)
-      if(this.board.isStarred) return 'full-star'
-      else return 'empty-star'
+      // console.log(this.board.isStarred)
+      if (this.board.isStarred) return 'full-star';
+      else return 'empty-star';
       // return this.isFull ? 'full-star' : 'empty-star';
     },
     width() {
       return this.board.title.length;
     },
-    board(){
-      return JSON.parse(JSON.stringify(this.$store.getters.board))
-    }
+    board() {
+      return JSON.parse(JSON.stringify(this.$store.getters.board));
+    },
   },
   components: {
     iconBase,
     boardMenu,
-},
+  },
 };
 </script>

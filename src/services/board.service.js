@@ -16,6 +16,7 @@ export const boardService = {
   deleteBoardLabel,
   updateAfterTaskDrag,
   getById,
+  getEmptyActivity
 };
 
 var newBoard = '';
@@ -141,6 +142,25 @@ function getEmptyBoard() {
     activities: [],
   };
 }
+
+function getEmptyActivity() {
+  return {
+    id: utilService.makeId(),
+    type: '',
+    action: '',
+    createdAt: Date.now(),
+    byMember: {
+      _id: '',
+      imgUrl: null,
+      fullname: ''
+    },
+    task: {
+      id: '',
+      title: ''
+    }
+  }
+}
+
 
 function _createLabels() {
   return [

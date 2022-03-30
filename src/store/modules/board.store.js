@@ -2,7 +2,6 @@ import { boardService } from '../../services/board.service';
 import { taskService } from '../../services/task.service';
 import { designService } from '../../services/design.services';
 import { utilService } from '../../services/util.service';
-import { socketService } from '../../services/socket.service';
 
 export const boardStore = {
   state: {
@@ -20,14 +19,14 @@ export const boardStore = {
     board(state) {
       return state.board;
     },
+    activities(state) {
+      return state.board.activities
+    },
     boardLabels(state) {
       return state.board.labels;
     },
     groups(state) {
       return state.boardGroups;
-    },
-    dragOptions(state) {
-      return state.draggable.options;
     },
     tasks(state) {
       return state.currGroup.tasks;
@@ -46,9 +45,6 @@ export const boardStore = {
     },
     checklists(state) {
       return JSON.parse(JSON.stringify(state.checklists));
-    },
-    loggedinUser(state) {
-      return state.loggedinUser;
     },
     bcg(state) {
       return state.bcg;
@@ -238,8 +234,8 @@ export const boardStore = {
     },
     async dragTask({ commit, state }, { value, group }) {
       try {
-        commit({ type: 'updateGroup', updatedGroup: group });
         group.tasks = value;
+        commit({ type: 'updateGroup', updatedGroup: group });
         await boardService.updateAfterTaskDrag(group, JSON.parse(JSON.stringify(state.board)));
       } catch (err) {
         console.log(err);

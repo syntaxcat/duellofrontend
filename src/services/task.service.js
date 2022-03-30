@@ -68,6 +68,7 @@ function getEmptyComment() {
     txt: '',
     createdAt: null,
     byMember: {},
+    type: 'comment-cmp'
   };
 }
 

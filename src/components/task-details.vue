@@ -112,6 +112,7 @@
 import { socketService } from '../services/socket.service';
 import { taskService } from '../services/task.service';
 import { designService } from '../services/design.services';
+import { boardService } from '../services/board.service';
 import iconBase from './icon-base.vue';
 import taskDetailsMenu from '../components/task-details-menu.vue';
 import labelCmp from './dynamic-components/label-cmp.vue';
@@ -156,9 +157,28 @@ export default {
     this.taskToEdit = { ...res.task };
     this.group = { ...res.group };
     socketService.emit('details', this.taskToEdit.id);
-    // socketService.on('added-comment', this.saveComment);
+
+    // socketService.on('add-activity', this.addActivity);
   },
   methods: {
+    addActivity({ type, action }) {
+      const activity = boardService.getEmptyActivity();
+      activity.type = type;
+      activity.action = action;
+      activity.byMember = this.loggedinUser;
+      activity.task = { id: this.taskToEdit.id, title: this.taskToEdit.title };
+      console.log('addActivity', activity);
+
+      this.taskToEdit.activities.unshift(activity);
+      console.log('details', this.taskToEdit.activities);
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
+
+      socketService.emit('add-activity');
+    },
     removeChecklist(checkId) {
       const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checkId);
       this.taskToEdit.checklist.splice(idx, 1);
@@ -179,12 +199,12 @@ export default {
     },
     async addChecklist(newChecklist) {
       this.taskToEdit.checklist.unshift(newChecklist);
-      const group = await this.$store.dispatch({
+      await this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
-      console.log(group);
+      this.addActivity({ type: 'activity-cmp', action: `added ${newChecklist.title} to this card` });
       this.hideComponent();
     },
     saveAttachment(attachment) {
@@ -230,7 +250,6 @@ export default {
         taskPartial: { id: taskId, comments: [...this.taskToEdit.comments] },
         groupId: this.groupId,
       });
-      socketService.emit('added-comment', { ...this.taskToEdit });
     },
     formatDate(dateString) {
       return new Date(dateString).toDateString();
