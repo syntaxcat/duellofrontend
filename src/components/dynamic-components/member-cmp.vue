@@ -21,7 +21,6 @@
 </template>
 <script>
 import iconBase from '../icon-base.vue';
-import IconBase from '../icon-base.vue';
 export default {
   props: {
     board: {
@@ -59,6 +58,6 @@ export default {
       });
     },
   },
-  components: { iconBase, IconBase },
+  components: { iconBase },
 };
 </script>
