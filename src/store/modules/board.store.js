@@ -220,7 +220,10 @@ export const boardStore = {
         const updatedGroup = await taskService.updateTask(taskPartial, groupId, state.board._id);
         commit({ type: 'updateGroup', updatedGroup });
         socketService.off('added-comment');
-        socketService.on('added-comment', taskPartial);
+        socketService.on('added-comment', group => {
+          console.log('got a comment');
+          commit({ type: 'updateGroup', updatedGroup: group });
+        });
         return updatedGroup;
       } catch (err) {
         console.log(err);

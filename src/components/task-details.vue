@@ -156,7 +156,7 @@ export default {
     this.taskToEdit = { ...res.task };
     this.group = { ...res.group };
     socketService.emit('details', this.taskToEdit.id);
-    socketService.on('added-comment', this.saveComment);
+    // socketService.on('added-comment', this.saveComment);
   },
   methods: {
     removeChecklist(checkId) {
@@ -220,17 +220,20 @@ export default {
       });
       this.taskToEdit.comments = comments;
     },
-    saveComment(comment, taskId) {
+
+    async saveComment(comment, taskId) {
       if (!taskId) {
         taskId = this.taskToEdit.id;
       }
       this.taskToEdit.comments.unshift(comment);
-      this.$store.dispatch({
+      const group = await this.$store.dispatch({
         type: 'updateTask',
         taskPartial: { id: taskId, comments: [...this.taskToEdit.comments] },
         groupId: this.groupId,
       });
+      socketService.emit('added-comment', group);
     },
+
     formatDate(dateString) {
       return new Date(dateString).toDateString();
     },
