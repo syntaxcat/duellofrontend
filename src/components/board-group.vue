@@ -22,7 +22,7 @@
           group="tasks"
           forceFallback="true"
         >
-          <li @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
+          <li class="task-li" @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
             <button @click.stop="editTask(task.id)" class="edit-btn">
               <icon-base iconName="pencil"></icon-base>
               <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->

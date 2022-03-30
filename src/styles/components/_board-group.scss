@@ -247,7 +247,7 @@
   }
 
   .add-task-container {
-    margin: 8px 8px;
+    padding: 8px 8px;
 
     .add-task-btn {
       display: flex;
@@ -282,6 +282,10 @@
   // background-color: #ccc;
   // border: 2px dashed #666;
   // height: fit-content;
+  .task-preview {
+    background-color: none !important;
+    background-image: none !important;
+  }
   * {
     background-color: black;
     // color: black !important;
