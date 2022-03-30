@@ -6,7 +6,8 @@
 
     <section class="groups-container" v-if="board">
       <div class="groups-container-wrapper">
-        <draggable v-model="groups" handle=".mover">
+        <draggable v-model="groups" handle=".mover" chosenClass="sortable-chosen"
+          forceFallback="true">
           <div class="group-wrapper" v-for="group in board.groups" :key="group.id">
             <board-group
               :group="JSON.parse(JSON.stringify(group))"
