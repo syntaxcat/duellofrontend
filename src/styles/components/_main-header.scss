@@ -1,16 +1,14 @@
 .main-header {
-
-  .logo-img{
+  .logo-img {
     background-image: url('./src/assets/imgs/logo-still.png');
     background-size: 16px 16px;
     height: 16px;
     width: 16px;
-    margin-right:4px ;
+    margin-right: 4px;
     // background-position: 100%;
   }
   // background-color: $clr1;
-  &:hover .logo-img{
-    
+  &:hover .logo-img {
     background-image: url('./src/assets/imgs/logo-ani.gif');
   }
   // background-color: var(--dynamic-background-color, #026AA7)
@@ -46,7 +44,7 @@
       display: flex;
 
       svg {
-        width: 16px;
+        width: 18px;
       }
     }
   }
