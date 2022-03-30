@@ -1,6 +1,7 @@
 import { boardService } from '../../services/board.service';
 import { taskService } from '../../services/task.service';
 import { designService } from '../../services/design.services';
+import { utilService } from '../../services/util.service';
 
 export const boardStore = {
   state: {
@@ -8,16 +9,6 @@ export const boardStore = {
     boardGroups: [],
     currGroup: null,
     labelsExpanded: false,
-    // draggable: {
-    //   options: {
-    //     group: 'groups',
-    //     direction: 'horizontal',
-    //     // dragClass: "drag-class",
-    //     ghostClass: "ghost-class",
-    //     // groupGhost: 'groupGhost',
-    //     // groupGhost: 'groupGhost',
-    //   },
-    // },
     colors: null,
     imgs: null,
     imgSearches: null,
@@ -52,7 +43,7 @@ export const boardStore = {
       return state.imgSearches;
     },
     checklists(state) {
-      return [...state.checklists];
+      return JSON.parse(JSON.stringify(state.checklists));
     },
   },
   mutations: {
@@ -61,11 +52,19 @@ export const boardStore = {
 
       state.boardGroups.forEach((grp) => {
         grp.tasks.forEach((task) => {
+
           if (task.checklist && task.checklist.length) {
-            task.checklist.forEach((list) => {
-              console.log(task.title);
-              list.taskTitle = task.title;
-              lists.push(list);
+            task.checklist.forEach((checklist) => {
+
+              if (checklist.todos && checklist.todos.length) {
+                const newChecklist = JSON.parse(JSON.stringify(checklist))
+                newChecklist.todos = newChecklist.todos.map(todo => {
+                  todo.id = utilService.makeId()
+                  return todo
+                })
+                newChecklist.taskTitle = task.title;
+                lists.push(newChecklist);
+              }
             });
           }
         });
@@ -210,6 +209,7 @@ export const boardStore = {
       try {
         const updatedGroup = await taskService.updateTask(taskPartial, groupId, state.board._id);
         commit({ type: 'updateGroup', updatedGroup });
+        return updatedGroup
       } catch (err) {
         console.log(err);
       }
@@ -254,5 +254,8 @@ export const boardStore = {
         console.log(err);
       }
     },
+    getChecklists({ commit }) {
+      commit({ type: 'getChecklists' })
+    }
   },
 };

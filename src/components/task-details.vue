@@ -174,13 +174,14 @@ export default {
         groupId: this.groupId,
       });
     },
-    addChecklist(newChecklist) {
+    async addChecklist(newChecklist) {
       this.taskToEdit.checklist.unshift(newChecklist);
-      this.$store.dispatch({
+      const group = await this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
+      console.log(group);
       this.hideComponent();
     },
     saveAttachment(attachment) {

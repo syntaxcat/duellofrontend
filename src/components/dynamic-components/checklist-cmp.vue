@@ -26,6 +26,7 @@
   </section>
 </template>
 <script>
+import { utilService } from '../../services/util.service';
 import iconBase from '../icon-base.vue';
 
 export default {
@@ -36,13 +37,13 @@ export default {
     };
   },
   created() {
-    this.$store.commit({ type: 'getChecklists' });
+    this.$store.dispatch({ type: 'getChecklists' });
   },
   methods: {
     addChecklist() {
       if (!this.title) return;
       const todos = this.selectedChecklist === null ? [] : this.selectedChecklist.todos;
-      this.$emit('addChecklist', { title: this.title, todos });
+      this.$emit('addChecklist', { id: utilService.makeId(), title: this.title, todos });
       this.selectedChecklist = null;
     },
     toggleFocus(ev) {

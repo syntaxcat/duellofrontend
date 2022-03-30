@@ -159,7 +159,7 @@ export default {
       areDone: null,
       isAdd: false,
       isEdit: false,
-      listToEdit: { ...this.checklist },
+      listToEdit:  JSON.parse(JSON.stringify(this.checklist)),
       todoToAdd: { id: utilService.makeId(), title: '', isDone: false },
       modalType: null,
       target: null,
@@ -172,7 +172,7 @@ export default {
   },
   methods: {
     toggleEdit(todoId) {
-      console.log('edit');
+      // console.log('edit');
       if (this.target) {
         this.target = null;
         this.isEdit = false;
@@ -182,7 +182,7 @@ export default {
       this.isEdit = true;
     },
     setModalType(type, id) {
-      console.log('delete');
+      // console.log('delete');
       if (this.modalType) {
         this.modalType = null;
         this.target = null;
