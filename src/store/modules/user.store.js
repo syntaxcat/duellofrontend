@@ -25,6 +25,7 @@ export const userStore = {
       }
     },
     async login(context, { user }) {
+      console.log(user)
       const loggedinUser = await userService.login(user);
       if (!loggedinUser) return;
       await utilService.saveToSessionStorage('user', loggedinUser);

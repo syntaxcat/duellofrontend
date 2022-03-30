@@ -196,7 +196,7 @@
   height: 415px;
   @include modalBc;
   header {
-    @include modalHeaderr;
+    @include modalHeader;
   }
   .main-content {
     @include modalContent;

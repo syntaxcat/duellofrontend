@@ -1,94 +1,25 @@
 .cover-cmp {
-  background-color: white;
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  padding: 0 10px 10px;
+  @include modalBc;
   width: 306px;
-  box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
-  .search-btn {
-    // background-color: #172b4d;
-    background-color: #f6f6f7;
-    border: none;
-    color: #182a4d;
-    border-radius: 3px;
-    margin-bottom: 8px;
-    padding: 6px 12px;
-    margin: 10px 4px 6px;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
-    sans-serif;
-    text-align: center;
-    width: 100%;
-    span {
-      color: #182a4d;
-      font-size: 14px;
-    }
-    &:hover {
-      background-color: #091e4214;
-      cursor: pointer;
-    }
-  }
-  .search-words {
-    button {
-      background-color: $coverBtnClr;
-      border: none;
-      color: #182a4d;
-      border-radius: 3px;
-      margin-bottom: 8px;
-      padding: 6px 12px;
-      margin: 0px 4px 4px 0px;
-      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
-        sans-serif;
-      &:hover {
-        background-color: $coverBtnHoverClr;
-        cursor: pointer;
-      }
-    }
+  header {
+    @include modalHeader;
   }
   .main-content {
-    &.search {
-      position: relative;
-      .x {
-        cursor: pointer;
-        height: 40px;
-        background-color: transparent;
-        border: none;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        svg {
-          width: 16px;
-          color: #5e6c84;
+    @include modalContent;
 
-          &:hover {
-            color: #172b4d;
-          }
-        }
+    .search-btn {
+      @include modalBtn;
+    }
+    .search-words {
+      button {
+        width: fit-content;
+        margin: 0px 4px 4px 0px;
       }
-
-      input {
-        width: 100%;
-        margin: 4px 0 12px;
-        border-radius: 3px;
-        border: none;
-        box-shadow: inset 0 0 0 2px #dfe1e6;
-        border-color: none;
-        line-height: 20px;
-        padding: 8px 36px 08px 12px;
-        color: #172b4d;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
-          sans-serif;
-        &:focus {
-          outline: $labe5 3px solid;
-          box-shadow: none;
-        }
-      }
-      p:first-child {
-        margin-top: 0px;
-      }
+    }
+    .main-content {
       .results {
         position: relative;
         height: 570px;
-        // background-color: #172b4d;
         .img-container {
           grid-template: 1fr / repeat(2, 1fr);
           max-height: calc(100% - 60px);
@@ -104,53 +35,6 @@
       }
     }
   }
-  header {
-    border-bottom: 1px solid rgba(9, 30, 66, 0.13);
-    font-weight: 400;
-    line-height: 40px;
-    height: 40px;
-    position: relative;
-    margin-bottom: 8px;
-    h2 {
-      color: #5e6c84;
-      padding: 0 32px;
-      font-size: 14px;
-      text-align: center;
-    }
-    button {
-      cursor: pointer;
-      height: 40px;
-      background-color: transparent;
-      border: none;
-      position: absolute;
-      top: 0;
-      right: 0;
-      &.back {
-        // background-color: #172b4d;
-        left: -260px;
-        // svg {
-        //   width: px;
-        //   stroke: transparent;
-        // }
-      }
-      svg {
-        width: 16px;
-        color: #5e6c84;
-
-        &:hover {
-          color: #172b4d;
-        }
-      }
-    }
-  }
-  p {
-    color: #5e6c84;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px;
-    margin: 16px 0 8px 0;
-    // margin: 0 0 8px;
-  }
   .color-container {
     display: grid;
     position: relative;
@@ -160,7 +44,6 @@
       width: 50px;
       height: 30px;
       border-radius: 3px;
-      //   margin: 10px;
       padding: 2px;
       position: relative;
       &:hover {
@@ -173,13 +56,9 @@
         position: absolute;
         width: 58px;
         height: 38px;
-        //  padding: 0 25px;
-        //  margin-right:20px ;
         border: 3px $labe5 solid;
         bottom: -4px;
         left: -4px;
-        //  z-index: 1;
-        //  left: -5px;
         border-radius: 6px;
       }
     }
@@ -232,7 +111,6 @@
       background-size: cover;
       background-position-x: center;
       background-position-y: center;
-      //   background-size: 100% 100%;
       &:hover {
         cursor: pointer;
         & .board-title-fade {

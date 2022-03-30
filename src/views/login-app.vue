@@ -19,7 +19,6 @@ export default {
   data() {
     return {
       user: {
-        _id: 'u101',
         username: 'user',
         password: 123,
       },
@@ -32,6 +31,8 @@ export default {
   },
   methods: {
     async login() {
+      this.user.password= this.user.password.toString()
+      console.log(this.user.password)
       const user = await this.$store.dispatch({
         type: 'login',
         user: this.user,
