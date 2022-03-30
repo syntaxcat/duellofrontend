@@ -9,6 +9,7 @@ export const boardService = {
   updateGroups,
   getEmptyBoard,
   addNewBoard,
+  updateBoard,
   updateBoardLabel,
   createBoardLabel,
   deleteBoardLabel,
@@ -50,7 +51,7 @@ async function addGroup(title, boardId) {
   };
   const board = await _getBoard(boardId);
   board.groups.push(group);
-  _updateBoard(boardId, board);
+  updateBoard(boardId, board);
   return group;
 }
 
@@ -59,14 +60,14 @@ async function updateGroup(newGroup, boardId) {
   const groupIdx = board.groups.findIndex((group) => group.id === newGroup.id);
   if (groupIdx !== -1) {
     board.groups.splice(groupIdx, 1, newGroup);
-    _updateBoard(boardId, board);
+    updateBoard(boardId, board);
     return newGroup;
   }
 }
 
 async function updateGroups(newOrder, board) {
   board.groups = newOrder;
-  await _updateBoard(board._id, board);
+  await updateBoard(board._id, board);
   return newOrder;
 }
 
@@ -78,7 +79,7 @@ async function updateAfterTaskDrag(group, board) {
     board.groups[groupIdx] = group;
     newBoard = board;
   }
-  await _updateBoard(board._id, newBoard);
+  await updateBoard(board._id, newBoard);
   newBoard = '';
   return group;
 }
@@ -91,7 +92,7 @@ async function removeGroup(groupId, board) {
   const idx = board.groups.findIndex((group) => group.id === groupId);
   if (idx === -1) return;
   board.groups.splice(idx, 1);
-  await _updateBoard(board._id, board);
+  await updateBoard(board._id, board);
 }
 
 async function updateBoardLabel(updatedLabel, board) {
@@ -100,12 +101,12 @@ async function updateBoardLabel(updatedLabel, board) {
     return board;
   }
   board.labels.splice(idx, 1, updatedLabel);
-  return await _updateBoard(board._id, board);
+  return await updateBoard(board);
 }
 
 async function deleteBoardLabel(labelId, board) {
   board.labels = board.labels.filter((label) => label.id !== labelId);
-  return await _updateBoard(board._id, board);
+  return await updateBoard(board);
 }
 
 async function createBoardLabel(labelData, board) {
@@ -113,7 +114,7 @@ async function createBoardLabel(labelData, board) {
     id: utilService.makeId(),
     ...labelData,
   });
-  return await _updateBoard(board._id, board);
+  return await updateBoard(board);
 }
 
 async function addNewBoard(board) {
@@ -179,6 +180,6 @@ async function _getBoard(boardId) {
   return await httpService.get(`board/${boardId}`);
 }
 
-async function _updateBoard(boardId, newUpdated) {
-  return await httpService.put(`board/${boardId}`, newUpdated);
+async function updateBoard(newUpdated) {
+  return await httpService.put(`board/${newUpdated._id}`, newUpdated);
 }

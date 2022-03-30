@@ -87,16 +87,20 @@ export default {
       this.boardToEdit.style.type = 'color';
       this.boardToEdit.style.backgroundImg = '';
     },
-    setBoardImg(imgUrl) {
+   async setBoardImg(imgUrl) {
+     console.log('dfgldgkl')
       this.boardToEdit.style.backgroundImg = imgUrl;
       this.boardToEdit.style.type = 'img';
-      this.boardToEdit.style.color = '';
+      // this.boardToEdit.style.color = '';
+      const color = await designService.getAvgColor(imgUrl)
+      this.boardToEdit.style.color = color.hex
+      console.log(this.boardToEdit.style.color)
     },
     closeModal() {
       this.$emit('closeModal');
     },
     create() {
-      console.log(this.boardToEdit)
+      // console.log(this.boardToEdit)
       this.boardToEdit.createdBy = this.loggedinUser;
       this.boardToEdit.members.unshift(this.loggedinUser)
       this.$emit('create', { ...this.boardToEdit });

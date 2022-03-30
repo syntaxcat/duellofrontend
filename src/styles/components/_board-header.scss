@@ -7,6 +7,22 @@
   color: $clr3;
   margin-left: 5px;
 
+  .starred{
+    &.full-star{
+      svg{
+        color: $starred;
+
+      }
+      svg{
+
+      }
+      &:hover{
+        color: $starred;
+        // stroke: $starred;
+      }
+    }
+  }
+
   // .starred:hover {
   //   fill: $starred !important;
   //   // stroke: $starred !important;
