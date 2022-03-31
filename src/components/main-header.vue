@@ -1,6 +1,6 @@
 <template>
-  <section class="main-header" :style="`background-color: ${bcg};`">
-    <nav :style="txtClr">
+  <section :class="['main-header', txtClr]" :style="`background-color: ${bcg};`">
+    <nav>
       <div class="buttons">
         <button>
           <icon-base iconName="grid" class="grid" />
@@ -51,13 +51,11 @@
 <script>
 import iconBase from './icon-base.vue';
 import createBoard from './create-board.vue';
-import { designService } from '../services/design.services';
 
 export default {
   data() {
     return {
       isCreate: false,
-      // bcg: null,
     };
   },
   methods: {
@@ -84,25 +82,15 @@ export default {
       return this.$store.getters.user;
     },
     bcg() {
-      console.log(this.txtClr);
-      return this.$store.getters.bcg;
+      return this.$store.getters.bcg
     },
     txtClr() {
-      const isDark = this.$store.getters.isDark;
-      if (!isDark) return `color:blue;`;
-    },
+      const isDark = this.$store.getters.isDark
+      if (!isDark) return 'dark-bcg'
+      else return 'light-bcg'
+    }
   },
   async created() {
-    // setTimeout(async () => {
-    //   const board = this.$store.getters.board;
-    //   if (!board) this.bcg = '#026aa7';
-    //   else if (board.style.type === 'img') {
-    //     const color = await designService.getAvgColor(board.style.backgroundImg);
-    //     this.bcg = color.hex;
-    //   } else {
-    //     this.bcg = '#00000029';
-    //   }
-    // }, 1);
   },
   components: { iconBase, createBoard },
 };

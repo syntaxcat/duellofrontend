@@ -28,41 +28,41 @@
     font-size: 14px;
     font-weight: 400;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
-    
+      'Helvetica Neue', sans-serif;
+
     button:not(:nth-of-type(2n)) {
       gap: 0.25rem;
-      
+
       .grid {
         svg {
           width: 24px;
         }
       }
     }
-    
+
     .icon-base {
       display: flex;
-      
+
       svg {
         width: 18px;
       }
     }
   }
-  
+
   button {
     cursor: pointer;
     display: inline-flex;
     background-color: transparent;
     border: none;
-    color: $clr3;
+    // color: $clr3;
     align-items: center;
     border-radius: 3px;
   }
-  
+
   .create-btn {
     background-color: rgba($color: $clr3, $alpha: 0.4);
   }
-  
+
   button:hover {
     background-color: rgba($color: $clr3, $alpha: 0.4);
   }
@@ -73,35 +73,36 @@
     font-weight: bold;
     font-family: ubuntu-reg;
   }
-  
+
   .information {
     display: flex;
     cursor: pointer;
     margin-right: 1rem;
     gap: 0.5rem;
-    
+
     .search {
       display: flex;
-      color: white;
+      // color: white;
     }
-    
+
     .info {
       display: flex;
     }
-    
+
     .alert {
       display: flex;
     }
-    
+
     .bell-btn {
       background-color: $clr4;
 
       &:hover {
         background-color: #cf513d;
       }
-      
-      img {
+
+      svg {
         width: 20px;
+        color: white;
       }
     }
   }
@@ -113,7 +114,7 @@
     background-color: transparent;
     background-color: rgba($color: $clr3, $alpha: 0.4);
     border-radius: 3px;
-    
+
     input {
       background-color: transparent;
       border: none;
@@ -125,9 +126,9 @@
       position: absolute;
     }
     input::placeholder {
-      color: $clr3;
+      // color: $clr3;
     }
-    
+
     input:focus {
       border: none;
       color: $clr6;
@@ -139,6 +140,36 @@
     object-fit: cover;
     border-radius: 50%;
   }
+  &.dark-bcg {
+    color: $taskD1;
+    input{
+      color: $taskD1;
+
+      &::placeholder, &:focus {
+        color: $taskD1;
+      }
+    }
+    button:not(.bell-btn) {
+      color: $taskD1;
+    }
+    .logo-img {
+      background-image: url('./src/assets/imgs/logo-still-dark.png');
+
+    }
+    &:hover .logo-img {
+      background-image: url('./src/assets/imgs/logo-ani-dark.gif');
+    }
+  }
+  &.light-bcg {
+    color: white;
+    button:not(.bell-btn) {
+      color: white;
+    }
+    input{
+      &::placeholder , &:focus{
+        color: white;
+      }
+      color: white;
+    }
+  }
 }
-
-
