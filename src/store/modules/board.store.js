@@ -14,6 +14,7 @@ export const boardStore = {
     imgSearches: null,
     checklists: [],
     bcg: '#026AA7',
+    isDark: null
   },
   getters: {
     board(state) {
@@ -49,6 +50,9 @@ export const boardStore = {
     bcg(state) {
       return state.bcg;
     },
+    isDark(state){
+      return state.isDark
+    }
   },
   mutations: {
     getChecklists(state) {
@@ -84,6 +88,7 @@ export const boardStore = {
       state.boardGroups = board.groups;
       if (board.style.type === 'img') state.bcg = board.style.color;
       else state.bcg = '#00000029';
+      state.isDark = board.style.isDark
     },
     setBoards(state, { boards }) {
       state.boards = boards;

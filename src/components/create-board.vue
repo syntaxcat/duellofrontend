@@ -96,7 +96,7 @@ export default {
   async created() {
     this.loggedinUser = this.$store.getters.user;
     this.$store.dispatch('loadDesign');
-    const imgs = await designService.getImgsLarge(4);
+    const imgs = await designService.getImgsLarge(4, 'pastel');
     this.imgs = imgs;
     this.boardToEdit.style.backgroundImg = imgs[0];
   },
@@ -116,7 +116,8 @@ export default {
       // this.boardToEdit.style.color = '';
       const color = await designService.getAvgColor(imgUrl)
       this.boardToEdit.style.color = color.hex
-      console.log(this.boardToEdit.style.color)
+      this.boardToEdit.style.isDark= color.isDark
+      console.log(this.boardToEdit.style)
     },
     closeModal() {
       this.$emit('closeModal');

@@ -123,6 +123,7 @@ import taskPreview from '../components/task-preview.vue';
 import IconBase from './icon-base.vue';
 import TaskPreview from '../components/task-preview.vue';
 
+
 export default {
   props: {
     group: {
