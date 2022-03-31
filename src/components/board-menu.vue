@@ -6,7 +6,8 @@
         <!-- <img src="../assets/icons/x.svg" /> -->
         <icon-base @click="closeMenu" iconName="x" />
       </div>
-      <hr />
+      <!-- <hr /> -->
+
       <div class="board-menu-costumize">
         <ul>
           <li>
@@ -38,31 +39,31 @@
           </li>
         </ul>
       </div>
-      <hr />
-      <div>
+      <!-- <hr /> -->
+      <!-- <div>
         <icon-base iconName="bolt" />
         <div class="menu-text">
           <h3>Automation</h3>
           <p>Automate cards and more...</p>
         </div>
-      </div>
-      <hr />
-      <div>
+      </div> -->
+      <!-- <hr /> -->
+      <!-- <div>
         <icon-base iconName="rocket" />
         <div class="menu-text">
           <h3>Power-Ups</h3>
           <p>Google drive and more...</p>
         </div>
       </div>
-      <hr />
-      <div>
-        <div class="menu-text">
+      <hr /> -->
+      <div class="menu-text">
+        <div class="header">
           <icon-base iconName="real-activity" />
           <h3>Activity</h3>
-          <div class="activity-list">
-            <div v-for="content in contentForDisplay" :key="content.id">
-              <component :is="content.type" :comment="content" :info="content" :isMenu="true" />
-            </div>
+        </div>
+        <div class="activity-list">
+          <div v-for="content in contentForDisplay" :key="content.id">
+            <component :is="content.type" :comment="content" :info="content" :isMenu="true" />
           </div>
         </div>
       </div>
