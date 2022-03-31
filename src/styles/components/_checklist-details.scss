@@ -1,5 +1,4 @@
 .checklist-details {
-  // clear: both;
   margin-bottom: 24px;
   position: relative;
 
@@ -294,8 +293,6 @@
         background-color: #e4f0f6;
         color: #0079bf;
       }
-
-
     }
 
     textarea {
@@ -442,20 +439,20 @@
             background-color: #091e4221;
           }
 
-          svg{
+          svg {
             height: 16px;
-              width: 16px;
+            width: 16px;
           }
         }
       }
     }
 
-    &.edit-todo{
+    &.edit-todo {
       margin-left: 0;
       width: 100%;
       padding-bottom: 9px;
 
-      textarea{
+      textarea {
         margin-bottom: 8px;
         resize: none;
       }

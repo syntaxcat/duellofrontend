@@ -22,7 +22,13 @@
       <div class="progress-bar">
         <span class="percent">{{ percent }}%</span>
 
-        <k-progress class="bar" :percent="percent" color="#5ba4cf" :line-height="8" :show-text="false"></k-progress>
+        <k-progress
+          class="bar"
+          :percent="percent"
+          :color="isCompleted"
+          :line-height="8"
+          :show-text="false"
+        ></k-progress>
       </div>
     </div>
 
@@ -238,6 +244,9 @@ export default {
     showHide() {
       if (!this.isFilter && this.areDone) return 'Hide checked items';
       else return `Show checked items (${this.areDone})`;
+    },
+    isCompleted() {
+      return this.percent === 100 ? '#61bd4f' : '#5ba4cf';
     },
   },
   components: {

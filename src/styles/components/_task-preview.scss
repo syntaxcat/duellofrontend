@@ -85,7 +85,6 @@
     .left {
       display: flex;
       align-items: center;
-      // gap: 0.75rem;
     }
   }
   .member-list {
@@ -114,6 +113,10 @@
       sans-serif;
     border-radius: 3px;
 
+    .done {
+      background-color: #61bd4f;
+    }
+
     &:not(:first-child) {
       margin-left: 15px;
     }
@@ -130,7 +133,7 @@
       width: 16px;
       height: 16px;
       position: relative;
-      top: 1px;
+      top: 2px;
       margin-inline-end: 2px;
     }
   }
@@ -205,7 +208,7 @@
     font-size: 16px;
     // height: 30px;
     // text-shadow: -1px 2px 7px rgba(0, 0, 0, 0.25);
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.89);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.89);
     // line-height: 39px;
     height: 30px;
   }
@@ -220,7 +223,7 @@
   // background-position: center;
   display: flex;
   border-radius: 3px;
-  
+
   textarea {
     align-self: flex-end;
     color: white;
@@ -228,7 +231,7 @@
     font-size: 16px;
     height: 30px;
     // text-shadow: -1px 2px 7px rgba(0, 0, 0, 0.43);
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.89);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.89);
     margin-bottom: 8px;
   }
 }
