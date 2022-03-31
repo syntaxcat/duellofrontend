@@ -56,9 +56,14 @@
       </div>
       <hr />
       <div>
-        <icon-base iconName="activity" />
         <div class="menu-text">
+          <icon-base iconName="real-activity" />
           <h3>Activity</h3>
+          <div class="activity-list">
+            <div v-for="content in contentForDisplay" :key="content.id">
+              <component :is="content.type" :comment="content" :info="content" :isMenu="true" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,19 +72,43 @@
 
 <script>
 import iconBase from './icon-base.vue';
+import commentCmp from './comment-cmp.vue';
+import activityCmp from './dynamic-components/activity-cmp.vue';
+
 export default {
   data() {
     return {
       menuTitle: 'Menu',
+      onlyComments: false,
+      mixedContent: [],
     };
   },
-  components: { iconBase },
+  async created() {
+    await this.$store.dispatch({ type: 'getComments' });
+    this.getContentForDisplay();
+  },
+  components: { iconBase, commentCmp, activityCmp },
   methods: {
     closeMenu() {
       this.$emit('closeMenu');
     },
+    getContentForDisplay() {
+      const activities = this.activities;
+      this.mixedContent = this.comments.concat(activities).sort((a, b) => b.createdAt - a.createdAt);
+      console.log(this.mixedContent);
+    },
+  },
+  computed: {
+    comments() {
+      return this.$store.getters.comments;
+    },
+    activities() {
+      return this.$store.getters.activities;
+    },
+    contentForDisplay() {
+      if (!this.onlyComments) return this.mixedContent;
+      return this.mixedContent.filter((content) => !content.action).sort((a, b) => b.createdAt - a.createdAt);
+    },
   },
 };
 </script>
-
-<style></style>

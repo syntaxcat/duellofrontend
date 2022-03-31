@@ -13,6 +13,7 @@ export const boardStore = {
     imgs: null,
     imgSearches: null,
     checklists: [],
+    comments: [],
     bcg: '#026AA7',
   },
   getters: {
@@ -21,6 +22,9 @@ export const boardStore = {
     },
     activities(state) {
       return state.board.activities
+    },
+    comments(state) {
+      return state.comments
     },
     boardLabels(state) {
       return state.board.labels;
@@ -51,6 +55,38 @@ export const boardStore = {
     },
   },
   mutations: {
+    getActivities(state) {
+      var activities = []
+
+      state.board.groups.forEach(group => {
+        if (group.tasks && group.tasks.length) {
+
+          group.tasks.forEach(task => {
+            if (task.activities && task.activities.length) {
+
+              activities = [...activities, ...task.activities]
+            }
+          })
+        }
+      })
+      state.board.activities = activities
+    },
+    getComments(state) {
+      var comments = []
+
+      state.board.groups.forEach(group => {
+        if (group.tasks && group.tasks.length) {
+
+          group.tasks.forEach(task => {
+            if (task.comments && task.comments.length) {
+
+              comments = [...comments, ...task.comments]
+            }
+          })
+        }
+      })
+      state.comments = comments
+    },
     getChecklists(state) {
       var lists = [];
 
@@ -263,6 +299,12 @@ export const boardStore = {
     },
     getChecklists({ commit }) {
       commit({ type: 'getChecklists' });
+    },
+    getComments({ commit }) {
+      commit({ type: 'getComments' });
+    },
+    getActivities({ commit }) {
+      commit({ type: 'getActivities' });
     },
   },
 };

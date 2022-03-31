@@ -168,6 +168,9 @@ export default {
   },
   created() {
     this.calcDone();
+    socketService.on('add-activity', () => {
+      this.listToEdit = this.checklist;
+    });
   },
   methods: {
     toggleEdit(todoId) {

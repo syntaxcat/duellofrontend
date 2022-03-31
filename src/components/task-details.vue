@@ -161,11 +161,11 @@ export default {
     socketService.on('update', async () => {
       const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
       this.taskToEdit = { ...res.task };
-      // this.group = { ...res.group };
+      socketService.emit('new-activity');
     });
   },
   methods: {
-    async addActivity({ type, action }) {
+    addActivity({ type, action }) {
       const activity = boardService.getEmptyActivity();
       activity.type = type;
       activity.action = action;
@@ -173,12 +173,14 @@ export default {
       activity.task = { id: this.taskToEdit.id, title: this.taskToEdit.title };
       this.taskToEdit.activities.unshift(activity);
 
-      await this.$store.dispatch({
+      this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
-      socketService.emit('new-activity');
+      this.$store.dispatch({
+        type: 'getActivities',
+      });
     },
     removeChecklist(checkId) {
       const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checkId);
@@ -199,6 +201,7 @@ export default {
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
+      this.addActivity({ type: 'activity-cmp', action: `updated ${checklist.title} in this card` });
     },
     async addChecklist(newChecklist) {
       this.taskToEdit.checklist.unshift(newChecklist);
@@ -244,6 +247,7 @@ export default {
         groupId: this.groupId,
       });
       this.taskToEdit.comments = comments;
+      this.addActivity({ type: 'activity-cmp', action: `edited a comment from this card` });
     },
     async saveComment(comment, taskId) {
       if (!taskId) {

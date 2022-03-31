@@ -61,9 +61,6 @@
       </div>
     </div>
   </section>
-  <!-- <button @click.stop="removeTask(task.id, group.id)">
-          <img src="../assets/icons/x.svg" alt="delete" />
-  </button>-->
 </template>
 
 <script>
@@ -168,10 +165,7 @@ export default {
     },
     checklistStatus() {
       if (!this.task.checklist || !this.task.checklist.length) return;
-
       const length = this.task.checklist[0].todos.length;
-      console.log(length);
-
       if (!this.task.checklist[0].todos || !length) {
         var done = [];
       } else done = this.task.checklist[0].todos.filter((todo) => todo.isDone);
@@ -183,7 +177,6 @@ export default {
   },
   created() {
     this.unsubscribe = eventBus.on('editTask', this.editTask);
-    // this.taskCover = this.task.style.cover
   },
   unmounted() {
     this.unsubscribe();

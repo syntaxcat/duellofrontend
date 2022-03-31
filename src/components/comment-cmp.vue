@@ -1,6 +1,5 @@
 <template>
   <section class="comment">
-    <!-- <img src="../assets/imgs/background.jpg" alt="user" /> -->
     <img :src="commentToEdit.byMember.imgUrl" alt="user" />
 
     <div class="comment-description">
@@ -29,7 +28,7 @@
       </div>
     </div>
 
-    <div class="comment-actions" v-if="!isEdit">
+    <div class="comment-actions" v-if="!isEdit && !isMenu">
       <div class="reactions">
         <icon-base iconName="add-reaction"></icon-base>
         <span>-</span>
@@ -72,13 +71,15 @@ export default {
       type: Boolean,
       required: false,
     },
+    isMenu: {
+      type: Boolean,
+      required: false,
+    },
   },
   data() {
     return {
       isEdit: false,
       commentToEdit: { ...this.comment },
-      posX: null,
-      posY: null,
       openModal: false,
     };
   },

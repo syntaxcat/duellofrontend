@@ -10,7 +10,6 @@
 
     <div class="activity-form">
       <img :src="user.imgUrl" alt="user" />
-      <!-- <img src="../assets/imgs/background.jpg" alt="user" /> -->
 
       <div :class="['comment-frame', isShow]">
         <div class="comment-box">
@@ -35,8 +34,6 @@
       </div>
     </div>
 
-    <!-- <activity-cmp /> -->
-
     <div class="activity-list">
       <div v-for="content in contentForDisplay" :key="content.id">
         <component
@@ -48,11 +45,6 @@
         />
       </div>
     </div>
-    <!-- <div class="activity-list">
-      <div v-for="comment in taskToEdit.comments" :key="comment.id">
-        <comment-cmp :comment="comment" @edit="editComment" @deleteComment="deleteComment(comment.id)" />
-      </div>
-    </div> -->
   </section>
 </template>
 
@@ -87,13 +79,8 @@ export default {
   },
   created() {
     this.getContentForDisplay();
-    // socketService.on('update', () => {
-    //   console.log('yas');
-    // });
-    socketService.on('update', () => {
-      console.log('here');
-      // console.log('comments activity', this.task.comments);
-      this.getContentForDisplay();
+    socketService.on('add-activity', (checklist) => {
+      this.listToEdit = checklist;
     });
   },
   methods: {

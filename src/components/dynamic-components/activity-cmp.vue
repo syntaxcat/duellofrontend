@@ -20,6 +20,10 @@ export default {
       type: Object,
       required: true,
     },
+    isMenu: {
+      type: Boolean,
+      required: false,
+    },
   },
   computed: {
     createdAt() {
