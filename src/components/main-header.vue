@@ -1,6 +1,6 @@
 <template>
-  <section class="main-header" :style="'background-color:' + bcg">
-    <nav>
+  <section class="main-header" :style="`background-color: ${bcg};`">
+    <nav :style="txtClr">
       <div class="buttons">
         <button>
           <icon-base iconName="grid" class="grid" />
@@ -51,6 +51,7 @@
 import iconBase from './icon-base.vue';
 import createBoard from './create-board.vue';
 import { designService } from '../services/design.services';
+
 export default {
   data() {
     return {
@@ -76,7 +77,12 @@ export default {
       return this.$store.getters.user;
     },
     bcg(){
+      console.log(this.txtClr)
       return this.$store.getters.bcg
+    },
+    txtClr(){
+      const isDark = this.$store.getters.isDark
+      if(!isDark) return `color:blue;`
     }
   },
   async created() {

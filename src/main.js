@@ -6,6 +6,7 @@ import router from './router';
 import store from './store';
 import styles from './styles/styles.scss';
 import KProgress from 'k-progress-v3';
+import fontColorContrast from 'font-color-contrast'
 
 
 const app = createApp(App);
@@ -13,4 +14,5 @@ app.use(router);
 app.use(store);
 app.use(VCalendar, {});
 app.component('k-progress', KProgress)
+app.use(fontColorContrast)
 app.mount('#app');

@@ -16,7 +16,7 @@
             @input="changeTitle"
             :size="width"
           />
-          <div v-if="!isEditing" @click="editMode">{{ board.title }}</div>
+          <div class="board-name" v-if="!isEditing" @click="editMode">{{ board.title }}</div>
 
           <button @click="setFavorite">
             <icon-base iconName="star" :class="[isFavorite, 'starred']" @click="toggleFavorites" />
@@ -54,7 +54,12 @@
       <h2>Invite to board</h2>
     </header>
     <div class="main-content">
-      <input v-model="userSearch" @input="searchMembers" type="text" placeholder="Search memeber by name" />
+      <input
+        v-model="userSearch"
+        @input="searchMembers"
+        type="text"
+        placeholder="Search memeber by name"
+      />
       <button>Send invintation</button>
     </div>
     <div v-if="userSearch" class="member-res-modal">
@@ -78,7 +83,7 @@
 <script>
 import iconBase from '../components/icon-base.vue';
 import boardMenu from './board-menu.vue';
-import IconBase from '../components/icon-base.vue';
+
 export default {
   components: { boardMenu },
   data() {
@@ -90,6 +95,7 @@ export default {
       userSearch: '',
       isMemberModal: false,
       membersRes: null,
+
       // openMenu: false
     };
   },

@@ -2,43 +2,54 @@
   <section class="create-board">
     <header>
       <div class="header-btn-container">
-        <icon-base  @click="closeModal" iconName="x"></icon-base>
+        <icon-base @click="closeModal" iconName="x"></icon-base>
         <icon-base iconName="icon-back"></icon-base>
-        </div>
+      </div>
       <h2>Create board</h2>
     </header>
     <div class="main-content">
       <div class="board-prev" :style="getPrevStyle">
-      <icon-base iconName="board-prev"></icon-base>
-    </div>
-    <p>Background</p>
-    <div class="img-container">
-      <div class="img-boxes" v-for="img in imgs" :key="img" @click="setBoardImg(img)">
-        <img :src="img" />
+        <icon-base iconName="board-prev"></icon-base>
       </div>
-    </div>
-    <div class="color-container">
-      <div
-        @click="setBoardClr(color.color)"
-        v-for="color in colorsPrev"
-        :key="color.id"
-        class="color-boxes"
-        :style="'background-color:' + color.color"
-      ></div>
-      <button @click="toggleCostumizeModal" class="more-btn">
-        <icon-base iconName="more"></icon-base>
-      </button>
-    </div>
-    <p>
-      Board title
-      <span>*</span>
-    </p>
-    <form @submit.prevent="create">
-      <input ref="myInput" :class="['board-name', isTitle]" type="text" v-model="boardToEdit.title" />
-      <h3 v-if="!boardToEdit.title">👋 Board title is required</h3>
-      <input class="add-btn" type="submit" value="Create" :disabled="!boardToEdit.title" />
-    </form>
-    <!-- <img src="../assets/imgs/welcome-img.png" />
+      <p>Background</p>
+      <div class="img-container">
+        <div
+          v-if="imgs"
+          class="img-boxes"
+          v-for="img in imgs.slice(0, 4)"
+          :key="img"
+          @click="setBoardImg(img)"
+        >
+          <img :src="img" />
+        </div>
+      </div>
+      <div class="color-container">
+        <div
+          @click="setBoardClr(color.color)"
+          v-for="color in colorsPrev.slice(0, 5)"
+          :key="color.id"
+          class="color-boxes"
+          :style="'background-color:' + color.color"
+        ></div>
+        <button @click="toggleCostumizeModal" class="more-btn">
+          <icon-base iconName="more"></icon-base>
+        </button>
+      </div>
+      <p>
+        Board title
+        <span>*</span>
+      </p>
+      <form @submit.prevent="create">
+        <input
+          ref="myInput"
+          :class="['board-name', isTitle]"
+          type="text"
+          v-model="boardToEdit.title"
+        />
+        <h3 v-if="!boardToEdit.title">👋 Board title is required</h3>
+        <input class="add-btn" type="submit" value="Create" :disabled="!boardToEdit.title" />
+      </form>
+      <!-- <img src="../assets/imgs/welcome-img.png" />
 
     <div class="background-picker">
       <div v-for="background in backgrounds" :key="background">
@@ -51,28 +62,57 @@
       <input ref="myInput" type="text" id="title" v-model="boardToEdit.title" />
     </label>
 
-    <button @click="create">Create</button>-->
-    <!-- <img @click="setBackground(background.src)" :src="background.src"> -->
-      </div>
+      <button @click="create">Create</button>-->
+      <!-- <img @click="setBackground(background.src)" :src="background.src"> -->
+    </div>
   </section>
   <section class="costumize-modal" v-if="isCostumize">
     <header>
       <div class="header-btn-container">
-        <icon-base iconName="x"></icon-base>
+        <icon-base @click="toggleCostumizeModal" iconName="x"></icon-base>
+        <icon-base v-if="isSearch" @click="toggleSearch" iconName="icon-back"></icon-base>
+        <icon-base v-if="isMoreColors" @click="toggleMoreColors" iconName="icon-back"></icon-base>
       </div>
-        <h2>Board background</h2>
+      <h2>{{ modalTitle }}</h2>
     </header>
-    <div class="main-content">
-      <h3>Photos</h3>
-      <h6>See more</h6>
-      <div class="img-container">
-        <img v-for="img in imgs" :key="img" :src="img"/>
+    <div v-if="!isSearch && !isMoreColors" class="main-content">
+      <div class="see-more">
+        <h3>Photos</h3>
+        <h6 @click="toggleSearch">See more</h6>
       </div>
+      <div class="img-container">
+        <img @click="setBoardImg(img)" v-for="img in imgs" :key="img" :src="img" />
+      </div>
+      <div @click="toggleMoreColors" class="see-more">
         <h3>colors</h3>
         <h6>See more</h6>
-      <div class="color-container">
-        <div v-for="color in colors" :key="color.color" :style="'background-color:'+color.color" class="color-box"></div>
       </div>
+      <div class="color-container">
+        <div
+          v-for="color in colorsPrev.slice(0, 6)"
+          :key="color.color"
+          @click="setBoardClr(color.color)"
+          :style="'background-color:' + color.color"
+          class="color-box"
+        ></div>
+      </div>
+    </div>
+    <div v-else-if="isSearch" class="main-content">
+      <input type="text" placeholder="Photos" v-model="search" @input="searchImgs" />
+      <div class="img-container search">
+        <img @click="setBoardImg(img)" v-for="img in searchImg" :key="img" :src="img" />
+      </div>
+    </div>
+    <div v-else-if="isMoreColors" class="main-content">
+     <div class="color-container">
+       <div
+        v-for="color in colorsPrev.slice(1,10)"
+        :key="color.color"
+        @click="setBoardClr(color.color)"
+        :style="'background-color:' + color.color"
+        class="color-box"
+      ></div>
+       </div>
     </div>
   </section>
 </template>
@@ -88,15 +128,18 @@ export default {
       isCostumize: false,
       boardToEdit: boardService.getEmptyBoard(),
       loggedinUser: null,
-      backgrounds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       imgs: null,
-      searchImgs: null,
+      moreImgs: null,
+      isSearch: false,
+      isMoreColors: false,
+      search: '',
+      searchImg: null
     };
   },
   async created() {
     this.loggedinUser = this.$store.getters.user;
     this.$store.dispatch('loadDesign');
-    const imgs = await designService.getImgsLarge(4);
+    const imgs = await designService.getImgs(6, 'desktop wallpaper cute', 'regular');
     this.imgs = imgs;
     this.boardToEdit.style.backgroundImg = imgs[0];
   },
@@ -109,14 +152,15 @@ export default {
       this.boardToEdit.style.type = 'color';
       this.boardToEdit.style.backgroundImg = '';
     },
-   async setBoardImg(imgUrl) {
-     console.log('dfgldgkl')
+    async setBoardImg(imgUrl) {
+      console.log('dfgldgkl')
       this.boardToEdit.style.backgroundImg = imgUrl;
       this.boardToEdit.style.type = 'img';
       // this.boardToEdit.style.color = '';
       const color = await designService.getAvgColor(imgUrl)
       this.boardToEdit.style.color = color.hex
-      console.log(this.boardToEdit.style.color)
+      this.boardToEdit.style.isDark = color.isDark
+      console.log(this.boardToEdit.style)
     },
     closeModal() {
       this.$emit('closeModal');
@@ -127,8 +171,23 @@ export default {
       this.boardToEdit.members.unshift(this.loggedinUser)
       this.$emit('create', { ...this.boardToEdit });
     },
-    toggleCostumizeModal(){
+    async toggleCostumizeModal() {
       this.isCostumize = !this.isCostumize
+      // if(this.isCostumize){
+      //   const imgs = designService.getImgs(6, 'desktop-wallpaper', 'large')
+      //   this.moreImgs = imgs
+      // }
+    },
+    toggleSearch() {
+      this.isSearch = !this.isSearch
+    },
+    async searchImgs() {
+      console.log(this.search)
+      const imgs = await designService.getImgs(100, this.search, 'regular')
+      this.searchImg = imgs
+    },
+    toggleMoreColors(){
+      this.isMoreColors = !this.isMoreColors
     }
   },
   computed: {
@@ -137,7 +196,8 @@ export default {
     },
     colorsPrev() {
       if (!this.boardToEdit) return;
-      return JSON.parse(JSON.stringify(this.$store.getters.colors)).splice(0, 5);
+      console.log(this.$store.getters.colors)
+      return this.$store.getters.colors;
     },
     getPrevStyle() {
       if (!this.boardToEdit) return;
@@ -148,6 +208,11 @@ export default {
     isTitle() {
       if (!this.boardToEdit.title) return 'no-title';
     },
+    modalTitle() {
+      if (!this.isSearch && !this.isMoreColors) return 'Board background'
+      else if (this.isSearch) return 'Photos by Unspalsh'
+      else return 'Colors'
+    }
   },
   components: { iconBase },
 };
