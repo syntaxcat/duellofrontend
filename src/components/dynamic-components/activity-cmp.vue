@@ -1,5 +1,5 @@
 <template>
-  <section class="activity">
+  <section class="activity-cmp">
     <img :src="info.byMember.imgUrl" alt="user" style="height: 30px; width: 30px" />
 
     <div class="activity-header">
