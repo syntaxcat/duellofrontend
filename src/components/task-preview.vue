@@ -45,7 +45,7 @@
           {{ numberOfComments }}
         </span>
         <div
-          class="checklist-display"
+          :class="{ 'checklist-display': true, done: isChecklistDone }"
           v-if="
             this.task.checklist &&
             this.task.checklist.length &&
@@ -108,19 +108,20 @@ export default {
     },
 
     editTask(taskId) {
-      this.isEditing = !this.isEditing
+      this.isEditing = !this.isEditing;
       if (taskId === this.task.id) {
-        this.updateHeigh()
+        this.updateHeigh();
         // this.isEditing = true;
         // this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight- this.$refs.textarea.scrollHeight/3 + 'px';
-        if(this.isEditing) this.$nextTick(() => this.$refs.textarea.focus());
+        if (this.isEditing) this.$nextTick(() => this.$refs.textarea.focus());
       }
     },
     updateHeigh() {
       if (this.task.style.cover.style === 'background') {
         this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
-      } else 
-      this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight- this.$refs.textarea.scrollHeight/3.5 + 'px';
+      } else
+        this.$refs.textarea.style.height =
+          this.$refs.textarea.scrollHeight - this.$refs.textarea.scrollHeight / 3.5 + 'px';
     },
   },
   mounted() {
@@ -174,6 +175,14 @@ export default {
         var done = [];
       } else done = this.task.checklist[0].todos.filter((todo) => todo.isDone);
       return `${done.length}/${length}`;
+    },
+    isChecklistDone() {
+      // if (this.task.checklist[0].todos.length) {
+      const done = this.task.checklist[0].todos.filter((todo) => todo.isDone);
+      if (done.length === this.task.checklist[0].todos.length) return true;
+
+      return '';
+      // }
     },
   },
   components: {

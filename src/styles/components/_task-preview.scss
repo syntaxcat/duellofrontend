@@ -113,8 +113,9 @@
       sans-serif;
     border-radius: 3px;
 
-    .done {
+    &.done {
       background-color: #61bd4f;
+      color: #fff;
     }
 
     &:not(:first-child) {
