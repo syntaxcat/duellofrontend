@@ -6,13 +6,13 @@
         <span class="member-name">{{ info.byMember.fullname }}</span>
         <span class="action"> {{ info.action }}</span>
       </div>
-      <span class="time">{{ createdAt }}</span>
+      <span class="time">{{ createdAt }} ago</span>
     </div>
   </section>
 </template>
 
 <script>
-import { format, compareAsc } from 'date-fns';
+import { formatDistance } from 'date-fns';
 
 export default {
   props: {
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     createdAt() {
-      return formatDistance(subDays(this.info.createdAt), Date.now(), { addSuffix: true });
+      return formatDistance(new Date(this.info.createdAt), new Date(Date.now()));
     },
   },
 };

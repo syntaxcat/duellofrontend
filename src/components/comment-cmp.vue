@@ -6,7 +6,7 @@
     <div class="comment-description">
       <span class="inline-member">{{ commentToEdit.byMember.fullname }}</span>
       <span class="inline-spacer"></span>
-      <span class="comment-date">{{ commentToEdit.createdAt }}</span>
+      <span class="comment-date">{{ createdAt }} ago</span>
 
       <div class="comment-container" v-if="!isEdit">
         <p>{{ commentToEdit.txt }}</p>
@@ -17,7 +17,7 @@
           <textarea type="text" v-model="commentToEdit.txt"></textarea>
 
           <button :class="['save-comment']" @click="editComment">Save</button>
-            <icon-base class="close-btn" iconName="x" @click="isEdit = !isEdit" />
+          <icon-base class="close-btn" iconName="x" @click="isEdit = !isEdit" />
 
           <div class="comment-box-options">
             <icon-base class="option" iconName="paperclip" />
@@ -45,7 +45,7 @@
         <div class="delete-header">
           <span>Delete comment?</span>
 
-            <icon-base iconName="xs" @click="openModal = !openModal" />
+          <icon-base iconName="xs" @click="openModal = !openModal" />
         </div>
 
         <div>
@@ -58,8 +58,9 @@
 </template>
 
 <script>
-import iconBase from './icon-base.vue';
 import { eventBus } from '../services/eventBus.service';
+import { formatDistance } from 'date-fns';
+import iconBase from './icon-base.vue';
 
 export default {
   props: {
@@ -96,19 +97,21 @@ export default {
       if (!this.commentToEdit.txt) return;
       this.commentToEdit.createdAt = Date.now();
       this.$emit('edit', { ...this.commentToEdit });
-      this.isEdit = !this.isEdit
+      this.isEdit = !this.isEdit;
     },
     deleteComment() {
-        this.$emit('deleteComment')
-        this.openModal = false;
+      this.$emit('deleteComment');
+      this.openModal = false;
     },
   },
-  computed: {},
+  computed: {
+    createdAt() {
+      return formatDistance(new Date(this.commentToEdit.createdAt), new Date(Date.now()));
+    },
+  },
   components: { iconBase },
   unmounted() {
     this.unsubscribe();
   },
 };
 </script>
-
-<style></style>
