@@ -39,7 +39,7 @@
           <icon-base iconName="alert" class="alert" />
         </button>
         <label v-if="user" class="user-icon">
-          <img :src="user.imgUrl" />
+          <img :src="user.imgUrl" referrerpolicy="no-referrer" />
         </label>
         <button @click="signOut">logout</button>
       </div>

@@ -17,6 +17,11 @@ export const userStore = {
     },
   },
   actions: {
+    async googleUserLoggedIn(context, { user }) {
+      await utilService.saveToSessionStorage('user', user);
+      context.commit({ type: 'setUser', user });
+      return user;
+    },
     async loadUser(context) {
       const user = await utilService.loadFromSessionStorage('user');
       console.log(user);

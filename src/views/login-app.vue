@@ -42,13 +42,25 @@ export default {
     window.onSignIn = this.onSignIn;
   },
   methods: {
-    onSignIn(googleUser) {
+    async onSignIn(googleUser) {
       var profile = googleUser.getBasicProfile();
       const fullname = profile.getName();
       const imgUrl = profile.getImageUrl();
       const score = 100;
       const username = profile.getEmail();
       const _id = profile.getId();
+      const user = {
+        fullname,
+        imgUrl,
+        score,
+        username,
+        _id,
+      };
+      await this.$store.dispatch({
+        type: 'googleUserLoggedIn',
+        user,
+      });
+      this.$router.push({ path: '/' });
     },
     async login() {
       this.user.password = this.user.password.toString();
