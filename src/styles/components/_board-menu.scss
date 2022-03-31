@@ -10,7 +10,19 @@
   border: 1px solid $menuBorderClr;
   box-shadow: -9px 0px 12px -3px rgba(0, 0, 0, 0.09);
 
-  &.new-frame {
+  &.open-bcColor {
+    .main-container {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    .bcColor-menu {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &.open-activity {
     .main-container {
       opacity: 0;
       transform: translateX(100%);
@@ -30,7 +42,8 @@
     border-bottom: 1px solid #e6e8ec;
     margin: 0 6px 0 12px;
 
-    &.new-frame {
+    &.open-activity,
+    &.open-bcColor {
       .back-btn {
         opacity: 1;
         transform: translateX(0);

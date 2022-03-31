@@ -115,7 +115,8 @@ export default {
       return this.$store.getters.boardStyle;
     },
     isNewFrame() {
-      if (this.isActivity || this.isBcSelect) return 'new-frame';
+      if (this.isActivity) return 'open-activity';
+      if (this.isBcSelect) return 'open-bcColor';
       return '';
     },
     menuTitle() {
