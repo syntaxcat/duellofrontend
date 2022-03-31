@@ -1,17 +1,15 @@
 <template>
   <section class="activity-menu main-container">
     <div class="controls">
-      <a :class="['control-item']" @click="changeList">All</a>
-      <a :class="['control-item']" @click="changeList">Comments</a>
+      <a :class="{ 'control-item': true, 'is-active': isAll }" @click="changeList">All</a>
+      <a :class="{ 'control-item': true, 'is-active': isComments }" @click="changeList">Comments</a>
     </div>
 
-    <!-- <div class="list"> -->
     <div class="activity-list">
       <div v-for="content in list" :key="content.id">
         <component :is="content.type" :comment="content" :info="content" :isMenu="true" />
       </div>
     </div>
-    <!-- </div> -->
   </section>
 </template>
 
@@ -27,10 +25,18 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      isAll: true,
+      isComments: false,
+    };
   },
   methods: {
-    changeList() {},
+    changeList() {
+      this.isAll = !this.isAll;
+      this.isComments = !this.isComments;
+
+      this.$emit('change');
+    },
   },
   components: { commentCmp, activityCmp },
 };

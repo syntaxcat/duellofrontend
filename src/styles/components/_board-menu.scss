@@ -10,6 +10,18 @@
   border: 1px solid $menuBorderClr;
   box-shadow: -9px 0px 12px -3px rgba(0, 0, 0, 0.09);
 
+  &.new-frame {
+    .main-container {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    .activity-menu {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
   .menu-title {
     position: sticky;
     height: rem(48px);
@@ -73,6 +85,11 @@
     padding: 12px 6px 12px 12px;
     overflow-y: scroll;
     overflow-x: hidden;
+    opacity: 1;
+
+    transition-duration: 0.12s;
+    transition-property: transform, opacity;
+    transition-timing-function: ease-in;
 
     .board-menu-costumize {
       position: relative;

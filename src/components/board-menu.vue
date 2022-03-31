@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="board-menu-modal">
+    <div :class="['board-menu-modal', isNewFrame]">
       <div :class="['menu-title', isNewFrame]">
         <icon-base class="back-btn" @click="backToMenu" iconName="chevron-left" />
         <h3>{{ menuTitle }}</h3>
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-      <!-- <activity-menu v-if="isActivity" :list="contentForDisplay" /> -->
+      <activity-menu :list="contentForDisplay" @change="changeContent" />
     </div>
   </section>
 </template>
@@ -86,7 +86,6 @@ export default {
     getContentForDisplay() {
       const activities = this.activities;
       this.mixedContent = this.comments.concat(activities).sort((a, b) => b.createdAt - a.createdAt);
-      console.log(this.mixedContent);
     },
     toggleBcSelect() {
       this.isBcSelect = !this.isBcSelect;
@@ -94,6 +93,9 @@ export default {
     backToMenu() {
       this.isActivity = false;
       this.isBcSelect = false;
+    },
+    changeContent() {
+      this.onlyComments = !this.onlyComments;
     },
   },
   computed: {
