@@ -20,7 +20,8 @@
       v-model="taskToEditPartial.title"
       ref="textarea"
       :disabled="!isEditing"
-      @blur="saveEdit(task)"
+      @blur="editTask()"
+      @input="saveEdit(task)"
     ></textarea>
     <!-- <button @click.stop="editTask(task, group.id)" class="edit-btn"> -->
     <!-- <icon-base iconName="pencil"></icon-base> -->
@@ -99,7 +100,6 @@ export default {
       this.$emit('toggleLabelsExpanded');
     },
     async saveEdit() {
-      this.isEditing = false;
       this.$emit('editTask', this.taskToEditPartial);
     },
 
@@ -108,15 +108,19 @@ export default {
     },
 
     editTask(taskId) {
+      this.isEditing = !this.isEditing
       if (taskId === this.task.id) {
-        this.isEditing = true;
-        this.$nextTick(() => this.$refs.textarea.focus());
+        this.updateHeigh()
+        // this.isEditing = true;
+        // this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight- this.$refs.textarea.scrollHeight/3 + 'px';
+        if(this.isEditing) this.$nextTick(() => this.$refs.textarea.focus());
       }
     },
     updateHeigh() {
       if (this.task.style.cover.style === 'background') {
         this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
-      } else this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight - 15 + 'px';
+      } else 
+      this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight- this.$refs.textarea.scrollHeight/3.5 + 'px';
     },
   },
   mounted() {

@@ -101,7 +101,7 @@ export default {
     };
   },
   async created() {
-    const user = await this.$store.dispatch('loadUser')
+    const user = await this.$store.dispatch('loadUser');
     if (!this.$store.getters.user) this.$router.push('/welcome');
     this.loggedinUser = this.$store.getters.user;
     const boards = await this.$store.dispatch({
@@ -109,7 +109,7 @@ export default {
       filterBy: { userId: this.loggedinUser._id },
     });
     this.boards = boards;
-    this.$store.dispatch('loadDesign')
+    this.$store.dispatch('loadDesign');
   },
   methods: {
     visit(type) {
@@ -123,16 +123,15 @@ export default {
         return option;
       });
     },
-    
   },
   computed: {
     direction() {
       return this.isOpen ? 'open' : '';
     },
     isFavorite() {
-      console.log(this.board.isStarred)
-      if(this.board.isStarred) return 'full-star'
-      else return 'empty-star'
+      console.log(this.board.isStarred);
+      if (this.board.isStarred) return 'full-star';
+      else return 'empty-star';
       // return this.isFull ? 'full-star' : 'empty-star';
     },
   },

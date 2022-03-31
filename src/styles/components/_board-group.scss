@@ -188,7 +188,7 @@
     background-color: rgba($color: #000000, $alpha: 0.08);
   }
   ::-webkit-scrollbar-thumb {
-    background-color: rgba($color: #000000, $alpha: 0.15);
+    background-color: rgba($color: #000000, $alpha: 0.1);
     border-radius: 20px;
   }
   background-color: #ebecf0;
@@ -220,7 +220,7 @@
       input {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin-left: 8px;
-        padding: 4px 11px;
+        padding: 4px 8px;
         font-size: rem(14px);
         width: 225px;
         background-color: transparent;

@@ -15,7 +15,7 @@ export const boardStore = {
     checklists: [],
     comments: [],
     bcg: '#026AA7',
-    isDark: null,
+    isDark: true,
     BoardStyle: null
   },
   getters: {
@@ -168,13 +168,13 @@ export const boardStore = {
     },
     resetBcg(state) {
       state.bcg = '#026AA7';
+      state.isDark = true
     },
   },
   actions: {
     async updateBoardLabel({ commit, state }, { label }) {
       try {
         const board = await boardService.updateBoardLabel(label, JSON.parse(JSON.stringify(state.board)));
-        console.log(board);
         commit({ type: 'setBoard', board });
         return board;
       } catch (err) {
@@ -184,7 +184,6 @@ export const boardStore = {
     async deleteBoardLabel({ commit, state }, { labelId }) {
       try {
         const board = await boardService.deleteBoardLabel(labelId, JSON.parse(JSON.stringify(state.board)));
-        console.log(board);
         commit({ type: 'setBoard', board });
         return board;
       } catch (err) {
@@ -204,7 +203,6 @@ export const boardStore = {
       commit({ type: 'toggleLabelsExpanded' });
     },
     async loadBoards({ commit }, { filterBy }) {
-      console.log(filterBy);
       try {
         const board = await boardService.query(filterBy);
         commit({ type: 'setBoards', board });
@@ -300,7 +298,7 @@ export const boardStore = {
         const design = await designService.query();
         commit({ type: 'setDesign', design });
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     },
     async updateBoard({ commit }, { board }) {

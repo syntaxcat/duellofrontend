@@ -1,5 +1,5 @@
 <template>
-  <section class="group add-group" :class="{ open: addedGroup }">
+  <section :class="[{ open: addedGroup }, 'group add-group', txtClr]">
     <div class="add-group-content" @click="showForm">
       <icon-base class="plus-btn" iconName="Plus"></icon-base>
       <span>Add another list</span>
@@ -57,5 +57,12 @@ export default {
       this.$refs.input.focus();
     }
   },
+  computed:{
+
+    txtClr(){
+      console.log(this.$store.getters.isDark)
+      if(this.$store.getters.isDark) return 'light-bcg'
+    }
+  }
 };
 </script>

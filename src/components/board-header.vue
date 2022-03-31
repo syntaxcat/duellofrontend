@@ -4,7 +4,7 @@
       <board-menu @closeMenu="toggleMenu" v-if="isMenuOpen"></board-menu>
     </section>
 
-    <section class="board-header" v-if="board">
+    <section :class="['board-header', txtClr]" v-if="board">
       <div class="board-details">
         <div class="board-name-and-star">
           <input
@@ -118,14 +118,11 @@ export default {
       this.$store.dispatch({ type: 'updateBoard', board: this.board });
     },
     toggleMembersModal() {
-      // console.log('dgdfgdgdgdg')
       this.isMemberModal = !this.isMemberModal;
     },
     async searchMembers() {
-      // console.log(this.userSearch)
       const members = await this.$store.dispatch({ type: 'searchMembers', searchVal: this.userSearch });
       this.membersRes = members;
-      //  console.log(members)
     },
     addMember(member) {
       if (this.board.members.some((mmbr) => mmbr._id === member._id)) return;
@@ -135,10 +132,8 @@ export default {
   },
   computed: {
     isFavorite() {
-      // console.log(this.board.isStarred)
       if (this.board.isStarred) return 'full-star';
       else return 'empty-star';
-      // return this.isFull ? 'full-star' : 'empty-star';
     },
     width() {
       return this.board.title.length;
@@ -146,6 +141,10 @@ export default {
     board() {
       return JSON.parse(JSON.stringify(this.$store.getters.board));
     },
+    txtClr(){
+      const isDark = this.$store.getters.isDark
+      if(!isDark) return 'dark-bcg'
+    }
   },
   components: {
     iconBase,

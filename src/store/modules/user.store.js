@@ -4,7 +4,7 @@ import { userService } from '../../services/user.service.js';
 export const userStore = {
   state: {
     loggedinUser: utilService.loadFromSessionStorage('user'),
-    users: null
+    users: null,
   },
   getters: {
     user(state) {
@@ -18,14 +18,15 @@ export const userStore = {
   },
   actions: {
     async loadUser(context) {
-      const user = await utilService.loadFromSessionStorage('user')
+      const user = await utilService.loadFromSessionStorage('user');
+      console.log(user);
       if (user) {
-        context.commit({ type: 'setUser', user })
-        return user
+        context.commit({ type: 'setUser', user });
+        return user;
       }
     },
     async login(context, { user }) {
-      console.log(user)
+      console.log(user);
       const loggedinUser = await userService.login(user);
       if (!loggedinUser) return;
       await utilService.saveToSessionStorage('user', loggedinUser);
@@ -40,8 +41,8 @@ export const userStore = {
       return loggedinUser;
     },
     async searchMembers(context, { searchVal }) {
-      const users = await userService.getUsers(searchVal)
-      return users
-    }
+      const users = await userService.getUsers(searchVal);
+      return users;
+    },
   },
 };

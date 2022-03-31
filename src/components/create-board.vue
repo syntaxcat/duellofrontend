@@ -104,15 +104,15 @@
       </div>
     </div>
     <div v-else-if="isMoreColors" class="main-content">
-     <div class="color-container">
-       <div
-        v-for="color in colorsPrev.slice(1,10)"
-        :key="color.color"
-        @click="setBoardClr(color.color)"
-        :style="'background-color:' + color.color"
-        class="color-box"
-      ></div>
-       </div>
+      <div class="color-container">
+        <div
+          v-for="color in colorsPrev.slice(1, 10)"
+          :key="color.color"
+          @click="setBoardClr(color.color)"
+          :style="'background-color:' + color.color"
+          class="color-box"
+        ></div>
+      </div>
     </div>
   </section>
 </template>
@@ -121,6 +121,7 @@
 import { boardService } from '../services/board.service';
 import { designService } from '../services/design.services';
 import iconBase from './icon-base.vue';
+import isDarkColor from 'is-dark-color'
 
 export default {
   data() {
@@ -151,6 +152,8 @@ export default {
       this.boardToEdit.style.color = color;
       this.boardToEdit.style.type = 'color';
       this.boardToEdit.style.backgroundImg = '';
+      this.boardToEdit.style.isDark = isDarkColor(color)
+      console.log(this.boardToEdit.style.isDark)
     },
     async setBoardImg(imgUrl) {
       console.log('dfgldgkl')
@@ -160,7 +163,6 @@ export default {
       const color = await designService.getAvgColor(imgUrl)
       this.boardToEdit.style.color = color.hex
       this.boardToEdit.style.isDark = color.isDark
-      console.log(this.boardToEdit.style)
     },
     closeModal() {
       this.$emit('closeModal');
@@ -186,7 +188,7 @@ export default {
       const imgs = await designService.getImgs(100, this.search, 'regular')
       this.searchImg = imgs
     },
-    toggleMoreColors(){
+    toggleMoreColors() {
       this.isMoreColors = !this.isMoreColors
     }
   },
