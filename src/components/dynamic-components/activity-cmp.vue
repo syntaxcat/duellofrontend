@@ -1,12 +1,13 @@
 <template>
   <section class="activity-cmp">
-    <img :src="info.byMember.imgUrl" alt="user" style="height: 30px; width: 30px" />
-
-    <div class="activity-header">
-      <span>{{ info.byMember.fullname }}</span>
-      <span class="action">{{ info.action }}</span>
+    <img :src="info.byMember.imgUrl" alt="user" />
+    <div>
+      <div class="activity-header">
+        <span class="member-name">{{ info.byMember.fullname }}</span>
+        <span class="action"> {{ info.action }}</span>
+      </div>
+      <span class="time">{{ info.createdAt }}</span>
     </div>
-    <!-- <span>{{ info.createdAt }}</span> -->
   </section>
 </template>
 
