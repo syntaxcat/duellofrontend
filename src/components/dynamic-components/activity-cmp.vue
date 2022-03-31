@@ -1,13 +1,13 @@
 <template>
   <section class="activity">
-    <!-- <img :src="info.byMember.imgUrl" alt="user" /> -->
+    <img :src="info.byMember.imgUrl" alt="user" style="height: 30px; width: 30px" />
 
     <div class="activity-header">
-      <!-- <span>{{ info.byMember.fullname }}</span> -->
+      <span>{{ info.byMember.fullname }}</span>
       <span class="action">{{ info.action }}</span>
     </div>
 
-    <!-- <span>{{ info.createdAt }}</span> -->
+    <span>{{ info.createdAt }}</span>
   </section>
 </template>
 

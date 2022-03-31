@@ -158,36 +158,38 @@ export default {
     this.taskToEdit = { ...res.task };
     this.group = { ...res.group };
     socketService.emit('details', this.taskToEdit.id);
-
-    // socketService.on('add-activity', this.addActivity);
+    socketService.on('update', async () => {
+      const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
+      this.taskToEdit = { ...res.task };
+      // this.group = { ...res.group };
+    });
   },
   methods: {
-    addActivity({ type, action }) {
+    async addActivity({ type, action }) {
       const activity = boardService.getEmptyActivity();
       activity.type = type;
       activity.action = action;
       activity.byMember = this.loggedinUser;
       activity.task = { id: this.taskToEdit.id, title: this.taskToEdit.title };
-      console.log('addActivity', activity);
-
       this.taskToEdit.activities.unshift(activity);
-      console.log('details', this.taskToEdit.activities);
-      this.$store.dispatch({
+
+      await this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
-
-      socketService.emit('add-activity');
+      socketService.emit('new-activity');
     },
     removeChecklist(checkId) {
       const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checkId);
+      const title = this.taskToEdit.checklist[idx].title;
       this.taskToEdit.checklist.splice(idx, 1);
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
         groupId: this.groupId,
       });
+      this.addActivity({ type: 'activity-cmp', action: `removed ${title} from this card` });
     },
     updateChecklist(checklist) {
       const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checklist.id);
@@ -216,6 +218,8 @@ export default {
         groupId: this.groupId,
       });
       this.taskToEdit.attachments = attachments;
+      const title = attachment.name ? attachment.name : attachment.url;
+      this.addActivity({ type: 'activity-cmp', action: `attached ${title} to this card` });
     },
     deleteComment(commentId) {
       const comments = this.taskToEdit.comments.filter((com) => com.id !== commentId);
@@ -251,6 +255,8 @@ export default {
         taskPartial: { id: taskId, comments: [...this.taskToEdit.comments] },
         groupId: this.groupId,
       });
+      // socketService.emit('new-activity');
+      // this.addActivity({ type: 'comment-cmp', action: `added ${title} from this card` });
     },
     formatDate(dateString) {
       return new Date(dateString).toDateString();
@@ -316,6 +322,7 @@ export default {
       });
     },
     async saveDate(date) {
+      console.log(date);
       this.hideComponent();
       this.taskToEdit.dueDate = date;
       try {
@@ -327,11 +334,13 @@ export default {
       } catch (err) {
         console.log(err);
       }
+      const title = this.formatDate(this.taskToEdit.dueDate);
+      this.addActivity({ type: 'activity-cmp', action: `set this card to be due ${title}` });
     },
     addMember(member) {
-      console.log(member)
+      console.log(member);
       const idx = this.taskToEdit.members.findIndex((mmbr) => mmbr._id === member._id);
-      console.log(idx)
+      console.log(idx);
       if (idx === -1) {
         this.taskToEdit.members.unshift(member);
       } else {
@@ -355,6 +364,7 @@ export default {
       } catch (err) {
         console.log(err);
       }
+      this.addActivity({ type: 'activity-cmp', action: `removed the due date from this card` });
     },
     updateBoardLabel(label) {
       this.$store.dispatch({

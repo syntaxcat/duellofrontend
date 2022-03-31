@@ -87,14 +87,18 @@ export default {
   },
   created() {
     this.getContentForDisplay();
-    socketService.on('add-activity', this.getContentForDisplay);
+    // socketService.on('update', () => {
+    //   console.log('yas');
+    // });
+    socketService.on('add-activity', () => {
+      console.log('here');
+      this.getContentForDisplay();
+    });
   },
   methods: {
     getContentForDisplay() {
       const activities = this.task.activities.filter((activity) => activity.task.id === this.taskToEdit.id);
-      console.log('activity-details', activities);
       this.mixedContent = this.task.comments.concat(activities).sort((a, b) => b.createdAt - a.createdAt);
-      console.log('mixedContent', this.mixedContent);
     },
     deleteComment(commentId) {
       this.$emit('deleteComment', commentId);
@@ -154,5 +158,3 @@ export default {
   components: { iconBase, commentCmp, activityCmp, activityCmp },
 };
 </script>
-
-<style></style>
