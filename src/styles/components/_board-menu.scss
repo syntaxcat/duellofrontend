@@ -36,7 +36,13 @@
       position: relative;
     }
   }
-
+.board-menu-costumize{
+  img{
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
+  }
+}
   .icon-base {
     position: absolute;
     right: 6px;

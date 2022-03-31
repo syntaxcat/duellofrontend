@@ -15,7 +15,8 @@ export const boardStore = {
     checklists: [],
     comments: [],
     bcg: '#026AA7',
-    isDark: null
+    isDark: null,
+    BoardStyle: null
   },
   getters: {
     board(state) {
@@ -56,6 +57,9 @@ export const boardStore = {
     },
     isDark(state){
       return state.isDark
+    },
+    boardStyle(state){
+      return state.boardStyle
     }
   },
   mutations: {
@@ -112,7 +116,6 @@ export const boardStore = {
         });
       });
 
-      console.log(lists);
       state.checklists = lists;
       lists = [];
     },
@@ -125,6 +128,7 @@ export const boardStore = {
       if (board.style.type === 'img') state.bcg = board.style.color;
       else state.bcg = '#00000029';
       state.isDark = board.style.isDark
+      state.boardStyle = board.style
     },
     setBoards(state, { boards }) {
       state.boards = boards;
