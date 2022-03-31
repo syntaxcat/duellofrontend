@@ -18,8 +18,8 @@
               </div>
             </div>
           </li>
-          <li>
-            <icon-base iconName="trello-block" />
+          <li @click="toggleBcSelect">
+            <img v-if="boardStyle.type==='img'" :src="boardStyle.backgroundImg" />
             <div class="menu-text">
               <h3>Change Backround</h3>
             </div>
@@ -74,6 +74,7 @@
 import iconBase from './icon-base.vue';
 import commentCmp from './comment-cmp.vue';
 import activityCmp from './dynamic-components/activity-cmp.vue';
+import designService from '../services/design.services.js'
 
 export default {
   data() {
@@ -81,6 +82,7 @@ export default {
       menuTitle: 'Menu',
       onlyComments: false,
       mixedContent: [],
+      isBcSelect: false
     };
   },
   async created() {
@@ -97,6 +99,9 @@ export default {
       this.mixedContent = this.comments.concat(activities).sort((a, b) => b.createdAt - a.createdAt);
       console.log(this.mixedContent);
     },
+    toggleBcSelect(){
+      this.isBcSelect = !this.isBcSelect
+    }
   },
   computed: {
     comments() {
@@ -105,10 +110,15 @@ export default {
     activities() {
       return this.$store.getters.activities;
     },
+
     contentForDisplay() {
       if (!this.onlyComments) return this.mixedContent;
       return this.mixedContent.filter((content) => !content.action).sort((a, b) => b.createdAt - a.createdAt);
     },
+      boardStyle(){
+        console.log(this.$store.getters.boardStyle)
+        return this.$store.getters.boardStyle
+      }
   },
 };
 </script>

@@ -30,7 +30,13 @@
       margin-left: rem(20px);
     }
   }
-
+.board-menu-costumize{
+  img{
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
+  }
+}
   .icon-base {
     display: inline-block;
     width: rem(20px);
