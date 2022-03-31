@@ -256,7 +256,7 @@ export default {
         groupId: this.groupId,
       });
       // socketService.emit('new-activity');
-      // this.addActivity({ type: 'comment-cmp', action: `added ${title} from this card` });
+      this.addActivity({ type: 'activity-cmp', action: `added comment from this card` });
     },
     formatDate(dateString) {
       return new Date(dateString).toDateString();

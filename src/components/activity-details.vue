@@ -90,8 +90,9 @@ export default {
     // socketService.on('update', () => {
     //   console.log('yas');
     // });
-    socketService.on('add-activity', () => {
+    socketService.on('update', () => {
       console.log('here');
+      // console.log('comments activity', this.task.comments);
       this.getContentForDisplay();
     });
   },

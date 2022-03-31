@@ -33,7 +33,6 @@
           @click="
             todo.isDone = !todo.isDone;
             saveChecklist();
-            calcDone();
           "
         >
           <span>
@@ -159,7 +158,7 @@ export default {
       areDone: null,
       isAdd: false,
       isEdit: false,
-      listToEdit:  JSON.parse(JSON.stringify(this.checklist)),
+      listToEdit: JSON.parse(JSON.stringify(this.checklist)),
       todoToAdd: { id: utilService.makeId(), title: '', isDone: false },
       modalType: null,
       target: null,
@@ -205,6 +204,7 @@ export default {
     },
     saveChecklist() {
       this.$emit('save', this.listToEdit);
+      this.calcDone();
       if (this.isEdit) this.isEdit = !this.isEdit;
     },
     removeChecklist(checkId) {

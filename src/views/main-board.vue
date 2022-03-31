@@ -60,7 +60,7 @@ export default {
     this.board = board;
     socketService.emit('on-board', this.board._id);
     socketService.on('update', (board) => {
-      console.log(board);
+      // console.log(board);
       this.board = { ...board };
     });
   },

@@ -203,7 +203,8 @@ async function _getBoard(boardId) {
 
 async function updateBoard(newUpdated) {
   const board = await httpService.put(`board/${newUpdated._id}`, newUpdated);
-  console.log('update');
+  // console.log('update');
   socketService.emit('update', newUpdated);
+  // socketService.emit('new-activity');
   return board;
 }
