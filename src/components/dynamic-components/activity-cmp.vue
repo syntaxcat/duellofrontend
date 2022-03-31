@@ -6,8 +6,7 @@
       <span>{{ info.byMember.fullname }}</span>
       <span class="action">{{ info.action }}</span>
     </div>
-
-    <span>{{ info.createdAt }}</span>
+    <!-- <span>{{ info.createdAt }}</span> -->
   </section>
 </template>
 
@@ -18,9 +17,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  data() {
-    return {};
   },
   computed: {},
 };
