@@ -1,8 +1,12 @@
 <template>
   <section class="home-page">
     <main-header />
-
-    <div class="main-container">
+    <svg class="loading" v-if="loading" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+      <line class="line animated" x1="14" y1="10" x2="14" y2="50" />
+      <line class="line animated line2" x1="30" y1="10" x2="30" y2="50" />
+      <line class="line animated line3" x1="46" y1="10" x2="46" y2="50" />
+    </svg>
+    <div v-else class="main-container">
       <div class="nav-bar">
         <div>
           <ul>
@@ -93,6 +97,7 @@ export default {
       loggedinUser: null,
       boards: null,
       isOpen: false,
+      loading: true,
       options: [
         { type: 'board', txt: 'Boards', class: 'visiting' },
         { type: 'template-board', txt: 'Templates', class: '' },
@@ -110,6 +115,7 @@ export default {
     });
     this.boards = boards;
     this.$store.dispatch('loadDesign');
+    this.loading = false;
   },
   methods: {
     visit(type) {

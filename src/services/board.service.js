@@ -16,7 +16,7 @@ export const boardService = {
   deleteBoardLabel,
   updateAfterTaskDrag,
   getById,
-  getEmptyActivity
+  getEmptyActivity,
 };
 
 var newBoard = '';
@@ -152,15 +152,14 @@ function getEmptyActivity() {
     byMember: {
       _id: '',
       imgUrl: null,
-      fullname: ''
+      fullname: '',
     },
     task: {
       id: '',
-      title: ''
-    }
-  }
+      title: '',
+    },
+  };
 }
-
 
 function _createLabels() {
   return [

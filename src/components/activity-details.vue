@@ -9,7 +9,7 @@
     </div>
 
     <div class="activity-form">
-      <img :src="user.imgUrl" alt="user" />
+      <img :src="user.imgUrl" referrerpolicy="no-referrer" alt="user" />
 
       <div :class="['comment-frame', isShow]">
         <div class="comment-box">

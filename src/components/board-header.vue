@@ -26,7 +26,7 @@
         <button class="name-btn">Sprint</button> |
         <section class="members">
           <div class="member" v-for="member in board.members" :key="member._id">
-            <img :src="member.imgUrl" alt="member" />
+            <img :src="member.imgUrl" referrerpolicy="no-referrer" alt="member" />
           </div>
           <button @click="toggleMembersModal">Invite</button>
         </section>
@@ -54,12 +54,7 @@
       <h2>Invite to board</h2>
     </header>
     <div class="main-content">
-      <input
-        v-model="userSearch"
-        @input="searchMembers"
-        type="text"
-        placeholder="Search memeber by name"
-      />
+      <input v-model="userSearch" @input="searchMembers" type="text" placeholder="Search memeber by name" />
       <button>Send invintation</button>
     </div>
     <div v-if="userSearch" class="member-res-modal">
@@ -70,7 +65,7 @@
         v-if="membersRes"
         class="member-container"
       >
-        <img :src="member.imgUrl" />
+        <img :src="member.imgUrl" referrerpolicy="no-referrer" />
         <span>{{ member.fullname }}</span>
       </div>
       <div v-else>

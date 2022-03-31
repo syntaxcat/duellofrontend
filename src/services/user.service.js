@@ -1,29 +1,28 @@
-import {httpService} from './httpService'
-const ENDPOINT = 'auth'
+import { httpService } from './httpService';
+const ENDPOINT = 'auth';
 
 export const userService = {
   login,
   signup,
   logout,
   getGuestUser,
-  getUsers
-}
+  getUsers,
+};
 
 async function login(cred) {
-  return await httpService.post(ENDPOINT + '/login', cred)
+  return await httpService.post(ENDPOINT + '/login', cred);
 }
 
 async function signup(cred) {
-  return await httpService.post(ENDPOINT + '/signup', cred)
+  return await httpService.post(ENDPOINT + '/signup', cred);
 }
 
 async function logout() {
-  return await httpService.post(ENDPOINT + '/logout')
+  return await httpService.post(ENDPOINT + '/logout');
 }
 
-async function getUsers(txt){
-  return await httpService.get('user' + `?txt=${txt}`)
-  
+async function getUsers(txt) {
+  return await httpService.get('user' + `?txt=${txt}`);
 }
 
 function getGuestUser() {
@@ -32,5 +31,5 @@ function getGuestUser() {
     username: 'guest',
     password: 'guest',
     isAdmin: true,
-  }
+  };
 }
