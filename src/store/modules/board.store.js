@@ -55,10 +55,10 @@ export const boardStore = {
     bcg(state) {
       return state.bcg;
     },
-    isDark(state){
+    isDark(state) {
       return state.isDark
     },
-    boardStyle(state){
+    boardStyle(state) {
       return state.boardStyle
     }
   },
@@ -71,6 +71,11 @@ export const boardStore = {
 
           group.tasks.forEach(task => {
             if (task.activities && task.activities.length) {
+              console.log(task.activities);
+              task.activities = task.activities.map(activity => {
+                if (!activity.byMember) activity.byMember = user
+                return activity
+              })
 
               activities = [...activities, ...task.activities]
             }

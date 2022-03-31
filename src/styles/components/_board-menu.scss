@@ -18,6 +18,13 @@
     border-bottom: 1px solid #e6e8ec;
     margin: 0 6px 0 12px;
 
+    &.new-frame {
+      .back-btn {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
     h3 {
       font-size: 1rem;
       font-weight: 600;
@@ -29,15 +36,34 @@
     }
 
     .icon-base {
-      position: absolute;
-      right: 6px;
-      top: 6px;
       width: 2rem;
       height: 2rem;
       fill: #172b4d;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .close-btn {
+      right: 2px;
+      top: 8px;
+    }
+
+    .back-btn {
+      top: 8px;
+      left: 0;
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.1s ease-in, transform 0.2s ease-in;
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
     }
   }
 

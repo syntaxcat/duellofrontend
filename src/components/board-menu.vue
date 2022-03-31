@@ -1,13 +1,13 @@
 <template>
   <section>
     <div class="board-menu-modal">
-      <div class="menu-title">
+      <div :class="['menu-title', isNewFrame]">
+        <icon-base class="back-btn" @click="backToMenu" iconName="chevron-left" />
         <h3>{{ menuTitle }}</h3>
-        <!-- <img src="../assets/icons/x.svg" /> -->
-        <icon-base @click="closeMenu" iconName="x" />
+        <icon-base class="close-btn" @click="closeMenu" iconName="x" />
       </div>
 
-      <div class="main-container">
+      <div class="main-container" v-if="!isActivity && !isBcSelect">
         <div class="board-menu-costumize">
           <ul>
             <li>
@@ -41,7 +41,7 @@
           <hr />
         </div>
         <div class="menu-text">
-          <div class="header navigation-item">
+          <div class="header navigation-item" @click="isActivity = !isActivity">
             <icon-base iconName="real-activity" />
             <h3>Activity</h3>
           </div>
@@ -52,6 +52,8 @@
           </div>
         </div>
       </div>
+
+      <!-- <activity-menu v-if="isActivity" :list="contentForDisplay" /> -->
     </div>
   </section>
 </template>
@@ -60,21 +62,23 @@
 import iconBase from './icon-base.vue';
 import commentCmp from './comment-cmp.vue';
 import activityCmp from './dynamic-components/activity-cmp.vue';
+import activityMenu from './side-menu/activity-menu.vue';
 
 export default {
   data() {
     return {
-      menuTitle: 'Menu',
       onlyComments: false,
       mixedContent: [],
       isBcSelect: false,
+      isActivity: false,
     };
   },
   async created() {
     await this.$store.dispatch({ type: 'getComments' });
+    await this.$store.dispatch({ type: 'getActivities' });
     this.getContentForDisplay();
   },
-  components: { iconBase, commentCmp, activityCmp },
+  components: { iconBase, commentCmp, activityCmp, activityMenu },
   methods: {
     closeMenu() {
       this.$emit('closeMenu');
@@ -86,6 +90,10 @@ export default {
     },
     toggleBcSelect() {
       this.isBcSelect = !this.isBcSelect;
+    },
+    backToMenu() {
+      this.isActivity = false;
+      this.isBcSelect = false;
     },
   },
   computed: {
@@ -103,6 +111,15 @@ export default {
     boardStyle() {
       console.log(this.$store.getters.boardStyle);
       return this.$store.getters.boardStyle;
+    },
+    isNewFrame() {
+      if (this.isActivity || this.isBcSelect) return 'new-frame';
+      return '';
+    },
+    menuTitle() {
+      if (this.isActivity) return 'Activity';
+      if (this.isBcSelect) return 'Change background';
+      return 'Menu';
     },
   },
 };
