@@ -43,6 +43,18 @@
           <icon-base iconName="comment" />
           {{ numberOfComments }}
         </span>
+        <div
+          class="checklist-display"
+          v-if="
+            this.task.checklist &&
+            this.task.checklist.length &&
+            this.task.checklist[0].todos &&
+            this.task.checklist[0].todos.length
+          "
+        >
+          <icon-base iconName="checklist" />
+          <span>{{ checklistStatus }}</span>
+        </div>
       </div>
       <div class="member-list">
         <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
@@ -57,6 +69,7 @@
 <script>
 import iconBase from './icon-base.vue';
 import { eventBus } from '../services/eventBus.service.js';
+
 export default {
   props: {
     task: {
@@ -152,6 +165,17 @@ export default {
     isCoverBcg() {
       if (this.task.style.cover.style === 'background') return true;
       else return false;
+    },
+    checklistStatus() {
+      if (!this.task.checklist || !this.task.checklist.length) return;
+
+      const length = this.task.checklist[0].todos.length;
+      console.log(length);
+
+      if (!this.task.checklist[0].todos || !length) {
+        var done = [];
+      } else done = this.task.checklist[0].todos.filter((todo) => todo.isDone);
+      return `${done.length}/${length}`;
     },
   },
   components: {

@@ -85,7 +85,7 @@
     .left {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      // gap: 0.75rem;
     }
 
     .member-list {
@@ -104,7 +104,8 @@
   .due-date,
   .number-of-attachments,
   .description-display,
-  .comment-display {
+  .comment-display,
+  .checklist-display {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -113,6 +114,11 @@
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
       sans-serif;
     border-radius: 3px;
+
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+
     &:hover {
       background-color: darken(#f4f5f7, 5%);
     }
@@ -122,24 +128,19 @@
     }
 
     svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
-  // .description-display {
-  //   .icon-base {
-  //     svg {
-  //       width: 18px;
-  //       height: 18px;
-  //     }
-  //   }
-  // }
-
-  .number-of-attachments {
-    margin-left: 0.75rem;
-    svg {
       width: 16px;
       height: 16px;
+      position: relative;
+      top: 1px;
+      margin-inline-end: 2px;
+    }
+  }
+
+  .number-of-attachments {
+    // margin-left: 0.75rem;
+    svg {
+      width: 14px;
+      height: 14px;
     }
   }
   .task-labels {

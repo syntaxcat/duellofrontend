@@ -154,8 +154,8 @@ export default {
   },
   data() {
     return {
-      length: null,
-      areDone: null,
+      length: 0,
+      areDone: 0,
       isAdd: false,
       isEdit: false,
       listToEdit: JSON.parse(JSON.stringify(this.checklist)),
@@ -212,13 +212,13 @@ export default {
       this.$emit('remove', checkId);
     },
     calcDone() {
-      if (!this.checklist.todos.length) {
+      if (!this.listToEdit.todos.length || !this.listToEdit.todos) {
         this.length = 1;
         this.areDone = 0;
         return;
       }
-      this.length = this.checklist.todos.length;
-      const done = this.checklist.todos.filter((todo) => todo.isDone);
+      this.length = this.listToEdit.todos.length;
+      const done = this.listToEdit.todos.filter((todo) => todo.isDone);
       this.areDone = done.length;
     },
   },
