@@ -16,7 +16,7 @@
             @input="changeTitle"
             :size="width"
           />
-          <div v-if="!isEditing" @click="editMode">{{ board.title }}</div>
+          <div class="board-name" v-if="!isEditing" @click="editMode">{{ board.title }}</div>
 
           <button @click="setFavorite">
             <icon-base iconName="star" :class="[isFavorite, 'starred']" @click="toggleFavorites" />
