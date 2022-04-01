@@ -281,7 +281,7 @@ export const boardStore = {
       try {
         group.tasks = value;
         commit({ type: 'updateGroup', updatedGroup: group });
-        await nextTick()
+        // await nextTick()
         await boardService.updateAfterTaskDrag(group, JSON.parse(JSON.stringify(state.board)));
       } catch (err) {
         console.log(err);

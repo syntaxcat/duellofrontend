@@ -1,7 +1,7 @@
 import { httpService } from '../services/httpService.js';
 import { socketService } from './socket.service.js';
 import { utilService } from './util.service';
-
+import { nextTick } from 'vue';
 
 export const boardService = {
   query,
@@ -201,6 +201,10 @@ async function _getBoard(boardId) {
 }
 
 async function updateBoard(newUpdated) {
-  socketService.emit('update', newUpdated);
   await httpService.put(`board/${newUpdated._id}`, newUpdated);
+  console.log('23');
+  await nextTick()
+  console.log('hi');
+  socketService.emit('update', newUpdated);
+  return newUpdated
 }
