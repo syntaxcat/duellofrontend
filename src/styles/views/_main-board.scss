@@ -38,5 +38,14 @@
     vertical-align: top;
     white-space: nowrap;
     width: 272px;
+
+    &.sortable-drag {
+      opacity: 1 !important;
+      transform: rotate(3deg);
+
+      * {
+        opacity: 1 !important;
+      }
+    }
   }
 }

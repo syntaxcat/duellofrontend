@@ -17,7 +17,7 @@
 
     <div class="task-container">
       <ul>
-        <draggable v-model="tasks" group="tasks" chosenClass="sortable-chosen" forceFallback="true">
+        <draggable v-model="tasks" group="tasks" forceFallback="true">
           <li class="task-li" @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
             <button @click.stop="editTask(task.id)" class="edit-btn">
               <icon-base iconName="pencil"></icon-base>
@@ -207,9 +207,6 @@ export default {
           value,
           group: { ...this.group },
         });
-      },
-      dragOptions() {
-        return this.$store.getters.dragOptions;
       },
     },
   },

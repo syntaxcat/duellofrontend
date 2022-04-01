@@ -2,7 +2,6 @@
   <section class="main-board" :style="bcg">
     <main-header />
     <board-header />
-    <!-- <create-board @create="createBoard" /> -->
 
     <section class="groups-container" v-if="board">
       <div class="groups-container-wrapper">
@@ -35,6 +34,7 @@
 <script>
 import { VueDraggableNext } from 'vue-draggable-next';
 import { socketService } from '../services/socket.service';
+// import { nextTick } from 'vue';
 import boardHeader from '../components/board-header.vue';
 import mainHeader from '../components/main-header.vue';
 import boardGroup from '../components/board-group.vue';
@@ -96,7 +96,9 @@ export default {
   computed: {
     groups: {
       get() {
+        // nextTick();
         return this.$store.getters.groups;
+        // this.$nextTick(() => this.$store.getters.groups);
       },
       set(value) {
         this.$store.dispatch({ type: 'drag', value });

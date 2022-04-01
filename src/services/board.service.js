@@ -2,6 +2,7 @@ import { httpService } from '../services/httpService.js';
 import { socketService } from './socket.service.js';
 import { utilService } from './util.service';
 
+
 export const boardService = {
   query,
   addGroup,
@@ -78,11 +79,11 @@ async function updateAfterTaskDrag(group, board) {
   if (board.groups[groupIdx].tasks.length !== group.tasks.length && newBoard) {
     newBoard.groups[groupIdx] = group;
     newBoard = '';
-    await updateBoard(newBoard);
   } else {
     board.groups[groupIdx] = group;
     newBoard = board;
   }
+  await updateBoard(newBoard);
   return group;
 }
 
@@ -201,6 +202,5 @@ async function _getBoard(boardId) {
 
 async function updateBoard(newUpdated) {
   socketService.emit('update', newUpdated);
-  const board = await httpService.put(`board/${newUpdated._id}`, newUpdated);
-  return board;
+  await httpService.put(`board/${newUpdated._id}`, newUpdated);
 }

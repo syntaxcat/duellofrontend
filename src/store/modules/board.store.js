@@ -2,6 +2,7 @@ import { boardService } from '../../services/board.service';
 import { taskService } from '../../services/task.service';
 import { designService } from '../../services/design.services';
 import { utilService } from '../../services/util.service';
+import { nextTick } from 'vue'
 
 export const boardStore = {
   state: {
@@ -271,6 +272,7 @@ export const boardStore = {
     },
     async drag({ commit, state }, { value }) {
       commit({ type: 'updateGroups', newOrder: value });
+      await nextTick()
       await boardService.updateGroups(value, {
         ...state.board,
       });
@@ -279,6 +281,7 @@ export const boardStore = {
       try {
         group.tasks = value;
         commit({ type: 'updateGroup', updatedGroup: group });
+        await nextTick()
         await boardService.updateAfterTaskDrag(group, JSON.parse(JSON.stringify(state.board)));
       } catch (err) {
         console.log(err);
