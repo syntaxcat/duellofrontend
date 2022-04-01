@@ -77,12 +77,12 @@ async function updateAfterTaskDrag(group, board) {
   const groupIdx = board.groups.findIndex((grp) => grp.id === group.id);
   if (board.groups[groupIdx].tasks.length !== group.tasks.length && newBoard) {
     newBoard.groups[groupIdx] = group;
+    newBoard = '';
   } else {
     board.groups[groupIdx] = group;
     newBoard = board;
   }
   await updateBoard(newBoard);
-  newBoard = '';
   return group;
 }
 
@@ -122,7 +122,6 @@ async function createBoardLabel(labelData, board) {
 async function addNewBoard(board) {
   board.createdAt = Date.now();
   return await httpService.post('board', board);
-  // return await storageService.post(BOARD_KEY, board);
 }
 
 function getEmptyBoard() {
@@ -201,7 +200,7 @@ async function _getBoard(boardId) {
 }
 
 async function updateBoard(newUpdated) {
-  const board = await httpService.put(`board/${newUpdated._id}`, newUpdated);
   socketService.emit('update', newUpdated);
+  const board = await httpService.put(`board/${newUpdated._id}`, newUpdated);
   return board;
 }

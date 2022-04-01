@@ -57,12 +57,10 @@ export default {
       this.$refs.input.focus();
     }
   },
-  computed:{
-
-    txtClr(){
-      console.log(this.$store.getters.isDark)
-      if(this.$store.getters.isDark) return 'light-bcg'
-    }
-  }
+  computed: {
+    txtClr() {
+      if (this.$store.getters.isDark) return 'light-bcg';
+    },
+  },
 };
 </script>
