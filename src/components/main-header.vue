@@ -9,20 +9,20 @@
           <div class="logo-img"></div>
           <span>Duello</span>
         </button>
-        <button>
+        <!-- <button>
           Workspaces
           <icon-base iconName="chevron-down" />
         </button>
         <button>
           Recent
           <icon-base iconName="chevron-down" />
-        </button>
+        </button> -->
+          <button>
+            Boards
+            <icon-base iconName="chevron-down" />
+          </button>
         <button>
           Starred
-          <icon-base iconName="chevron-down" />
-        </button>
-        <button>
-          Templates
           <icon-base iconName="chevron-down" />
         </button>
         <button @click="toggleCreateModal" class="create-btn">Create</button>

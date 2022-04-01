@@ -52,7 +52,7 @@
           </div>
         </div>
       </div>
-      <bcg-menu/>
+      <bcg-menu @setBc="setBc" />
       <activity-menu :list="contentForDisplay" @change="changeContent" />
     </div>
   </section>
@@ -64,20 +64,30 @@ import commentCmp from './comment-cmp.vue';
 import activityCmp from './dynamic-components/activity-cmp.vue';
 import activityMenu from './side-menu/activity-menu.vue';
 import bcgMenu from './side-menu/bcg-menu.vue';
+import { designService } from '../services/design.services';
 
 export default {
+  props:{
+    board:{
+      type: Object, 
+      required: true
+    }
+  },
   data() {
     return {
       onlyComments: false,
       mixedContent: [],
       isBcSelect: false,
       isActivity: false,
+      // board: this.$store.getters.board
     };
   },
   async created() {
     await this.$store.dispatch({ type: 'getComments' });
     await this.$store.dispatch({ type: 'getActivities' });
     this.getContentForDisplay();
+    // const board = await 
+    // this.board = board
   },
   components: { iconBase, commentCmp, activityCmp, activityMenu, bcgMenu },
   methods: {
@@ -98,6 +108,18 @@ export default {
     changeContent() {
       this.onlyComments = !this.onlyComments;
     },
+    async setBc(imgUrl) {
+      // const b = this.$store.getters.board
+      // const board = JSON.parse(JSON.stringify(b))
+      console.log(this.board)
+      const color = await designService.getAvgColor(imgUrl)
+      this.board.style.type = 'img'
+      this.board.style.backgroundImg = imgUrl
+      this.board.style.isDark = color.isDark
+      this.board.style.color = color.hex
+      console.log(this.board)
+      this.$store.dispatch({ type: 'updateBoard', board:this.board })
+    }
   },
   computed: {
     comments() {

@@ -17,9 +17,9 @@
           Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way
           your team works is unique—accomplish it all with Duello.
         </p>
-        <form>
+        <form @submit.prevent="logGuestUser">
           <!-- <input type="text" /> -->
-          <input class="welcome-btn" type="submit" value="Check us out - it's free!" />
+          <input class="welcome-btn" type="submit" value="Log in with guest user" />
         </form>
       </div>
       <img class="welcome-img" src="../assets/imgs/welcome-img.png" />
@@ -33,6 +33,19 @@ export default {
     login() {
       this.$router.replace('/login');
     },
+   async logGuestUser(){
+     console.log('dgfdgdfgdgdgdgdg');
+      const guestUser ={
+        username:'guest',
+        password:'123',
+      }
+      const user = await this.$store.dispatch({
+        type: 'login',
+        user: guestUser,
+      });
+      if (user) this.$router.replace('/');
+    },
+    
   },
 };
 </script>

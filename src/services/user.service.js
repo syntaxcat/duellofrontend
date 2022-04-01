@@ -5,7 +5,7 @@ export const userService = {
   login,
   signup,
   logout,
-  getGuestUser,
+  // getGuestUser,
   getUsers,
 };
 
@@ -25,11 +25,11 @@ async function getUsers(txt) {
   return await httpService.get('user' + `?txt=${txt}`);
 }
 
-function getGuestUser() {
-  return {
-    fullname: 'Guest User',
-    username: 'guest',
-    password: 'guest',
-    isAdmin: true,
-  };
-}
+// function getGuestUser() {
+//   return {
+//     fullname: 'Guest User',
+//     username: 'guest',
+//     password: 'guest',
+//     imgUrl: 
+//   };
+// }

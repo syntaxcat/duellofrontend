@@ -307,11 +307,17 @@ export const boardStore = {
     async updateBoard({ commit }, { board }) {
       try {
         const newBoard = await boardService.updateBoard(board);
+        console.log('board', newBoard)
         commit({ type: 'setBoard', board: newBoard });
       } catch (err) {
         console.log(err);
       }
     },
+    // async changeBc({ state, commit }, { style, imgUrl }) {
+    //   const color = await designService.getAvgColor(imgUrl)
+    //   const boardStyle = { backgroundImg: imgUrl, type: style, color: color.hex, isDark:color.isDark }
+    //   boardService.changeBoardBc(boardStyle, state.board._id)
+    // },
     getChecklists({ commit }) {
       commit({ type: 'getChecklists' });
     },

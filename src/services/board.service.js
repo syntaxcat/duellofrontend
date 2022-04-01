@@ -203,7 +203,7 @@ async function _getBoard(boardId) {
 async function updateBoard(newUpdated) {
   await httpService.put(`board/${newUpdated._id}`, newUpdated);
   console.log('23');
-  await nextTick()
+  // await nextTick()
   console.log('hi');
   socketService.emit('update', newUpdated);
   return newUpdated
