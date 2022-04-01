@@ -1,6 +1,6 @@
 <template>
   <section class="all-boards">
-    <div class="starred" v-if="boards">
+    <div class="starred" v-if="starredBoards && starredBoards.length">
       <div class="all-board-header">
         <icon-base iconName="star" class="board-icon" />
         <h3>Starred boards</h3>
@@ -36,7 +36,7 @@
     <div class="recently-viewed">
       <div class="all-board-header">
         <icon-base iconName="trello-clock" class="board-icon" />
-        <h3>Recently viewed</h3>
+        <h3>Recent boards</h3>
       </div>
 
       <div class="boards-container">
