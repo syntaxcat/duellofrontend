@@ -16,13 +16,14 @@
       </div>
     </div>
     <textarea
-      :class="{ isEditing: isEditing }"
+      v-if="canEditTitle"
+      class="isEditing"
       v-model="taskToEditPartial.title"
       ref="textarea"
-      :disabled="!isEditing"
       @blur="editTask()"
       @input="saveEdit(task)"
     ></textarea>
+    <textarea v-else v-model="task.title" ref="textarea" @blur="editTask()" @input="saveEdit(task)"></textarea>
     <div v-if="!isCoverBcg" class="task-extras">
       <div class="left">
         <span v-if="task.dueDate" :class="['due-date', isDuePassed, isDueCompleted]">
@@ -63,7 +64,6 @@
 </template>
 
 <script>
-import { eventBus } from '../services/eventBus.service.js';
 import { isAfter, isBefore } from 'date-fns';
 import iconBase from './icon-base.vue';
 
@@ -73,15 +73,14 @@ export default {
       type: Object,
       required: true,
     },
-    group: {
-      type: Object,
-      required: true,
+    canEditTitle: {
+      type: Boolean,
+      required: false,
     },
   },
 
   data() {
     return {
-      isEditing: false,
       taskToEditPartial: { title: this.task.title, id: this.task.id },
       taskCover: null,
       isDueComplete: false,
@@ -114,23 +113,18 @@ export default {
       this.$emit('editTask', this.taskToEditPartial);
     },
 
-    removeTask(taskId, groupId) {
-      this.$emit('removeTask', taskId, groupId);
-    },
-
     editTask(taskId) {
-      this.isEditing = !this.isEditing;
       if (taskId === this.task.id) {
-        this.updateHeigh();
-        if (this.isEditing) this.$nextTick(() => this.$refs.textarea.focus());
+        // this.updateHeigh();
+        // if (this.isEditing) this.$nextTick(() => this.$refs.textarea.focus());
       }
     },
     updateHeigh() {
-      if (this.task.style.cover.style === 'background') {
-        this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
-      } else
-        this.$refs.textarea.style.height =
-          this.$refs.textarea.scrollHeight - this.$refs.textarea.scrollHeight / 3.5 + 'px';
+      // if (this.task.style.cover.style === 'background') {
+      //   this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
+      // } else
+      //   this.$refs.textarea.style.height =
+      //     this.$refs.textarea.scrollHeight - this.$refs.textarea.scrollHeight / 3.5 + 'px';
     },
   },
   mounted() {
@@ -139,7 +133,7 @@ export default {
   watch: {
     taskToEditPartial: {
       handler(val) {
-        this.updateHeigh();
+        // this.updateHeigh();
       },
       deep: true,
     },
@@ -198,12 +192,6 @@ export default {
   },
   components: {
     iconBase,
-  },
-  created() {
-    this.unsubscribe = eventBus.on('editTask', this.editTask);
-  },
-  unmounted() {
-    this.unsubscribe();
   },
 };
 </script>

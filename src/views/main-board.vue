@@ -16,6 +16,7 @@
               @updateTask="updateTask"
               @addTask="addTask"
               @onOpen="openModal"
+              @quickEdit="(task, position, width) => quickEdit(task, position, width, group)"
             />
           </div>
         </draggable>
@@ -28,6 +29,17 @@
       :groupId="groupId"
       :boardId="board._id"
       @closeTaskDetails="isOpenModal = !isOpenModal"
+      @updateTask="updateTask"
+    />
+    <task-quick-edit
+      v-if="quickEditData !== null"
+      :taskId="quickEditData.task.id"
+      :position="quickEditData.position"
+      :width="quickEditData.width"
+      :groupId="quickEditData.group.id"
+      @close="closeQuickEdit"
+      @openDetails="openModal(quickEditData.task.id, quickEditData.group.id)"
+      @updateTask="updateTask"
     />
   </section>
 </template>
@@ -41,7 +53,7 @@ import boardGroup from '../components/board-group.vue';
 import addGroup from '../components/add-group.vue';
 import createBoard from '../components/create-board.vue';
 import taskDetails from '../components/task-details.vue';
-import TaskDetails from '../components/task-details.vue';
+import taskQuickEdit from '../components/task-quick-edit.vue';
 
 export default {
   data() {
@@ -50,6 +62,7 @@ export default {
       taskId: null,
       groupId: null,
       board: null,
+      quickEditData: null,
     };
   },
   async created() {
@@ -60,15 +73,21 @@ export default {
     this.board = board;
     socketService.emit('on-board', this.board._id);
     socketService.on('update', (board) => {
-      // console.log(board);
       this.board = { ...board };
     });
   },
   methods: {
+    closeQuickEdit() {
+      this.quickEditData = null;
+    },
+    quickEdit(task, position, width, group) {
+      this.quickEditData = { task, position, width, group };
+    },
     openModal(taskId, groupId) {
       this.isOpenModal = true;
       this.taskId = taskId;
       this.groupId = groupId;
+      this.quickEditData = null;
     },
     addGroup(title) {
       this.$store.dispatch({
@@ -116,9 +135,7 @@ export default {
     taskDetails,
     draggable: VueDraggableNext,
     createBoard,
-    TaskDetails,
+    taskQuickEdit,
   },
 };
 </script>
-
-<style></style>

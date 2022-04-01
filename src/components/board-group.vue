@@ -19,7 +19,7 @@
       <ul>
         <draggable v-model="tasks" group="tasks" chosenClass="sortable-chosen" forceFallback="true">
           <li class="task-li" @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
-            <button @click.stop="editTask(task.id)" class="edit-btn">
+            <button @click.stop="quickEdit($event, task)" class="edit-btn">
               <icon-base iconName="pencil"></icon-base>
             </button>
 
@@ -192,8 +192,9 @@ export default {
     log(ev) {
       ev.target.style.opacity = 1;
     },
-    editTask(taskId) {
-      eventBus.emit('editTask', taskId);
+    quickEdit(ev, task) {
+      const { left, top, width } = ev.target.closest('li').getBoundingClientRect();
+      this.$emit('quickEdit', task, { left, top }, width);
     },
   },
   computed: {
