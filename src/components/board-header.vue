@@ -1,77 +1,78 @@
 <template>
   <section>
     <section>
-      <board-menu @closeMenu="toggleMenu" v-if="isMenuOpen"></board-menu>
-    </section>
+      <section>
+        <board-menu @closeMenu="toggleMenu" v-if="isMenuOpen"></board-menu>
+      </section>
 
-    <section :class="['board-header', txtClr]" v-if="board">
-      <div class="board-details">
-        <div class="board-name-and-star">
-          <input
-            type="text"
-            ref="myInput"
-            v-model="board.title"
-            v-if="isEditing"
-            @blur="isEditing = !isEditing"
-            @input="changeTitle"
-            :size="width"
-          />
-          <div class="board-name" v-if="!isEditing" @click="editMode">{{ board.title }}</div>
+      <section :class="['board-header', txtClr]" v-if="board">
+        <div class="board-details">
+          <div class="board-name-and-star">
+            <input
+              type="text"
+              ref="myInput"
+              v-model="board.title"
+              v-if="isEditing"
+              @blur="isEditing = !isEditing"
+              @input="changeTitle"
+              :size="width"
+            />
+            <div class="board-name" v-if="!isEditing" @click="editMode">{{ board.title }}</div>
 
-          <button @click="setFavorite">
-            <icon-base iconName="star" :class="[isFavorite, 'starred']" @click="toggleFavorites" />
-          </button>
-          |
-        </div>
-        <button class="name-btn">Sprint</button> |
-        <section class="members">
-          <div class="member" v-for="member in board.members" :key="member._id">
-            <img :src="member.imgUrl" referrerpolicy="no-referrer" alt="member" />
+            <button @click="setFavorite">
+              <icon-base iconName="star" :class="[isFavorite, 'starred']" @click="toggleFavorites" />
+            </button>
+            |
           </div>
-          <button @click="toggleMembersModal">Invite</button>
-        </section>
-      </div>
+          <button class="name-btn">Sprint</button> |
+          <section class="members">
+            <div class="member" v-for="member in board.members" :key="member._id">
+              <img :src="member.imgUrl" referrerpolicy="no-referrer" alt="member" />
+            </div>
+            <button @click="toggleMembersModal">Invite</button>
+          </section>
+        </div>
 
-      <div class="options">
-        <button class="filter-btn">
-          <icon-base iconName="filter" />
-          <span>Filter</span>
-        </button>
-        <button class="show-menu-btn" @click="toggleMenu">
-          <icon-base iconName="more" />
-          <!-- <img src="../assets/icons/more-horizontal.svg" alt="more" /> -->
-          <span>Show menu</span>
-        </button>
+        <div class="options">
+          <button class="filter-btn">
+            <icon-base iconName="filter" />
+            <span>Filter</span>
+          </button>
+          <button class="show-menu-btn" @click="toggleMenu">
+            <icon-base iconName="more" />
+            <span>Show menu</span>
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <section v-if="isMemberModal" class="invite-member-modal">
+      <header>
+        <div class="header-btn-container">
+          <icon-base @click="toggleMembersModal" iconName="x" />
+        </div>
+        <h2>Invite to board</h2>
+      </header>
+      <div class="main-content">
+        <input v-model="userSearch" @input="searchMembers" type="text" placeholder="Search memeber by name" />
+        <button>Send invintation</button>
+      </div>
+      <div v-if="userSearch" class="member-res-modal">
+        <div
+          class="member-container"
+          v-if="membersRes"
+          v-for="member in membersRes"
+          :key="member._id"
+          @click="addMember(member)"
+        >
+          <img :src="member.imgUrl" referrerpolicy="no-referrer" />
+          <span>{{ member.fullname }}</span>
+        </div>
+        <div v-else>
+          <span>No users found</span>
+        </div>
       </div>
     </section>
-  </section>
-
-  <section v-if="isMemberModal" class="invite-member-modal">
-    <header>
-      <div class="header-btn-container">
-        <icon-base @click="toggleMembersModal" iconName="x"></icon-base>
-      </div>
-      <h2>Invite to board</h2>
-    </header>
-    <div class="main-content">
-      <input v-model="userSearch" @input="searchMembers" type="text" placeholder="Search memeber by name" />
-      <button>Send invintation</button>
-    </div>
-    <div v-if="userSearch" class="member-res-modal">
-      <div
-        @click="addMember(member)"
-        v-for="member in membersRes"
-        :key="member._id"
-        v-if="membersRes"
-        class="member-container"
-      >
-        <img :src="member.imgUrl" referrerpolicy="no-referrer" />
-        <span>{{ member.fullname }}</span>
-      </div>
-      <div v-else>
-        <span>No users found</span>
-      </div>
-    </div>
   </section>
 </template>
 
@@ -83,15 +84,12 @@ export default {
   components: { boardMenu },
   data() {
     return {
-      // boardName: 'Duello',
       isEditing: false,
       isFull: false,
       isMenuOpen: false,
       userSearch: '',
       isMemberModal: false,
       membersRes: null,
-
-      // openMenu: false
     };
   },
   methods: {
@@ -136,10 +134,10 @@ export default {
     board() {
       return JSON.parse(JSON.stringify(this.$store.getters.board));
     },
-    txtClr(){
-      const isDark = this.$store.getters.isDark
-      if(!isDark) return 'dark-bcg'
-    }
+    txtClr() {
+      const isDark = this.$store.getters.isDark;
+      if (!isDark) return 'dark-bcg';
+    },
   },
   components: {
     iconBase,
