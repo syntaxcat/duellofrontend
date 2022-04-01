@@ -73,12 +73,8 @@
         </button>
       </div>
     </div>
-    <div
-      @blur="openEditModal"
-      v-if="isEditModal"
-      class="group-edit-modal"
-      :style="{ position: 'absolute', top: yPos + 20 + 'px', left: xPos / 1.6 + 'px' }"
-    >
+    <div @blur="openEditModal" v-if="isEditModal" class="group-edit-modal">
+      <!-- <div @blur="openEditModal" v-if="isEditModal" class="group-edit-modal" :style="{ left: xPos + 'px' }"> -->
       <div class="modal-header">
         <h1>List actions</h1>
         <label @click="openEditModal">
@@ -123,7 +119,6 @@ import taskPreview from '../components/task-preview.vue';
 import IconBase from './icon-base.vue';
 import TaskPreview from '../components/task-preview.vue';
 
-
 export default {
   props: {
     group: {
@@ -139,16 +134,18 @@ export default {
       isNewTask: false,
       isTaskDragged: false,
       isEditModal: false,
-      xPos: null,
-      yPos: null,
       isDrag: false,
       isEditingTask: false,
     };
   },
   created() {
     this.$store.commit({ type: 'setGroup', group: this.group });
+    window.addEventListener('resize', this.onResize);
   },
   methods: {
+    onResize() {
+      if (this.isEditModal) this.isEditModal = false;
+    },
     updateHeigh() {
       this.$refs.taskInput.style.height = this.$refs.taskInput.scrollHeight + 'px';
     },
@@ -161,8 +158,8 @@ export default {
       this.$emit('onOpen', taskId, this.group.id);
     },
     openEditModal(ev) {
-      this.xPos = ev.clientX;
-      this.yPos = ev.clientY;
+      // this.xPos = ev.clientX;
+      // this.yPos = ev.clientY;
       this.isEditModal = !this.isEditModal;
     },
     closeEditModal(ev) {
@@ -228,6 +225,9 @@ export default {
     taskTitle() {
       this.updateHeigh();
     },
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.myEventHandler);
   },
   components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext, TaskPreview },
 };
