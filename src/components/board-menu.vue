@@ -52,9 +52,8 @@
           </div>
         </div>
       </div>
+      <bcg-menu />
       <activity-menu :list="contentForDisplay" @change="changeContent" />
-      <bcg-menu/>
-
     </div>
   </section>
 </template>
@@ -79,7 +78,6 @@ export default {
     await this.$store.dispatch({ type: 'getComments' });
     await this.$store.dispatch({ type: 'getActivities' });
     this.getContentForDisplay();
-
   },
   components: { iconBase, commentCmp, activityCmp, activityMenu, bcgMenu },
   methods: {
@@ -100,7 +98,6 @@ export default {
     changeContent() {
       this.onlyComments = !this.onlyComments;
     },
-  
   },
   computed: {
     comments() {

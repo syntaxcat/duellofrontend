@@ -74,7 +74,6 @@
       </div>
     </div>
     <div @blur="openEditModal" v-if="isEditModal" class="group-edit-modal">
-      <!-- <div @blur="openEditModal" v-if="isEditModal" class="group-edit-modal" :style="{ left: xPos + 'px' }"> -->
       <div class="modal-header">
         <h1>List actions</h1>
         <label @click="openEditModal">
@@ -158,8 +157,6 @@ export default {
       this.$emit('onOpen', taskId, this.group.id);
     },
     openEditModal(ev) {
-      // this.xPos = ev.clientX;
-      // this.yPos = ev.clientY;
       this.isEditModal = !this.isEditModal;
     },
     closeEditModal(ev) {
@@ -227,7 +224,7 @@ export default {
     },
   },
   destroyed() {
-    window.removeEventListener('resize', this.myEventHandler);
+    window.removeEventListener('resize', this.onResize);
   },
   components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext, TaskPreview },
 };

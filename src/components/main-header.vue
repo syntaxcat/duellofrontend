@@ -45,7 +45,12 @@
         <button @click="signOut">logout</button>
       </div>
     </nav>
-    <create-board v-if="isCreate" @closeModal="toggleCreateModal" @create="createBoard" />
+    <create-board
+      v-if="isCreate"
+      @closeModal="toggleCreateModal"
+      @create="createBoard"
+      @resizeClose="this.isCreate = false"
+    />
   </section>
 </template>
 

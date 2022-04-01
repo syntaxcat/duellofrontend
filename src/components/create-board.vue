@@ -119,23 +119,24 @@ export default {
     const imgs = await designService.getImgs(6, 'desktop wallpaper cute', 'regular');
     this.imgs = imgs;
     this.boardToEdit.style.backgroundImg = imgs[0];
+    window.addEventListener('resize', this.onResize);
   },
   mounted() {
     this.$refs.myInput.focus();
   },
   methods: {
+    onResize() {
+      this.$emit('resizeClose');
+    },
     setBoardClr(color) {
       this.boardToEdit.style.color = color;
       this.boardToEdit.style.type = 'color';
       this.boardToEdit.style.backgroundImg = '';
       this.boardToEdit.style.isDark = isDarkColor(color);
-      console.log(this.boardToEdit.style.isDark);
     },
     async setBoardImg(imgUrl) {
-      console.log('dfgldgkl');
       this.boardToEdit.style.backgroundImg = imgUrl;
       this.boardToEdit.style.type = 'img';
-      // this.boardToEdit.style.color = '';
       const color = await designService.getAvgColor(imgUrl);
       this.boardToEdit.style.color = color.hex;
       this.boardToEdit.style.isDark = color.isDark;
@@ -144,23 +145,17 @@ export default {
       this.$emit('closeModal');
     },
     create() {
-      // console.log(this.boardToEdit)
       this.boardToEdit.createdBy = this.loggedinUser;
       this.boardToEdit.members.unshift(this.loggedinUser);
       this.$emit('create', { ...this.boardToEdit });
     },
     async toggleCostumizeModal() {
       this.isCostumize = !this.isCostumize;
-      // if(this.isCostumize){
-      //   const imgs = designService.getImgs(6, 'desktop-wallpaper', 'large')
-      //   this.moreImgs = imgs
-      // }
     },
     toggleSearch() {
       this.isSearch = !this.isSearch;
     },
     async searchImgs() {
-      console.log(this.search);
       const imgs = await designService.getImgs(100, this.search, 'regular');
       this.searchImg = imgs;
     },
@@ -174,7 +169,6 @@ export default {
     },
     colorsPrev() {
       if (!this.boardToEdit) return;
-      console.log(this.$store.getters.colors);
       return this.$store.getters.colors;
     },
     getPrevStyle() {
@@ -191,6 +185,9 @@ export default {
       else if (this.isSearch) return 'Photos by Unspalsh';
       else return 'Colors';
     },
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.onResize);
   },
   components: { iconBase },
 };
