@@ -5,14 +5,12 @@
     height: 16px;
     width: 16px;
     margin-right: 4px;
-    // background-position: 100%;
   }
-  // background-color: $clr1;
+
   &:hover .logo-img {
     background-image: url('./src/assets/imgs/logo-ani.gif');
   }
-  // background-color: var(--dynamic-background-color, #026AA7)
-  // background-color: #00000029;
+
   nav {
     height: rem(45px);
     margin: 0;
@@ -54,7 +52,6 @@
     display: inline-flex;
     background-color: transparent;
     border: none;
-    // color: $clr3;
     align-items: center;
     border-radius: 3px;
   }
@@ -82,7 +79,6 @@
 
     .search {
       display: flex;
-      // color: white;
     }
 
     .info {
@@ -125,27 +121,30 @@
     img {
       position: absolute;
     }
-    input::placeholder {
-      // color: $clr3;
-    }
 
     input:focus {
       border: none;
       color: $clr6;
     }
   }
-  .user-icon img {
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    border-radius: 50%;
+  .user-icon {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+    img {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
   }
   &.dark-bcg {
     color: $taskD1;
-    input{
+    input {
       color: $taskD1;
 
-      &::placeholder, &:focus {
+      &::placeholder,
+      &:focus {
         color: $taskD1;
       }
     }
@@ -154,7 +153,6 @@
     }
     .logo-img {
       background-image: url('./src/assets/imgs/logo-still-dark.png');
-
     }
     &:hover .logo-img {
       background-image: url('./src/assets/imgs/logo-ani-dark.gif');
@@ -165,8 +163,9 @@
     button:not(.bell-btn) {
       color: white;
     }
-    input{
-      &::placeholder , &:focus{
+    input {
+      &::placeholder,
+      &:focus {
         color: white;
       }
       color: white;

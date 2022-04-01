@@ -27,6 +27,7 @@
         </button>
         <button @click="toggleCreateModal" class="create-btn">Create</button>
       </div>
+
       <div class="information">
         <div class="search-input">
           <icon-base iconName="search" class="search" />
@@ -82,16 +83,15 @@ export default {
       return this.$store.getters.user;
     },
     bcg() {
-      return this.$store.getters.bcg
+      return this.$store.getters.bcg;
     },
     txtClr() {
-      const isDark = this.$store.getters.isDark
-      if (!isDark) return 'dark-bcg'
-      else return 'light-bcg'
-    }
+      const isDark = this.$store.getters.isDark;
+      if (!isDark) return 'dark-bcg';
+      else return 'light-bcg';
+    },
   },
-  async created() {
-  },
+  async created() {},
   components: { iconBase, createBoard },
 };
 </script>
