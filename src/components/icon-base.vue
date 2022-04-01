@@ -307,6 +307,38 @@
     </svg>
 
     <svg
+      v-else-if="iconName === 'unchecked'"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M18 6H6v12h12V6zM6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6z"
+        fill="currentColor"
+      />
+    </svg>
+
+    <svg
+      v-else-if="iconName === 'checked'"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      version="1.2"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 1 0-2 0v5H6V6h10a1 1 0 1 0 0-2H6zm2.735 6.322a1 1 0 1 0-1.47 1.356l3.612 3.919c.537.526 1.337.526 1.834.03l.364-.359.977-.96c1.01-.995 2.02-1.991 2.962-2.923l.04-.04a493.191 493.191 0 0 0 3.658-3.643 1 1 0 0 0-1.424-1.404c-.704.713-1.971 1.974-3.64 3.625l-.04.04c-.942.93-1.95 1.926-2.96 2.92l-.815.802-3.098-3.363z"
+        fill="currentColor"
+      />
+    </svg>
+
+    <svg
       v-else-if="iconName === 'check'"
       xmlns="http://www.w3.org/2000/svg"
       width="24"

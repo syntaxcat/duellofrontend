@@ -23,14 +23,12 @@
       @blur="editTask()"
       @input="saveEdit(task)"
     ></textarea>
-    <!-- <button @click.stop="editTask(task, group.id)" class="edit-btn"> -->
-    <!-- <icon-base iconName="pencil"></icon-base> -->
-    <!-- <img src="../assets/icons/bx-pencil.svg" alt="edit" /> -->
-    <!-- </button> -->
     <div v-if="!isCoverBcg" class="task-extras">
       <div class="left">
-        <span v-if="task.dueDate" class="due-date">
-          <icon-base iconName="clock" />
+        <span v-if="task.dueDate" :class="['due-date', isDuePassed, isDueCompleted]">
+          <icon-base class="due-icon-clock" iconName="clock" />
+          <icon-base class="due-icon-checked" @click.stop="isDueComplete = !isDueComplete" iconName="checked" />
+          <icon-base class="due-icon-unchecked" @click.stop="isDueComplete = !isDueComplete" iconName="unchecked" />
           {{ formatDate(this.task.dueDate) }}
         </span>
         <span v-if="numberOfAttachments > 0" class="number-of-attachments">
@@ -57,16 +55,17 @@
           <span>{{ checklistStatus }}</span>
         </div>
       </div>
-      <div class="member-list">
-        <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
-      </div>
+    </div>
+    <div class="member-list">
+      <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
     </div>
   </section>
 </template>
 
 <script>
-import iconBase from './icon-base.vue';
 import { eventBus } from '../services/eventBus.service.js';
+import { isAfter, isBefore } from 'date-fns';
+import iconBase from './icon-base.vue';
 
 export default {
   props: {
@@ -85,11 +84,23 @@ export default {
       isEditing: false,
       taskToEditPartial: { title: this.task.title, id: this.task.id },
       taskCover: null,
+      isDueComplete: false,
+      dueStatus: null,
     };
   },
   methods: {
     formatDate() {
       const date = new Date(this.task.dueDate);
+      const now = Date.now();
+
+      const isPassed = isBefore(date, now);
+      if (!isPassed) {
+        const diff = +date - now;
+        if (diff < 86400000 && diff > 0) {
+          this.dueStatus = 'is-due-soon';
+        } else this.dueStatus = '';
+      } else this.dueStatus = 'is-due-past';
+
       return date.toLocaleString('default', {
         month: 'short',
         day: 'numeric',
@@ -111,8 +122,6 @@ export default {
       this.isEditing = !this.isEditing;
       if (taskId === this.task.id) {
         this.updateHeigh();
-        // this.isEditing = true;
-        // this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight- this.$refs.textarea.scrollHeight/3 + 'px';
         if (this.isEditing) this.$nextTick(() => this.$refs.textarea.focus());
       }
     },
@@ -158,11 +167,7 @@ export default {
     coverStyle() {
       if (this.task.style.cover.type === 'color') {
         return `background-color: ${this.task.style.cover.color}; height: 32px`;
-      }
-      // else if (this.task.style.cover.type === 'img') {
-      //   return `background-image: url(${this.task.style.cover.imgUrl}); max-height: 260px`
-      // }
-      else return '';
+      } else return '';
     },
     isCoverBcg() {
       if (this.task.style.cover.style === 'background') return true;
@@ -183,6 +188,12 @@ export default {
 
       return '';
       // }
+    },
+    isDueCompleted() {
+      return this.isDueComplete ? 'is-due-complete' : 'is-due-future';
+    },
+    isDuePassed() {
+      return this.dueStatus;
     },
   },
   components: {
