@@ -52,8 +52,9 @@
           </div>
         </div>
       </div>
-
       <activity-menu :list="contentForDisplay" @change="changeContent" />
+      <bcg-menu/>
+
     </div>
   </section>
 </template>
@@ -63,6 +64,7 @@ import iconBase from './icon-base.vue';
 import commentCmp from './comment-cmp.vue';
 import activityCmp from './dynamic-components/activity-cmp.vue';
 import activityMenu from './side-menu/activity-menu.vue';
+import bcgMenu from './side-menu/bcg-menu.vue';
 
 export default {
   data() {
@@ -77,8 +79,9 @@ export default {
     await this.$store.dispatch({ type: 'getComments' });
     await this.$store.dispatch({ type: 'getActivities' });
     this.getContentForDisplay();
+
   },
-  components: { iconBase, commentCmp, activityCmp, activityMenu },
+  components: { iconBase, commentCmp, activityCmp, activityMenu, bcgMenu },
   methods: {
     closeMenu() {
       this.$emit('closeMenu');
@@ -97,6 +100,7 @@ export default {
     changeContent() {
       this.onlyComments = !this.onlyComments;
     },
+  
   },
   computed: {
     comments() {
