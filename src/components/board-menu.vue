@@ -52,7 +52,7 @@
           </div>
         </div>
       </div>
-      <bcg-menu />
+      <bcg-menu/>
       <activity-menu :list="contentForDisplay" @change="changeContent" />
     </div>
   </section>
