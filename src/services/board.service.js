@@ -78,11 +78,11 @@ async function updateAfterTaskDrag(group, board) {
   if (board.groups[groupIdx].tasks.length !== group.tasks.length && newBoard) {
     newBoard.groups[groupIdx] = group;
     newBoard = '';
+    await updateBoard(newBoard);
   } else {
     board.groups[groupIdx] = group;
     newBoard = board;
   }
-  await updateBoard(newBoard);
   return group;
 }
 

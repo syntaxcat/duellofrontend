@@ -6,6 +6,7 @@
       <line class="line animated line2" x1="30" y1="10" x2="30" y2="50" />
       <line class="line animated line3" x1="46" y1="10" x2="46" y2="50" />
     </svg>
+
     <div v-else class="main-container">
       <div class="nav-bar">
         <div>
