@@ -167,7 +167,7 @@
     button:not(.bell-btn) {
       color: white;
     }
-    input {
+    input:not(.board-name) {
       &::placeholder,
       &:focus {
         color: white;

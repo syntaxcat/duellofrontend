@@ -28,7 +28,7 @@
 
       <div class="task-menu-group">
         <h2>Actions</h2>
-        <button @click="copyTask"><icon-base class="icon-fill" iconName="copy" />Copy</button>
+        <button @click="openModal('copy-cmp')"><icon-base class="icon-fill" iconName="copy" />Copy</button>
         <button @click="removeTask"><icon-base class="icon-fill" iconName="archive" />Archive</button>
       </div>
     </div>

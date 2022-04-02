@@ -87,6 +87,7 @@
             :is="cmp"
             :board="board"
             :task="taskToEdit"
+            :groups="groups"
             :date="taskToEdit.dueDate"
             @saveDate="saveDate"
             @removeDate="removeDate"
@@ -127,6 +128,8 @@ import checklistDetails from './checklist-details.vue';
 import coverCmp from './dynamic-components/cover-cmp.vue';
 import giphyCmp from './dynamic-components/giphy-cmp.vue';
 import resizableTextarea from './resizable-textarea.vue';
+// import { threadId } from 'worker_threads';
+import copyCmp from './dynamic-components/copy-cmp.vue'
 
 export default {
   props: {
@@ -420,6 +423,9 @@ export default {
       }
       return '';
     },
+    groups(){
+      return this.$store.getters.groups
+    }
   },
   components: {
     taskDetailsMenu,
@@ -436,6 +442,7 @@ export default {
     iconBase,
     giphyCmp,
     resizableTextarea,
+    copyCmp
   },
 };
 </script>
