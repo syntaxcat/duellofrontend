@@ -22,7 +22,7 @@
       v-if="canEditTitle"
       :autofocus="true"
     />
-    <resizable-textarea v-else :value="taskTitle" :disabled="true" />
+    <textarea :value="taskTitle" v-else disabled></textarea>
     <div v-if="!isCoverBcg" class="task-extras">
       <div class="left">
         <span v-if="task.dueDate" :class="['due-date', isDuePassed, isDueCompleted]">
