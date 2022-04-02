@@ -159,7 +159,7 @@ export default {
     this.taskToEdit = { ...res.task };
     this.group = { ...res.group };
     socketService.emit('details', this.taskToEdit.id);
-    socketService.on('update', async () => {
+    socketService.on('update', async (board) => {
       const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
       this.taskToEdit = { ...res.task };
     });
@@ -185,6 +185,7 @@ export default {
       activity.byMember = this.loggedinUser;
       activity.task = { id: this.taskToEdit.id, title: this.taskToEdit.title };
       this.taskToEdit.activities.unshift(activity);
+      socketService.emit('loading', { ...this.taskToEdit });
 
       this.doUpdateTask();
       this.$store.dispatch({
@@ -195,18 +196,21 @@ export default {
       const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checkId);
       const title = this.taskToEdit.checklist[idx].title;
       this.taskToEdit.checklist.splice(idx, 1);
+      socketService.emit('loading', { ...this.taskToEdit });
       this.doUpdateTask();
       this.addActivity({ type: 'activity-cmp', action: `removed ${title} from this card` });
     },
     updateChecklist(checklist) {
       const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checklist.id);
       this.taskToEdit.checklist.splice(idx, 1, checklist);
+      socketService.emit('loading', { ...this.taskToEdit });
       this.doUpdateTask();
       this.addActivity({ type: 'activity-cmp', action: `updated ${checklist.title} in this card` });
     },
     async addChecklist(newChecklist) {
       this.taskToEdit.checklist.unshift(newChecklist);
       await this.doUpdateTask();
+      // socketService.emit('loading', { ...this.taskToEdit });
       this.addActivity({ type: 'activity-cmp', action: `added ${newChecklist.title} to this card` });
       this.hideComponent();
     },
@@ -219,6 +223,7 @@ export default {
       });
       this.taskToEdit.attachments = attachments;
       const title = attachment.name ? attachment.name : attachment.url;
+      socketService.emit('loading', { ...this.taskToEdit });
       this.addActivity({ type: 'activity-cmp', action: `attached ${title} to this card` });
     },
     deleteComment(commentId) {
@@ -263,9 +268,12 @@ export default {
     },
     async joinTask() {
       this.taskToEdit.members.unshift(this.loggedinUser);
+      socketService.emit('loading', { ...this.taskToEdit });
       this.doUpdateTask();
     },
     saveDesc(task) {
+      this.taskToEdit = task;
+      socketService.emit('loading', { ...this.taskToEdit });
       this.$store.dispatch({
         type: 'updateTask',
         taskPartial: task,
@@ -290,6 +298,7 @@ export default {
       this.taskToEdit.style.cover.color = color;
       this.taskToEdit.style.cover.imgUrl = '';
       if (!this.taskToEdit.style.cover.style && color) this.taskToEdit.style.cover.style = 'solid';
+      socketService.emit('loading', { ...this.taskToEdit });
       this.doUpdateTask();
     },
     async setCoverImg(imgUrl) {
@@ -299,16 +308,19 @@ export default {
         this.taskToEdit.style.cover.color = (await designService.getAvgColor(this.taskToEdit.style.cover.imgUrl)).hex;
       else this.taskToEdit.style.cover.color = '';
       if (!this.taskToEdit.style.cover.style && imgUrl) this.taskToEdit.style.cover.style = 'solid';
+      socketService.emit('loading', { ...this.taskToEdit });
       this.doUpdateTask();
     },
     setCoverStyle(coverStyle) {
       this.taskToEdit.style.cover.style = coverStyle;
+      socketService.emit('loading', { ...this.taskToEdit });
       this.doUpdateTask();
     },
     async saveDate(date) {
       console.log(date);
       this.hideComponent();
       this.taskToEdit.dueDate = date;
+      socketService.emit('loading', { ...this.taskToEdit });
       try {
         this.$store.dispatch({
           type: 'updateTask',
@@ -322,14 +334,13 @@ export default {
       this.addActivity({ type: 'activity-cmp', action: `set this card to be due ${title}` });
     },
     addMember(member) {
-      console.log(member);
       const idx = this.taskToEdit.members.findIndex((mmbr) => mmbr._id === member._id);
-      console.log(idx);
       if (idx === -1) {
         this.taskToEdit.members.unshift(member);
       } else {
         this.taskToEdit.members.splice(idx, 1);
       }
+      socketService.emit('loading', { ...this.taskToEdit });
       this.doUpdateTask();
     },
     async removeDate() {
@@ -344,6 +355,7 @@ export default {
       } catch (err) {
         console.log(err);
       }
+      socketService.emit('loading', { ...this.taskToEdit });
       this.addActivity({ type: 'activity-cmp', action: `removed the due date from this card` });
     },
     updateBoardLabel(label) {
@@ -378,7 +390,7 @@ export default {
           this.taskToEdit.labelIds.unshift(labelId);
         }
       }
-
+      socketService.emit('loading', { ...this.taskToEdit });
       await this.doUpdateTask();
     },
     removeTask() {

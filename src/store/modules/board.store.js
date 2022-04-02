@@ -70,7 +70,6 @@ export const boardStore = {
         if (group.tasks && group.tasks.length) {
           group.tasks.forEach((task) => {
             if (task.activities && task.activities.length) {
-              console.log(task.activities);
               task.activities = task.activities.map((activity) => {
                 if (!activity.byMember) activity.byMember = user;
                 return activity;

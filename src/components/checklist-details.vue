@@ -186,10 +186,16 @@ export default {
         this.listToEdit = this.checklist;
       }, 1000);
     });
+
+    socketService.on('loading', (task) => {
+      setTimeout(() => {
+        this.listToEdit = task.checklist.find((currChecklist) => currChecklist.id === this.listToEdit.id);
+        this.calcDone();
+      }, 500);
+    });
   },
   methods: {
     toggleEdit(todoId) {
-      // console.log('edit');
       if (this.target) {
         this.target = null;
         this.isEdit = false;
