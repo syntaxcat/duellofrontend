@@ -28,7 +28,7 @@
     color: white;
     height: 32px;
   }
-
+  
   .add-card-btn {
     background-color: #0179bf;
   }
@@ -120,7 +120,6 @@
 
   ul {
     padding-inline: 4px;
-
     li {
       position: relative;
       background-color: $clr3;
@@ -268,8 +267,9 @@
       margin-right: 8px;
       align-self: center;
       .icon-base svg {
-        width: 18px;
-        height: 18px;
+        color: $groupMoreClr;
+        width: 22px;
+        height: 20px;
         padding: 3px;
       }
     }
@@ -325,7 +325,7 @@
       .icon-base {
         width: 16px;
         height: 16px;
-        fill: #6b778c;
+        fill: $groupMoreClr;
       }
 
       padding: 5px;

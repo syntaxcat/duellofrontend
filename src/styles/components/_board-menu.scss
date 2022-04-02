@@ -71,6 +71,10 @@
       &:hover {
         cursor: pointer;
       }
+      svg{
+        width: 20px;
+        height: 20px;
+      }
     }
 
     .close-btn {
@@ -85,10 +89,10 @@
       transform: translateX(-40px);
       transition: opacity 0.1s ease-in, transform 0.2s ease-in;
 
-      svg {
-        width: 32px;
-        height: 32px;
-      }
+      // svg {
+      //   width: 32px;
+      //   height: 32px;
+      // }
     }
   }
 
@@ -150,7 +154,7 @@
 
         h3 {
           font-size: 14px;
-          font-weight: 700;
+          font-weight: 600;
         }
       }
     }
@@ -167,14 +171,25 @@
   .navigation-item {
     display: block;
     border-radius: 3px;
-    font-weight: 600;
     line-height: 20px;
     padding: 6px 6px 6px 40px;
     position: relative;
-
+    h3{
+      
+      font-weight: 600;
+      font-size: 14px;
+}
     .icon-base {
       left: 8px;
       top: 6px;
+    }
+
+    img, .color-box{
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 10px;
+      border-radius: 10px;
     }
 
     &:hover {

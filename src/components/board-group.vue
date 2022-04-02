@@ -84,26 +84,7 @@
       <div class="modal-content">
         <div>
           <p @click="createTask(group.id)">Add card</p>
-          <p>Copy list...</p>
-          <p>Move list...</p>
-          <p>Watch</p>
         </div>
-        <hr />
-        <p>Sort by</p>
-        <hr />
-        <div>
-          <h3>Automation</h3>
-          <p>When a card is added to the list...</p>
-          <p>Every day, sort list by...</p>
-          <p>Every Monday, sort list by...</p>
-          <p>Create costume rule</p>
-        </div>
-        <hr />
-        <div>
-          <p>Move all card in this list...</p>
-          <p>Delete all cards in this list...</p>
-        </div>
-        <hr />
         <p @click="removeGroup(group.id)">Delete this list</p>
       </div>
     </div>

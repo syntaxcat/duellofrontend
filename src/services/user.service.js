@@ -5,7 +5,7 @@ export const userService = {
   login,
   signup,
   logout,
-  getGuestUser,
+  // getGuestUser,
   getUsers,
 };
 
@@ -46,3 +46,11 @@ function getGuestUser() {
   var user = getLoggedinUser()
   if (user) socketService.emit('set-user-socket', user._id)
 })();
+// function getGuestUser() {
+//   return {
+//     fullname: 'Guest User',
+//     username: 'guest',
+//     password: 'guest',
+//     imgUrl:
+//   };
+// }

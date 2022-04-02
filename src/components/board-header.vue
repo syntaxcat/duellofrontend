@@ -2,7 +2,7 @@
   <section>
     <section>
       <section>
-        <board-menu @closeMenu="toggleMenu" v-if="isMenuOpen"></board-menu>
+        <board-menu :board="board" @closeMenu="toggleMenu" v-if="isMenuOpen"></board-menu>
       </section>
 
       <section :class="['board-header', txtClr]" v-if="board">
