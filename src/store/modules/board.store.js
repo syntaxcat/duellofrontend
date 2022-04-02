@@ -271,8 +271,9 @@ export const boardStore = {
       }
     },
     async drag({ commit, state }, { value }) {
+      // const newBoard = await boardService.updateGroups(value, JSON.parse(JSON.stringify(state.board)));
+      // commit({ type: 'setBoard', board: newBoard });
       commit({ type: 'updateGroups', newOrder: value });
-      await nextTick()
       await boardService.updateGroups(value, {
         ...state.board,
       });
@@ -281,7 +282,6 @@ export const boardStore = {
       try {
         group.tasks = value;
         commit({ type: 'updateGroup', updatedGroup: group });
-        // await nextTick()
         await boardService.updateAfterTaskDrag(group, JSON.parse(JSON.stringify(state.board)));
       } catch (err) {
         console.log(err);

@@ -136,10 +136,8 @@ export default {
       return this.isOpen ? 'open' : '';
     },
     isFavorite() {
-      console.log(this.board.isStarred);
       if (this.board.isStarred) return 'full-star';
       else return 'empty-star';
-      // return this.isFull ? 'full-star' : 'empty-star';
     },
   },
   components: {

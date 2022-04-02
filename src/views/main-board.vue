@@ -46,7 +46,6 @@
 <script>
 import { VueDraggableNext } from 'vue-draggable-next';
 import { socketService } from '../services/socket.service';
-// import { nextTick } from 'vue';
 import boardHeader from '../components/board-header.vue';
 import mainHeader from '../components/main-header.vue';
 import boardGroup from '../components/board-group.vue';
@@ -71,9 +70,13 @@ export default {
       boardId: this.$route.params.boardId,
     });
     this.board = board;
+    const user = this.$store.getters.user;
     socketService.emit('on-board', this.board._id);
+    socketService.emit('user-watch', user._id);
+
     socketService.on('update', (board) => {
       this.board = { ...board };
+      // this.$store.dispatch({ type: 'updateBoard', board, isSocket: true });
     });
   },
   methods: {
@@ -115,9 +118,8 @@ export default {
   computed: {
     groups: {
       get() {
-        // nextTick();
+        console.log('getting', this.$store.getters.groups);
         return this.$store.getters.groups;
-        // this.$nextTick(() => this.$store.getters.groups);
       },
       set(value) {
         this.$store.dispatch({ type: 'drag', value });

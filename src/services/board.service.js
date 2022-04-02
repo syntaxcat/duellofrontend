@@ -71,6 +71,8 @@ async function updateGroup(newGroup, boardId) {
 async function updateGroups(newOrder, board) {
   board.groups = newOrder;
   await updateBoard(board);
+  // console.log(newOrder);
+  // return board;
   return newOrder;
 }
 
@@ -201,10 +203,8 @@ async function _getBoard(boardId) {
 }
 
 async function updateBoard(newUpdated) {
-  await httpService.put(`board/${newUpdated._id}`, newUpdated);
-  console.log('23');
-  await nextTick()
-  console.log('hi');
   socketService.emit('update', newUpdated);
-  return newUpdated
+
+  return await httpService.put(`board/${newUpdated._id}`, newUpdated);
 }
+

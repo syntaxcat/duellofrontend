@@ -161,9 +161,6 @@ export default {
       required: true,
     },
   },
-  created() {
-    console.log(this.boards);
-  },
   methods: {
     toggleFavorites(board) {
       board.isStarred = !board.isStarred;
@@ -172,7 +169,6 @@ export default {
   },
   computed: {
     isFavorite() {
-      // console.log(this.board.isStarred);
       return this.board.isStarred ? 'full-star' : 'empty-star';
     },
     starredBoards() {
