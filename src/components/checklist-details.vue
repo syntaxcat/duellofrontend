@@ -77,7 +77,7 @@
           </div>
 
           <div class="add-todo edit-todo" v-if="isEdit && todo.id === target">
-            <textarea placeholder="Add an item" v-model="todo.title"></textarea>
+            <resizable-textarea :autofocus="true" :value="todo.title" @valueChange="(value) => (todo.title = value)" />
 
             <div class="add-controls">
               <div class="container">
@@ -117,7 +117,13 @@
 
     <div class="add-todo">
       <button v-if="!isAdd" @click="isAdd = !isAdd">Add an item</button>
-      <textarea placeholder="Add an item" v-if="isAdd" v-model="todoToAdd.title"></textarea>
+      <resizable-textarea
+        v-if="isAdd"
+        :placeholder="'Add an item'"
+        :autofocus="true"
+        :value="todoToAdd.title"
+        @valueChange="(value) => (todoToAdd.title = value)"
+      />
 
       <div class="add-controls" v-if="isAdd">
         <div class="container">
@@ -150,6 +156,7 @@ import { VueDraggableNext } from 'vue-draggable-next';
 import iconBase from './icon-base.vue';
 import deleteTodo from './dynamic-components/delete-todo-cmp.vue';
 import deleteModal from './delete-modal.vue';
+import resizableTextarea from './resizable-textarea.vue';
 
 export default {
   props: {
@@ -256,6 +263,7 @@ export default {
     deleteTodo,
     deleteModal,
     draggable: VueDraggableNext,
+    resizableTextarea,
   },
 };
 </script>
