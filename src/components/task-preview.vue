@@ -22,7 +22,7 @@
       v-if="canEditTitle"
       :autofocus="true"
     />
-    <resizable-textarea v-else :value="taskToEditPartial.title" :disabled="true" />
+    <resizable-textarea v-else :value="taskTitle" :disabled="true" />
     <div v-if="!isCoverBcg" class="task-extras">
       <div class="left">
         <span v-if="task.dueDate" :class="['due-date', isDuePassed, isDueCompleted]">
@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-    <div  v-if="!isCoverBcg" class="member-list">
+    <div v-if="!isCoverBcg" class="member-list">
       <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
     </div>
   </section>
@@ -85,6 +85,7 @@ export default {
       taskCover: null,
       isDueComplete: false,
       dueStatus: null,
+      taskTitle: this.task.title,
     };
   },
   methods: {
@@ -164,6 +165,11 @@ export default {
     },
     isDuePassed() {
       return this.dueStatus;
+    },
+  },
+  watch: {
+    task() {
+      this.taskTitle = this.task.title;
     },
   },
   components: {
