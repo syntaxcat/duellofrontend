@@ -2,7 +2,7 @@
   <section>
     <div :class="['board-menu-modal', isNewFrame]">
       <div :class="['menu-title', isNewFrame]">
-        <icon-base class="back-btn" @click="backToMenu" iconName="chevron-left" />
+        <icon-base class="back-btn" @click="backToMenu" iconName="icon-back" />
         <h3>{{ menuTitle }}</h3>
         <icon-base class="close-btn" @click="closeMenu" iconName="x" />
       </div>
@@ -11,30 +11,12 @@
         <div class="board-menu-costumize">
           <ul>
             <li>
-              <div class="about-board navigation-item">
-                <icon-base iconName="trello-block" />
-                <div class="menu-text">
-                  <h3>About this Board</h3>
-                  <p>Add a description to you board</p>
-                </div>
-              </div>
             </li>
             <li class="navigation-item" @click="toggleBcSelect">
               <img v-if="boardStyle.type === 'img'" :src="boardStyle.backgroundImg" />
+              <img v-else class="color-box" :style="`background-color: ${boardStyle.color}`" />
               <div class="menu-text">
                 <h3>Change Backround</h3>
-              </div>
-            </li>
-            <li class="navigation-item">
-              <icon-base iconName="sticker" />
-              <div class="menu-text">
-                <h3>Stickers</h3>
-              </div>
-            </li>
-            <li class="navigation-item">
-              <icon-base iconName="more" />
-              <div class="menu-text">
-                <h3>more</h3>
               </div>
             </li>
           </ul>
