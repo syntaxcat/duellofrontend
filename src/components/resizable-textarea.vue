@@ -2,7 +2,7 @@
   <textarea
     rows="1"
     :disabled="disabled"
-    ref="myInput"
+    ref="textarea"
     :value="value"
     @input="onInput"
     @blur="handleBlur"
@@ -31,8 +31,8 @@ export default {
   },
   methods: {
     updateHeigh() {
-      this.$refs.myInput.style.height = 'auto';
-      this.$refs.myInput.style.height = this.$refs.myInput.scrollHeight + 'px';
+      this.$refs.textarea.style.height = 'auto';
+      this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
     },
     onInput(e) {
       this.$emit('valueChange', e.target.value);
@@ -43,7 +43,7 @@ export default {
   },
   mounted() {
     if (this.autofocus) {
-      this.$refs.myInput.focus();
+      this.$refs.textarea.focus();
     }
     this.updateHeigh();
   },
