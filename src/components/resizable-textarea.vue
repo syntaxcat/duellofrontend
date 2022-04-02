@@ -1,6 +1,7 @@
 <template>
   <textarea
     rows="1"
+    :disabled="disabled"
     ref="textarea"
     :value="value"
     @input="onInput"
@@ -20,6 +21,10 @@ export default {
       required: true,
     },
     autofocus: {
+      type: Boolean,
+      required: false,
+    },
+    disabled: {
       type: Boolean,
       required: false,
     },
@@ -46,6 +51,9 @@ export default {
     value() {
       this.updateHeigh();
     },
+  },
+  updated() {
+    this.updateHeigh();
   },
 };
 </script>
