@@ -71,13 +71,17 @@ export default {
     });
     this.board = board;
     const user = this.$store.getters.user;
+
     socketService.emit('on-board', this.board._id);
     socketService.emit('user-watch', user._id);
 
-    socketService.on('update', (board) => {
-      console.log(board);
-      // this.board = { ...board };
+    socketService.on('update', (board, userId) => {
+      if (userId !== user._id) {
+        this.board = { ...board };
+        return;
+      }
       this.$store.dispatch({ type: 'updateBoardSocket', board });
+      this.board = this.$store.getters.board;
     });
   },
   methods: {
@@ -119,7 +123,6 @@ export default {
   computed: {
     groups: {
       get() {
-        console.log('getting', this.$store.getters.groups);
         return this.$store.getters.groups;
       },
       set(value) {

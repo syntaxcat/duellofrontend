@@ -121,6 +121,18 @@ export default {
   created() {
     this.$store.commit({ type: 'setGroup', group: this.group });
     window.addEventListener('resize', this.onResize);
+
+    socketService.on('update', (board, userId) => {
+      // console.log(userId);
+      console.log('socket');
+
+      // if (userId !== user._id) {
+      //   this.board = { ...board };
+      //   return;
+      // }
+      // this.$store.dispatch({ type: 'updateBoardSocket', board });
+      // this.board = this.$store.getters.board;
+    });
   },
   methods: {
     onResize() {

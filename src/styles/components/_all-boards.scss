@@ -225,6 +225,9 @@
   }
 
   .workspace {
+    @media (max-width: $break-narrow) {
+    }
+
     h3 {
       color: #5e6c84;
       font-size: 16px;
@@ -234,6 +237,10 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+
+      @media (max-width: $break-narrow) {
+        margin-left: 40px;
+      }
     }
 
     .container-header {
@@ -254,6 +261,10 @@
         left: -40px;
         position: absolute;
         top: 0;
+
+        @media (max-width: $break-narrow) {
+          left: -4px;
+        }
       }
 
       h3 {
@@ -263,6 +274,10 @@
         font-weight: 700;
         line-height: 24px;
         margin: 6px 0 0;
+
+        @media (max-width: $break-narrow) {
+          margin-left: 40px;
+        }
       }
 
       .options {

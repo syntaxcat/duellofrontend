@@ -53,6 +53,10 @@
     justify-content: center;
     width: 100%;
 
+    @media (min-width: $break-narrow) {
+      flex-direction: row;
+    }
+
     .nav-bar {
       width: 240px;
       margin: 40px 0 0;
@@ -60,13 +64,10 @@
       align-self: flex-start;
 
       @media (max-width: $break-narrow) {
-        // width: calc(50% - 4px);
         display: none;
-        // width: 50%;
       }
       @media (min-width: $break-narrow) {
         display: block;
-        // width: 32%;
       }
 
       div:first-child {

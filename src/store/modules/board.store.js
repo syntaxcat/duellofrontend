@@ -271,8 +271,6 @@ export const boardStore = {
       }
     },
     async drag({ commit, state }, { value }) {
-      // const newBoard = await boardService.updateGroups(value, JSON.parse(JSON.stringify(state.board)));
-      // commit({ type: 'setBoard', board: newBoard });
       commit({ type: 'updateGroups', newOrder: value });
       await boardService.updateGroups(value, {
         ...state.board,
@@ -327,5 +325,9 @@ export const boardStore = {
     getActivities({ commit }) {
       commit({ type: 'getActivities' });
     },
+    updateBoardSocket({ commit }, { board }) {
+      commit({ type: 'setBoard', board });
+    },
+
   },
 };
