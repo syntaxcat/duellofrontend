@@ -12,13 +12,13 @@
 <script>
 export default {
   props: {
-    placeholder: {
-      type: String,
-      required: false,
-    },
     value: {
       type: String,
       required: true,
+    },
+    placeholder: {
+      type: String,
+      required: false,
     },
     autofocus: {
       type: Boolean,

@@ -50,6 +50,7 @@
         </draggable>
       </ul>
 
+      <!--  -->
       <div class="create-btn" v-if="isNewTask">
         <div class="new-task-container">
           <div class="textarea-wrapper">
