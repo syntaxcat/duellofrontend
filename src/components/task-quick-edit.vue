@@ -41,14 +41,6 @@
           <icon-base iconName="cover" />
           <span>Change cover</span>
         </button>
-        <button>
-          <icon-base iconName="move" />
-          <span>Move</span>
-        </button>
-        <button>
-          <icon-base iconName="cardB" />
-          <span>Copy</span>
-        </button>
         <button @click="selectComponent('calendar-cmp')">
           <icon-base iconName="clock" />
           <span>Edit dates</span>
