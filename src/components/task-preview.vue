@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="member-list">
+    <div  v-if="!isCoverBcg" class="member-list">
       <img v-for="member in task.members" :key="member._id" :src="member.imgUrl" />
     </div>
   </section>
