@@ -172,27 +172,23 @@
     }
   }
 }
-@media (max-width: 520px)  {
-  .main-header{
-    .main-logo{
-      // background-color: #cf513d;
-    }
-    .buttons>*:not(.main-logo, :nth-child(3n)){
-
-        display: none;
+@media (max-width: 520px) {
+  .main-header {
+    .buttons > *:not(.main-logo, :nth-child(3n)) {
+      display: none;
     }
   }
 }
-@media (max-width: 865px)  {
-  .main-header{
-    .search-input{
+@media (max-width: 865px) {
+  .main-header {
+    .search-input {
       width: 34px;
-      input{
+      input {
         display: none;
       }
     }
-    .information>*:not(:first-child, :last-child){
-      display: none
+    .information > *:not(:first-child, :last-child) {
+      display: none;
     }
   }
 }
