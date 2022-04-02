@@ -5,7 +5,7 @@
         <button>
           <icon-base iconName="grid" class="grid" />
         </button>
-        <button @click="goHome">
+        <button class="main-logo" @click="goHome">
           <div class="logo-img"></div>
           <span>Duello</span>
         </button>
@@ -42,7 +42,7 @@
         <label v-if="user" class="user-icon">
           <img :src="user.imgUrl" referrerpolicy="no-referrer" />
         </label>
-        <button @click="signOut">logout</button>
+        <!-- <button @click="signOut">logout</button> -->
       </div>
     </nav>
     <create-board
