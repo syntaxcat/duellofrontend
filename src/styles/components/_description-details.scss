@@ -1,6 +1,5 @@
 .description {
   position: relative;
-  margin-bottom: rem(24px);
 
   .header {
     position: relative;
@@ -38,16 +37,17 @@
     margin-left: 40px;
 
     .fake-textarea {
+      white-space: pre-line;
       width: 100%;
       cursor: pointer;
       display: block;
-      height: 60px;
+      min-height: 40px;
       color: #172b4d;
       background-color: #eaecf0;
-      text-decoration: none;
       padding: 8px 12px;
       border-radius: 3px;
       border: none;
+      font-size: 14px;
 
       &.description {
         background-color: inherit;

@@ -14,13 +14,13 @@
       </div>
 
       <div class="real-textarea" v-else>
-        <textarea
-          type="text"
-          ref="addDesc"
-          @blur="saveDesc"
-          v-model="taskToEdit.description"
+        <resizable-textarea
           placeholder="Add a more detailed description..."
-        ></textarea>
+          focusOut="saveDesc"
+          :value="taskToEdit.description"
+          @valueChange="onDescriptionChanged"
+          :autofocus="true"
+        />
 
         <div class="actions">
           <button class="save-description" @click="saveDesc">Save</button>
@@ -35,8 +35,9 @@
 
 <script>
 import iconBase from './icon-base.vue';
+import resizableTextarea from './resizable-textarea.vue';
 export default {
-  components: { iconBase },
+  components: { iconBase, resizableTextarea },
   props: {
     taskToEdit: {
       type: Object,
@@ -49,9 +50,11 @@ export default {
     };
   },
   methods: {
+    onDescriptionChanged(value) {
+      this.taskToEdit.description = value;
+    },
     addDesc() {
       this.addDescription = !this.addDescription;
-      this.$nextTick(() => this.$refs.addDesc.focus());
     },
     saveDesc() {
       this.$emit('save', { ...this.taskToEdit });

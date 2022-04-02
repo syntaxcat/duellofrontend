@@ -13,14 +13,13 @@
 
       <div :class="['comment-frame', isShow]">
         <div class="comment-box">
-          <textarea
-            type="text"
-            placeholder="Write a comment..."
-            ref="textarea"
-            v-model="commentToEdit.txt"
+          <resizable-textarea
+            :value="commentToEdit.txt"
+            @valueChange="edit"
             @click="open"
-            @blur="close"
-          ></textarea>
+            @focusOut="close"
+            :placeholder="'Write a comment...'"
+          />
 
           <button :class="['save-comment', isAllowed]" @click.stop="save">Save</button>
 
@@ -54,6 +53,7 @@ import { socketService } from '../services/socket.service';
 import iconBase from './icon-base.vue';
 import commentCmp from './comment-cmp.vue';
 import activityCmp from './dynamic-components/activity-cmp.vue';
+import resizableTextarea from './resizable-textarea.vue';
 
 export default {
   props: {
@@ -84,6 +84,9 @@ export default {
     });
   },
   methods: {
+    edit(txt) {
+      this.commentToEdit.txt = txt;
+    },
     getContentForDisplay() {
       const activities = this.task.activities.filter((activity) => activity.task.id === this.taskToEdit.id);
       this.mixedContent = this.task.comments.concat(activities).sort((a, b) => b.createdAt - a.createdAt);
@@ -122,7 +125,6 @@ export default {
       };
       this.commentToEdit.createdAt = Date.now();
       this.$emit('save', { ...this.commentToEdit }, this.task.id);
-      this.$refs.textarea.blur();
       this.commentToEdit = taskService.getEmptyComment();
       this.commentToEdit.txt = '';
       this.getContentForDisplay();
@@ -143,6 +145,6 @@ export default {
       return this.mixedContent.filter((content) => !content.action).sort((a, b) => b.createdAt - a.createdAt);
     },
   },
-  components: { iconBase, commentCmp, activityCmp, activityCmp },
+  components: { iconBase, commentCmp, activityCmp, activityCmp, resizableTextarea },
 };
 </script>

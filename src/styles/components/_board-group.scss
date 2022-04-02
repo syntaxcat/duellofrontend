@@ -1,16 +1,21 @@
 .new-task-container {
-  padding: 0 8px;
-  .new-task {
-    border-radius: 3px;
+  padding: 0 4px;
+  textarea {
     width: 100%;
     resize: none;
     min-height: 66px !important;
     overflow: hidden;
     outline: none;
     border: none;
-    box-shadow: 0 1px 0 #091e4240;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
       sans-serif;
+  }
+
+  .textarea-wrapper {
+    border-radius: 3px;
+    background-color: white;
+    padding: 6px 8px 1px;
+    box-shadow: 0 1px 0 #091e4240;
   }
 
   .buttons-container {

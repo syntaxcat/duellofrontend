@@ -13,7 +13,7 @@
 
       <div class="edit-comment" v-if="isEdit">
         <div class="comment-box">
-          <textarea type="text" v-model="commentToEdit.txt"></textarea>
+          <resizable-textarea :value="commentToEdit.txt" @valueChange="onCommentChanged" :autofocus="true" />
 
           <button :class="['save-comment']" @click="editComment">Save</button>
           <icon-base class="close-btn" iconName="x" @click="isEdit = !isEdit" />
@@ -60,6 +60,7 @@
 import { eventBus } from '../services/eventBus.service';
 import { formatDistance } from 'date-fns';
 import iconBase from './icon-base.vue';
+import resizableTextarea from './resizable-textarea.vue';
 
 export default {
   props: {
@@ -87,6 +88,9 @@ export default {
     this.unsubscribe = eventBus.on('open-delete-modal', this.closeModal);
   },
   methods: {
+    onCommentChanged(value) {
+      this.commentToEdit.txt = value;
+    },
     open() {
       eventBus.emit('open-delete-modal', false);
       this.openModal = !this.openModal;
@@ -110,7 +114,7 @@ export default {
       return formatDistance(new Date(this.commentToEdit.createdAt), new Date(Date.now()));
     },
   },
-  components: { iconBase },
+  components: { iconBase, resizableTextarea },
   unmounted() {
     this.unsubscribe();
   },

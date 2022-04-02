@@ -15,15 +15,14 @@
         <span :class="labelsExpanded ? 'show' : 'hide'">{{ label.title }}&nbsp;</span>
       </div>
     </div>
-    <textarea
-      v-if="canEditTitle"
+    <resizable-textarea
       class="isEditing"
-      v-model="taskToEditPartial.title"
-      ref="textarea"
-      @blur="editTask()"
-      @input="saveEdit(task)"
-    ></textarea>
-    <textarea v-else v-model="task.title" ref="textarea" @blur="editTask()" @input="saveEdit(task)"></textarea>
+      :value="taskToEditPartial.title"
+      @valueChange="saveEdit"
+      v-if="canEditTitle"
+      :autofocus="true"
+    />
+    <resizable-textarea v-else :value="taskToEditPartial.title" :disabled="true" />
     <div v-if="!isCoverBcg" class="task-extras">
       <div class="left">
         <span v-if="task.dueDate" :class="['due-date', isDuePassed, isDueCompleted]">
@@ -64,8 +63,9 @@
 </template>
 
 <script>
-import { isAfter, isBefore } from 'date-fns';
+import { isBefore } from 'date-fns';
 import iconBase from './icon-base.vue';
+import resizableTextarea from './resizable-textarea.vue';
 
 export default {
   props: {
@@ -109,33 +109,9 @@ export default {
       e.stopPropagation();
       this.$emit('toggleLabelsExpanded');
     },
-    async saveEdit() {
+    async saveEdit(txt) {
+      this.taskToEditPartial.title = txt;
       this.$emit('editTask', this.taskToEditPartial);
-    },
-
-    editTask(taskId) {
-      if (taskId === this.task.id) {
-        // this.updateHeigh();
-        // if (this.isEditing) this.$nextTick(() => this.$refs.textarea.focus());
-      }
-    },
-    updateHeigh() {
-      // if (this.task.style.cover.style === 'background') {
-      //   this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
-      // } else
-      //   this.$refs.textarea.style.height =
-      //     this.$refs.textarea.scrollHeight - this.$refs.textarea.scrollHeight / 3.5 + 'px';
-    },
-  },
-  mounted() {
-    this.updateHeigh();
-  },
-  watch: {
-    taskToEditPartial: {
-      handler(val) {
-        // this.updateHeigh();
-      },
-      deep: true,
     },
   },
   computed: {
@@ -192,6 +168,7 @@ export default {
   },
   components: {
     iconBase,
+    resizableTextarea,
   },
 };
 </script>

@@ -282,7 +282,7 @@ export default {
       this.taskPartial = taskPartial;
     },
     async archive() {
-      await this.$store.dispatch({ type: 'removeTask', taskId: this.task.id, groupId: this.groupId });
+      await this.$store.dispatch({ type: 'removeTask', taskId: this.taskId, groupId: this.groupId });
       this.$emit('close');
     },
   },
