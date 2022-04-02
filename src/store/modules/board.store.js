@@ -140,6 +140,8 @@ export const boardStore = {
       state.boardGroups.push(newGroup);
     },
     updateGroup(state, { updatedGroup }) {
+      console.log('update');
+
       const idx = state.board.groups.findIndex((grp) => grp.id === updatedGroup.id);
       state.board.groups.splice(idx, 1, updatedGroup);
     },

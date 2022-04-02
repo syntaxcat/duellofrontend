@@ -49,16 +49,10 @@
           </li>
         </draggable>
       </ul>
-      <div v-if="isNewTask" class="create-btn">
-        <div class="new-task-container">
-          <div class="textarea-wrapper">
-            <resizable-textarea
-              :value="taskTitle"
-              @valueChange="editTaskTitle"
-              @focusOut="isNewTask = false"
-              :autofocus="true"
-            />
-          </div>
+
+      <div class="create-btn" v-if="isNewTask">
+        <div v-if="isNewTask" class="new-task-container">
+          <textarea class="new-task" v-model="taskTitle" ref="taskInput" @blur="isNewTask = false"></textarea>
           <div class="buttons-container">
             <button @mousedown="addTask(group.id)" @touchstart="addTask(group.id)" class="add-card-btn">
               Add card
@@ -104,7 +98,6 @@ import iconBase from './icon-base.vue';
 import taskPreview from '../components/task-preview.vue';
 import IconBase from './icon-base.vue';
 import TaskPreview from '../components/task-preview.vue';
-import resizableTextarea from './resizable-textarea.vue';
 
 export default {
   props: {
@@ -128,25 +121,13 @@ export default {
   created() {
     this.$store.commit({ type: 'setGroup', group: this.group });
     window.addEventListener('resize', this.onResize);
-
-    socketService.on('update', (board, userId) => {
-      // console.log(userId);
-      console.log('socket');
-
-      // if (userId !== user._id) {
-      //   this.board = { ...board };
-      //   return;
-      // }
-      // this.$store.dispatch({ type: 'updateBoardSocket', board });
-      // this.board = this.$store.getters.board;
-    });
   },
   methods: {
-    editTaskTitle(txt) {
-      this.taskTitle = txt;
-    },
     onResize() {
       if (this.isEditModal) this.isEditModal = false;
+    },
+    updateHeigh() {
+      this.$refs.taskInput.style.height = this.$refs.taskInput.scrollHeight + 'px';
     },
     toggleLabelsExpanded() {
       this.$store.dispatch({
@@ -189,6 +170,9 @@ export default {
       this.isNewTask = false;
       this.taskTitle = '';
     },
+    log(ev) {
+      ev.target.style.opacity = 1;
+    },
     quickEdit(ev, task) {
       const { left, top, width } = ev.target.closest('li').getBoundingClientRect();
       this.$emit('quickEdit', task, { left, top }, width);
@@ -208,9 +192,19 @@ export default {
       },
     },
   },
+  updated() {
+    if (this.isNewTask) {
+      this.$refs.taskInput.focus();
+    }
+  },
+  watch: {
+    taskTitle() {
+      this.updateHeigh();
+    },
+  },
   destroyed() {
     window.removeEventListener('resize', this.onResize);
   },
-  components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext, TaskPreview, resizableTextarea },
+  components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext, TaskPreview },
 };
 </script>
