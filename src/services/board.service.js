@@ -207,4 +207,3 @@ async function updateBoard(newUpdated) {
 
   return await httpService.put(`board/${newUpdated._id}`, newUpdated);
 }
-

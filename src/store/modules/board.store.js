@@ -2,7 +2,7 @@ import { boardService } from '../../services/board.service';
 import { taskService } from '../../services/task.service';
 import { designService } from '../../services/design.services';
 import { utilService } from '../../services/util.service';
-import { nextTick } from 'vue'
+import { nextTick } from 'vue';
 
 export const boardStore = {
   state: {
@@ -17,17 +17,17 @@ export const boardStore = {
     comments: [],
     bcg: '#026AA7',
     isDark: true,
-    BoardStyle: null
+    BoardStyle: null,
   },
   getters: {
     board(state) {
       return state.board;
     },
     activities(state) {
-      return state.board.activities
+      return state.board.activities;
     },
     comments(state) {
-      return state.comments
+      return state.comments;
     },
     boardLabels(state) {
       return state.board.labels;
@@ -57,49 +57,46 @@ export const boardStore = {
       return state.bcg;
     },
     isDark(state) {
-      return state.isDark
+      return state.isDark;
     },
     boardStyle(state) {
-      return state.boardStyle
-    }
+      return state.boardStyle;
+    },
   },
   mutations: {
     getActivities(state) {
-      var activities = []
+      var activities = [];
 
-      state.board.groups.forEach(group => {
+      state.board.groups.forEach((group) => {
         if (group.tasks && group.tasks.length) {
-
-          group.tasks.forEach(task => {
+          group.tasks.forEach((task) => {
             if (task.activities && task.activities.length) {
               console.log(task.activities);
-              task.activities = task.activities.map(activity => {
-                if (!activity.byMember) activity.byMember = user
-                return activity
-              })
+              task.activities = task.activities.map((activity) => {
+                if (!activity.byMember) activity.byMember = user;
+                return activity;
+              });
 
-              activities = [...activities, ...task.activities]
+              activities = [...activities, ...task.activities];
             }
-          })
+          });
         }
-      })
-      state.board.activities = activities
+      });
+      state.board.activities = activities;
     },
     getComments(state) {
-      var comments = []
+      var comments = [];
 
-      state.board.groups.forEach(group => {
+      state.board.groups.forEach((group) => {
         if (group.tasks && group.tasks.length) {
-
-          group.tasks.forEach(task => {
+          group.tasks.forEach((task) => {
             if (task.comments && task.comments.length) {
-
-              comments = [...comments, ...task.comments]
+              comments = [...comments, ...task.comments];
             }
-          })
+          });
         }
-      })
-      state.comments = comments
+      });
+      state.comments = comments;
     },
     getChecklists(state) {
       var lists = [];
@@ -133,8 +130,8 @@ export const boardStore = {
       state.boardGroups = board.groups;
       if (board.style.type === 'img') state.bcg = board.style.color;
       else state.bcg = '#00000029';
-      state.isDark = board.style.isDark
-      state.boardStyle = board.style
+      state.isDark = board.style.isDark;
+      state.boardStyle = board.style;
     },
     setBoards(state, { boards }) {
       state.boards = boards;
@@ -169,7 +166,7 @@ export const boardStore = {
     },
     resetBcg(state) {
       state.bcg = '#026AA7';
-      state.isDark = true
+      state.isDark = true;
     },
   },
   actions: {
@@ -307,7 +304,7 @@ export const boardStore = {
     async updateBoard({ commit }, { board }) {
       try {
         const newBoard = await boardService.updateBoard(board);
-        console.log('board', newBoard)
+        console.log('board', newBoard);
         commit({ type: 'setBoard', board: newBoard });
       } catch (err) {
         console.log(err);

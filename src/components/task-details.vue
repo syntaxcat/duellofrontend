@@ -14,7 +14,7 @@
         <div class="task-details-container">
           <icon-base class="card-header" iconName="cardB" />
           <div>
-            <textarea type="text" v-model="taskToEdit.title"></textarea>
+            <resizable-textarea :value="taskToEdit.title" @valueChange="handleTitleChange" @focusOut="saveTitle" />
             <div class="info-in-group">
               <p>
                 in list
@@ -126,6 +126,7 @@ import attachmentDetails from '../components/attachment-details.vue';
 import checklistDetails from './checklist-details.vue';
 import coverCmp from './dynamic-components/cover-cmp.vue';
 import giphyCmp from './dynamic-components/giphy-cmp.vue';
+import resizableTextarea from './resizable-textarea.vue';
 
 export default {
   props: {
@@ -165,6 +166,19 @@ export default {
     });
   },
   methods: {
+    doUpdateTask() {
+      this.$store.dispatch({
+        type: 'updateTask',
+        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
+        groupId: this.groupId,
+      });
+    },
+    handleTitleChange(value) {
+      this.taskToEdit.title = value;
+    },
+    saveTitle() {
+      this.doUpdateTask();
+    },
     addActivity({ type, action }) {
       const activity = boardService.getEmptyActivity();
       activity.type = type;
@@ -173,11 +187,7 @@ export default {
       activity.task = { id: this.taskToEdit.id, title: this.taskToEdit.title };
       this.taskToEdit.activities.unshift(activity);
 
-      this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      this.doUpdateTask();
       this.$store.dispatch({
         type: 'getActivities',
       });
@@ -186,30 +196,18 @@ export default {
       const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checkId);
       const title = this.taskToEdit.checklist[idx].title;
       this.taskToEdit.checklist.splice(idx, 1);
-      this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      this.doUpdateTask();
       this.addActivity({ type: 'activity-cmp', action: `removed ${title} from this card` });
     },
     updateChecklist(checklist) {
       const idx = this.taskToEdit.checklist.findIndex((list) => list.id === checklist.id);
       this.taskToEdit.checklist.splice(idx, 1, checklist);
-      this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      this.doUpdateTask();
       this.addActivity({ type: 'activity-cmp', action: `updated ${checklist.title} in this card` });
     },
     async addChecklist(newChecklist) {
       this.taskToEdit.checklist.unshift(newChecklist);
-      await this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      await this.doUpdateTask();
       this.addActivity({ type: 'activity-cmp', action: `added ${newChecklist.title} to this card` });
       this.hideComponent();
     },
@@ -267,11 +265,7 @@ export default {
     },
     async joinTask() {
       this.taskToEdit.members.unshift(this.loggedinUser);
-      this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      this.doUpdateTask();
     },
     saveDesc(task) {
       this.$store.dispatch({
@@ -298,11 +292,7 @@ export default {
       this.taskToEdit.style.cover.color = color;
       this.taskToEdit.style.cover.imgUrl = '';
       if (!this.taskToEdit.style.cover.style && color) this.taskToEdit.style.cover.style = 'solid';
-      this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      this.doUpdateTask();
     },
     async setCoverImg(imgUrl) {
       this.taskToEdit.style.cover.type = 'img';
@@ -311,19 +301,11 @@ export default {
         this.taskToEdit.style.cover.color = (await designService.getAvgColor(this.taskToEdit.style.cover.imgUrl)).hex;
       else this.taskToEdit.style.cover.color = '';
       if (!this.taskToEdit.style.cover.style && imgUrl) this.taskToEdit.style.cover.style = 'solid';
-      this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      this.doUpdateTask();
     },
     setCoverStyle(coverStyle) {
       this.taskToEdit.style.cover.style = coverStyle;
-      this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      this.doUpdateTask();
     },
     async saveDate(date) {
       console.log(date);
@@ -350,11 +332,7 @@ export default {
       } else {
         this.taskToEdit.members.splice(idx, 1);
       }
-      this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      this.doUpdateTask();
     },
     async removeDate() {
       this.hideComponent();
@@ -403,11 +381,7 @@ export default {
         }
       }
 
-      await this.$store.dispatch({
-        type: 'updateTask',
-        taskPartial: JSON.parse(JSON.stringify(this.taskToEdit)),
-        groupId: this.groupId,
-      });
+      await this.doUpdateTask();
     },
     removeTask() {
       this.$store.dispatch({ type: 'removeTask', taskId: this.taskId, groupId: this.groupId });
@@ -451,6 +425,7 @@ export default {
     attachmentDetails,
     iconBase,
     giphyCmp,
+    resizableTextarea,
   },
 };
 </script>
