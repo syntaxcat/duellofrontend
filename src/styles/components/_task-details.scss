@@ -5,11 +5,28 @@
   top: 0;
   position: fixed;
   background-color: hsl(213deg 31% 13% / 70%);
-  overflow: auto;
-  // padding: 42px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .task-details {
   position: relative;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  min-height: rem(800px);
+  background-color: #f4f5f7;
+
+  @media (max-width: $break-narrow) {
+    width: 100%;
+    margin: 36px 8px 36px 0px;
+  }
+  @media (min-width: $break-narrow) {
+    margin: 36px 8px;
+  }
+  @media (min-width: $break-wide) {
+    width: rem(770px);
+    margin: 42px auto 95px;
+  }
 
   .icon-base {
     display: inline-flex;
@@ -31,6 +48,7 @@
       display: inline-flex;
     }
   }
+
   .member-list {
     .add-btn,
     img {
@@ -46,45 +64,13 @@
           width: 30px;
           height: 30px;
           object-fit: cover;
-          // border-radius:50% ;
           margin: 0 4px 4px 0;
         }
       }
     }
   }
-  // position: relative;
-  // position: absolute;
-  border-radius: 3px;
-  display: flex;
-  margin: auto;
-  flex-direction: column;
-  // border: 1px solid black;
-  width: rem(770px);
-  min-height: rem(800px);
-  margin-top: 42px;
-  margin-bottom: 95px;
-  // margin: ;
-  // z-index: ;
-  // overflow:hidden;
-  // overflow: scroll;
-  // left: 50%;
-  // top: 0;
-  // bottom: -60%;
-  // transform: translate(-50%, 0);
-  background-color: #f4f5f7;
-
-  // > *:first-child {
-  //   // position: absolute;
-  //   width: rem(32px);
-  //   // z-index: 2;
-  //   // right: 0;
-  //   // top: 0;
-  //   padding: rem(4px);
-  //   margin: rem(4px);
-  // }
 }
 .task-header-container {
-  // display: flex;
   position: relative;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -213,23 +199,34 @@
   }
 }
 
-//   .dynamic-details{
-// border-radius: 5px;
-
-//       position: fixed;
-//       left:80%;
-//       top:10%;
-//   }
 .main-container {
   display: flex;
   height: 100%;
-
+  @media (max-width: $break-narrow) {
+    flex-direction: column;
+  }
+  @media (min-width: $break-narrow) {
+    flex-direction: column;
+  }
+  @media (min-width: $break-wide) {
+    flex-direction: row;
+  }
   .content-displayed {
     position: relative;
     width: 576px;
     margin: 0;
     padding: 0 8px 8px 16px;
     z-index: 0;
+
+    @media (max-width: $break-narrow) {
+      width: 100%;
+    }
+    @media (min-width: $break-narrow) {
+      width: 99%;
+    }
+    @media (min-width: $break-wide) {
+      width: 576px;
+    }
 
     h2 {
       font-size: 12px;

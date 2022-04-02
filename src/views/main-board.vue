@@ -75,8 +75,9 @@ export default {
     socketService.emit('user-watch', user._id);
 
     socketService.on('update', (board) => {
-      this.board = { ...board };
-      // this.$store.dispatch({ type: 'updateBoard', board, isSocket: true });
+      console.log(board);
+      // this.board = { ...board };
+      this.$store.dispatch({ type: 'updateBoardSocket', board });
     });
   },
   methods: {

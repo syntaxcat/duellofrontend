@@ -51,15 +51,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // max-width: 1270px;
     width: 100%;
 
     .nav-bar {
-      display: block;
       width: 240px;
       margin: 40px 0 0;
       padding: 0 16px;
       align-self: flex-start;
+
+      @media (max-width: $break-narrow) {
+        // width: calc(50% - 4px);
+        display: none;
+        // width: 50%;
+      }
+      @media (min-width: $break-narrow) {
+        display: block;
+        // width: 32%;
+      }
 
       div:first-child {
         margin-bottom: 12px;

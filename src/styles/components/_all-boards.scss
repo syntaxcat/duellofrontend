@@ -23,17 +23,30 @@
     ul {
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
       margin: 0;
       padding: 0;
       list-style: none;
 
+      @media (max-width: $break-narrow) {
+        justify-content: center;
+      }
+      @media (min-width: $break-narrow) {
+        justify-content: flex-start;
+      }
+
       li {
         position: relative;
         margin: 0 2% 2% 0;
-        width: 23.5%;
-        // pointer-events: none;
-        // the width changes with media query
+
+        @media (max-width: $break-narrow) {
+          width: 40%;
+        }
+        @media (min-width: $break-narrow) {
+          width: 35%;
+        }
+        @media (min-width: $break-wide) {
+          width: 23.5%;
+        }
 
         .board-title-fade {
           background-color: #00000026;
@@ -167,7 +180,7 @@
       font-weight: 400;
 
       &:first-child {
-        margin-block-start: 1em;
+        margin-block-start: 2em;
         font-size: 14px;
       }
       &:last-of-type {
