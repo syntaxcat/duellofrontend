@@ -1,6 +1,6 @@
 .main-header {
   .logo-img {
-    background-image: url('./src/assets/imgs/logo-still.png');
+    background-image: url('./imgs/logo-still.png');
     background-size: 16px 16px;
     height: 16px;
     width: 16px;
@@ -8,7 +8,7 @@
   }
 
   &:hover .logo-img {
-    background-image: url('./src/assets/imgs/logo-ani.gif');
+    background-image: url('./imgs/logo-ani.gif');
   }
 
   nav {
