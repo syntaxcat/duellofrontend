@@ -79,8 +79,10 @@ export default {
   },
   created() {
     this.getContentForDisplay();
-    socketService.on('add-activity', (checklist) => {
-      this.listToEdit = checklist;
+    socketService.on('update', () => {
+      setTimeout(() => {
+        this.getContentForDisplay();
+      }, 1000);
     });
   },
   methods: {
@@ -88,8 +90,11 @@ export default {
       this.commentToEdit.txt = txt;
     },
     getContentForDisplay() {
+      // this.$nextTick(() => {
+      // console.log(this.task.comments);
       const activities = this.task.activities.filter((activity) => activity.task.id === this.taskToEdit.id);
       this.mixedContent = this.task.comments.concat(activities).sort((a, b) => b.createdAt - a.createdAt);
+      // });
     },
     deleteComment(commentId) {
       this.$emit('deleteComment', commentId);

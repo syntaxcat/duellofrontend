@@ -174,8 +174,10 @@ export default {
   },
   created() {
     this.calcDone();
-    socketService.on('add-activity', () => {
-      this.listToEdit = this.checklist;
+    socketService.on('update', () => {
+      setTimeout(() => {
+        this.listToEdit = this.checklist;
+      }, 1000);
     });
   },
   methods: {

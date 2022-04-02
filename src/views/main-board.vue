@@ -73,8 +73,6 @@ export default {
     const user = this.$store.getters.user;
 
     socketService.emit('on-board', this.board._id);
-    socketService.emit('user-watch', user._id);
-
     socketService.on('update', (board, userId) => {
       if (userId !== user._id) {
         this.board = { ...board };

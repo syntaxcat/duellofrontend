@@ -162,7 +162,6 @@ export default {
     socketService.on('update', async () => {
       const res = await taskService.getById(this.taskId, this.groupId, this.boardId);
       this.taskToEdit = { ...res.task };
-      socketService.emit('new-activity');
     });
   },
   methods: {
@@ -257,7 +256,6 @@ export default {
         taskPartial: { id: taskId, comments: [...this.taskToEdit.comments] },
         groupId: this.groupId,
       });
-      // socketService.emit('new-activity');
       this.addActivity({ type: 'activity-cmp', action: `added comment from this card` });
     },
     formatDate(dateString) {

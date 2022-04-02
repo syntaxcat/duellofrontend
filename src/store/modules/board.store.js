@@ -2,7 +2,6 @@ import { boardService } from '../../services/board.service';
 import { taskService } from '../../services/task.service';
 import { designService } from '../../services/design.services';
 import { utilService } from '../../services/util.service';
-import { nextTick } from 'vue';
 
 export const boardStore = {
   state: {
@@ -140,8 +139,6 @@ export const boardStore = {
       state.boardGroups.push(newGroup);
     },
     updateGroup(state, { updatedGroup }) {
-      console.log('update');
-
       const idx = state.board.groups.findIndex((grp) => grp.id === updatedGroup.id);
       state.board.groups.splice(idx, 1, updatedGroup);
     },
