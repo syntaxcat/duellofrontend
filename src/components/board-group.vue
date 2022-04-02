@@ -51,8 +51,16 @@
       </ul>
 
       <div class="create-btn" v-if="isNewTask">
-        <div v-if="isNewTask" class="new-task-container">
-          <textarea class="new-task" v-model="taskTitle" ref="taskInput" @blur="isNewTask = false"></textarea>
+        <div class="new-task-container">
+          <div class="textarea-wrapper">
+            <resizable-textarea
+              @focusOut="isNewTask = false"
+              :value="taskTitle"
+              @valueChange="(value) => (taskTitle = value)"
+              class="new-task"
+              :autofocus="true"
+            />
+          </div>
           <div class="buttons-container">
             <button @mousedown="addTask(group.id)" @touchstart="addTask(group.id)" class="add-card-btn">
               Add card
@@ -98,6 +106,7 @@ import iconBase from './icon-base.vue';
 import taskPreview from '../components/task-preview.vue';
 import IconBase from './icon-base.vue';
 import TaskPreview from '../components/task-preview.vue';
+import resizableTextarea from './resizable-textarea.vue';
 
 export default {
   props: {
@@ -125,9 +134,6 @@ export default {
   methods: {
     onResize() {
       if (this.isEditModal) this.isEditModal = false;
-    },
-    updateHeigh() {
-      this.$refs.taskInput.style.height = this.$refs.taskInput.scrollHeight + 'px';
     },
     toggleLabelsExpanded() {
       this.$store.dispatch({
@@ -192,19 +198,16 @@ export default {
       },
     },
   },
-  updated() {
-    if (this.isNewTask) {
-      this.$refs.taskInput.focus();
-    }
-  },
-  watch: {
-    taskTitle() {
-      this.updateHeigh();
-    },
-  },
   destroyed() {
     window.removeEventListener('resize', this.onResize);
   },
-  components: { taskPreview, iconBase, IconBase, draggable: VueDraggableNext, TaskPreview },
+  components: {
+    resizableTextarea,
+    taskPreview,
+    iconBase,
+    IconBase,
+    draggable: VueDraggableNext,
+    TaskPreview,
+  },
 };
 </script>

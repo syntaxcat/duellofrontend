@@ -77,7 +77,6 @@
           </div>
 
           <div class="add-todo edit-todo" v-if="isEdit && todo.id === target">
-            <!-- <textarea  v-model="todo.title"></textarea> -->
             <resizable-textarea :autofocus="true" :value="todo.title" @valueChange="(value) => (todo.title = value)" />
 
             <div class="add-controls">
