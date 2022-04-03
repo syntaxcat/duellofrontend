@@ -106,6 +106,7 @@
         </div>
       </div>
     </div>
+    <loader v-else color="white" />
   </div>
 </template>
 
@@ -129,7 +130,8 @@ import coverCmp from './dynamic-components/cover-cmp.vue';
 import giphyCmp from './dynamic-components/giphy-cmp.vue';
 import resizableTextarea from './resizable-textarea.vue';
 // import { threadId } from 'worker_threads';
-import copyCmp from './dynamic-components/copy-cmp.vue'
+import copyCmp from './dynamic-components/copy-cmp.vue';
+import loader from './loader.vue';
 
 export default {
   props: {
@@ -423,9 +425,9 @@ export default {
       }
       return '';
     },
-    groups(){
-      return this.$store.getters.groups
-    }
+    groups() {
+      return this.$store.getters.groups;
+    },
   },
   components: {
     taskDetailsMenu,
@@ -442,7 +444,8 @@ export default {
     iconBase,
     giphyCmp,
     resizableTextarea,
-    copyCmp
+    copyCmp,
+    loader,
   },
 };
 </script>

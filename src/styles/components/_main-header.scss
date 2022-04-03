@@ -1,6 +1,6 @@
 .main-header {
   .logo-img {
-    background-image: url('./src/assets/imgs/logo-still.png');
+    background-image: url('https://res.cloudinary.com/dtseyauom/image/upload/v1648936865/logo-still_au8peg.png');
     background-size: 16px 16px;
     height: 16px;
     width: 16px;
@@ -8,7 +8,7 @@
   }
 
   &:hover .logo-img {
-    background-image: url('./src/assets/imgs/logo-ani.gif');
+    background-image: url('https://res.cloudinary.com/dtseyauom/image/upload/v1648936865/logo-ani_lfmboa.gif');
   }
 
   nav {
@@ -156,10 +156,10 @@
       color: $taskD1;
     }
     .logo-img {
-      background-image: url('./src/assets/imgs/logo-still-dark.png');
+      background-image: url('https://res.cloudinary.com/dtseyauom/image/upload/v1648936865/logo-still-dark_wsmcra.png');
     }
     &:hover .logo-img {
-      background-image: url('./src/assets/imgs/logo-ani-dark.gif');
+      background-image: url('https://res.cloudinary.com/dtseyauom/image/upload/v1648936865/logo-ani-dark_pr5ltt.gif');
     }
   }
   &.light-bcg {

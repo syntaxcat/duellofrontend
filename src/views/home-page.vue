@@ -1,11 +1,8 @@
 <template>
   <section class="home-page">
     <main-header />
-    <svg class="loading" v-if="loading" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
-      <line class="line animated" x1="14" y1="10" x2="14" y2="50" />
-      <line class="line animated line2" x1="30" y1="10" x2="30" y2="50" />
-      <line class="line animated line3" x1="46" y1="10" x2="46" y2="50" />
-    </svg>
+
+    <loader v-if="loading" color="#aaa" />
 
     <div v-else class="main-container">
       <div class="nav-bar">
@@ -91,6 +88,7 @@ import mainHeader from '../components/main-header.vue';
 import boardList from '../components/board-list.vue';
 import createBoard from '../components/create-board.vue';
 import allBoards from '../components/all-boards.vue';
+import loader from '../components/loader.vue';
 
 export default {
   data() {
@@ -146,6 +144,7 @@ export default {
     createBoard,
     iconBase,
     allBoards,
+    loader,
   },
 };
 </script>
