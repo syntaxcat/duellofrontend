@@ -256,14 +256,17 @@
       object-fit: cover;
       border-radius: 50%;
     }
+
+    .member-container {
+      cursor: pointer;
+    }
   }
 }
 
 @media (max-width: 430px) {
   .board-header {
-    .members>*:not(:last-child){
+    .members > *:not(:last-child) {
       display: none;
     }
   }
 }
-
