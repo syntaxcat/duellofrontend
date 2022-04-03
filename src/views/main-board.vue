@@ -74,10 +74,10 @@ export default {
 
     socketService.emit('on-board', this.board._id);
     socketService.on('update', (board, userId) => {
-      if (userId !== user._id) {
-        this.board = { ...board };
-        return;
-      }
+      // if (userId !== user._id) {
+      this.board = { ...board };
+      // return;
+      // }
       this.$store.dispatch({ type: 'updateBoardSocket', board });
       this.board = this.$store.getters.board;
     });
