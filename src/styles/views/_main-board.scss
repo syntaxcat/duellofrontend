@@ -28,6 +28,19 @@
     right: 0;
     top: 0;
     white-space: nowrap;
+
+    .smooth-dnd-container.horizontal {
+      display: inherit;
+      min-height: none;
+      min-width: none;
+      .smooth-dnd-container.horizontal {
+        display: inline-flex;
+
+        .smooth-dnd-draggable-wrapper {
+          display: inline-flex;
+        }
+      }
+    }
   }
 
   .group-wrapper {

@@ -29,8 +29,8 @@
               @quickEdit="(task, position, width) => quickEdit(task, position, width, group)"
             />
           </Draggable>
+          <add-group @addGroup="addGroup" class="group-wrapper" />
         </Container>
-        <add-group @addGroup="addGroup" class="group-wrapper" />
       </div>
     </section>
     <task-details

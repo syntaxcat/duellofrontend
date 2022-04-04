@@ -33,7 +33,7 @@
     color: white;
     height: 32px;
   }
-  
+
   .add-card-btn {
     background-color: #0179bf;
   }
@@ -62,6 +62,15 @@
     background-color: $group1;
     border-radius: 3px;
     width: rem(272px);
+  }
+
+  &.smooth-dnd-container.horizontal {
+    display: flex;
+    min-height: none;
+    min-width: none;
+    &.smooth-dnd-container.horizontal {
+      display: block;
+    }
   }
 }
 
