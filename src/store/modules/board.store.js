@@ -20,7 +20,7 @@ export const boardStore = {
   },
   getters: {
     board(state) {
-      return state.board;
+      return JSON.parse(JSON.stringify(state.board));
     },
     activities(state) {
       return state.board.activities;
@@ -265,21 +265,6 @@ export const boardStore = {
         console.log(err);
       }
     },
-    async drag({ commit, state }, { value }) {
-      commit({ type: 'updateGroups', newOrder: value });
-      await boardService.updateGroups(value, {
-        ...state.board,
-      });
-    },
-    async dragTask({ commit, state }, { value, group }) {
-      try {
-        group.tasks = value;
-        commit({ type: 'updateGroup', updatedGroup: group });
-        await boardService.updateAfterTaskDrag(group, JSON.parse(JSON.stringify(state.board)));
-      } catch (err) {
-        console.log(err);
-      }
-    },
     async createBoard({ commit }, { board }) {
       try {
         const newBoard = await boardService.addNewBoard(board);
@@ -300,17 +285,26 @@ export const boardStore = {
     async updateBoard({ commit }, { board }) {
       try {
         const newBoard = await boardService.updateBoard(board);
-        console.log('board', newBoard);
         commit({ type: 'setBoard', board: newBoard });
       } catch (err) {
         console.log(err);
       }
     },
-    // async changeBc({ state, commit }, { style, imgUrl }) {
-    //   const color = await designService.getAvgColor(imgUrl)
-    //   const boardStyle = { backgroundImg: imgUrl, type: style, color: color.hex, isDark:color.isDark }
-    //   boardService.changeBoardBc(boardStyle, state.board._id)
-    // },
+    async drag({ commit, state }, { board }) {
+      try {
+        commit({ type: 'setBoard', board });
+
+        setTimeout(async () => {
+          await boardService.updateBoard(board);
+        }, 1)
+
+      } catch (err) {
+        const oldBoard = await boardService.updateBoard(JSON.parse(JSON.stringify(state.board)));
+        commit({ type: 'setBoard', board: oldBoard });
+
+        console.log(err);
+      }
+    },
     getChecklists({ commit }) {
       commit({ type: 'getChecklists' });
     },

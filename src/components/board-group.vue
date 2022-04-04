@@ -17,40 +17,47 @@
 
     <div class="task-container">
       <ul>
-        <draggable v-model="tasks" group="tasks" forceFallback="true">
-          <li class="task-li" @click="openModalDetails(task.id)" v-for="task in group.tasks" :key="task.id">
-            <button @click.stop="quickEdit($event, task)" class="edit-btn">
-              <icon-base iconName="pencil"></icon-base>
-            </button>
+        <Container
+          group-name="list"
+          orientation="vertical"
+          @drop="onDrop"
+          @drag-start="handleDragStart($event, group.id)"
+          :get-child-payload="getChildPayload"
+        >
+          <Draggable v-for="task in group.tasks" :key="task.id" @click="openModalDetails(task.id)">
+            <li class="task-li">
+              <button @click.stop="quickEdit($event, task)" class="edit-btn">
+                <icon-base iconName="pencil"></icon-base>
+              </button>
 
-            <div v-if="task.style.cover.style === 'solid'" class="task-prev-cover">
-              <div class="cover-clr" :style="'background-color:' + task.style.cover.color">
-                <img class="cover-img" v-if="task.style.cover.type === 'img'" :src="task.style.cover.imgUrl" />
+              <div v-if="task.style.cover.style === 'solid'" class="task-prev-cover">
+                <div class="cover-clr" :style="'background-color:' + task.style.cover.color">
+                  <img class="cover-img" v-if="task.style.cover.type === 'img'" :src="task.style.cover.imgUrl" />
+                </div>
               </div>
-            </div>
 
-            <task-preview
-              :style="
-                task.style.cover.style === 'background'
-                  ? `background-image: url(${task.style.cover.imgUrl}); background-color:${task.style.cover.color}`
-                  : ''
-              "
-              :class="[
-                task.style.cover.style === 'background' && task.style.cover.type === 'img' ? 'task-prev-bcg' : '',
-                task.style.cover.style === 'background' && task.style.cover.type === 'color' ? 'task-prev-clr' : '',
-              ]"
-              :task="task"
-              :group="group"
-              @editTask="updateTask"
-              @removeTask="removeTask"
-              @toggleLabelsExpanded="toggleLabelsExpanded"
-            ></task-preview>
-            <span class="bcg-helper" v-if="task.style.cover.style === 'background'"></span>
-          </li>
-        </draggable>
+              <task-preview
+                :style="
+                  task.style.cover.style === 'background'
+                    ? `background-image: url(${task.style.cover.imgUrl}); background-color:${task.style.cover.color}`
+                    : ''
+                "
+                :class="[
+                  task.style.cover.style === 'background' && task.style.cover.type === 'img' ? 'task-prev-bcg' : '',
+                  task.style.cover.style === 'background' && task.style.cover.type === 'color' ? 'task-prev-clr' : '',
+                ]"
+                :task="task"
+                :group="group"
+                @editTask="updateTask"
+                @removeTask="removeTask"
+                @toggleLabelsExpanded="toggleLabelsExpanded"
+              ></task-preview>
+              <span class="bcg-helper" v-if="task.style.cover.style === 'background'"></span>
+            </li>
+          </Draggable>
+        </Container>
       </ul>
 
-      <!--  -->
       <div class="create-btn" v-if="isNewTask">
         <div class="new-task-container">
           <div class="textarea-wrapper">
@@ -101,8 +108,8 @@
 </template>
 
 <script>
-import { VueDraggableNext } from 'vue-draggable-next';
-import { eventBus } from '../services/eventBus.service.js';
+import { utilService } from '../services/util.service.js';
+import { Container, Draggable } from 'vue3-smooth-dnd';
 import iconBase from './icon-base.vue';
 import taskPreview from '../components/task-preview.vue';
 import IconBase from './icon-base.vue';
@@ -111,9 +118,17 @@ import resizableTextarea from './resizable-textarea.vue';
 
 export default {
   props: {
+    board: {
+      type: Object,
+      required: true,
+    },
     group: {
       type: Object,
       required: true,
+    },
+    draggingCard: {
+      type: Object,
+      required: false,
     },
   },
   data() {
@@ -126,13 +141,41 @@ export default {
       isEditModal: false,
       isDrag: false,
       isEditingTask: false,
+      boardCopy: JSON.parse(JSON.stringify(this.board)),
     };
   },
   created() {
-    this.$store.commit({ type: 'setGroup', group: this.group });
     window.addEventListener('resize', this.onResize);
+    this.$store.commit({ type: 'setGroup', group: this.group });
   },
   methods: {
+    async onDrop(dropResult) {
+      const { addedIndex, removedIndex } = dropResult;
+      if (addedIndex || removedIndex || removedIndex === 0 || addedIndex === 0) {
+        dropResult.payload = this.draggingCard.cardData;
+        const res = utilService.applyDrag(this.group.tasks, dropResult);
+        this.group.tasks = res;
+        this.$emit('onDragTask', { ...this.group });
+      }
+    },
+    handleDragStart(dragResult) {
+      const { isSource } = dragResult;
+      const index = dragResult.payload.index;
+      if (isSource) {
+        const draggingCard = {
+          id: this.group.tasks[index].id,
+          index,
+          cardData: this.group.tasks[index],
+        };
+
+        this.$emit('setDraggedTask', { ...draggingCard });
+      }
+    },
+    getChildPayload(index) {
+      return {
+        index,
+      };
+    },
     onResize() {
       if (this.isEditModal) this.isEditModal = false;
     },
@@ -177,26 +220,9 @@ export default {
       this.isNewTask = false;
       this.taskTitle = '';
     },
-    log(ev) {
-      ev.target.style.opacity = 1;
-    },
     quickEdit(ev, task) {
       const { left, top, width } = ev.target.closest('li').getBoundingClientRect();
       this.$emit('quickEdit', task, { left, top }, width);
-    },
-  },
-  computed: {
-    tasks: {
-      get() {
-        return this.group.tasks;
-      },
-      set(value) {
-        this.$store.dispatch({
-          type: 'dragTask',
-          value,
-          group: { ...this.group },
-        });
-      },
     },
   },
   destroyed() {
@@ -207,8 +233,9 @@ export default {
     taskPreview,
     iconBase,
     IconBase,
-    draggable: VueDraggableNext,
     TaskPreview,
+    Container,
+    Draggable,
   },
 };
 </script>

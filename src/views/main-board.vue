@@ -5,10 +5,21 @@
 
     <section class="groups-container" v-if="board">
       <div class="groups-container-wrapper">
-        <draggable v-model="groups" handle=".mover" forceFallback="true">
-          <div class="group-wrapper" v-for="group in board.groups" :key="group.id">
+        <Container
+          orientation="horizontal"
+          @drop="onDrop"
+          :get-child-payload="getChildPayload"
+          drag-class="card-ghost"
+          drop-class="card-ghost-drop"
+          :drop-placeholder="dropPlaceholderOptions"
+        >
+          <Draggable v-for="group in board.groups" :key="group.id" class="group-wrapper">
             <board-group
               :group="JSON.parse(JSON.stringify(group))"
+              :board="board"
+              :draggingCard="draggingCard"
+              @onDragTask="onDragTask"
+              @setDraggedTask="setDraggedTask"
               @editGroup="editGroup"
               @removeGroup="removeGroup"
               @removeTask="removeTask"
@@ -17,8 +28,8 @@
               @onOpen="openModal"
               @quickEdit="(task, position, width) => quickEdit(task, position, width, group)"
             />
-          </div>
-        </draggable>
+          </Draggable>
+        </Container>
         <add-group @addGroup="addGroup" class="group-wrapper" />
       </div>
     </section>
@@ -44,8 +55,9 @@
 </template>
 
 <script>
-import { VueDraggableNext } from 'vue-draggable-next';
+import { Container, Draggable } from 'vue3-smooth-dnd';
 import { socketService } from '../services/socket.service';
+import { utilService } from '../services/util.service';
 import boardHeader from '../components/board-header.vue';
 import mainHeader from '../components/main-header.vue';
 import boardGroup from '../components/board-group.vue';
@@ -62,6 +74,12 @@ export default {
       groupId: null,
       board: null,
       quickEditData: null,
+      draggingCard: null,
+      dropPlaceholderOptions: {
+        className: 'drop-preview',
+        animationDuration: '150',
+        showOnTop: true,
+      },
     };
   },
   async created() {
@@ -69,20 +87,45 @@ export default {
       type: 'loadBoard',
       boardId: this.$route.params.boardId,
     });
-    this.board = board;
+    this.board = this.$store.getters.board;
     const user = this.$store.getters.user;
 
-    socketService.emit('on-board', this.board._id);
+    socketService.emit('on-board', this.board._id, user._id);
+    socketService.emit('set-user-socket', user._id);
     socketService.on('update', (board, userId) => {
-      // if (userId !== user._id) {
-      this.board = { ...board };
-      // return;
-      // }
+      if (userId !== user._id) {
+        console.log('update');
+        this.board = { ...board };
+        return;
+      }
       this.$store.dispatch({ type: 'updateBoardSocket', board });
       this.board = this.$store.getters.board;
     });
   },
+  destroyed() {
+    socketService.emit('unset-user-socket');
+  },
   methods: {
+    async onDragTask(group) {
+      const idx = this.board.groups.findIndex((grp) => grp.id === group.id);
+      this.board.groups.splice(idx, 1, group);
+      await this.$store.dispatch({ type: 'drag', board: JSON.parse(JSON.stringify(this.board)) });
+      this.board = JSON.parse(JSON.stringify(this.$store.getters.board));
+    },
+    setDraggedTask(task) {
+      this.draggingCard = task;
+    },
+    async onDrop(dropResult) {
+      dropResult.payload = this.getChildPayload(dropResult.removedIndex);
+      const res = utilService.applyDrag(this.board.groups, dropResult);
+      const board = { ...this.board };
+      board.groups = res;
+      this.board = await this.$store.dispatch({ type: 'drag', board });
+      this.board = this.$store.getters.board;
+    },
+    getChildPayload(index) {
+      return this.board.groups[index];
+    },
     closeQuickEdit() {
       this.quickEditData = null;
     },
@@ -119,14 +162,6 @@ export default {
     },
   },
   computed: {
-    groups: {
-      get() {
-        return this.$store.getters.groups;
-      },
-      set(value) {
-        this.$store.dispatch({ type: 'drag', value });
-      },
-    },
     bcg() {
       if (!this.board) return;
       if (this.board.style.type === 'img') return `background-image: url(${this.board.style.backgroundImg})`;
@@ -139,9 +174,10 @@ export default {
     boardGroup,
     addGroup,
     taskDetails,
-    draggable: VueDraggableNext,
     createBoard,
     taskQuickEdit,
+    Container,
+    Draggable,
   },
 };
 </script>

@@ -54,3 +54,19 @@ body,
 textarea {
   resize: none;
 }
+
+.card-ghost {
+  transition: transform 0.18s ease;
+  transform: rotateZ(3deg);
+  background-color: #000000;
+}
+.card-ghost-drop {
+  transition: transform 0.18s ease-in-out;
+  transform: rotateZ(0deg);
+}
+
+.drop-preview {
+  // background-color: rgba(0, 0, 0, 0.402);
+  // height: 100%;
+  // margin: 1rem 2rem 1rem 0.3rem;
+}
