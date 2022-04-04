@@ -223,14 +223,16 @@
 .invite-member-modal {
   position: absolute;
   z-index: 1;
+  left: 350px;
   width: 280px;
-  height: 415px;
+  height: 100px;
   @include modalBc;
   header {
     @include modalHeader;
   }
   .main-content {
     @include modalContent;
+  
   }
   ::-webkit-scrollbar-track {
     margin: 0px;
@@ -243,11 +245,24 @@
 
   .member-res-modal {
     @include modalBc;
+    padding: 12px;
+    width: 280px;
+    img{
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .user-details{
+      margin-bottom: 10px;
+      // display: flex;
+      // align-items: center;
+    }
     top: 90px;
     left: 0px;
     position: absolute;
-    width: 272px;
-    height: 188px;
+    // height: 188px;
     overflow-y: auto;
     overflow-x: hidden;
     img {
@@ -256,9 +271,24 @@
       object-fit: cover;
       border-radius: 50%;
     }
-
+    
     .member-container {
+        // margin-left: 12px;
+        h5{
+          color: #959eab;
+          font-size: 12px;
+          // font-weight: 400;
+        }
+        h4{
+          color: #172b4d;
+          font-size: 14px;
+        }
       cursor: pointer;
+      display: flex;
+      img{
+        margin: 3px;
+        margin-right: 10px;
+      }
     }
   }
 }
