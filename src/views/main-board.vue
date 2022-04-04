@@ -107,10 +107,10 @@ export default {
   },
   methods: {
     async onDragTask(group) {
+      this.board = JSON.parse(JSON.stringify(this.$store.getters.board));
       const idx = this.board.groups.findIndex((grp) => grp.id === group.id);
       this.board.groups.splice(idx, 1, group);
       await this.$store.dispatch({ type: 'drag', board: JSON.parse(JSON.stringify(this.board)) });
-      this.board = JSON.parse(JSON.stringify(this.$store.getters.board));
     },
     setDraggedTask(task) {
       this.draggingCard = task;

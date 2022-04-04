@@ -20,7 +20,8 @@ export const boardStore = {
   },
   getters: {
     board(state) {
-      return JSON.parse(JSON.stringify(state.board));
+      return state.board;
+      // return JSON.parse(JSON.stringify(state.board));
     },
     activities(state) {
       return state.board.activities;
