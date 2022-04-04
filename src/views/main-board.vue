@@ -78,7 +78,7 @@ export default {
       dropPlaceholderOptions: {
         className: 'drop-preview',
         animationDuration: '150',
-        showOnTop: true,
+        showOnTop: false,
       },
     };
   },
