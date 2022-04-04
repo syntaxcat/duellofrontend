@@ -55,7 +55,6 @@
       </header>
       <div class="main-content">
         <input v-model="userSearch" @input="searchMembers" type="text" placeholder="Search memeber by name" />
-        <button>Send invintation</button>
       </div>
       <div v-if="userSearch" class="member-res-modal">
         <div
@@ -66,7 +65,10 @@
           @click="addMember(member)"
         >
           <img :src="member.imgUrl" referrerpolicy="no-referrer" />
-          <span>{{ member.fullname }}</span>
+          <div class="user-details">
+            <h4>{{ member.fullname }}</h4>
+          <h5>{{ member.username }}</h5>
+          </div>
         </div>
         <div v-else>
           <span>No users found</span>
