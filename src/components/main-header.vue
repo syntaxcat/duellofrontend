@@ -81,19 +81,19 @@
 import iconBase from './icon-base.vue';
 import createBoard from './create-board.vue';
 import IconBase from './icon-base.vue';
+import { userService } from '../services/user.service';
 
 export default {
   data() {
     return {
       isCreate: false,
-      isUserDetails: false
+      isUserDetails: false,
     };
   },
   methods: {
     signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
+      userService.logout().then(() => {
+        this.$router.push({ path: '/welcome' });
       });
     },
     goHome() {
@@ -108,8 +108,8 @@ export default {
       this.$router.replace({ path: `/board/${id}` });
     },
     toggleUserDetails() {
-      this.isUserDetails = !this.isUserDetails
-    }
+      this.isUserDetails = !this.isUserDetails;
+    },
   },
   computed: {
     user() {
@@ -124,7 +124,7 @@ export default {
       else return 'light-bcg';
     },
   },
-  async created() { },
+  async created() {},
   components: { iconBase, createBoard, IconBase },
 };
 </script>
