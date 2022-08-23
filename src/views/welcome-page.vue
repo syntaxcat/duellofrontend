@@ -18,7 +18,6 @@
           your team works is unique—accomplish it all with Duello.
         </p>
         <form @submit.prevent="logGuestUser">
-          <!-- <input type="text" /> -->
           <input class="welcome-btn" type="submit" value="Log in with guest user" />
         </form>
       </div>
@@ -33,21 +32,17 @@ export default {
     login() {
       this.$router.replace('/login');
     },
-   async logGuestUser(){
-     console.log('dgfdgdfgdgdgdgdg');
-      const guestUser ={
-        username:'guest',
-        password:'123',
-      }
+    async logGuestUser() {
+      const guestUser = {
+        username: 'guest',
+        password: '123',
+      };
       const user = await this.$store.dispatch({
         type: 'login',
         user: guestUser,
       });
       if (user) this.$router.replace('/');
     },
-    
   },
 };
 </script>
-
-<style></style>
